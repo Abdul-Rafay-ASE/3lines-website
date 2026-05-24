@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a1020"/><stop offset="1" stop-color="#070b16"/></linearGradient>
+<radialGradient id="r" cx="0.75" cy="0.25" r="0.8"><stop offset="0" stop-color="#36c2cf" stop-opacity="0.35"/><stop offset="1" stop-color="#36c2cf" stop-opacity="0"/></radialGradient></defs>
+<rect width="800" height="400" fill="url(#g)"/><rect width="800" height="400" fill="url(#r)"/>
+<g stroke="#36c2cf" stroke-opacity="0.10" stroke-width="1"><line x1="0" y1="0" x2="0" y2="400"/><line x1="40" y1="0" x2="40" y2="400"/><line x1="80" y1="0" x2="80" y2="400"/><line x1="120" y1="0" x2="120" y2="400"/><line x1="160" y1="0" x2="160" y2="400"/><line x1="200" y1="0" x2="200" y2="400"/><line x1="240" y1="0" x2="240" y2="400"/><line x1="280" y1="0" x2="280" y2="400"/><line x1="320" y1="0" x2="320" y2="400"/><line x1="360" y1="0" x2="360" y2="400"/><line x1="400" y1="0" x2="400" y2="400"/><line x1="440" y1="0" x2="440" y2="400"/><line x1="480" y1="0" x2="480" y2="400"/><line x1="520" y1="0" x2="520" y2="400"/><line x1="560" y1="0" x2="560" y2="400"/><line x1="600" y1="0" x2="600" y2="400"/><line x1="640" y1="0" x2="640" y2="400"/><line x1="680" y1="0" x2="680" y2="400"/><line x1="720" y1="0" x2="720" y2="400"/><line x1="760" y1="0" x2="760" y2="400"/><line x1="800" y1="0" x2="800" y2="400"/></g>
+<g stroke="#36c2cf" stroke-opacity="0.5" fill="none" stroke-width="2">
+<circle cx="640" cy="120" r="60"/><circle cx="640" cy="120" r="100" stroke-opacity="0.25"/><circle cx="640" cy="120" r="140" stroke-opacity="0.12"/></g>
+<rect x="0" y="392" width="800" height="8" fill="#36c2cf" opacity="0.6"/></svg>
