@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="robots" content="noindex,nofollow" />
+<title>Three Lines · CMS</title>
+<link rel="icon" href="/assets/logos/favicon.png" />
+<style>
+  :root{
+    --bg:#0a0f1c; --bg2:#0f1424; --panel:#0d1326; --panel2:#121933;
+    --border:rgba(255,255,255,.08); --border2:rgba(255,255,255,.14);
+    --text:#e7ebf3; --muted:#9aa3b6; --accent:#5cc0ff; --accent2:#3aa0ff;
+    --danger:#ff5d6b; --success:#22c55e;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent)}
+  button{font:inherit;cursor:pointer}
+  input,textarea,select{font:inherit;color:var(--text);background:var(--panel2);border:1px solid var(--border);border-radius:8px;padding:.6rem .7rem;width:100%;outline:none}
+  input:focus,textarea:focus,select:focus{border-color:var(--accent2)}
+  textarea{min-height:80px;resize:vertical;line-height:1.55}
+  label{display:block;font-size:.78rem;color:var(--muted);margin:.9rem 0 .35rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+  .btn{background:var(--accent2);color:#001226;border:0;padding:.55rem 1rem;border-radius:8px;font-weight:600;display:inline-flex;align-items:center;gap:.4rem}
+  .btn:hover{background:var(--accent)}
+  .btn.secondary{background:transparent;color:var(--text);border:1px solid var(--border2)}
+  .btn.danger{background:transparent;color:var(--danger);border:1px solid #4b1d23}
+  .btn.danger:hover{background:#2a1014}
+  .btn[disabled]{opacity:.5;cursor:not-allowed}
+  /* Login */
+  .login{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+  .login form{width:100%;max-width:380px;background:var(--panel);border:1px solid var(--border);padding:28px;border-radius:14px}
+  .login h1{font-size:1.4rem;margin:0 0 .25rem}
+  .login p{color:var(--muted);margin:.25rem 0 1.5rem}
+  /* App layout */
+  .app{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
+  .sidebar{background:var(--panel);border-right:1px solid var(--border);padding:18px 14px;display:flex;flex-direction:column;gap:6px}
+  .brand{font-weight:700;letter-spacing:.04em;font-size:.95rem;padding:6px 8px 16px;color:#fff;border-bottom:1px solid var(--border);margin-bottom:10px}
+  .brand span{color:var(--accent);font-weight:500;font-size:.7rem;display:block;margin-top:2px;letter-spacing:.1em;text-transform:uppercase}
+  .navbtn{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:8px;color:var(--text);background:transparent;border:0;text-align:left;width:100%;transition:background .15s}
+  .navbtn:hover{background:var(--panel2)}
+  .navbtn.active{background:var(--panel2);color:#fff;box-shadow:inset 2px 0 0 var(--accent)}
+  .navbtn .ic{width:18px;height:18px;color:var(--accent);flex:none}
+  .sidebar .logout{margin-top:auto;color:var(--muted);font-size:.85rem;background:none;border:0;text-align:left;padding:10px}
+  .sidebar .logout:hover{color:var(--text)}
+  .main{padding:28px 36px 60px;max-width:1100px;width:100%}
+  .pagehead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:24px}
+  .pagehead h2{font-size:1.4rem;margin:0 0 .25rem}
+  .pagehead p{color:var(--muted);margin:0;max-width:580px}
+  .toolbar{display:flex;gap:8px;flex-wrap:wrap}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:14px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media (max-width:780px){ .row{grid-template-columns:1fr} .app{grid-template-columns:1fr} .sidebar{display:flex;flex-direction:row;flex-wrap:wrap;border-right:0;border-bottom:1px solid var(--border)} .sidebar .logout{margin:0} .brand{flex-basis:100%;border-bottom:0;padding-bottom:0} }
+  .list-item{display:flex;justify-content:space-between;align-items:center;background:var(--panel2);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:8px}
+  .list-item .meta{display:flex;align-items:center;gap:12px;min-width:0}
+  .thumb{width:42px;height:42px;border-radius:8px;background:#0a1020 center/cover no-repeat;border:1px solid var(--border);flex:none}
+  .list-item .ttl{font-weight:600;min-width:0;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;max-width:38ch}
+  .list-item .sub{color:var(--muted);font-size:.8rem}
+  .actions{display:flex;gap:6px;flex:none}
+  .iconbtn{background:transparent;border:1px solid var(--border2);color:var(--text);width:34px;height:34px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center}
+  .iconbtn:hover{background:var(--panel2)}
+  .iconbtn.danger{color:var(--danger);border-color:#4b1d23}
+  /* upload zone */
+  .upzone{display:flex;align-items:center;gap:14px}
+  .uppreview{width:88px;height:88px;border-radius:10px;background:#0a1020 center/cover no-repeat;border:1px solid var(--border);flex:none}
+  .uphint{color:var(--muted);font-size:.82rem;margin-top:.25rem}
+  .tagrow{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+  .tagpill{display:inline-flex;align-items:center;gap:6px;background:var(--panel2);border:1px solid var(--border);padding:4px 10px;border-radius:9999px;font-size:.8rem;cursor:pointer;user-select:none}
+  .tagpill.on{background:#0c2a45;border-color:var(--accent);color:var(--accent)}
+  .field-error{color:var(--danger);font-size:.8rem;margin-top:.25rem}
+  /* toast */
+  .toast{position:fixed;bottom:24px;right:24px;background:var(--panel);border:1px solid var(--border2);border-left:4px solid var(--success);padding:12px 18px;border-radius:10px;color:#fff;opacity:0;transform:translateY(8px);transition:.25s;pointer-events:none;z-index:9999}
+  .toast.on{opacity:1;transform:none}
+  .toast.err{border-left-color:var(--danger)}
+  /* services grid */
+  .svc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+  .svc-card{background:var(--panel2);border:1px solid var(--border);border-radius:12px;padding:14px;cursor:pointer;transition:border-color .15s}
+  .svc-card:hover{border-color:var(--border2)}
+  .svc-card .icon-circle{width:32px;height:32px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;margin-bottom:8px}
+  .svc-card h4{margin:0 0 4px;font-size:.95rem}
+  .svc-card p{margin:0;color:var(--muted);font-size:.82rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .lang-tabs{display:inline-flex;gap:2px;background:var(--panel2);border:1px solid var(--border);border-radius:8px;padding:2px}
+  .lang-tabs button{background:transparent;color:var(--muted);border:0;padding:5px 12px;border-radius:6px;font-size:.78rem;font-weight:600}
+  .lang-tabs button.on{background:var(--bg);color:#fff}
+  .ar-rtl{direction:rtl;text-align:right;font-family:"Tajawal","Segoe UI",system-ui,sans-serif}
+  hr{border:0;border-top:1px solid var(--border);margin:18px 0}
+  .crumbs{color:var(--muted);font-size:.85rem;margin-bottom:10px}
+  .crumbs a{color:var(--muted);text-decoration:none}
+  .crumbs a:hover{color:var(--text)}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<div id="toast" class="toast">Saved</div>
+
+<script>
+/* ============================================================ *
+ * Three Lines CMS — tiny vanilla SPA
+ * ============================================================ */
+
+const ICONS_AVAILABLE = ["package","wrench","truck","plane","monitor","gauge","zap","shield","cap","radar"];
+const ICON_SVG = {
+  package:'<path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/>',
+  wrench:'<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>',
+  truck:'<path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/>',
+  plane:'<path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>',
+  monitor:'<rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/>',
+  gauge:'<path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/>',
+  zap:'<path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>',
+  shield:'<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>',
+  cap:'<path d="M21.42 10.92a1 1 0 0 0-.02-1.84L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.83l8.57 3.91a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/>',
+  radar:'<path d="M19.07 4.93A10 10 0 0 0 6.99 3.34"/><path d="M4 6h.01"/><path d="M2.29 9.62A10 10 0 1 0 21.31 8.35"/><path d="M16.24 7.76A6 6 0 1 0 8.23 16.67"/><path d="M12 18h.01"/><path d="M17.99 11.66A6 6 0 0 1 15.77 16.67"/><circle cx="12" cy="12" r="2"/><path d="m13.41 10.59 5.66-5.66"/>',
+};
+function iconSvg(name, color="currentColor", size=18){
+  const path = ICON_SVG[name] || '';
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${path}</svg>`;
+}
+
+/* ----------------- App state ----------------- */
+const app = { state:null, section:'siteInfo', editing:null /* {type,index} */, dirty:false };
+
+const SECTION_META = [
+  {id:'siteInfo', label:'Site Info', icon:'shield'},
+  {id:'services', label:'Services', icon:'wrench'},
+  {id:'partners', label:'Partners', icon:'cap'},
+  {id:'posts',    label:'News',     icon:'radar'},
+];
+
+function $(sel,root=document){return root.querySelector(sel)}
+function el(tag,attrs={},...kids){
+  const n=document.createElement(tag);
+  for(const [k,v] of Object.entries(attrs||{})){
+    if(k==='style' && typeof v==='object'){Object.assign(n.style,v);}
+    else if(k.startsWith('on')&&typeof v==='function'){n.addEventListener(k.slice(2).toLowerCase(),v);}
+    else if(k==='class'){n.className=v;}
+    else if(k==='html'){n.innerHTML=v;}
+    else if(v!=null && v!==false){n.setAttribute(k,v);}
+  }
+  for(const k of kids.flat()){
+    if(k==null||k===false) continue;
+    n.append(k.nodeType?k:document.createTextNode(k));
+  }
+  return n;
+}
+function toast(msg, err=false){
+  const t=$('#toast'); t.textContent=msg; t.classList.toggle('err',!!err); t.classList.add('on');
+  clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove('on'),2500);
+}
+
+/* ----------------- API ----------------- */
+async function api(path, opts={}){
+  const r=await fetch('/api/cms'+path, {
+    method: opts.method||'GET',
+    headers: {'Content-Type':'application/json', ...(opts.headers||{})},
+    body: opts.body?JSON.stringify(opts.body):undefined,
+    credentials: 'same-origin',
+  });
+  if(r.status===401){ render(); throw new Error('unauthorized'); }
+  const j = await r.json().catch(()=>({error:'bad json'}));
+  if(!r.ok) throw new Error(j.error||('HTTP '+r.status));
+  return j;
+}
+
+async function loadContent(){
+  try{
+    const data = await api('/content');
+    app.state = data;
+    app.dirty = false;
+    render();
+  }catch(e){
+    if(String(e.message)==='unauthorized') return;
+    document.body.innerHTML='<div style="padding:40px;color:#fff">Failed to load: '+e.message+'</div>';
+  }
+}
+
+async function save(){
+  if(!app.state) return;
+  try{
+    await api('/content',{method:'POST', body: app.state});
+    app.dirty=false; toast('Saved ✓');
+    render();
+  }catch(e){ toast('Save failed: '+e.message, true); }
+}
+
+function setDirty(){ app.dirty=true; render(); }
+
+/* ----------------- Login screen ----------------- */
+function renderLogin(){
+  document.body.classList.add('login-on');
+  $('#root').innerHTML='';
+  const form = el('form',{class:'',onsubmit:async ev=>{
+    ev.preventDefault();
+    const pw = ev.target.password.value;
+    const btn = ev.target.querySelector('button');
+    btn.disabled=true; btn.textContent='Signing in…';
+    try{
+      const r=await fetch('/api/cms/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:pw}),credentials:'same-origin'});
+      const j=await r.json().catch(()=>({}));
+      if(!r.ok) throw new Error(j.error||'Login failed');
+      loadContent();
+    }catch(e){
+      btn.disabled=false; btn.textContent='Log in';
+      const err = ev.target.querySelector('.field-error');
+      err.textContent = e.message;
+    }
+  }},
+    el('h1',{},'Three Lines · CMS'),
+    el('p',{},'Sign in to edit the site.'),
+    el('label',{for:'pw'},'Password'),
+    el('input',{type:'password',name:'password',id:'pw',required:true,autofocus:true,autocomplete:'current-password'}),
+    el('div',{class:'field-error',style:{minHeight:'1.1rem',marginBottom:'.5rem'}}),
+    el('button',{class:'btn',type:'submit',style:{width:'100%',justifyContent:'center'}},'Log in'),
+  );
+  const wrap = el('div',{class:'login'}, form);
+  $('#root').append(wrap);
+}
+
+/* ----------------- App shell ----------------- */
+function renderShell(){
+  $('#root').innerHTML='';
+  const sidebar = el('aside',{class:'sidebar'},
+    el('div',{class:'brand'},'Three Lines', el('span',{},'CMS')),
+    ...SECTION_META.map(s => el('button',{
+      class:'navbtn'+(app.section===s.id?' active':''),
+      onclick:()=>{ app.section=s.id; app.editing=null; render(); }
+    }, el('span',{class:'ic',html:iconSvg(s.icon,'currentColor',16)}), s.label)),
+    el('button',{class:'logout',onclick:async()=>{ await fetch('/api/cms/logout',{method:'POST'}); location.reload(); }},'⏻ Log out'),
+  );
+  const main = el('main',{class:'main',id:'main'});
+  $('#root').append(el('div',{class:'app'}, sidebar, main));
+  renderMain(main);
+}
+
+function renderMain(root){
+  if(!app.state){ root.append(el('div',{},'Loading…')); return; }
+  if(app.section==='siteInfo') return renderSiteInfo(root);
+  if(app.section==='services') return renderServices(root);
+  if(app.section==='partners') return renderPartners(root);
+  if(app.section==='posts')    return renderPosts(root);
+}
+
+/* ----------------- Reusable bilingual field ----------------- */
+function biField({label, value, rows, onChange}){
+  // value: {en, ar}
+  const state = { lang: (value && value.ar) ? 'en' : 'en' };
+  const wrap = el('div',{});
+  const head = el('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center'}},
+    el('label',{},label),
+    el('div',{class:'lang-tabs'},
+      el('button',{type:'button',class:state.lang==='en'?'on':'',onclick:()=>{state.lang='en';refresh();}},'EN'),
+      el('button',{type:'button',class:state.lang==='ar'?'on':'',onclick:()=>{state.lang='ar';refresh();}},'AR'),
+    )
+  );
+  const inputWrap = el('div',{});
+  function refresh(){
+    inputWrap.innerHTML='';
+    const tag = rows? 'textarea' : 'input';
+    const inp = el(tag,{
+      class: state.lang==='ar'?'ar-rtl':'',
+      rows: rows||undefined,
+      value: (value && value[state.lang]) || '',
+      oninput:(e)=>{ value[state.lang]=e.target.value; onChange&&onChange(value); }
+    });
+    if(tag==='textarea'){ inp.value=(value && value[state.lang])||''; }
+    inputWrap.append(inp);
+    // re-render tabs visual
+    head.querySelectorAll('.lang-tabs button').forEach(b=>b.classList.toggle('on', b.textContent.toLowerCase()===state.lang));
+  }
+  refresh();
+  wrap.append(head, inputWrap);
+  return wrap;
+}
+
+/* ----------------- Image upload helper ----------------- */
+function uploadField({label, value, hint, onChange}){
+  const wrap = el('div',{class:'upzone'});
+  const prev = el('div',{class:'uppreview'});
+  function setPreview(url){ prev.style.backgroundImage = url?`url(${JSON.stringify(url)})`:'none'; prev.style.backgroundColor= url?'transparent':'#0a1020'; }
+  setPreview(value);
+  const input = el('input',{type:'file',accept:'image/*',style:{padding:0,border:0,background:'transparent'},
+    onchange: async ev=>{
+      const f = ev.target.files[0]; if(!f) return;
+      if(f.size > 8*1024*1024){ toast('File too large (max 8 MB)', true); return; }
+      const reader = new FileReader();
+      reader.onload = async ()=>{
+        try{
+          const r = await api('/upload',{method:'POST', body:{name:f.name, dataUrl: reader.result}});
+          onChange(r.url); setPreview(r.url); toast('Uploaded ✓');
+        }catch(e){ toast('Upload failed: '+e.message, true); }
+      };
+      reader.readAsDataURL(f);
+    }
+  });
+  const text = el('div',{},
+    el('label',{},label),
+    input,
+    hint && el('div',{class:'uphint'},hint),
+  );
+  wrap.append(prev, text);
+  return wrap;
+}
+
+/* ============================================================ *
+ *  SITE INFO
+ * ============================================================ */
+function renderSiteInfo(root){
+  const s = app.state.siteInfo;
+  root.append(
+    el('div',{class:'pagehead'},
+      el('div',{},
+        el('h2',{},'Site Info'),
+        el('p',{},'Footer text shown on every page, in English and Arabic.'),
+      ),
+      el('div',{class:'toolbar'},
+        el('button',{class:'btn',disabled:!app.dirty,onclick:save}, app.dirty?'Save changes':'Saved'),
+      )
+    ),
+    el('div',{class:'card'},
+      biField({label:'Company description', value:s.companyDescription, rows:4, onChange:setDirty}),
+      el('label',{},'Address'),
+      el('textarea',{rows:2,value:s.address,oninput:e=>{s.address=e.target.value;setDirty();}}, s.address),
+      el('div',{class:'row'},
+        el('div',{},
+          el('label',{},'Commercial Registration No.'),
+          el('input',{value:s.commercialRegNo,oninput:e=>{s.commercialRegNo=e.target.value;setDirty();}}),
+        ),
+        el('div',{},
+          el('label',{},'VAT Registration No.'),
+          el('input',{value:s.vatRegNo,oninput:e=>{s.vatRegNo=e.target.value;setDirty();}}),
+        ),
+      ),
+      el('div',{class:'row'},
+        el('div',{},
+          el('label',{},'LinkedIn URL'),
+          el('input',{value:s.linkedIn||'',placeholder:'https://www.linkedin.com/company/...',oninput:e=>{s.linkedIn=e.target.value;setDirty();}}),
+        ),
+        el('div',{},
+          el('label',{},'Copyright Year'),
+          el('input',{type:'number',value:s.copyrightYear,oninput:e=>{s.copyrightYear=parseInt(e.target.value,10)||s.copyrightYear;setDirty();}}),
+        ),
+      ),
+    )
+  );
+}
+
+/* ============================================================ *
+ *  SERVICES
+ * ============================================================ */
+function renderServices(root){
+  const list = app.state.services;
+  if(app.editing && app.editing.type==='service'){
+    return renderServiceEditor(root, list[app.editing.index]);
+  }
+  root.append(
+    el('div',{class:'pagehead'},
+      el('div',{},
+        el('h2',{},'Services'),
+        el('p',{},'Edit the 10 service cards shown on the home & services pages. Click a card to edit its content, icon, and accent color.'),
+      ),
+      el('div',{class:'toolbar'},
+        el('button',{class:'btn',disabled:!app.dirty,onclick:save}, app.dirty?'Save changes':'Saved'),
+      )
+    ),
+    el('div',{class:'svc-grid'},
+      ...list.map((s,i)=>el('div',{class:'svc-card',onclick:()=>{app.editing={type:'service',index:i};render();}},
+        el('div',{class:'icon-circle',style:{background:s.hue+'22',border:'1px solid '+s.hue+'66',color:s.hue},html:iconSvg(s.icon,s.hue,18)}),
+        el('h4',{},s.title.en),
+        el('p',{},s.description.en),
+      ))
+    )
+  );
+}
+function renderServiceEditor(root, s){
+  root.append(
+    el('div',{class:'crumbs'},
+      el('a',{href:'#',onclick:e=>{e.preventDefault();app.editing=null;render();}},'← Services'), ' / ', s.title.en,
+    ),
+    el('div',{class:'pagehead'},
+      el('div',{},
+        el('h2',{},'Edit service'),
+        el('p',{},'Each service has English and Arabic. Slug is fixed (URL).'),
+      ),
+      el('div',{class:'toolbar'},
+        el('button',{class:'btn secondary',onclick:()=>{app.editing=null;render();}},'Back'),
+        el('button',{class:'btn',disabled:!app.dirty,onclick:save}, app.dirty?'Save changes':'Saved'),
+      )
+    ),
+    el('div',{class:'card'},
+      el('label',{},'Slug (not editable)'),
+      el('input',{value:s.slug,disabled:true,style:{opacity:.6}}),
+      biField({label:'Title', value:s.title, onChange:setDirty}),
+      biField({label:'Description', value:s.description, rows:3, onChange:setDirty}),
+      el('div',{class:'row'},
+        el('div',{},
+          el('label',{},'Icon'),
+          (()=>{ const sel=el('select',{onchange:e=>{s.icon=e.target.value;setDirty();}}); ICONS_AVAILABLE.forEach(ic=>{const o=el('option',{value:ic},ic); if(ic===s.icon)o.selected=true; sel.append(o);}); return sel; })(),
+        ),
+        el('div',{},
+          el('label',{},'Accent color'),
+          el('div',{style:{display:'flex',gap:8,alignItems:'center'}},
+            el('input',{type:'color',value:s.hue,style:{padding:0,width:'48px',height:'40px',background:'transparent'},oninput:e=>{s.hue=e.target.value;setDirty();}}),
+            el('input',{value:s.hue,style:{flex:1},oninput:e=>{s.hue=e.target.value;setDirty();}})
+          ),
+        ),
+      ),
+    )
+  );
+}
+
+/* ============================================================ *
+ *  PARTNERS
+ * ============================================================ */
+function renderPartners(root){
+  let list = app.state.partners && app.state.partners.data;
+  if(!Array.isArray(list)){ app.state.partners = { data: [] }; list = app.state.partners.data; }
+  if(app.editing && app.editing.type==='partner'){
+    return renderPartnerEditor(root, list, app.editing.index);
+  }
+  root.append(
+    el('div',{class:'pagehead'},
+      el('div',{},
+        el('h2',{},'Partners & clients'),
+        el('p',{},'Logos in the home page partners carousel and on the Partners & Clients page.'),
+      ),
+      el('div',{class:'toolbar'},
+        el('button',{class:'btn secondary',onclick:()=>{ list.push(newPartner()); app.editing={type:'partner',index:list.length-1}; setDirty(); }},'+ Add partner'),
+        el('button',{class:'btn',disabled:!app.dirty,onclick:save}, app.dirty?'Save changes':'Saved'),
+      )
+    ),
+    el('div',{},
+      ...list.map((p,i)=>el('div',{class:'list-item'},
+        el('div',{class:'meta'},
+          el('div',{class:'thumb',style:{backgroundImage: p.logo&&p.logo.uri ? `url(${JSON.stringify(p.logo.uri.startsWith('http')?p.logo.uri:'/'+p.logo.uri)})` : 'none'}}),
+          el('div',{style:{minWidth:0}},
+            el('div',{class:'ttl'}, (p.name&&(p.name.en||p.name.ar))||'(unnamed)'),
+            el('div',{class:'sub'}, p.link||'—'),
+          )
+        ),
+        el('div',{class:'actions'},
+          el('button',{class:'iconbtn',title:'Edit',onclick:()=>{app.editing={type:'partner',index:i};render();}},'✎'),
+          el('button',{class:'iconbtn danger',title:'Delete',onclick:()=>{ if(confirm('Delete this partner?')){ list.splice(i,1); setDirty(); }}},'×'),
+        )
+      ))
+    )
+  );
+}
+function newPartner(){
+  return { id: crypto.randomUUID(), name:{en:'',ar:''}, description:{en:'',ar:''}, link:'', logo:{uri:''}, country:null, type:null };
+}
+function renderPartnerEditor(root, list, idx){
+  const p = list[idx];
+  if(!p.name) p.name={en:'',ar:''};
+  if(!p.description) p.description={en:'',ar:''};
+  if(!p.logo) p.logo={uri:''};
+  root.append(
+    el('div',{class:'crumbs'},
+      el('a',{href:'#',onclick:e=>{e.preventDefault();app.editing=null;render();}},'← Partners'), ' / ', p.name.en||'New partner',
+    ),
+    el('div',{class:'pagehead'},
+      el('div',{},
+        el('h2',{},'Edit partner'),
+        el('p',{},'Name (EN/AR), short description, link, and logo. Logos look best as PNG or SVG with transparent background.'),
+      ),
+      el('div',{class:'toolbar'},
+        el('button',{class:'btn secondary',onclick:()=>{app.editing=null;render();}},'Back'),
+        el('button',{class:'btn',disabled:!app.dirty,onclick:save}, app.dirty?'Save changes':'Saved'),
+      )
+    ),
+    el('div',{class:'card'},
+      biField({label:'Name', value:p.name, onChange:setDirty}),
+      biField({label:'Description (optional)', value:p.description, rows:2, onChange:setDirty}),
+      el('label',{},'Website link (optional)'),
+      el('input',{value:p.link||'',placeholder:'https://...',oninput:e=>{p.link=e.target.value;setDirty();}}),
+      uploadField({label:'Logo image', value:p.logo.uri && (p.logo.uri.startsWith('http')?p.logo.uri:'/'+p.logo.uri), hint:'PNG / SVG / JPG up to 8 MB.', onChange:url=>{ p.logo={uri:url}; setDirty(); }}),
+    )
+  );
+}
+
+/* ============================================================ *
+ *  NEWS POSTS
+ * ============================================================ */
+function renderPosts(root){
+  let st = app.state.posts;
+  if(!st || !Array.isArray(st.data)){ app.state.posts = { data: [], meta: {current_page:1,last_page:1,per_page:4,total:0} }; st = app.state.posts; }
+  const list = st.data;
+  if(app.editing && app.editing.type==='post'){ return renderPostEditor(root, st, app.editing.index); }
+  root.append(
+    el('div',{class:'pagehead'},
+      el('div',{},
+        el('h2',{},'News'),
+        el('p',{},'Articles shown on /news. Each post has a title, summary, body, cover image, date, and tags — in English and Arabic.'),
+      ),
+      el('div',{class:'toolbar'},
+        el('button',{class:'btn secondary',onclick:()=>{ list.unshift(newPost()); st.meta.total = list.length; app.editing={type:'post',index:0}; setDirty(); }},'+ New post'),
+        el('button',{class:'btn',disabled:!app.dirty,onclick:save}, app.dirty?'Save changes':'Saved'),
+      )
+    ),
+    el('div',{},
+      list.length===0 && el('div',{class:'card',style:{textAlign:'center',color:'var(--muted)'}}, 'No posts yet. Click "+ New post" to write the first one.'),
+      ...list.map((p,i)=>el('div',{class:'list-item'},
+        el('div',{class:'meta'},
+          el('div',{class:'thumb',style:{backgroundImage: p.cover&&p.cover.uri ? `url(${JSON.stringify(p.cover.uri.startsWith('http')?p.cover.uri:'/'+p.cover.uri)})` : 'none'}}),
+          el('div',{style:{minWidth:0}},
+            el('div',{class:'ttl'}, (p.title&&(p.title.en||p.title.ar))||'(untitled)'),
+            el('div',{class:'sub'}, (p.publish_date||'').slice(0,10) + ((p.tags&&p.tags.length)?' · '+p.tags.map(t=>(t.name&&t.name.en)||t.slug).join(', '):'')),
+          )
+        ),
+        el('div',{class:'actions'},
+          el('button',{class:'iconbtn',title:'Edit',onclick:()=>{app.editing={type:'post',index:i};render();}},'✎'),
+          el('button',{class:'iconbtn danger',title:'Delete',onclick:()=>{ if(confirm('Delete this post?')){ list.splice(i,1); st.meta.total=list.length; setDirty(); }}},'×'),
+        )
+      ))
+    )
+  );
+}
+function newPost(){
+  return {
+    id: crypto.randomUUID(),
+    slug: 'new-post-'+Date.now().toString(36),
+    title:{en:'',ar:''}, description:{en:'',ar:''}, body:{en:'',ar:''},
+    cover:{uri:''}, publish_date: new Date().toISOString(),
+    tags: [],
+  };
+}
+function renderPostEditor(root, st, idx){
+  const p = st.data[idx];
+  if(!p.title) p.title={en:'',ar:''};
+  if(!p.description) p.description={en:'',ar:''};
+  if(!p.body) p.body={en:'',ar:''};
+  if(!p.cover) p.cover={uri:''};
+  if(!p.tags) p.tags=[];
+  // available tags come from /api/v1/tags (already static, has 3 entries)
+  const KNOWN_TAGS = window.__cmsTags__||[];
+  root.append(
+    el('div',{class:'crumbs'},
+      el('a',{href:'#',onclick:e=>{e.preventDefault();app.editing=null;render();}},'← News'), ' / ', p.title.en||'New post',
+    ),
+    el('div',{class:'pagehead'},
+      el('div',{},
+        el('h2',{},'Edit post'),
+        el('p',{},'Slug is the URL piece after /news/.'),
+      ),
+      el('div',{class:'toolbar'},
+        el('button',{class:'btn secondary',onclick:()=>{app.editing=null;render();}},'Back'),
+        el('button',{class:'btn',disabled:!app.dirty,onclick:save}, app.dirty?'Save changes':'Saved'),
+      )
+    ),
+    el('div',{class:'card'},
+      el('div',{class:'row'},
+        el('div',{},
+          el('label',{},'Slug'),
+          el('input',{value:p.slug,oninput:e=>{p.slug=e.target.value.toLowerCase().replace(/[^a-z0-9-]/g,'-');setDirty();}}),
+        ),
+        el('div',{},
+          el('label',{},'Publish date'),
+          el('input',{type:'date',value:(p.publish_date||'').slice(0,10),oninput:e=>{p.publish_date=new Date(e.target.value+'T09:00:00Z').toISOString();setDirty();}}),
+        ),
+      ),
+      biField({label:'Title', value:p.title, onChange:setDirty}),
+      biField({label:'Short description / excerpt', value:p.description, rows:2, onChange:setDirty}),
+      biField({label:'Body (full article — one paragraph per line)', value:p.body, rows:8, onChange:setDirty}),
+      uploadField({label:'Cover image', value:p.cover.uri && (p.cover.uri.startsWith('http')?p.cover.uri:'/'+p.cover.uri), hint:'Wide image (e.g. 1600×800). PNG/JPG/WebP/SVG up to 8 MB.', onChange:url=>{ p.cover={uri:url}; setDirty(); }}),
+      el('label',{},'Tags'),
+      el('div',{class:'tagrow'},
+        ...KNOWN_TAGS.map(t=>{
+          const on = p.tags.some(x=>x.slug===t.slug);
+          return el('span',{class:'tagpill'+(on?' on':''),onclick:()=>{
+            if(on) p.tags = p.tags.filter(x=>x.slug!==t.slug);
+            else p.tags = [...p.tags, t];
+            setDirty();
+          }}, '#'+(t.name && t.name.en || t.slug));
+        })
+      ),
+    )
+  );
+}
+
+/* ----------------- Bootstrap ----------------- */
+function render(){
+  if(!app.state){ /* loading or login */ return; }
+  renderShell();
+}
+async function boot(){
+  // try to load content; if 401, show login
+  try{
+    // also fetch tags for posts editor
+    fetch('/api/v1/tags').then(r=>r.json()).then(j=>{ window.__cmsTags__=j.data||[]; }).catch(()=>{});
+    await loadContent();
+  }catch(e){
+    if(String(e.message)==='unauthorized'){ renderLogin(); return; }
+  }
+}
+boot();
+</script>
+</body>
+</html>
