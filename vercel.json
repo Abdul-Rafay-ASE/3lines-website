@@ -4,11 +4,13 @@
   "redirects": [
     { "source": "/", "destination": "/en", "permanent": false }
   ],
+  "rewrites": [
+    { "source": "/cms-assets/:path*", "destination": "/api/cms-asset?path=:path*" }
+  ],
   "headers": [
     {
       "source": "/api/v1/(.*)",
       "headers": [
-        { "key": "Content-Type", "value": "application/json; charset=utf-8" },
         { "key": "Access-Control-Allow-Origin", "value": "*" }
       ]
     }

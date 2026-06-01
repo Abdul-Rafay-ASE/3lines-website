@@ -1,5 +1,6 @@
-// POST /api/cms/upload  body: { name, dataUrl }   ->  { url }
-// Accepts base64 data URLs (e.g. "data:image/png;base64,...") for simplicity (no multipart).
+// POST /api/cms/upload  body: { name, dataUrl }   ->  { url, path }
+// dataUrl is a base64 data URL like "data:image/png;base64,...."
+// File is committed to the GitHub repo under content/uploads/ and served via the /cms-assets/* proxy.
 const { requireAuth, uploadFile } = require('./_lib');
 
 module.exports = async (req, res) => {
@@ -13,10 +14,9 @@ module.exports = async (req, res) => {
   const isB64 = /;base64,/.test(dataUrl);
   const buffer = isB64 ? Buffer.from(m[2], 'base64') : Buffer.from(decodeURIComponent(m[2]), 'utf8');
   if (buffer.length > 8 * 1024 * 1024) return res.status(413).json({ error: 'File too large (max 8MB)' });
-  const safeName = (name || 'file').replace(/[^a-zA-Z0-9._-]/g, '_').slice(0, 80);
   try {
-    const url = await uploadFile(safeName, buffer, contentType);
-    res.json({ ok: true, url, contentType, size: buffer.length });
+    const r = await uploadFile(name || 'file', buffer, contentType);
+    res.json({ ok: true, url: '/' + r.path, path: r.path, contentType, size: buffer.length, name: r.name });
   } catch (e) {
     res.status(500).json({ ok: false, error: String(e.message || e) });
   }

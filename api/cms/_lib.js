@@ -1,11 +1,13 @@
-// Shared helpers: HMAC-signed cookie auth + Vercel Blob storage.
+// Shared helpers: HMAC-signed cookie auth + GitHub Contents API as storage.
 const crypto = require('crypto');
-const { list, put, del } = require('@vercel/blob');
 
 const SECRET = process.env.SESSION_SECRET || 'insecure-change-me';
 const PASSWORD = process.env.CMS_PASSWORD || '';
-const TOKEN = process.env.BLOB_READ_WRITE_TOKEN;
+const GH_TOKEN = process.env.GITHUB_TOKEN;
+const GH_REPO = process.env.GH_REPO; // "owner/repo"
+const GH_BRANCH = process.env.GH_BRANCH || 'master';
 
+/* ---------- Auth ---------- */
 function sign(payload) {
   const data = Buffer.from(JSON.stringify(payload)).toString('base64url');
   const sig = crypto.createHmac('sha256', SECRET).update(data).digest('base64url');
@@ -44,37 +46,66 @@ function sessionCookie(token, maxAge) {
   return `cms_session=${token}; HttpOnly; Path=/; SameSite=Lax; Max-Age=${maxAge}${process.env.VERCEL ? '; Secure' : ''}`;
 }
 
-// Single-blob-per-section storage. addRandomSuffix:false keeps the URL pathname stable.
+/* ---------- GitHub Contents API ---------- */
+function ghHeaders() {
+  return {
+    Authorization: `Bearer ${GH_TOKEN}`,
+    Accept: 'application/vnd.github+json',
+    'X-GitHub-Api-Version': '2022-11-28',
+    'User-Agent': '3lines-cms',
+  };
+}
+async function ghGet(path) {
+  if (!GH_TOKEN || !GH_REPO) throw new Error('GitHub env vars missing');
+  const url = `https://api.github.com/repos/${GH_REPO}/contents/${encodeURI(path)}?ref=${encodeURIComponent(GH_BRANCH)}`;
+  const r = await fetch(url, { headers: ghHeaders() });
+  if (r.status === 404) return null;
+  if (!r.ok) throw new Error(`GitHub GET ${path}: ${r.status} ${await r.text()}`);
+  return await r.json(); // { content (base64), sha, ... }
+}
+async function ghPut(path, contentBuffer, message) {
+  if (!GH_TOKEN || !GH_REPO) throw new Error('GitHub env vars missing');
+  const existing = await ghGet(path);
+  const body = {
+    message: message || `CMS: update ${path}`,
+    content: contentBuffer.toString('base64'),
+    branch: GH_BRANCH,
+  };
+  if (existing && existing.sha) body.sha = existing.sha;
+  const url = `https://api.github.com/repos/${GH_REPO}/contents/${encodeURI(path)}`;
+  const r = await fetch(url, { method: 'PUT', headers: { ...ghHeaders(), 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+  if (!r.ok) throw new Error(`GitHub PUT ${path}: ${r.status} ${await r.text()}`);
+  return await r.json();
+}
+async function ghGetRaw(path) {
+  const meta = await ghGet(path);
+  if (!meta) return null;
+  return Buffer.from((meta.content || '').replace(/\n/g, ''), 'base64');
+}
+
+/* ---------- Section read/write (matches the previous signature) ---------- */
 async function readSection(name) {
-  if (!TOKEN) return null;
   try {
-    const { blobs } = await list({ prefix: `content/${name}.json`, token: TOKEN });
-    const b = blobs.find(x => x.pathname === `content/${name}.json`);
-    if (!b) return null;
-    const r = await fetch(b.url, { cache: 'no-store' });
-    if (!r.ok) return null;
-    return await r.json();
+    const buf = await ghGetRaw(`content/${name}.json`);
+    if (!buf) return null;
+    return JSON.parse(buf.toString('utf-8'));
   } catch (e) { return null; }
 }
 async function writeSection(name, data) {
-  if (!TOKEN) throw new Error('No blob token');
-  await put(`content/${name}.json`, JSON.stringify(data, null, 2), {
-    access: 'public',
-    contentType: 'application/json; charset=utf-8',
-    allowOverwrite: true,
-    addRandomSuffix: false,
-    token: TOKEN,
-  });
+  const buf = Buffer.from(JSON.stringify(data, null, 2), 'utf-8');
+  await ghPut(`content/${name}.json`, buf, `CMS: update ${name}`);
 }
+
+/* ---------- Image uploads (committed to repo, served via /cms-assets/* proxy) ---------- */
 async function uploadFile(filename, buffer, contentType) {
-  if (!TOKEN) throw new Error('No blob token');
-  const r = await put(`uploads/${filename}`, buffer, {
-    access: 'public',
-    contentType: contentType || 'application/octet-stream',
-    addRandomSuffix: true,
-    token: TOKEN,
-  });
-  return r.url;
+  // safe filename + random suffix for uniqueness/cache-busting
+  const safe = filename.replace(/[^a-zA-Z0-9._-]/g, '_').slice(0, 60).replace(/^\.+/, '');
+  const ext = (safe.match(/\.[a-zA-Z0-9]{1,8}$/) || [''])[0];
+  const stem = ext ? safe.slice(0, -ext.length) : safe;
+  const rnd = crypto.randomBytes(5).toString('hex');
+  const finalName = `${stem || 'file'}-${rnd}${ext}`;
+  await ghPut(`content/uploads/${finalName}`, buffer, `CMS: upload ${finalName}`);
+  return { name: finalName, path: `cms-assets/${finalName}`, contentType };
 }
 
 function corsJSON(res) {
@@ -85,5 +116,6 @@ function corsJSON(res) {
 module.exports = {
   sign, verify, getSession, requireAuth, sessionCookie,
   readSection, writeSection, uploadFile, corsJSON,
+  ghGetRaw, ghGet,
   PASSWORD,
 };
