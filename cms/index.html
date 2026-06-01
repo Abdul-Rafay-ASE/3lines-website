@@ -168,7 +168,7 @@ async function loadContent(){
     app.dirty = false;
     render();
   }catch(e){
-    if(String(e.message)==='unauthorized') return;
+    if(String(e.message)==='unauthorized'){ renderLogin(); return; }
     document.body.innerHTML='<div style="padding:40px;color:#fff">Failed to load: '+e.message+'</div>';
   }
 }
@@ -581,14 +581,9 @@ function render(){
   renderShell();
 }
 async function boot(){
-  // try to load content; if 401, show login
-  try{
-    // also fetch tags for posts editor
-    fetch('/api/v1/tags').then(r=>r.json()).then(j=>{ window.__cmsTags__=j.data||[]; }).catch(()=>{});
-    await loadContent();
-  }catch(e){
-    if(String(e.message)==='unauthorized'){ renderLogin(); return; }
-  }
+  // also fetch tags for the posts editor (harmless if not logged in yet)
+  fetch('/api/v1/tags').then(r=>r.json()).then(j=>{ window.__cmsTags__=j.data||[]; }).catch(()=>{});
+  await loadContent();
 }
 boot();
 </script>
