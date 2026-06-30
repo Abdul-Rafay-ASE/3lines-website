@@ -4,8 +4,8 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="robots" content="noindex,nofollow" />
-<title>Three Lines · CMS</title>
-<link rel="icon" href="/assets/logos/favicon.png" />
+<title>3Lines Advanced Technologies Company · CMS</title>
+<link rel="icon" href="/assets/logos/favicon.png?v=1782827140446" />
 <style>
   :root{
     --bg:#0a0f1c; --bg2:#0f1424; --panel:#0d1326; --panel2:#121933;
@@ -89,13 +89,13 @@
   .crumbs a:hover{color:var(--text)}
 </style>
 </head>
-<body>
+<body><script>(function(){try{if(window.__mlLight){document.documentElement.classList.remove('dark');if(document.body)document.body.classList.remove('dark');}}catch(e){}})();</script>
 <div id="root"></div>
 <div id="toast" class="toast">Saved</div>
 
 <script>
 /* ============================================================ *
- * Three Lines CMS — tiny vanilla SPA
+ * 3Lines Advanced Technologies Company CMS — tiny vanilla SPA
  * ============================================================ */
 
 const ICONS_AVAILABLE = ["package","wrench","truck","plane","monitor","gauge","zap","shield","cap","radar"];
@@ -204,7 +204,7 @@ function renderLogin(){
       err.textContent = e.message;
     }
   }},
-    el('h1',{},'Three Lines · CMS'),
+    el('h1',{},'3Lines Advanced Technologies Company · CMS'),
     el('p',{},'Sign in to edit the site.'),
     el('label',{for:'pw'},'Password'),
     el('input',{type:'password',name:'password',id:'pw',required:true,autofocus:true,autocomplete:'current-password'}),
@@ -219,7 +219,7 @@ function renderLogin(){
 function renderShell(){
   $('#root').innerHTML='';
   const sidebar = el('aside',{class:'sidebar'},
-    el('div',{class:'brand'},'Three Lines', el('span',{},'CMS')),
+    el('div',{class:'brand'},'3Lines Advanced Technologies Company', el('span',{},'CMS')),
     ...SECTION_META.map(s => el('button',{
       class:'navbtn'+(app.section===s.id?' active':''),
       onclick:()=>{ app.section=s.id; app.editing=null; render(); }

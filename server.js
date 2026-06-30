@@ -42,6 +42,9 @@ const { LOCAL_MODE } = require('./api/cms/_lib');
 
 const app = express();
 app.disable('x-powered-by');
+// gzip every response — the build JS/CSS (e.g. the ~2.4MB hero globe) ships uncompressed
+// otherwise; gzip cuts it ~3-4x for a much faster first load.
+try { const compression = require('compression'); app.use(compression()); } catch (e) { /* optional dep */ }
 app.use(express.json({ limit: '12mb' })); // CMS uploads are base64 data URLs (<= ~11MB)
 
 // Wrap a Vercel-style async handler so a thrown error becomes a clean 500.
@@ -71,6 +74,29 @@ app.all('/api/cms-asset', h(assetHandler));
 app.get('/', (req, res) => res.redirect(302, '/en'));
 app.get('/healthz', (req, res) => res.json({ ok: true, localMode: LOCAL_MODE }));
 
+/* ---------- trailing slash -> no slash (reproduces vercel.json trailingSlash:false) ----------
+   The React header builds some links with a trailing slash (e.g. the Home/logo link ->
+   "/en/"), which otherwise falls through to a 404. Strip it so "/en/" -> "/en". */
+app.use((req, res, next) => {
+  if ((req.method === 'GET' || req.method === 'HEAD') && req.path.length > 1 && req.path.endsWith('/')) {
+    // Exception: a real directory that has its own index.html (e.g. /cms/) is a
+    // directory-index route served by express.static below. Stripping its slash
+    // would fight static's own "add slash to serve index" redirect, producing an
+    // infinite 308<->301 loop. Leave those alone; only strip page routes
+    // (e.g. /en/ -> /en -> en.html, where the en/ folder has no index.html).
+    let dirAbs = null;
+    try { dirAbs = nodePath.normalize(nodePath.join(REPO_ROOT, decodeURIComponent(req.path))); } catch { /* bad encoding -> treat as non-dir, strip below */ }
+    const isIndexedDir = dirAbs &&
+      (dirAbs === REPO_ROOT || dirAbs.startsWith(REPO_ROOT + nodePath.sep)) &&
+      fs.existsSync(nodePath.join(dirAbs, 'index.html'));
+    if (!isIndexedDir) {
+      const qs = req.originalUrl.slice(req.path.length); // preserve ?query
+      return res.redirect(308, req.path.replace(/\/+$/, '') + qs);
+    }
+  }
+  next();
+});
+
 /* ---------- block sensitive paths from ever being served statically ---------- */
 const BLOCKED = [/^\/api(\/|$)/, /^\/content(\/|$)/, /^\/node_modules(\/|$)/,
                  /^\/server\.js$/, /^\/package(-lock)?\.json$/, /^\/vercel\.json$/];
@@ -97,7 +123,29 @@ app.use((req, res, next) => {
 });
 
 /* ---------- static assets (build, assets, cms UI, favicons, ...) ---------- */
-app.use(express.static(REPO_ROOT, { dotfiles: 'ignore', index: 'index.html', redirect: true }));
+app.use(express.static(REPO_ROOT, {
+  dotfiles: 'ignore', index: 'index.html', redirect: true,
+  setHeaders: (res, filePath) => {
+    // /build/assets/* filenames carry a content hash -> they are immutable; cache hard so
+    // repeat visits never re-download the heavy JS/CSS (incl. the 2.4MB globe).
+    if (/[\\/]build[\\/]assets[\\/]/.test(filePath)) {
+      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+    } else if (/\.(?:png|jpe?g|svg|webp|gif|ico|woff2?|ttf|otf)$/i.test(filePath)) {
+      res.setHeader('Cache-Control', 'public, max-age=604800'); // images/fonts: 1 week
+    } else if (/\.(?:css|js)$/i.test(filePath)) {
+      res.setHeader('Cache-Control', 'no-cache'); // unhashed css/js (enhance.js, light-theme): revalidate every load so edits show on the next reload (no stale cache)
+    }
+  },
+}));
+
+/* ---------- KO/JP fallback: pages not yet translated serve their English
+   equivalent instead of 404 (existing ko/ja .html files are served above first). ---------- */
+app.use((req, res, next) => {
+  if (req.method !== 'GET' && req.method !== 'HEAD') return next();
+  const m = req.path.match(/^\/(ko|ja)(\/.*)?$/);
+  if (m) return res.redirect(302, '/en' + (m[2] || ''));
+  next();
+});
 
 /* ---------- 404 ---------- */
 app.use((req, res) => res.status(404).send('Not found'));

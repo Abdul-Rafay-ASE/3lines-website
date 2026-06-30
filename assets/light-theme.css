@@ -1,0 +1,408 @@
+/* ============================================================
+ * Light theme override — white surfaces, dark text, brand blues.
+ * Loaded via <link> in every HTML page (except /cms which has its own theme).
+ * ============================================================ */
+
+:root {
+  --background: 255 255 255;
+  --foreground: 24 24 27;
+  /* Tailwind v4 references colors via --color-* variables — flip these to light */
+  --color-background: #ffffff;
+  --color-foreground: #0f172a;
+  --color-zinc-900: #ffffff;
+  --color-zinc-950: #ffffff;
+  --color-neutral-900: #ffffff;
+  --color-neutral-950: #ffffff;
+}
+
+/* MagicCard / slide cards have a decorative dark gradient overlay
+   (from-transparent to-background). Replace with a very subtle light tint. */
+[class*="from-transparent"][class*="to-background"],
+[class*="bg-linear-180"][class*="to-background"],
+.bg-linear-180.from-transparent.to-background {
+  background-image: linear-gradient(to bottom, transparent 0%, rgba(15, 23, 42, 0.04) 100%) !important;
+}
+
+/* ---------- Base ---------- */
+html, body {
+  background: #ffffff !important;
+  color: #18181b !important;
+}
+
+/* ---------- Surfaces: dark → light ---------- */
+.bg-black,
+.bg-zinc-950, .bg-zinc-900, .bg-zinc-800,
+.bg-neutral-950, .bg-neutral-900, .bg-neutral-800,
+.bg-stone-950, .bg-stone-900, .bg-stone-800 {
+  background-color: #ffffff !important;
+}
+[class*="bg-background"] {
+  background-color: #f5f7fb !important;
+}
+[class*="bg-white/"] {
+  background-color: rgba(15, 23, 42, 0.04) !important;
+}
+section, main { background-color: transparent !important; }
+
+/* ---------- Text: light → dark ---------- */
+.text-white,
+.text-zinc-50, .text-zinc-100, .text-zinc-200, .text-zinc-300,
+.text-neutral-50, .text-neutral-100, .text-neutral-200, .text-neutral-300 {
+  color: #0f172a !important;
+}
+.text-zinc-400, .text-neutral-400, .text-stone-400 { color: #52525b !important; }
+.text-zinc-500, .text-neutral-500, .text-stone-500 { color: #64748b !important; }
+
+/* Keep the brand-blue "Globally" gradient look readable — re-tone it */
+.bg-clip-text { -webkit-text-fill-color: initial !important; }
+
+/* ---------- Borders ---------- */
+[class*="border-white"],
+[class*="border-zinc-9"], [class*="border-zinc-8"],
+[class*="border-neutral-9"], [class*="border-neutral-8"] {
+  border-color: rgba(15, 23, 42, 0.10) !important;
+}
+
+/* ---------- Header / nav ---------- */
+header, nav, [class*="bg-background/"] {
+  background-color: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
+/* The page breadcrumb is a <nav>, so the rule above painted it a full-width WHITE band
+   above the hero — jarring in light mode (dark mode leaves it transparent, which reads as
+   one clean surface). Let the page's existing light background show through instead, so the
+   breadcrumb strip matches the rest of the page like it does in dark mode. */
+nav[aria-label="breadcrumb"] { background-color: transparent !important; border-color: transparent !important; }
+header a, nav a, header button, nav button { color: #0f172a !important; }
+nav button[data-state] { color: #0f172a !important; }
+/* nav buttons (Home / Services / News / More) use fixed dark hover & open-state
+   backgrounds (hover:bg-zinc-700/20, data-[state=open]:bg-*) — keep them light. */
+header [class*="hover:bg-zinc"]:hover, header [class*="hover:bg-black"]:hover,
+header a:hover, header button:hover,
+header [data-state="open"], header [aria-expanded="true"] {
+  background-color: rgba(15, 23, 42, 0.06) !important;
+  color: #0f172a !important;
+}
+/* social icon buttons in the top bar — keep subtle */
+header a[href*="linkedin"] svg,
+header a[aria-label*="LinkedIn"] svg { color: #0f172a !important; }
+
+/* ---------- Hero / globe section ---------- */
+/* Tone the dark hero block to a light one; globe canvas overlays it */
+section:has(canvas), [class*="globe"], main > section:first-of-type {
+  background-color: #f8fafc !important;
+}
+
+/* ---------- Service cards (baked HTML) ---------- */
+/* The cards carry an INLINE dark gradient background-image; override it to a light
+   surface so the dark card title/description are readable in light mode. */
+a[class*="min-h-\\[10rem\\]"],
+a[class*="min-h-[10rem]"] {
+  border-color: rgba(15, 23, 42, 0.10) !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06), 0 2px 6px rgba(15, 23, 42, 0.04) !important;
+  background-image: none !important;
+  background-color: #ffffff !important;   /* pure white cards */
+}
+a[class*="min-h-[10rem]"]:hover { background-color: #ffffff !important; box-shadow: 0 2px 4px rgba(15,23,42,.08), 0 4px 12px rgba(15,23,42,.06) !important; }
+a[class*="min-h-[10rem]"] h3 { color: #0f172a !important; }
+a[class*="min-h-[10rem]"] p  { color: #475569 !important; }
+
+/* ---------- Home: main content sections + "View all Services" button ---------- */
+#hero, #slider, [id="services"] { background-color: transparent !important; }
+/* the outline button uses a dark gradient (to-zinc-900) — make it a clean light button */
+a[class*="from-background"][class*="to-zinc-900"] {
+  background: #ffffff !important; background-image: none !important;
+  color: #0f172a !important; border-color: rgba(15,23,42,.15) !important;
+}
+
+/* ---------- Section titles ---------- */
+h1, h2, h3, h4 { color: #0f172a !important; }
+h1.relative.py-20 { color: #0f172a !important; }
+
+/* ---------- Footer ---------- */
+footer { background-color: #f5f7fb !important; color: #0f172a !important; border-top: 1px solid rgba(15,23,42,.10) !important; }
+footer p, footer h3, footer h4, footer a, footer span { color: #334155 !important; }
+footer a:hover { color: #0a73d4 !important; }
+footer h3, footer h4 { color: #0f172a !important; }
+/* bottom bar + address-strip dividers visible on the light footer */
+footer .border-t { border-top-color: rgba(15,23,42,.12) !important; }
+footer .cln-foot-addr { border-top-color: rgba(15,23,42,.10) !important; }
+footer .cln-foot-social a { color: #475569 !important; }
+footer .cln-foot-social a:hover { color: #0a73d4 !important; }
+
+/* ---------- Cookie banner ---------- */
+#d-cookie-consent, #d-cookie-consent > div, #d-cookie-consent > div > div {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid rgba(15, 23, 42, 0.10) !important;
+  box-shadow: 0 12px 32px -8px rgba(15, 23, 42, 0.10) !important;
+}
+#d-cookie-consent p, #d-cookie-consent span { color: #334155 !important; }
+
+/* ---------- Breadcrumbs / inner page heads ---------- */
+nav[aria-label="breadcrumb"], ol[itemtype*="BreadcrumbList"] { color: #475569 !important; }
+nav[aria-label="breadcrumb"] a { color: #475569 !important; }
+
+/* ---------- News (React-rendered) listing cards ---------- */
+#latest-news .rounded-tl-lg { background-color: #f5f7fb !important; }
+#latest-news a, #latest-news article { background-color: #ffffff !important; color: #0f172a !important; border: 1px solid rgba(15,23,42,.08) !important; border-radius: 14px !important; }
+#latest-news h2, #latest-news h3 { color: #0f172a !important; }
+#latest-news p { color: #475569 !important; }
+#latest-news time { color: #64748b !important; }
+#latest-news .border, #latest-news [class*="border-"] { border-color: rgba(15,23,42,.08) !important; }
+/* Filter pills */
+#latest-news [class*="bg-zinc-900"], #latest-news [class*="bg-zinc-700"] {
+  background-color: #f1f5f9 !important; color: #0f172a !important; border-color: rgba(15,23,42,.10) !important;
+}
+
+/* ---------- Buttons ---------- */
+button.bg-black, .bg-black[role="button"],
+[class*="bg-black"][class*="text-white"],
+/* The WHO WE ARE / About primary button uses arbitrary class [background:var(--bg)] */
+a[class*="background:var(--bg)"],
+button[class*="background:var(--bg)"] {
+  background: #0a73d4 !important; color: #ffffff !important; border-color: transparent !important;
+}
+a[class*="background:var(--bg)"] *,
+button[class*="background:var(--bg)"] * { color: #ffffff !important; }
+[class*="hover:bg-black"]:hover { background: #084f93 !important; }
+.dshare { color: #ffffff !important; } /* keep brand share-buttons readable */
+
+/* ---------- Hero globe ---------- */
+/* The animated globe draws dark dots on a transparent canvas — looks like a dark blob
+   on the new light hero. The page only has the one (globe) canvas, so hide all. */
+/* (canvas hide rule removed for this site) */
+
+/* ---------- Box-shadow inset white glows on cards ---------- */
+[style*="inset"][style*="ffffff1f"], [class*="box-shadow"] { box-shadow: 0 1px 3px rgba(15,23,42,.05) !important; }
+
+/* ---------- Custom dropdown panel from enhance.js gets a light style via JS ---------- */
+.cln-more-panel { background: #ffffff !important; border-color: rgba(15,23,42,.10) !important; box-shadow: 0 20px 40px -12px rgba(15,23,42,.15) !important; }
+.cln-more-panel a { color: #0f172a !important; }
+.cln-more-panel a:hover { background: rgba(15,23,42,.05) !important; color: #0a73d4 !important; }
+
+/* ---------- Article detail (news/{slug}.html) ---------- */
+article p { color: #334155 !important; }
+time { color: #64748b !important; }
+
+/* ---------- 3lines current-site additions ---------- */
+.text-\[\#5cc0ff\] { color: #0a73d4 !important; }   /* eyebrow / accent text */
+.text-blue-400, .text-blue-500 { color: #0a73d4 !important; }
+
+/* ============================================================
+ * LIGHT-MODE SWEEP — full coverage of the rebuilt content across all page types.
+ * (contact / about / services index + details / news / partners / legal / pages-index,
+ *  all four languages — this stylesheet is shared.)
+ * ============================================================ */
+
+/* 1) Primary buttons keep WHITE text on their colored fill (base sheet turns text dark) */
+[class*="bg-blue-6"], [class*="bg-blue-6"] *,
+[class*="bg-emerald-5"], [class*="bg-emerald-5"] * { color: #ffffff !important; }
+
+/* 2) accent eyebrow / inline accent text -> readable dark blue */
+[class*="text-[#5cc0ff]"], [style*="color:#5cc0ff"] { color: #0a73d4 !important; }
+
+/* 3) prose-invert bodies (legal pages, and the wrappers on about/contact) are built for a
+ *    dark background -> force readable colors on white */
+.prose-invert, .prose-invert p, .prose-invert li, .prose-invert strong, .prose-invert time { color: #334155 !important; }
+.prose-invert h1, .prose-invert h2, .prose-invert h3, .prose-invert h4 { color: #0f172a !important; }
+.prose-invert a { color: #0a73d4 !important; }
+
+/* 4) Service-detail HERO: white text sits over a DARK photo + gradient -> keep it white */
+.relative.overflow-hidden.rounded-2xl h1,
+.relative.overflow-hidden.rounded-2xl .absolute,
+.relative.overflow-hidden.rounded-2xl .absolute p,
+.relative.overflow-hidden.rounded-2xl .absolute span { color: #ffffff !important; }
+.relative.overflow-hidden.rounded-2xl [class*="text-[#5cc0ff]"] { color: #cfe9ff !important; }
+
+/* 5) gradient stat / CTA cards (from-blue-600/x to-transparent) -> light tint */
+[class*="from-blue-600/"][class*="to-transparent"] { background-image: none !important; background-color: #eef4fb !important; }
+
+/* 6) News article (static): inline dark text colors + the dark #tag pill */
+[style*="color:#cbd5e1"], [style*="color:#e4e4e7"] { color: #334155 !important; }
+[style*="background:#18181b"] { background: #eef2f7 !important; color: #475569 !important; border-color: #d6dde7 !important; }
+
+/* 7) dashed placeholder borders / soft surfaces used on new pages */
+[class*="border-dashed"] { border-color: rgba(15,23,42,.18) !important; }
+[class*="bg-white/\[0.03\]"] { background-color: rgba(15,23,42,.03) !important; }
+
+/* 8) Hero "Who we are" button is a LAYERED glow button: a glow layer + a fill layer using
+ *    [background:var(--bg)] + the label span. var(--bg) renders light in light mode -> the
+ *    white label disappears. Keep the button's layers & glow intact; only recolor the FILL
+ *    layer blue and keep the label white. (Does NOT flatten the effect.) */
+#hero [class*="background:var(--bg)"] { background: #0a73d4 !important; }
+#hero a span, #hero button span { color: #ffffff !important; }
+
+/* 9) service-card "Read more →" hover label uses an inline accent hue (low contrast on a
+ *    light card) -> readable slate */
+a[class*="min-h-[10rem]"] span[style*="color"], a[class*="min-h-[10rem]"] .flex.gap-2 { color: #475569 !important; }
+
+/* 10) solid blue buttons keep WHITE text even inside prose-invert (the `.prose-invert a`
+ *     rule was beating the button rule, giving blue-on-blue on the contact "Email us" CTA) */
+a[class*="bg-blue-6"], a[class*="bg-blue-6"] *,
+.prose-invert a[class*="bg-blue-6"], .prose-invert a[class*="bg-blue-6"] * { color: #ffffff !important; }
+
+/* 11) Partner/client card category tag: on hover it gets a brand-blue background
+ *     (group-hover:bg-3l). In light mode the tag text is forced dark for the resting state,
+ *     which leaves it dark-on-blue (unreadable) on hover. Switch it to white exactly when
+ *     the blue hover background is applied. Scoped to the element that carries that class. */
+.group:hover [class*="group-hover:bg-3l"] { color: #ffffff !important; }
+
+/* 12) News card "Read more" affordance: rendered as `text-zinc-100/30 group-hover:text-zinc-100`,
+ *     i.e. faint white -> full white, designed for the DARK card body. On the light card body
+ *     that's white-on-white (invisible at rest AND hover). The opacity-modifier (/30) and the
+ *     group-hover: variant both dodge the generic .text-zinc-100 override, so target them by
+ *     attribute: readable slate at rest, full dark on hover (keeps the faint->emphasized feel). */
+[class*="text-zinc-100/30"] { color: #0a73d4 !important; }
+.group:hover [class*="group-hover:text-zinc-100"] { color: #0a73d4 !important; }
+
+/* 11) pagination buttons («Previous / Next») use opacity-modified dark zinc bg
+ *     (bg-zinc-800/40, /70) which the plain .bg-zinc-800 rule doesn't match -> lighten */
+[class*="bg-zinc-700/"], [class*="bg-zinc-800/"], [class*="bg-zinc-900/"] { background-color: rgba(15,23,42,.06) !important; }
+
+/* 12) Hero globe (WebGL canvas) is dark-toned to match dark mode. For light mode, invert it
+ *     to a light tone so it matches the theme; hue-rotate(180) keeps the blue arcs blue.
+ *     The animation/effect is unaffected (we only filter the rendered pixels). */
+canvas { filter: invert(1) hue-rotate(180deg) !important; }
+
+/* =====================================================================
+   VIBRANT LIGHT MODE  ("brand-blue & gradients")
+   Color goes on SURFACES, HEADINGS, BUTTONS and ACCENTS only — cards stay
+   WHITE and every text-contrast rule above is preserved. Appended last so
+   these win by source order over the equal-specificity base rules.
+   ===================================================================== */
+
+/* V1) Soft blue page base so the white cards pop (was flat #ffffff). A SOLID tint (not a
+   fixed-attachment gradient) — fixed backgrounds force a full repaint on every scroll frame. */
+html, body { background: #eef4fd !important; }
+
+/* V1b) feature/carousel figures + the XR spotlight card: give them a solid white surface in
+   light mode. (Their frosted backdrop-blur was removed for scroll performance, so without an
+   explicit background they would be transparent.) */
+figure[class*="min-h-40"], [class*="group/spotlight"] {
+  background-color: #ffffff !important;
+  border-color: rgba(15,23,42,.10) !important;
+  box-shadow: 0 1px 3px rgba(15,23,42,.06), 0 8px 20px -8px rgba(15,23,42,.10) !important;
+}
+figure[class*="min-h-40"]:hover, [class*="group/spotlight"]:hover {
+  border-color: rgba(15,23,42,.20) !important;
+  box-shadow: 0 12px 28px -10px rgba(15,23,42,.18) !important;
+}
+
+/* V2) Hero: soft radial blue glow behind the (inverted) globe */
+section:has(canvas), [class*="globe"], main > section:first-of-type {
+  background: radial-gradient(circle at 50% 30%, #d7e8fe 0%, #e9f3fd 58%, #eef4fd 100%) !important;
+}
+
+/* V3) Big centered section titles (Services / Partners / News): readable blue
+   gradient text + a short gradient underline accent. Card <h3> titles untouched. */
+h1[class*="max-w-4xl"][class*="text-center"] {
+  background-image: none !important;
+  -webkit-text-fill-color: #0a73d4 !important;
+  color: #0a73d4 !important; /* single brand-blue accent (was a #0a66c4->#1583d8 gradient) */
+}
+h1[class*="max-w-4xl"][class*="text-center"]::after {
+  content: ""; display: block; width: 60px; height: 4px;
+  margin: 14px auto 0; border-radius: 2px;
+  background: #0a73d4;
+  -webkit-text-fill-color: initial; /* keep the bar painted, not text-clipped */
+}
+
+/* V4) "View all Services" button: solid brand-blue gradient fill + white label
+   (was a plain white outline button). */
+a[class*="from-background"][class*="to-zinc-900"] {
+  background: linear-gradient(to bottom, #0a73d4, #0a5cb0) !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+  box-shadow: 0 6px 16px -6px rgba(10,115,212,.5) !important;
+}
+a[class*="from-background"][class*="to-zinc-900"]:hover {
+  background: linear-gradient(to bottom, #0d80e2, #0a66c4) !important;
+}
+
+/* V5) Service-card "Read more →" affordance: brand blue (was slate #475569) */
+a[class*="min-h-[10rem]"] span[style*="color"], a[class*="min-h-[10rem]"] .flex.gap-2 {
+  color: #0a73d4 !important;
+}
+
+/* V6) Nav hover / open: faint BLUE tint (was neutral grey); text stays dark from above */
+header [class*="hover:bg-zinc"]:hover, header [class*="hover:bg-black"]:hover,
+header a:hover, header button:hover,
+header [data-state="open"], header [aria-expanded="true"] {
+  background-color: rgba(10,115,212,.09) !important;
+}
+
+/* =====================================================================
+   ISSUE-REPORT FIXES — color unification + light-mode breakages
+   (appended last; wins by source order)
+   ===================================================================== */
+
+/* U) UNIFIED LIGHT PALETTE — one base color for body/sections/footer/news so there is NO
+   visible color "seam" between sections (was body #eef4fd vs footer/news #f5f7fb, the
+   blue-vs-grey shift). Cards stay white and pop against this base. */
+:root { --site-bg: #eef2f8; }
+html, body { background: var(--site-bg) !important; }
+footer { background: var(--site-bg) !important; }
+#latest-news .rounded-tl-lg { background: var(--site-bg) !important; }
+section:has(canvas), [class*="globe"], main > section:first-of-type {
+  background: radial-gradient(circle at 50% 26%, #dde8f7 0%, #e7edf6 52%, var(--site-bg) 100%) !important;
+}
+
+/* B) "View all Services" / sibling gradient buttons: the inline `border-2` left an awkward
+   frame around the vibrant gradient fill (V4 only set the color transparent, not the width).
+   Remove the border entirely. */
+a[class*="from-background"][class*="to-zinc-900"] { border: 0 !important; }
+
+/* C) Cookie consent popup: panel + "Learn more" button were near-invisible (a .10 border on
+   the light page). Give them a clear frame matching the light theme. ("Got it!" is a <button>,
+   so the <a> rule below only restyles the "Learn more" link.) */
+#d-cookie-consent, #d-cookie-consent > div > div { border: 0 !important; box-shadow: none !important; } /* the base rule boxed every nested div — keep only the panel framed */
+#d-cookie-consent > div { border: 1px solid rgba(15,23,42,.16) !important; box-shadow: 0 16px 40px -12px rgba(15,23,42,.20) !important; }
+#d-cookie-consent a { border: 1px solid rgba(15,23,42,.22) !important; background: #ffffff !important; color: #0f172a !important; }
+#d-cookie-consent a:hover { background: #f1f5fb !important; border-color: rgba(15,23,42,.32) !important; }
+
+/* P) Partner-logo tiles: the logos are WHITE images (built for dark cards); on the white
+   light-mode card they vanish. Invert them to dark monochrome so they read on white, and
+   keep them inverted on hover too (the original group-hover reveal would show white again). */
+[class*="grayscale"][class*="bg-contain"] { filter: invert(1) grayscale(1) brightness(.55) contrast(1.15) !important; opacity: .82 !important; }
+.group:hover [class*="grayscale"][class*="bg-contain"] { filter: invert(1) grayscale(1) brightness(.42) contrast(1.25) !important; opacity: 1 !important; }
+
+/* Q) Slider/carousel LEFT+RIGHT edge-fade overlays ("bg-gradient-to-r/l ... from-transparent
+   to-background", tall narrow divs pinned to the sides). In dark mode they fade to the dark
+   page (invisible); in light mode rule 1 tints them dark so they read as faint grey bars down
+   the left/right of the slider. They're purely decorative — hide them. */
+[class*="bg-gradient-to-r"][class*="to-background"],
+[class*="bg-gradient-to-l"][class*="to-background"] { display: none !important; }
+
+/* R) Bento feature cards (Defense / Optokon / ATV / XR). They shipped with `bg-background` +
+   only a 3%-black ring, so in light mode they melted into the page (#eef2f8) — pale panels with
+   no edge. Give them a clean white surface, a real border and a soft shadow so each reads as a
+   distinct card (the way they do in dark mode). Scoped to direct children of the bento grid
+   (`auto-rows-*`) so the service grid and everything else are untouched. */
+[class*="auto-rows-"] > [class*="rounded-xl"] {
+  background-color: #ffffff !important;
+  border: 1px solid rgba(15, 23, 42, .10) !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, .05), 0 10px 26px -14px rgba(15, 23, 42, .22) !important;
+}
+/* The Optokon brand watermark inside its card is a WHITE logo (built for the dark card); on the
+   now-white light card it disappears. Invert it to a soft dark watermark, matching rule P. */
+[class*="auto-rows-"] [style*="optokon"] { filter: invert(1) grayscale(1) brightness(.55) contrast(1.12) !important; }
+
+/* S) Unify EVERY card surface to white. The Contact + stat cards ship `bg-white/5` (tinted to a
+   faint slate by the bg-white rule above) and the "Prefer email?" card ships a blue gradient
+   (`from-blue-600/20`), so they read greyer/bluer than the white service/bento/news cards.
+   Make them solid white too so all cards share one background. `bg-white/5` is used ONLY by
+   these 9 cards; appended last so it wins over the earlier bg-white tint rule. */
+[class*="bg-white/5"] { background-color: #ffffff !important; background-image: none !important; }
+[class*="from-blue-600/"][class*="to-transparent"] { background-image: none !important; background-color: #ffffff !important; }
+
+/* T) Bento feature cards (Defense / Optokon / ATV) looked faint grey while XR + the rest are
+   white. Cause: each card's group-hover overlay (`…group-hover:dark:bg-zinc-800/10`) is matched
+   by the bg-zinc-800/* rule above and painted at REST (rgba(15,23,42,.06)), greying the white
+   card. XR already had this neutralised; extend it to every bento card so all read clean white. */
+[class*="auto-rows-"] [class*="group-hover:bg-black"] { background-color: transparent !important; }
+
+/* U) Footer sat on the light-blue page base (#eef2f8), so the (transparent) 3Lines logo and the
+   footer content looked like they were on a blue box. Make the footer a clean WHITE surface so
+   the logo sits on white -- matching the white header. */
+body footer { background: #ffffff !important; }
