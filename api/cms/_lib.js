@@ -1,11 +1,38 @@
-// Shared helpers: HMAC-signed cookie auth + GitHub Contents API as storage.
+// Shared helpers: HMAC-signed cookie auth + pluggable storage.
+//
+// Storage has two modes, chosen automatically:
+//   * GITHUB MODE  — when GITHUB_TOKEN *and* GH_REPO are set: content + uploads
+//                    are read/written via the GitHub Contents API (the Vercel setup).
+//   * LOCAL MODE   — otherwise (the self-hosted setup): content + uploads live on
+//                    local disk under the repo's ./content folder. This folder IS
+//                    the live, editable content — put it on a persistent disk and
+//                    back it up nightly.
 const crypto = require('crypto');
+const fs = require('fs');
+const fsp = fs.promises;
+const nodePath = require('path');
 
 const SECRET = process.env.SESSION_SECRET || 'insecure-change-me';
 const PASSWORD = process.env.CMS_PASSWORD || '';
 const GH_TOKEN = process.env.GITHUB_TOKEN;
 const GH_REPO = process.env.GH_REPO; // "owner/repo"
 const GH_BRANCH = process.env.GH_BRANCH || 'master';
+
+// LOCAL_MODE is on whenever GitHub storage isn't fully configured.
+const LOCAL_MODE = !(GH_TOKEN && GH_REPO);
+// Repo root = two levels up from api/cms/. content/ lives directly under it.
+const REPO_ROOT = nodePath.join(__dirname, '..', '..');
+const CONTENT_DIR = nodePath.join(REPO_ROOT, 'content');
+
+// Resolve a repo-relative path (e.g. "content/uploads/x.png") to an absolute disk
+// path, refusing anything that would escape the repo root.
+function localPath(repoRelPath) {
+  const abs = nodePath.resolve(REPO_ROOT, repoRelPath);
+  if (abs !== REPO_ROOT && !abs.startsWith(REPO_ROOT + nodePath.sep)) {
+    throw new Error('path escapes repo root');
+  }
+  return abs;
+}
 
 /* ---------- Auth ---------- */
 function sign(payload) {
@@ -43,10 +70,13 @@ function requireAuth(req, res) {
   return s;
 }
 function sessionCookie(token, maxAge) {
-  return `cms_session=${token}; HttpOnly; Path=/; SameSite=Lax; Max-Age=${maxAge}${process.env.VERCEL ? '; Secure' : ''}`;
+  // Mark the cookie Secure when served over TLS. On Vercel that's VERCEL=1; when
+  // self-hosting behind an HTTPS reverse proxy, set COOKIE_SECURE=1.
+  const secure = process.env.VERCEL || process.env.COOKIE_SECURE;
+  return `cms_session=${token}; HttpOnly; Path=/; SameSite=Lax; Max-Age=${maxAge}${secure ? '; Secure' : ''}`;
 }
 
-/* ---------- GitHub Contents API ---------- */
+/* ---------- GitHub Contents API (GITHUB MODE only) ---------- */
 function ghHeaders() {
   return {
     Authorization: `Bearer ${GH_TOKEN}`,
@@ -78,6 +108,11 @@ async function ghPut(path, contentBuffer, message) {
   return await r.json();
 }
 async function ghGetRaw(path) {
+  // LOCAL MODE: read the file straight off disk (used by the cms-asset proxy too).
+  if (LOCAL_MODE) {
+    try { return await fsp.readFile(localPath(path)); }
+    catch { return null; }
+  }
   const meta = await ghGet(path);
   if (!meta) return null;
   return Buffer.from((meta.content || '').replace(/\n/g, ''), 'base64');
@@ -85,6 +120,12 @@ async function ghGetRaw(path) {
 
 /* ---------- Section read/write (matches the previous signature) ---------- */
 async function readSection(name) {
+  if (LOCAL_MODE) {
+    try {
+      const buf = await fsp.readFile(nodePath.join(CONTENT_DIR, `${name}.json`));
+      return JSON.parse(buf.toString('utf-8'));
+    } catch { return null; }
+  }
   try {
     const buf = await ghGetRaw(`content/${name}.json`);
     if (!buf) return null;
@@ -93,10 +134,15 @@ async function readSection(name) {
 }
 async function writeSection(name, data) {
   const buf = Buffer.from(JSON.stringify(data, null, 2), 'utf-8');
+  if (LOCAL_MODE) {
+    await fsp.mkdir(CONTENT_DIR, { recursive: true });
+    await fsp.writeFile(nodePath.join(CONTENT_DIR, `${name}.json`), buf);
+    return;
+  }
   await ghPut(`content/${name}.json`, buf, `CMS: update ${name}`);
 }
 
-/* ---------- Image uploads (committed to repo, served via /cms-assets/* proxy) ---------- */
+/* ---------- Image uploads (served via /cms-assets/* proxy) ---------- */
 async function uploadFile(filename, buffer, contentType) {
   // safe filename + random suffix for uniqueness/cache-busting
   const safe = filename.replace(/[^a-zA-Z0-9._-]/g, '_').slice(0, 60).replace(/^\.+/, '');
@@ -104,6 +150,12 @@ async function uploadFile(filename, buffer, contentType) {
   const stem = ext ? safe.slice(0, -ext.length) : safe;
   const rnd = crypto.randomBytes(5).toString('hex');
   const finalName = `${stem || 'file'}-${rnd}${ext}`;
+  if (LOCAL_MODE) {
+    const dir = nodePath.join(CONTENT_DIR, 'uploads');
+    await fsp.mkdir(dir, { recursive: true });
+    await fsp.writeFile(nodePath.join(dir, finalName), buffer);
+    return { name: finalName, path: `cms-assets/${finalName}`, contentType };
+  }
   await ghPut(`content/uploads/${finalName}`, buffer, `CMS: upload ${finalName}`);
   return { name: finalName, path: `cms-assets/${finalName}`, contentType };
 }
@@ -117,5 +169,5 @@ module.exports = {
   sign, verify, getSession, requireAuth, sessionCookie,
   readSection, writeSection, uploadFile, corsJSON,
   ghGetRaw, ghGet,
-  PASSWORD,
+  PASSWORD, LOCAL_MODE,
 };

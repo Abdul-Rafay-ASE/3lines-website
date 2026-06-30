@@ -1,0 +1,132 @@
+[
+  {
+    "slug": "provide-spare-parts",
+    "hue": "#3aa0ff",
+    "icon": "package",
+    "title": {
+      "en": "Provide Spare Parts",
+      "ar": "توفير قطع الغيار"
+    },
+    "description": {
+      "en": "Providing all original spare parts for civil and military aircraft and supporting equipment.",
+      "ar": "توفير جميع قطع الغيار الأصلية للطائرات المدنية والعسكرية والمعدات المساندة."
+    }
+  },
+  {
+    "slug": "maintaining-and-repairing-of-spare-parts",
+    "hue": "#36c2cf",
+    "icon": "wrench",
+    "title": {
+      "en": "Maintaining and Repairing of Spare Parts",
+      "ar": "صيانة وإصلاح قطع الغيار"
+    },
+    "description": {
+      "en": "An experienced, professional team of engineers and technicians delivering the best maintenance and repair services.",
+      "ar": "فريق محترف من المهندسين والفنيين ذوي الخبرة لتقديم أفضل خدمات الصيانة والإصلاح."
+    }
+  },
+  {
+    "slug": "supporting-ground-equipment",
+    "hue": "#4f8cff",
+    "icon": "truck",
+    "title": {
+      "en": "Supporting Ground Equipment",
+      "ar": "دعم المعدات الأرضية"
+    },
+    "description": {
+      "en": "Maintenance and support for civil and military aircraft auxiliary equipment, with spare parts to ensure operational readiness.",
+      "ar": "خدمات صيانة ودعم للمعدات المساندة للطائرات المدنية والعسكرية مع توفير قطع الغيار لضمان الجاهزية التشغيلية."
+    }
+  },
+  {
+    "slug": "structure-and-frame",
+    "hue": "#5cc0ff",
+    "icon": "plane",
+    "title": {
+      "en": "Structure and Frame",
+      "ar": "الهيكل والإطار"
+    },
+    "description": {
+      "en": "Maintain and repair structures and tires to ensure safety and optimal performance, with the necessary spare parts.",
+      "ar": "صيانة وإصلاح الهياكل والإطارات لضمان السلامة والأداء الأمثل مع توفير قطع الغيار اللازمة."
+    }
+  },
+  {
+    "slug": "supporting-the-simulator-system",
+    "hue": "#7a7bff",
+    "icon": "monitor",
+    "title": {
+      "en": "Supporting the Simulator System",
+      "ar": "دعم أنظمة المحاكاة"
+    },
+    "description": {
+      "en": "Supporting the simulator system by providing a range of specialized supporting services.",
+      "ar": "دعم أنظمة المحاكاة عبر تقديم مجموعة متنوعة من الخدمات المساندة المتخصصة."
+    }
+  },
+  {
+    "slug": "hydraulic-pneumatic-equipment-and-components",
+    "hue": "#38b6ff",
+    "icon": "gauge",
+    "title": {
+      "en": "Hydraulic, Pneumatic Equipment and Components",
+      "ar": "المعدات والمكونات الهيدروليكية والهوائية"
+    },
+    "description": {
+      "en": "Specialized services to maintain and repair hydraulic and pneumatic systems efficiently and reliably, with the required components.",
+      "ar": "خدمات متخصصة لصيانة وإصلاح الأنظمة الهيدروليكية والهوائية بكفاءة وموثوقية مع توفير المكونات المطلوبة."
+    }
+  },
+  {
+    "slug": "generators-and-ups",
+    "hue": "#ffb24a",
+    "icon": "zap",
+    "title": {
+      "en": "Generators and UPS",
+      "ar": "المولّدات وأنظمة الطاقة غير المنقطعة"
+    },
+    "description": {
+      "en": "Maintain and repair generators and UPS systems to ensure power continuity and minimize downtime, with spare parts when needed.",
+      "ar": "صيانة وإصلاح المولّدات وأنظمة الطاقة غير المنقطعة لضمان استمرارية الطاقة وتقليل الأعطال مع توفير قطع الغيار عند الحاجة."
+    }
+  },
+  {
+    "slug": "us-government-support-services",
+    "hue": "#4f8cff",
+    "icon": "shield",
+    "title": {
+      "en": "US Government Support Services",
+      "ar": "خدمات دعم الحكومة الأمريكية"
+    },
+    "description": {
+      "en": "We provide world-class US Government support services.",
+      "ar": "نقدّم خدمات دعم للحكومة الأمريكية بمستوى عالمي."
+    }
+  },
+  {
+    "slug": "english-language-training",
+    "hue": "#36c2cf",
+    "icon": "cap",
+    "title": {
+      "en": "English Language Training",
+      "ar": "تدريب اللغة الإنجليزية"
+    },
+    "description": {
+      "en": "We provide advanced English language training with highly experienced trainers.",
+      "ar": "نقدّم تدريباً متقدماً في اللغة الإنجليزية على يد مدربين ذوي خبرة عالية."
+    }
+  },
+  {
+    "slug": "radar-system",
+    "hue": "#5cc0ff",
+    "icon": "radar",
+    "title": {
+      "en": "RADAR System",
+      "ar": "أنظمة الرادار"
+    },
+    "description": {
+      "en": "Military and civilian RADAR project development and management.",
+      "ar": "تطوير وإدارة مشاريع الرادار العسكرية والمدنية."
+    }
+  }
+]

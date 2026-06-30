@@ -1,0 +1,124 @@
+{
+  "data": [
+    {
+      "id": "expanding-spare-parts-capabilities",
+      "slug": "expanding-spare-parts-capabilities",
+      "title": {
+        "en": "Expanding Our Aircraft Spare Parts Capabilities",
+        "ar": "توسيع قدراتنا في توفير قطع غيار الطائرات"
+      },
+      "description": {
+        "en": "A look at how we are growing our inventory and global sourcing network for civil and military aircraft spare parts.",
+        "ar": "نظرة على كيفية تنمية مخزوننا وشبكة التوريد العالمية لدينا لقطع غيار الطائرات المدنية والعسكرية."
+      },
+      "cover": {
+        "uri": "assets/news/expanding-spare-parts-capabilities.svg"
+      },
+      "publish_date": "2026-05-12T09:00:00.000000Z",
+      "tags": [
+        {
+          "id": "a1795770-37ea-4ea7-83a1-0a1b774c20b9",
+          "name": {
+            "ar": "المشتريات",
+            "en": "Consultation Services"
+          },
+          "slug": "procurement",
+          "description": {
+            "ar": "أخبار مرتبطة بمجال المشتريات.",
+            "en": "News related to Procurement."
+          }
+        },
+        {
+          "id": "a1795770-3998-434a-9170-a891135b6559",
+          "name": {
+            "ar": "الصناعة",
+            "en": "Manifacturing"
+          },
+          "slug": "manifacturing",
+          "description": {
+            "ar": "أخبار مرتبطة بمجال الصناعة.",
+            "en": "News related to Manifacturing."
+          }
+        }
+      ]
+    },
+    {
+      "id": "advanced-simulator-support",
+      "slug": "advanced-simulator-support",
+      "title": {
+        "en": "Investing in Advanced Simulator Support",
+        "ar": "الاستثمار في دعم أنظمة المحاكاة المتقدمة"
+      },
+      "description": {
+        "en": "Our specialized services keep flight and maintenance simulators operating at peak readiness.",
+        "ar": "خدماتنا المتخصصة تُبقي أجهزة محاكاة الطيران والصيانة في جاهزية تشغيلية عالية."
+      },
+      "cover": {
+        "uri": "assets/news/advanced-simulator-support.svg"
+      },
+      "publish_date": "2026-04-28T09:00:00.000000Z",
+      "tags": [
+        {
+          "id": "a1795770-3a5f-4c45-aae1-3552a85ac66b",
+          "name": {
+            "ar": "التكنولوجيا",
+            "en": "Technology"
+          },
+          "slug": "technology",
+          "description": {
+            "ar": "أخبار مرتبطة بمجال التكنولوجيا.",
+            "en": "News related to Technology."
+          }
+        }
+      ]
+    },
+    {
+      "id": "ground-support-equipment-services",
+      "slug": "ground-support-equipment-services",
+      "title": {
+        "en": "Strengthening Ground Support Equipment Services",
+        "ar": "تعزيز خدمات معدات الدعم الأرضي"
+      },
+      "description": {
+        "en": "Comprehensive maintenance and spare parts to ensure operational readiness on the ground.",
+        "ar": "صيانة شاملة وقطع غيار لضمان الجاهزية التشغيلية على الأرض."
+      },
+      "cover": {
+        "uri": "assets/news/ground-support-equipment-services.svg"
+      },
+      "publish_date": "2026-03-15T09:00:00.000000Z",
+      "tags": [
+        {
+          "id": "a1795770-3998-434a-9170-a891135b6559",
+          "name": {
+            "ar": "الصناعة",
+            "en": "Manifacturing"
+          },
+          "slug": "manifacturing",
+          "description": {
+            "ar": "أخبار مرتبطة بمجال الصناعة.",
+            "en": "News related to Manifacturing."
+          }
+        },
+        {
+          "id": "a1795770-3a5f-4c45-aae1-3552a85ac66b",
+          "name": {
+            "ar": "التكنولوجيا",
+            "en": "Technology"
+          },
+          "slug": "technology",
+          "description": {
+            "ar": "أخبار مرتبطة بمجال التكنولوجيا.",
+            "en": "News related to Technology."
+          }
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "current_page": 1,
+    "last_page": 1,
+    "per_page": 4,
+    "total": 3
+  }
+}

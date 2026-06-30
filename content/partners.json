@@ -1,0 +1,662 @@
+{
+  "data": [
+    {
+      "id": "a1795770-463e-4991-bdc2-d3d7936b4ef5",
+      "order": null,
+      "name": {
+        "ar": "SAMI",
+        "en": "SAMI"
+      },
+      "description": {
+        "ar": "الشركة السعودية للصناعات العسكرية",
+        "en": "Saudi Arabian Military Industries"
+      },
+      "link": "https://www.sami.com.sa/",
+      "country_id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+      "type_id": "a1795770-42c3-474a-9de7-6842540ddf94",
+      "type": {
+        "id": "a1795770-42c3-474a-9de7-6842540ddf94",
+        "name": {
+          "ar": "إتفاقية",
+          "en": "Agreement"
+        }
+      },
+      "logo": {
+        "id": "a1795770-47d0-46e3-90e1-30f88ea3368b",
+        "original_name": "sami-logo.svg",
+        "file_name": "sami-logo.svg",
+        "uri": "assets/logos/sami-logo.svg",
+        "location": "assets/logos/sami-logo.svg",
+        "mime_type": "image/svg",
+        "extension": "svg",
+        "size": "204",
+        "width": null,
+        "height": null,
+        "type": "logo"
+      },
+      "country": {
+        "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+        "name": {
+          "ar": "المملكة العربية السعودية",
+          "en": "Saudi Arabia"
+        },
+        "code": "SA"
+      }
+    },
+    {
+      "id": "a1795770-48a5-4f79-8b63-c6d478edb2e9",
+      "order": null,
+      "name": {
+        "ar": "AirBus",
+        "en": "AirBus"
+      },
+      "description": [],
+      "link": "https://www.airbus.com/en",
+      "country_id": "a179576f-32a2-4900-abab-62023d63beff",
+      "type_id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+      "type": {
+        "id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+        "name": {
+          "ar": "عميل",
+          "en": "Client"
+        }
+      },
+      "logo": {
+        "id": "a1795770-4970-4696-98b6-1fc4e4abe8a0",
+        "original_name": "airbus-logo.svg",
+        "file_name": "airbus-logo.svg",
+        "uri": "assets/logos/airbus-logo.svg",
+        "location": "assets/logos/airbus-logo.svg",
+        "mime_type": "image/svg",
+        "extension": "svg",
+        "size": "204",
+        "width": null,
+        "height": null,
+        "type": "logo"
+      },
+      "country": {
+        "id": "a179576f-32a2-4900-abab-62023d63beff",
+        "name": {
+          "ar": "فرنسا",
+          "en": "France"
+        },
+        "code": "FR"
+      }
+    },
+    {
+      "id": "a1795770-4acd-48fc-84ef-bf23d6f559a2",
+      "order": null,
+      "name": {
+        "ar": "BAE Systems",
+        "en": "BAE Systems"
+      },
+      "description": [],
+      "link": "https://www.baesystems.com/en/home",
+      "country_id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+      "type_id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+      "type": {
+        "id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+        "name": {
+          "ar": "عميل",
+          "en": "Client"
+        }
+      },
+      "logo": {
+        "id": "a1795770-4ba2-4182-a355-17cc92ffc37a",
+        "original_name": "bae-systems-logo.svg",
+        "file_name": "bae-systems-logo.svg",
+        "uri": "assets/logos/bae-systems-logo.svg",
+        "location": "assets/logos/bae-systems-logo.svg",
+        "mime_type": "image/svg",
+        "extension": "svg",
+        "size": "204",
+        "width": null,
+        "height": null,
+        "type": "logo"
+      },
+      "country": {
+        "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+        "name": {
+          "ar": "المملكة العربية السعودية",
+          "en": "Saudi Arabia"
+        },
+        "code": "SA"
+      }
+    },
+    {
+      "id": "a1795770-4d07-4f32-8ca4-32ec3908653d",
+      "order": null,
+      "name": {
+        "ar": "ARMITE Lubricants",
+        "en": "ARMITE Lubricants"
+      },
+      "description": [],
+      "link": "https://armitelabs.com/",
+      "country_id": "a179576f-3365-4140-ad7e-71f8fb4bd64b",
+      "type_id": "a1795770-41fe-472f-be98-a898753cb1dc",
+      "type": {
+        "id": "a1795770-41fe-472f-be98-a898753cb1dc",
+        "name": {
+          "ar": "شريك",
+          "en": "Partner"
+        }
+      },
+      "logo": {
+        "id": "a1795770-4df6-42f7-9b91-82098b294171",
+        "original_name": "armite-lubricants-logo.jpg",
+        "file_name": "armite-lubricants-logo.jpg",
+        "uri": "assets/logos/armite-lubricants-logo.jpg",
+        "location": "assets/logos/armite-lubricants-logo.jpg",
+        "mime_type": "image/jpg",
+        "extension": "jpg",
+        "size": "204",
+        "width": null,
+        "height": null,
+        "type": "logo"
+      },
+      "country": {
+        "id": "a179576f-3365-4140-ad7e-71f8fb4bd64b",
+        "name": {
+          "ar": "الولايات المتحدة",
+          "en": "United States"
+        },
+        "code": "US"
+      }
+    },
+    {
+      "id": "a1795770-4ed0-4316-9cfc-f96bc41ab2ed",
+      "order": null,
+      "name": {
+        "ar": "SAMI AEC",
+        "en": "SAMI AEC"
+      },
+      "description": {
+        "ar": "شركة الإلكترونيات المتقدمة",
+        "en": "SAMI Advanced Electronics"
+      },
+      "link": "https://www.aecl.com/",
+      "country_id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+      "type_id": "a1795770-42c3-474a-9de7-6842540ddf94",
+      "type": {
+        "id": "a1795770-42c3-474a-9de7-6842540ddf94",
+        "name": {
+          "ar": "إتفاقية",
+          "en": "Agreement"
+        }
+      },
+      "logo": {
+        "id": "a1795770-4f7f-48e2-b385-f02cc7c00650",
+        "original_name": "sami-aec-logo.png",
+        "file_name": "sami-aec-logo.png",
+        "uri": "assets/logos/sami-aec-logo.png",
+        "location": "assets/logos/sami-aec-logo.png",
+        "mime_type": "image/png",
+        "extension": "png",
+        "size": "204",
+        "width": null,
+        "height": null,
+        "type": "logo"
+      },
+      "country": {
+        "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+        "name": {
+          "ar": "المملكة العربية السعودية",
+          "en": "Saudi Arabia"
+        },
+        "code": "SA"
+      }
+    },
+    {
+      "id": "a1795770-5037-432a-86b2-c88951a349cf",
+      "order": null,
+      "name": {
+        "ar": "SMSCMC",
+        "en": "SMSCMC"
+      },
+      "description": {
+        "ar": "الشركة السعودية للصيانة وإدارة خطوط الإمداد المحدودة",
+        "en": "Saudi Maintenance & Supply Chain Management Co"
+      },
+      "link": "https://www.smscmc.com/",
+      "country_id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+      "type_id": "a1795770-42c3-474a-9de7-6842540ddf94",
+      "type": {
+        "id": "a1795770-42c3-474a-9de7-6842540ddf94",
+        "name": {
+          "ar": "إتفاقية",
+          "en": "Agreement"
+        }
+      },
+      "logo": {
+        "id": "a1795770-50ec-4513-af88-8e2f1489760a",
+        "original_name": "smscmc-logo.svg",
+        "file_name": "smscmc-logo.svg",
+        "uri": "assets/logos/smscmc-logo.svg",
+        "location": "assets/logos/smscmc-logo.svg",
+        "mime_type": "image/svg",
+        "extension": "svg",
+        "size": "204",
+        "width": null,
+        "height": null,
+        "type": "logo"
+      },
+      "country": {
+        "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+        "name": {
+          "ar": "المملكة العربية السعودية",
+          "en": "Saudi Arabia"
+        },
+        "code": "SA"
+      }
+    },
+    {
+      "id": "a1795770-51a3-40df-9494-687600b46b1e",
+      "order": null,
+      "name": {
+        "ar": "MAC Aerospace Corp.",
+        "en": "MAC Aerospace Corp."
+      },
+      "description": [],
+      "link": "https://macaerospace.com/",
+      "country_id": "a179576f-3365-4140-ad7e-71f8fb4bd64b",
+      "type_id": "a1795770-41fe-472f-be98-a898753cb1dc",
+      "type": {
+        "id": "a1795770-41fe-472f-be98-a898753cb1dc",
+        "name": {
+          "ar": "شريك",
+          "en": "Partner"
+        }
+      },
+      "logo": {
+        "id": "a1795770-52c3-4d00-9b3a-73b2989a17bb",
+        "original_name": "mac-aerospace-corp-logo.png",
+        "file_name": "mac-aerospace-corp-logo.png",
+        "uri": "assets/logos/mac-aerospace-corp-logo.png",
+        "location": "assets/logos/mac-aerospace-corp-logo.png",
+        "mime_type": "image/png",
+        "extension": "png",
+        "size": "204",
+        "width": null,
+        "height": null,
+        "type": "logo"
+      },
+      "country": {
+        "id": "a179576f-3365-4140-ad7e-71f8fb4bd64b",
+        "name": {
+          "ar": "الولايات المتحدة",
+          "en": "United States"
+        },
+        "code": "US"
+      }
+    },
+    {
+      "id": "a1795770-53a1-470b-8185-42d46cb907df",
+      "order": null,
+      "name": {
+        "ar": "Amentum",
+        "en": "Amentum"
+      },
+      "description": [],
+      "link": "https://www.amentum.com/",
+      "country_id": "a179576f-3365-4140-ad7e-71f8fb4bd64b",
+      "type_id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+      "type": {
+        "id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+        "name": {
+          "ar": "عميل",
+          "en": "Client"
+        }
+      },
+      "logo": {
+        "id": "a1795770-545e-4b3b-8590-6be98912da8b",
+        "original_name": "amentum-logo.webp",
+        "file_name": "amentum-logo.webp",
+        "uri": "assets/logos/amentum-logo.webp",
+        "location": "assets/logos/amentum-logo.webp",
+        "mime_type": "image/webp",
+        "extension": "webp",
+        "size": "204",
+        "width": null,
+        "height": null,
+        "type": "logo"
+      },
+      "country": {
+        "id": "a179576f-3365-4140-ad7e-71f8fb4bd64b",
+        "name": {
+          "ar": "الولايات المتحدة",
+          "en": "United States"
+        },
+        "code": "US"
+      }
+    },
+    {
+      "id": "a1795770-5527-4d6b-983d-6f8b8edab330",
+      "order": null,
+      "name": {
+        "ar": "SAMI Aerospace",
+        "en": "SAMI Aerospace"
+      },
+      "description": {
+        "ar": "شركة سامي السلام لصناعة الطيران",
+        "en": "SAMI Alsalam Aerospace Industries"
+      },
+      "link": "https://samialsalam.com.sa",
+      "country_id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+      "type_id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+      "type": {
+        "id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+        "name": {
+          "ar": "عميل",
+          "en": "Client"
+        }
+      },
+      "logo": {
+        "id": "a1795770-55d6-4e91-9f67-cebe586defc4",
+        "original_name": "sami-aerospace-logo.svg",
+        "file_name": "sami-aerospace-logo.svg",
+        "uri": "assets/logos/sami-aerospace-logo.svg",
+        "location": "assets/logos/sami-aerospace-logo.svg",
+        "mime_type": "image/svg",
+        "extension": "svg",
+        "size": "204",
+        "width": null,
+        "height": null,
+        "type": "logo"
+      },
+      "country": {
+        "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+        "name": {
+          "ar": "المملكة العربية السعودية",
+          "en": "Saudi Arabia"
+        },
+        "code": "SA"
+      }
+    },
+    {
+      "id": "a1795770-5708-492f-bdaf-3f61e1941f1f",
+      "order": null,
+      "name": {
+        "ar": "NPCO",
+        "en": "NPCO"
+      },
+      "description": {
+        "ar": "شركة التعدات الوطنية التجارية",
+        "en": "National Commercial Pledges Company"
+      },
+      "link": "https://npco.sa/",
+      "country_id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+      "type_id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+      "type": {
+        "id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+        "name": {
+          "ar": "عميل",
+          "en": "Client"
+        }
+      },
+      "logo": {
+        "id": "a1795770-57b2-4adc-adf7-644d548a9f6a",
+        "original_name": "npco-logo.png",
+        "file_name": "npco-logo.png",
+        "uri": "assets/logos/npco-logo.png",
+        "location": "assets/logos/npco-logo.png",
+        "mime_type": "image/png",
+        "extension": "png",
+        "size": "204",
+        "width": null,
+        "height": null,
+        "type": "logo"
+      },
+      "country": {
+        "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+        "name": {
+          "ar": "المملكة العربية السعودية",
+          "en": "Saudi Arabia"
+        },
+        "code": "SA"
+      }
+    },
+    {
+      "id": "a1795770-5878-4e16-a060-7c21d6b5cebb",
+      "order": null,
+      "name": {
+        "ar": "شركة الوعلان للتجارة",
+        "en": "Wallan Group"
+      },
+      "description": [],
+      "link": "https://www.wallan.com/",
+      "country_id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+      "type_id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+      "type": {
+        "id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+        "name": {
+          "ar": "عميل",
+          "en": "Client"
+        }
+      },
+      "logo": {
+        "id": "a1795770-5955-4cc3-a61c-205638f6222f",
+        "original_name": "wallan-group-logo.png",
+        "file_name": "wallan-group-logo.png",
+        "uri": "assets/logos/wallan-group-logo.png",
+        "location": "assets/logos/wallan-group-logo.png",
+        "mime_type": "image/png",
+        "extension": "png",
+        "size": "204",
+        "width": null,
+        "height": null,
+        "type": "logo"
+      },
+      "country": {
+        "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+        "name": {
+          "ar": "المملكة العربية السعودية",
+          "en": "Saudi Arabia"
+        },
+        "code": "SA"
+      }
+    },
+    {
+      "id": "a1795770-5a41-4613-9e18-b1b632fda4d6",
+      "order": null,
+      "name": {
+        "ar": "شركة فينيل العربية",
+        "en": "Vinnell Arabia"
+      },
+      "description": [],
+      "link": null,
+      "country_id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+      "type_id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+      "type": {
+        "id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+        "name": {
+          "ar": "عميل",
+          "en": "Client"
+        }
+      },
+      "logo": {
+        "id": "a1795770-5b06-4379-a56a-c74d541c588a",
+        "original_name": "vinnell-arabia-logo.png",
+        "file_name": "vinnell-arabia-logo.png",
+        "uri": "assets/logos/vinnell-arabia-logo.png",
+        "location": "assets/logos/vinnell-arabia-logo.png",
+        "mime_type": "image/png",
+        "extension": "png",
+        "size": "204",
+        "width": null,
+        "height": null,
+        "type": "logo"
+      },
+      "country": {
+        "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+        "name": {
+          "ar": "المملكة العربية السعودية",
+          "en": "Saudi Arabia"
+        },
+        "code": "SA"
+      }
+    },
+    {
+      "id": "a1795770-5bca-4594-92e5-7d96e8016a75",
+      "order": null,
+      "name": {
+        "ar": "أي سي أس العربية",
+        "en": "ICS ARABIA"
+      },
+      "description": [],
+      "link": "https://icsarabia.com",
+      "country_id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+      "type_id": "a1795770-41fe-472f-be98-a898753cb1dc",
+      "type": {
+        "id": "a1795770-41fe-472f-be98-a898753cb1dc",
+        "name": {
+          "ar": "شريك",
+          "en": "Partner"
+        }
+      },
+      "logo": {
+        "id": "a1795770-5c84-407b-aaff-db0172e84fc1",
+        "original_name": "ics-arabia-logo.png",
+        "file_name": "ics-arabia-logo.png",
+        "uri": "assets/logos/ics-arabia-logo.png",
+        "location": "assets/logos/ics-arabia-logo.png",
+        "mime_type": "image/png",
+        "extension": "png",
+        "size": "204",
+        "width": null,
+        "height": null,
+        "type": "logo"
+      },
+      "country": {
+        "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+        "name": {
+          "ar": "المملكة العربية السعودية",
+          "en": "Saudi Arabia"
+        },
+        "code": "SA"
+      }
+    },
+    {
+      "id": "a1795770-5d5a-4037-9a2d-d25727fe94d6",
+      "order": null,
+      "name": {
+        "ar": "AACC",
+        "en": "AACC"
+      },
+      "description": {
+        "ar": "شركة المعدات المكملة للطائرات المحدودة",
+        "en": "Aircraft Accessories & Components Co. Ltd."
+      },
+      "link": "https://www.aacc-ltd.com/",
+      "country_id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+      "type_id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+      "type": {
+        "id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+        "name": {
+          "ar": "عميل",
+          "en": "Client"
+        }
+      },
+      "logo": {
+        "id": "a1795770-5e0b-455e-88d0-c565f61a31fe",
+        "original_name": "aacc-logo.png",
+        "file_name": "aacc-logo.png",
+        "uri": "assets/logos/aacc-logo.png",
+        "location": "assets/logos/aacc-logo.png",
+        "mime_type": "image/png",
+        "extension": "png",
+        "size": "204",
+        "width": null,
+        "height": null,
+        "type": "logo"
+      },
+      "country": {
+        "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+        "name": {
+          "ar": "المملكة العربية السعودية",
+          "en": "Saudi Arabia"
+        },
+        "code": "SA"
+      }
+    },
+    {
+      "id": "a1795770-5f0c-46c4-86ca-a4bbe7c51f8d",
+      "order": null,
+      "name": {
+        "ar": "OPTOKON Middle East",
+        "en": "OPTOKON Middle East"
+      },
+      "description": [],
+      "link": "https://www.optokon.com.sa/",
+      "country_id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+      "type_id": "a1795770-41fe-472f-be98-a898753cb1dc",
+      "type": {
+        "id": "a1795770-41fe-472f-be98-a898753cb1dc",
+        "name": {
+          "ar": "شريك",
+          "en": "Partner"
+        }
+      },
+      "logo": {
+        "id": "a1795770-5fc1-4a28-ad47-d5c53744d570",
+        "original_name": "optokon-middle-east-logo.png",
+        "file_name": "optokon-middle-east-logo.png",
+        "uri": "assets/logos/optokon-middle-east-logo.png",
+        "location": "assets/logos/optokon-middle-east-logo.png",
+        "mime_type": "image/png",
+        "extension": "png",
+        "size": "204",
+        "width": null,
+        "height": null,
+        "type": "logo"
+      },
+      "country": {
+        "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+        "name": {
+          "ar": "المملكة العربية السعودية",
+          "en": "Saudi Arabia"
+        },
+        "code": "SA"
+      }
+    },
+    {
+      "id": "a1795770-60e7-41dd-82cc-a63210221352",
+      "order": null,
+      "name": {
+        "ar": "TAM",
+        "en": "TAM"
+      },
+      "description": [],
+      "link": null,
+      "country_id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+      "type_id": "a1795770-41fe-472f-be98-a898753cb1dc",
+      "type": {
+        "id": "a1795770-41fe-472f-be98-a898753cb1dc",
+        "name": {
+          "ar": "شريك",
+          "en": "Partner"
+        }
+      },
+      "logo": {
+        "id": "a1795770-618e-47f3-afb6-1f184d9f1eca",
+        "original_name": "tam-logo.png",
+        "file_name": "tam-logo.png",
+        "uri": "assets/logos/tam-logo.png",
+        "location": "assets/logos/tam-logo.png",
+        "mime_type": "image/png",
+        "extension": "png",
+        "size": "204",
+        "width": null,
+        "height": null,
+        "type": "logo"
+      },
+      "country": {
+        "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+        "name": {
+          "ar": "المملكة العربية السعودية",
+          "en": "Saudi Arabia"
+        },
+        "code": "SA"
+      }
+    }
+  ]
+}

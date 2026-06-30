@@ -2,5 +2,11 @@
   "name": "3lines-site",
   "private": true,
   "version": "1.0.0",
-  "engines": { "node": "20.x" }
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
 }
