@@ -182,17 +182,30 @@
     }, true);
   })();
 
-  /* ----- 1c) Remove the useless "Share this page" social bar -----
-     A faded (opacity-40) row of share buttons appears on about/contact/service/news/legal
-     pages — a grey bar that adds nothing on a corporate site. Strip the whole block. */
+  /* ----- 1c) "Share this page" social row: keep it, trim to WhatsApp + LinkedIn, pin above the footer -----
+     Inner pages (about/contact/service/news/legal) ship a static .dshare row inside a
+     `.relative.pt-20.pb-8` wrapper; the homepage gets an equivalent one cloned in by injectShare.
+     On EVERY page we want the same compact bar — WhatsApp + LinkedIn only — sitting at the very
+     end, right above the footer. (ar/ja/ko source still ships the full 7-icon set, so trim here too.)
+     The homepage has no static .dshare, so this no-ops there and injectShare owns the home bar. */
   (function () {
-    function killShare() {
-      var btn = document.querySelector('.dshare'); if (!btn) return;
-      var sec = btn.closest('[class*="pt-20"]') || (btn.parentElement && btn.parentElement.parentElement);
-      if (sec && sec.parentNode) sec.parentNode.removeChild(sec);
+    function placeShare() {
+      var first = document.querySelector('.dshare');
+      if (!first || first.closest('.cln-share')) return;   // homepage/CMS: nothing static to place here
+      var box = first;
+      while (box && !/\bpt-20\b/.test(box.className || '')) box = box.parentElement;
+      box = box || first.closest('[class*="pt-20"]') || (first.parentElement && first.parentElement.parentElement);
+      if (!box) return;
+      // keep only WhatsApp + LinkedIn (matches the English page; trims the ar/ja/ko 7-icon set)
+      box.querySelectorAll('a.dshare').forEach(function (a) {
+        if (!/whatsapp|linkedin/i.test(a.getAttribute('href') || '')) { if (a.parentNode) a.parentNode.removeChild(a); }
+      });
+      // move it to the very end of the page, right above the footer
+      var footer = document.querySelector('footer');
+      if (footer && footer.parentNode && footer.previousElementSibling !== box) footer.parentNode.insertBefore(box, footer);
     }
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', killShare);
-    else killShare();
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', placeShare);
+    else placeShare();
   })();
 
   /* ----- 2) Footer compaction ----- */
@@ -217,7 +230,7 @@
     'footer .lg\\:mt-24{margin-top:1.25rem !important;}' +
     'footer .pt-8{padding-top:1.25rem !important;}' +
     /* the new logo is a tall portrait lockup — give the FOOTER logo good presence */
-    'footer .bg-logo img{height:4.5rem !important;width:auto !important;}' +
+    'footer .bg-logo img{height:9.5rem !important;width:auto !important;margin-bottom:.5rem !important;}' +
     'footer .bg-logo{height:auto !important;display:inline-block !important;}' +
     /* keep the brand text column readable, not stretched too wide */
     'footer .space-y-8>p{max-width:34rem !important;}' +
@@ -370,6 +383,54 @@
            or after a nav-button jump. */
     'header[class*="fixed"]{transform:none !important;translate:none !important;}';
   (document.head || document.documentElement).appendChild(perfCss);
+
+  /* ----- 15b) Partner/Client logos: enlarge -----
+     The mini-slider bundle caps each logo tile + <img> at max-h-[70px] (min-h-[50px]),
+     so the "Partners and Clients" strip reads cramped. Bump the cap in BOTH themes,
+     scoped to #mini-slider-partners so nothing else on the page is touched. The h-[86px]
+     side edge-fades grow to match so they still cover the taller strip in dark mode. */
+  var partnersCss = document.createElement('style'); partnersCss.id = 'cln-partners-size';
+  partnersCss.textContent =
+    '#mini-slider-partners [class*="max-h-[70px]"]{max-height:112px !important;}' +
+    '#mini-slider-partners [class*="min-h-[50px]"]{min-height:80px !important;}' +
+    '#mini-slider-partners [class*="h-[86px]"]{height:128px !important;}';
+  (document.head || document.documentElement).appendChild(partnersCss);
+
+  /* ----- 15c) XR bento card: put the "XR" label beside the goggles icon -----
+     The card's content wrapper stacks icon / "XR" / description in a flex-col. Flip it to a
+     row so the goggles icon + "XR" title sit side by side, with the description wrapping
+     full-width onto the next line. Scoped via the unique `lucide-rectangle-goggles` icon so
+     the other bento cards (Defense / Optokon / ATV / Cybersecurity) stay untouched. */
+  var xrCss = document.createElement('style'); xrCss.id = 'cln-xr-inline';
+  xrCss.textContent =
+    '[class*="flex-col"]:has(> svg.lucide-rectangle-goggles){flex-direction:row !important;flex-wrap:wrap !important;align-items:center !important;column-gap:.5rem !important;}' +
+    '[class*="flex-col"]:has(> svg.lucide-rectangle-goggles) > p{flex-basis:100% !important;margin-top:.1rem !important;}' +
+    /* On phones the XR card's headset photo (md:hidden, pinned to the bottom) sits right behind
+       the title/description/Learn-more and makes them unreadable. It renders ABOVE the card's
+       scrim but BELOW the text, so fade the photo itself to a soft backdrop. md:hidden already
+       limits this to mobile; scoped to the XR card via the unique goggles icon. */
+    '[class*="group/spotlight"]:has(svg.lucide-rectangle-goggles) [class*="md:hidden"][class*="bottom-0"]{opacity:.3 !important;}';
+  (document.head || document.documentElement).appendChild(xrCss);
+
+  /* ----- 15d) Contact section: centered, card-less layout -----
+     Drive the layout from here (not Tailwind classes) since the prebuilt CSS only ships the
+     classes used at build time. Colours stay on the elements via theme-aware classes
+     (text-zinc-*, text-[#5cc0ff]); this only does structure, so it's theme-agnostic. Targets
+     the .cln-contact wrapper, which exists on both the /contact page and the merged homepage. */
+  var contactCss = document.createElement('style'); contactCss.id = 'cln-contact-css';
+  contactCss.textContent =
+    '.cln-contact{max-width:62rem;margin-inline:auto;text-align:center}' +
+    '.cln-contact-lead{max-width:40rem;margin:0 auto;font-size:1.2rem;line-height:1.7}' +
+    '.cln-contact-cta{margin-top:2rem;display:flex;flex-direction:column;align-items:center;gap:.85rem}' +
+    '.cln-contact-grid{margin-top:3.5rem;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2.25rem 1.5rem;align-items:start;text-align:center}' +
+    '.cln-contact-item{display:flex;flex-direction:column;align-items:center}' +
+    '.cln-contact-ico{display:inline-flex;margin-bottom:.6rem}' +
+    '.cln-contact-item h3{font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;margin:0 0 .35rem}' +
+    '.cln-contact-item p{font-size:.95rem;line-height:1.6;margin:0}' +
+    '.cln-contact-linkedin{display:inline-flex;align-items:center;gap:.4rem;margin-top:2.75rem;font-weight:500}' +
+    '@media (max-width:900px){.cln-contact-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:2.5rem 1.5rem}}' +
+    '@media (max-width:560px){.cln-contact-grid{grid-template-columns:minmax(0,1fr);gap:2rem}}';
+  (document.head || document.documentElement).appendChild(contactCss);
 
   /* ----- 16b) Tag monochrome (white) partner logos -----
      The partner strip (rule 16) greys logos at rest and reveals their TRUE colour on hover. A few
@@ -945,6 +1006,13 @@
               if (/cdn-cgi\/l\/email-protection/.test(h)) h = 'mailto:?subject=3Lines%20Advanced%20Technologies%20Company&body=https%3A%2F%2F3lines.com.sa%2Fen';
               a.setAttribute('href', h);
             });
+            // Keep only WhatsApp + LinkedIn (the English page was already trimmed to these two;
+            // the ar/ja/ko source still ships the full 7-icon set, so normalise them here).
+            box.querySelectorAll('a.dshare').forEach(function (a) {
+              if (!/whatsapp|linkedin/i.test(a.getAttribute('href') || '')) {
+                if (a.parentNode) a.parentNode.removeChild(a);
+              }
+            });
             var sec = document.createElement('div');
             sec.className = 'cln-share mx-auto max-w-7xl px-6';
             sec.appendChild(document.importNode(box, true));
@@ -967,6 +1035,15 @@
         var partnersSec = svc.filter(function (s) { return s.querySelector('#mini-slider-partners'); })[0];
         var seq = [document.getElementById('about-info'), servicesSec, document.getElementById('news'), partnersSec, document.getElementById('contact'), document.querySelector('.cln-share')];
         seq.forEach(function (sec) { if (sec && sec !== footer && sec.parentNode) parent.insertBefore(sec, footer); });
+        // landing layout is now assembled in its final order — reveal it (the head gate hid the
+        // page with visibility:hidden so this whole reflow never shows as a jump / counts as CLS).
+        // Also wait for the web fonts so the font-swap happens while still hidden (no post-reveal
+        // reflow); the head's 2.5s failsafe still reveals regardless if fonts stall.
+        if (window.__clnReveal) {
+          var doReveal = function () { requestAnimationFrame(function () { requestAnimationFrame(window.__clnReveal); }); };
+          if (document.fonts && document.fonts.ready && document.fonts.ready.then) document.fonts.ready.then(doReveal, doReveal);
+          else doReveal();
+        }
       }
       var rtries = 0;
       var riv = setInterval(function () {
