@@ -540,5 +540,151 @@
         "에너지"
       ]
     }
+  },
+  "cybersecurity": {
+    "en": {
+      "oh": "Security you can trust and audit",
+      "op": "We protect critical aerospace and defense systems and data with a sovereign, defense-in-depth approach — from risk assessment and hardening to monitoring, incident response, and adversarial testing. Everything is designed for in-Kingdom operation, with full audit trails and compliance built in.",
+      "glance": [
+        "Sovereign, in-Kingdom operation",
+        "Defense-in-depth & hardening",
+        "Monitoring & incident response",
+        "Audit trails & compliance"
+      ],
+      "caps": [
+        {
+          "t": "Risk assessment",
+          "d": "Identify, prioritise, and remediate vulnerabilities across your systems."
+        },
+        {
+          "t": "Hardening & controls",
+          "d": "Secure configurations, access controls, and network segmentation."
+        },
+        {
+          "t": "Monitoring & detection",
+          "d": "Continuous monitoring with alerting on threats and anomalies."
+        },
+        {
+          "t": "Incident response",
+          "d": "Rapid containment, investigation, and recovery when it matters."
+        },
+        {
+          "t": "Red-teaming & testing",
+          "d": "Adversarial testing and evaluation to prove your defences."
+        },
+        {
+          "t": "Compliance & governance",
+          "d": "Controls and documentation aligned with national standards."
+        }
+      ]
+    },
+    "ar": {
+      "oh": "أمن يمكنك الوثوق به وتدقيقه",
+      "op": "نحمي أنظمة وبيانات الطيران والدفاع الحسّاسة بنهج سيادي ودفاع متعدّد الطبقات — من تقييم المخاطر والتحصين إلى المراقبة والاستجابة للحوادث والاختبار الهجومي. كل ذلك مصمّم للتشغيل داخل المملكة، مع سجلات تدقيق كاملة وامتثال مدمج.",
+      "glance": [
+        "تشغيل سيادي داخل المملكة",
+        "دفاع متعدّد الطبقات وتحصين",
+        "مراقبة واستجابة للحوادث",
+        "سجلات تدقيق وامتثال"
+      ],
+      "caps": [
+        {
+          "t": "تقييم المخاطر",
+          "d": "تحديد الثغرات وترتيبها ومعالجتها عبر أنظمتكم."
+        },
+        {
+          "t": "التحصين والضوابط",
+          "d": "إعدادات آمنة وضوابط وصول وتجزئة الشبكة."
+        },
+        {
+          "t": "المراقبة والكشف",
+          "d": "مراقبة مستمرة مع تنبيهات على التهديدات والحالات الشاذة."
+        },
+        {
+          "t": "الاستجابة للحوادث",
+          "d": "احتواء وتحقيق وتعافٍ سريع عند الحاجة."
+        },
+        {
+          "t": "الاختبار الهجومي",
+          "d": "اختبار وتقييم هجومي لإثبات فعالية دفاعاتكم."
+        },
+        {
+          "t": "الامتثال والحوكمة",
+          "d": "ضوابط وتوثيق متوافق مع المعايير الوطنية."
+        }
+      ]
+    },
+    "ja": {
+      "oh": "信頼でき、監査可能なセキュリティ",
+      "op": "主権的で多層防御のアプローチにより、重要な航空宇宙・防衛システムとデータを保護します。リスク評価や堅牢化から、監視、インシデント対応、敵対的テストまで。すべて王国内での運用を前提に設計され、完全な監査ログとコンプライアンスを備えます。",
+      "glance": [
+        "王国内での主権的運用",
+        "多層防御と堅牢化",
+        "監視とインシデント対応",
+        "監査ログとコンプライアンス"
+      ],
+      "caps": [
+        {
+          "t": "リスク評価",
+          "d": "システム全体の脆弱性を特定・優先順位付け・修復。"
+        },
+        {
+          "t": "堅牢化と統制",
+          "d": "安全な構成、アクセス制御、ネットワーク分離。"
+        },
+        {
+          "t": "監視と検知",
+          "d": "脅威や異常を警告する継続的な監視。"
+        },
+        {
+          "t": "インシデント対応",
+          "d": "重要な局面での迅速な封じ込め・調査・復旧。"
+        },
+        {
+          "t": "レッドチーミングとテスト",
+          "d": "防御を実証する敵対的テストと評価。"
+        },
+        {
+          "t": "コンプライアンスとガバナンス",
+          "d": "国家基準に沿った統制と文書化。"
+        }
+      ]
+    },
+    "ko": {
+      "oh": "신뢰하고 감사할 수 있는 보안",
+      "op": "주권적이고 다층 방어 방식으로 중요한 항공우주·국방 시스템과 데이터를 보호합니다 — 위험 평가와 강화부터 모니터링, 사고 대응, 공격적 테스트까지. 모두 왕국 내 운영을 위해 설계되었으며 완전한 감사 로그와 규정 준수를 갖춥니다.",
+      "glance": [
+        "왕국 내 주권적 운영",
+        "다층 방어 및 강화",
+        "모니터링 및 사고 대응",
+        "감사 로그 및 규정 준수"
+      ],
+      "caps": [
+        {
+          "t": "위험 평가",
+          "d": "시스템 전반의 취약점을 식별·우선순위화·해결."
+        },
+        {
+          "t": "강화 및 통제",
+          "d": "안전한 구성, 접근 제어, 네트워크 분리."
+        },
+        {
+          "t": "모니터링 및 탐지",
+          "d": "위협과 이상 징후를 경고하는 지속적 모니터링."
+        },
+        {
+          "t": "사고 대응",
+          "d": "중요한 순간의 신속한 봉쇄·조사·복구."
+        },
+        {
+          "t": "레드팀 및 테스트",
+          "d": "방어를 입증하는 공격적 테스트와 평가."
+        },
+        {
+          "t": "규정 준수 및 거버넌스",
+          "d": "국가 표준에 부합하는 통제와 문서화."
+        }
+      ]
+    }
   }
 }

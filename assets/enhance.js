@@ -1178,7 +1178,13 @@
         d: { en: 'Sovereign AI — command centers, document intelligence, and operations agents. Bilingual (Arabic & English) with 100% in-Kingdom data residency.',
              ar: 'ذكاء اصطناعي سيادي — مراكز قيادة وذكاء المستندات ووكلاء التشغيل، بالعربية والإنجليزية مع بقاء البيانات داخل المملكة بنسبة 100٪.',
              ja: 'ソブリンAI — コマンドセンター、ドキュメントインテリジェンス、業務エージェント。アラビア語・英語対応、データは100%王国内に保持。',
-             ko: '소버린 AI — 커맨드 센터, 문서 인텔리전스, 운영 에이전트. 아랍어·영어 지원 및 데이터 100% 왕국 내 보관.' } }
+             ko: '소버린 AI — 커맨드 센터, 문서 인텔리전스, 운영 에이전트. 아랍어·영어 지원 및 데이터 100% 왕국 내 보관.' } },
+      { slug: 'cybersecurity', from: 'us-government-support-services',
+        t: { en: 'Cybersecurity', ar: 'الأمن السيبراني', ja: 'サイバーセキュリティ', ko: '사이버보안' },
+        d: { en: 'Protecting critical systems and data with a sovereign, in-Kingdom approach — assessment, hardening, monitoring, and incident response.',
+             ar: 'حماية الأنظمة والبيانات الحسّاسة بنهج سيادي داخل المملكة — تقييم وتحصين ومراقبة واستجابة للحوادث.',
+             ja: '主権的で王国内で運用するアプローチにより、重要なシステムとデータを保護します — 評価、堅牢化、監視、インシデント対応。',
+             ko: '주권적이고 왕국 내에서 운영되는 접근으로 중요한 시스템과 데이터를 보호합니다 — 평가, 강화, 모니터링, 사고 대응.' } }
     ];
     function run() {
       var any = document.querySelector('[id="services"] a[class*="min-h-[10rem]"]');
@@ -1224,7 +1230,7 @@
      new slugs are touched -- the real prerendered service pages are left exactly as built. */
   (function serviceDetailPage() {
     var ms = location.pathname.match(/\/services\/([a-z0-9-]+)\.html/);
-    var NEWSLUGS = ['procurement', 'engineering', 'ai-solutions'];
+    var NEWSLUGS = ['procurement', 'engineering', 'ai-solutions', 'cybersecurity'];
     if (!ms || NEWSLUGS.indexOf(ms[1]) === -1) return;
     var slug = ms[1];
     function loc() { var l = (document.documentElement.getAttribute('lang') || 'en').toLowerCase(); return (l === 'ar' || l === 'ja' || l === 'ko') ? l : 'en'; }
@@ -1312,6 +1318,93 @@
       var j = res[0], details = res[1]; if (!j) return; var list = j.data || j;
       for (var i = 0; i < list.length; i++) if (list[i].slug === slug) { apply(list[i], details); return; }
     });
+  })();
+
+  /* ----- 18e) "Sectors we serve" homepage section -----
+     A new section (industries the company serves) inserted right after Services on the homepage. The
+     page is prerendered, so it's built client-side and re-glued after #services on a short retry so the
+     one-time section reorder can't strand it. Themed + localized to match the rest of the site. */
+  (function sectorsSection() {
+    if (document.getElementById('services') === null && !/\/(en|ar|ja|ko)(\/|\.html|$)/.test(location.pathname)) return;
+    function loc() { var l = (document.documentElement.getAttribute('lang') || 'en').toLowerCase(); return (l === 'ar' || l === 'ja' || l === 'ko') ? l : 'en'; }
+    function esc(s) { return (s == null ? '' : String(s)).replace(/[&<>"]/g, function (m) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m]; }); }
+    var css = document.createElement('style'); css.id = 'cln-sectors-css';
+    css.textContent =
+      '.cln-sectors{padding:5.5rem 0;}' +
+      '.cln-sectors-in{max-width:80rem;margin:0 auto;padding:0 1.5rem;}' +
+      '.cln-sectors-head{text-align:center;margin-bottom:2.75rem;}' +
+      '.cln-sectors-eye{display:block;margin-bottom:.6rem;font-size:.72rem;line-height:1;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:#5cc0ff;}' +
+      'html[lang="ar"] .cln-sectors-eye{letter-spacing:normal;}' +
+      '.ml-light .cln-sectors-eye{color:#1f6fd6;}' +
+      '.cln-sectors-h2{position:relative;display:inline-block;font-size:clamp(1.75rem,3vw,2.4rem);font-weight:800;line-height:1.1;padding-bottom:1rem;margin:0;color:#f4f4f5;}' +
+      '.ml-light .cln-sectors-h2{color:#0b1220;}' +
+      '.cln-sectors-h2::after{content:"";position:absolute;left:50%;transform:translateX(-50%);bottom:0;width:60px;height:3px;border-radius:3px;background:linear-gradient(90deg,rgba(58,160,255,0),rgba(58,160,255,.9),rgba(58,160,255,0));}' +
+      '.cln-sectors-grid{display:grid;grid-template-columns:repeat(1,1fr);gap:1rem;}' +
+      '@media(min-width:640px){.cln-sectors-grid{grid-template-columns:repeat(2,1fr);}}' +
+      '@media(min-width:1024px){.cln-sectors-grid{grid-template-columns:repeat(3,1fr);}}' +
+      '.cln-sector{display:flex;gap:1rem;align-items:flex-start;padding:1.25rem;border-radius:.9rem;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);transition:transform .2s ease,box-shadow .2s ease;}' +
+      '.ml-light .cln-sector{border-color:rgba(16,42,90,.1);background:#fff;box-shadow:0 4px 14px -9px rgba(16,42,90,.16);}' +
+      '.cln-sector:hover{transform:translateY(-3px);box-shadow:0 14px 30px -14px rgba(45,112,240,.4);}' +
+      '.cln-sector-ico{flex:none;width:2.75rem;height:2.75rem;border-radius:.7rem;display:flex;align-items:center;justify-content:center;background:rgba(56,160,255,.12);border:1px solid #3aa0ff59;color:#5cc0ff;}' +
+      '.cln-sector-ico svg{width:1.4rem;height:1.4rem;}' +
+      '.cln-sector-t{font-weight:700;color:#f4f4f5;font-size:1.02rem;}' +
+      '.ml-light .cln-sector-t{color:#0b1220;}' +
+      '.cln-sector-d{margin-top:.25rem;font-size:.86rem;line-height:1.5;color:#a1a1aa;}' +
+      '.ml-light .cln-sector-d{color:#52525b;}';
+    (document.head || document.documentElement).appendChild(css);
+    var HEAD = { eye: { en: 'WHO WE SERVE', ar: 'من نخدم', ja: '対応領域', ko: '서비스 대상' }, h: { en: 'Sectors we serve', ar: 'القطاعات التي نخدمها', ja: '対応する業界', ko: '서비스 산업' } };
+    var IC = {
+      shield: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>',
+      plane: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>',
+      landmark: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="21" y1="22" y2="22"/><line x1="6" x2="6" y1="18" y2="11"/><line x1="10" x2="10" y1="18" y2="11"/><line x1="14" x2="14" y1="18" y2="11"/><line x1="18" x2="18" y1="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg>',
+      zap: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>',
+      truck: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>',
+      cpu: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2M9 2v2M15 20v2M9 20v2M2 15h2M2 9h2M20 15h2M20 9h2"/></svg>'
+    };
+    var SECTORS = [
+      { ic: 'shield', t: { en: 'Defense & Aerospace', ar: 'الدفاع والطيران', ja: '防衛・航空宇宙', ko: '국방·항공우주' }, d: { en: 'Spare parts, MRO and technical support for military platforms.', ar: 'قطع الغيار والصيانة والدعم الفني للمنصّات العسكرية.', ja: '軍用プラットフォームの部品・整備・技術支援。', ko: '군용 플랫폼의 부품·정비·기술 지원.' } },
+      { ic: 'plane', t: { en: 'Civil Aviation', ar: 'الطيران المدني', ja: '民間航空', ko: '민간 항공' }, d: { en: 'Supply and support for commercial and civil aircraft operators.', ar: 'الإمداد والدعم لمشغّلي الطائرات التجارية والمدنية.', ja: '商用・民間航空機オペレーター向けの供給と支援。', ko: '상업·민간 항공기 운영자를 위한 공급 및 지원.' } },
+      { ic: 'landmark', t: { en: 'Government & Public Sector', ar: 'الحكومة والقطاع العام', ja: '政府・公共部門', ko: '정부·공공 부문' }, d: { en: 'Trusted programs and support services for government entities.', ar: 'برامج وخدمات دعم موثوقة للجهات الحكومية.', ja: '政府機関向けの信頼できるプログラムと支援サービス。', ko: '정부 기관을 위한 신뢰할 수 있는 프로그램 및 지원 서비스.' } },
+      { ic: 'zap', t: { en: 'Energy', ar: 'الطاقة', ja: 'エネルギー', ko: '에너지' }, d: { en: 'Equipment, generators and technical services for energy operations.', ar: 'المعدات والمولّدات والخدمات الفنية لعمليات الطاقة.', ja: 'エネルギー事業向けの機器・発電機・技術サービス。', ko: '에너지 운영을 위한 장비·발전기·기술 서비스.' } },
+      { ic: 'truck', t: { en: 'Logistics & Supply Chain', ar: 'الخدمات اللوجستية وسلسلة الإمداد', ja: '物流・サプライチェーン', ko: '물류·공급망' }, d: { en: 'Global sourcing, procurement and dependable delivery.', ar: 'التوريد العالمي والمشتريات والتسليم الموثوق.', ja: 'グローバル調達・購買と信頼できる納品。', ko: '글로벌 소싱, 조달, 신뢰할 수 있는 납품.' } },
+      { ic: 'cpu', t: { en: 'Technology & AI', ar: 'التقنية والذكاء الاصطناعي', ja: 'テクノロジー・AI', ko: '기술·AI' }, d: { en: 'Sovereign AI, IT infrastructure and digital solutions.', ar: 'ذكاء اصطناعي سيادي وبنية تقنية وحلول رقمية.', ja: 'ソブリンAI、ITインフラ、デジタルソリューション。', ko: '소버린 AI, IT 인프라, 디지털 솔루션.' } }
+    ];
+    function build() {
+      var L = loc();
+      var sec = document.createElement('section'); sec.id = 'cln-sectors'; sec.className = 'cln-sectors';
+      var cards = SECTORS.map(function (s) {
+        return '<div class="cln-sector"><span class="cln-sector-ico">' + IC[s.ic] + '</span><div><div class="cln-sector-t">' + esc(s.t[L] || s.t.en) + '</div><div class="cln-sector-d">' + esc(s.d[L] || s.d.en) + '</div></div></div>';
+      }).join('');
+      sec.innerHTML = '<div class="cln-sectors-in"><div class="cln-sectors-head">' +
+        '<span class="cln-sectors-eye">' + esc(HEAD.eye[L] || HEAD.eye.en) + '</span>' +
+        '<h2 class="cln-sectors-h2">' + esc(HEAD.h[L] || HEAD.h.en) + '</h2></div>' +
+        '<div class="cln-sectors-grid">' + cards + '</div></div>';
+      return sec;
+    }
+    function ensure() {
+      var services = document.getElementById('services');
+      if (!services) return false;
+      var sec = document.getElementById('cln-sectors') || build();
+      if (services.nextSibling !== sec) services.parentNode.insertBefore(sec, services.nextSibling);
+      return true;
+    }
+    var n = 0, iv = setInterval(function () { ensure(); if (++n > 24) clearInterval(iv); }, 300);
+    if (document.readyState !== 'loading') ensure();
+    document.addEventListener('DOMContentLoaded', ensure);
+  })();
+
+  /* ----- 18f) Service-detail capability cards: tighten the icon → title gap -----
+     The baked cards give the title `mt-3` under a 40px icon box whose 20px glyph is centered, so the
+     visual gap between glyph and title reads ~22px — airy and unbalanced. Pull the title up so the
+     icon and its label feel connected. Scoped to /services/<slug> pages (applies to the prerendered
+     pages and the API-driven new ones alike); the selector only matches these specific cards. */
+  (function tightenCapCards() {
+    if (!/\/services\/[^/]+$/.test(location.pathname)) return;
+    var s = document.createElement('style'); s.id = 'cln-cap-css';
+    s.textContent =
+      '[class~="p-5"] > [class~="h-10"][class~="w-10"][class~="rounded-lg"] + h3,' +
+      '[class~="p-5"] > [class~="h-10"][class~="w-10"][class~="rounded-lg"] + h4{margin-top:.3rem !important;}';
+    (document.head || document.documentElement).appendChild(s);
   })();
 
   /* ----- 16b) Tag flat/LIGHT partner logos -----
