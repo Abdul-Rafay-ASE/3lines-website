@@ -141,7 +141,7 @@ app.use(express.static(REPO_ROOT, {
 /* ---------- New service detail pages: these ship via the API (content/services.json) but aren't
    prerendered into their own .html yet. Serve the same-language spare-parts page as a shell; the
    detail-page runtime in assets/enhance.js rewrites the title/description from the API by slug. ---------- */
-const NEW_SERVICE_SLUGS = ['procurement', 'engineering', 'ai-solutions', 'accounts'];
+const NEW_SERVICE_SLUGS = ['procurement', 'engineering', 'ai-solutions'];
 app.use((req, res, next) => {
   if (req.method !== 'GET' && req.method !== 'HEAD') return next();
   const m = req.path.match(/^\/(en|ar|ja|ko)\/services\/([a-z0-9-]+)\.html$/);

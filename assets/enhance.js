@@ -1178,13 +1178,7 @@
         d: { en: 'Sovereign AI — command centers, document intelligence, and operations agents. Bilingual (Arabic & English) with 100% in-Kingdom data residency.',
              ar: 'ذكاء اصطناعي سيادي — مراكز قيادة وذكاء المستندات ووكلاء التشغيل، بالعربية والإنجليزية مع بقاء البيانات داخل المملكة بنسبة 100٪.',
              ja: 'ソブリンAI — コマンドセンター、ドキュメントインテリジェンス、業務エージェント。アラビア語・英語対応、データは100%王国内に保持。',
-             ko: '소버린 AI — 커맨드 센터, 문서 인텔리전스, 운영 에이전트. 아랍어·영어 지원 및 데이터 100% 왕국 내 보관.' } },
-      { slug: 'accounts', from: 'hydraulic-pneumatic',
-        t: { en: 'Accounts & Finance', ar: 'الحسابات والمالية', ja: '経理・財務', ko: '회계·재무' },
-        d: { en: 'A professional accounts and finance team ensuring transparent, compliant, and efficient financial management.',
-             ar: 'فريق محاسبة ومالية محترف يضمن إدارة مالية شفافة وممتثلة وفعّالة.',
-             ja: '透明で法令に準拠した効率的な財務管理を実現する、プロフェッショナルな経理・財務チーム。',
-             ko: '투명하고 규정을 준수하며 효율적인 재무 관리를 보장하는 전문 회계·재무 팀.' } }
+             ko: '소버린 AI — 커맨드 센터, 문서 인텔리전스, 운영 에이전트. 아랍어·영어 지원 및 데이터 100% 왕국 내 보관.' } }
     ];
     function run() {
       var any = document.querySelector('[id="services"] a[class*="min-h-[10rem]"]');
@@ -1230,7 +1224,7 @@
      new slugs are touched -- the real prerendered service pages are left exactly as built. */
   (function serviceDetailPage() {
     var ms = location.pathname.match(/\/services\/([a-z0-9-]+)\.html/);
-    var NEWSLUGS = ['procurement', 'engineering', 'ai-solutions', 'accounts'];
+    var NEWSLUGS = ['procurement', 'engineering', 'ai-solutions'];
     if (!ms || NEWSLUGS.indexOf(ms[1]) === -1) return;
     var slug = ms[1];
     function loc() { var l = (document.documentElement.getAttribute('lang') || 'en').toLowerCase(); return (l === 'ar' || l === 'ja' || l === 'ko') ? l : 'en'; }
@@ -1239,6 +1233,8 @@
       glance: { en: 'At a glance', ar: 'لمحة سريعة', ja: 'ハイライト', ko: '한눈에 보기' },
       wwd: { en: 'What we do', ar: 'ما نقدمه', ja: '事業内容', ko: '우리의 역량' },
       caps: { en: 'Capabilities', ar: 'القدرات', ja: '主なサービス', ko: '주요 역량' },
+      track: { en: 'Track record', ar: 'سجل الإنجاز', ja: '実績', ko: '실적' },
+      sectors: { en: 'Industries we serve', ar: 'القطاعات التي نخدمها', ja: '対応する業界', ko: '서비스 산업' },
       eye: { en: 'What we do', ar: 'ما نقدمه', ja: '事業内容', ko: '핵심 역량' },
       cta: { en: 'Get in touch', ar: 'تواصل معنا', ja: 'お問い合わせ', ko: '문의하기' }
     };
@@ -1281,6 +1277,19 @@
               '<span class="inline-flex h-10 w-10 items-center justify-center rounded-lg" style="background:rgba(56,160,255,.12);border:1px solid #3aa0ff59;">' + CHK + '</span>' +
               '<h3 class="mt-3 font-semibold text-zinc-100">' + esc(c.t) + '</h3>' +
               '<p class="mt-1.5 text-sm leading-relaxed text-zinc-400">' + esc(c.d) + '</p></div>'; }).join('') +
+            '</div></section>';
+        }
+        if (rd && rd.stats && rd.stats.length) {
+          html += '<section class="mt-8 pt-4"><div class="rounded-2xl border border-white/10 bg-gradient-to-br from-blue-600/10 to-transparent p-6">' +
+            '<p class="text-xs font-semibold uppercase tracking-wide text-[#5cc0ff]">' + esc(LBL.track[L] || LBL.track.en) + '</p>' +
+            '<div class="mt-6 grid grid-cols-2 gap-6 text-center sm:grid-cols-4">' +
+            rd.stats.map(function (s) { return '<div><div class="text-2xl font-bold text-[#5cc0ff] sm:text-3xl">' + esc(s.v) + '</div><div class="mt-1 text-xs text-zinc-400">' + esc(s.l) + '</div></div>'; }).join('') +
+            '</div></div></section>';
+        }
+        if (rd && rd.sectors && rd.sectors.length) {
+          html += '<section><p class="text-xs font-semibold uppercase tracking-wide text-[#5cc0ff]">' + esc(LBL.sectors[L] || LBL.sectors.en) + '</p>' +
+            '<div class="mt-3 flex flex-wrap gap-2">' +
+            rd.sectors.map(function (x) { return '<span class="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-zinc-300">' + esc(x) + '</span>'; }).join('') +
             '</div></section>';
         }
         body.innerHTML = html;

@@ -185,22 +185,5 @@
       "ko": "소버린 AI — 커맨드 센터, 문서 인텔리전스, 운영 에이전트. 아랍어·영어 지원 및 데이터 100% 왕국 내 보관.",
       "ja": "ソブリンAI — コマンドセンター、ドキュメントインテリジェンス、業務エージェント。アラビア語・英語対応、データは100%王国内に保持。"
     }
-  },
-  {
-    "slug": "accounts",
-    "hue": "#36c2cf",
-    "icon": "gauge",
-    "title": {
-      "en": "Accounts & Finance",
-      "ar": "الحسابات والمالية",
-      "ko": "회계·재무",
-      "ja": "経理・財務"
-    },
-    "description": {
-      "en": "A professional accounts and finance team ensuring transparent, compliant, and efficient financial management.",
-      "ar": "فريق محاسبة ومالية محترف يضمن إدارة مالية شفافة وممتثلة وفعّالة.",
-      "ko": "투명하고 규정을 준수하며 효율적인 재무 관리를 보장하는 전문 회계·재무 팀.",
-      "ja": "透明で法令に準拠した効率的な財務管理を実現する、プロフェッショナルな経理・財務チーム。"
-    }
   }
 ]
