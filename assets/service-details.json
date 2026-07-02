@@ -1,0 +1,218 @@
+{
+  "procurement": {
+    "en": {
+      "oh": "Global sourcing you can rely on",
+      "op": "Our procurement team sources genuine parts, equipment, and components from trusted OEMs and authorised distributors across the United States and worldwide. We manage the full cycle — from RFQ to delivery — with transparent pricing, verified authenticity, and dependable lead times, so your operations never wait on supply.",
+      "glance": ["OEM & authorised distributors", "United States & worldwide supply", "Transparent pricing & lead times", "Certificates & full traceability"],
+      "caps": [
+        {"t": "Strategic sourcing", "d": "Identifying and qualifying the right suppliers for every part and program."},
+        {"t": "Vendor management", "d": "Long-term relationships with OEMs and authorised distributors."},
+        {"t": "Quotations & negotiation", "d": "Competitive RFQs with clear pricing and delivery terms."},
+        {"t": "Logistics & expediting", "d": "Export handling, shipping, and priority expediting for AOG needs."},
+        {"t": "Quality & compliance", "d": "Authenticity checks, certificates of conformity, and traceability."},
+        {"t": "Inventory planning", "d": "Forecasting and stock planning so critical parts are on hand."}
+      ]
+    },
+    "ar": {
+      "oh": "توريد عالمي يمكنك الاعتماد عليه",
+      "op": "يقوم فريق المشتريات لدينا بتوريد قطع الغيار والمعدات والمكوّنات الأصلية من المصنّعين الأصليين والموزّعين المعتمدين في الولايات المتحدة وحول العالم. ندير الدورة الكاملة — من طلب عرض السعر حتى التسليم — بأسعار شفافة وأصالة موثّقة ومهل زمنية موثوقة، حتى لا تتوقف عملياتكم بانتظار الإمداد.",
+      "glance": ["مصنّعون أصليون وموزّعون معتمدون", "إمداد من الولايات المتحدة وحول العالم", "أسعار ومهل زمنية شفافة", "شهادات وتتبّع كامل"],
+      "caps": [
+        {"t": "التوريد الاستراتيجي", "d": "تحديد وتأهيل المورّدين المناسبين لكل قطعة وبرنامج."},
+        {"t": "إدارة الموردين", "d": "علاقات طويلة الأمد مع المصنّعين الأصليين والموزّعين المعتمدين."},
+        {"t": "عروض الأسعار والتفاوض", "d": "طلبات عروض تنافسية بأسعار وشروط تسليم واضحة."},
+        {"t": "الخدمات اللوجستية والتعجيل", "d": "معالجة التصدير والشحن والتعجيل ذي الأولوية لحالات الطائرات المتوقفة."},
+        {"t": "الجودة والامتثال", "d": "فحوصات الأصالة وشهادات المطابقة والتتبّع."},
+        {"t": "تخطيط المخزون", "d": "التنبؤ وتخطيط المخزون لضمان توفّر القطع الحرجة."}
+      ]
+    },
+    "ja": {
+      "oh": "信頼できるグローバル調達",
+      "op": "当社の調達チームは、米国および世界中の信頼できるOEMや正規販売代理店から、純正の部品・機器・コンポーネントを調達します。見積依頼から納品まで全工程を管理し、透明な価格設定、確かな真正性、信頼できるリードタイムを提供します。",
+      "glance": ["OEM・正規代理店", "米国および世界中からの供給", "透明な価格とリードタイム", "証明書と完全なトレーサビリティ"],
+      "caps": [
+        {"t": "戦略的調達", "d": "部品・プログラムごとに最適なサプライヤーを特定・認定します。"},
+        {"t": "ベンダー管理", "d": "OEMおよび正規代理店との長期的な関係。"},
+        {"t": "見積・交渉", "d": "明確な価格と納期条件による競争力のある見積。"},
+        {"t": "物流・特急対応", "d": "輸出手続き、輸送、AOG向けの優先特急対応。"},
+        {"t": "品質・コンプライアンス", "d": "真正性チェック、適合証明書、トレーサビリティ。"},
+        {"t": "在庫計画", "d": "重要部品を確保するための需要予測と在庫計画。"}
+      ]
+    },
+    "ko": {
+      "oh": "믿을 수 있는 글로벌 소싱",
+      "op": "당사의 조달 팀은 미국과 전 세계의 신뢰할 수 있는 OEM 및 공식 대리점에서 정품 부품·장비·구성품을 조달합니다. 견적 요청부터 납품까지 전 과정을 관리하며, 투명한 가격, 검증된 정품성, 신뢰할 수 있는 리드타임을 제공합니다.",
+      "glance": ["OEM 및 공식 대리점", "미국 및 전 세계 공급", "투명한 가격과 리드타임", "인증서 및 완전한 추적성"],
+      "caps": [
+        {"t": "전략적 소싱", "d": "모든 부품과 프로그램에 맞는 공급업체를 발굴하고 검증합니다."},
+        {"t": "공급업체 관리", "d": "OEM 및 공식 대리점과의 장기적 관계."},
+        {"t": "견적 및 협상", "d": "명확한 가격과 납품 조건의 경쟁력 있는 견적."},
+        {"t": "물류 및 긴급 대응", "d": "수출 처리, 배송, AOG 우선 긴급 대응."},
+        {"t": "품질 및 규정 준수", "d": "정품 확인, 적합성 인증서, 추적성."},
+        {"t": "재고 계획", "d": "중요 부품 확보를 위한 수요 예측 및 재고 계획."}
+      ]
+    }
+  },
+  "engineering": {
+    "en": {
+      "oh": "Engineering that keeps you airworthy",
+      "op": "Led by senior engineers, our engineering department delivers technical solutions across airframes, systems, and support equipment — from analysis and integration to on-site troubleshooting. We turn complex requirements into practical, certified outcomes that keep your fleet performing.",
+      "glance": ["Led by senior engineers", "Design, integration & analysis", "On-site technical support", "Standards & certification"],
+      "caps": [
+        {"t": "Technical solutions", "d": "Practical engineering answers to complex platform and system needs."},
+        {"t": "Systems integration", "d": "Integrating new equipment and components into existing platforms."},
+        {"t": "Analysis & assessment", "d": "Structural, mechanical, and systems analysis to inform decisions."},
+        {"t": "Field support", "d": "Hands-on troubleshooting and technical support at your base."},
+        {"t": "Documentation", "d": "Engineering documentation aligned with applicable standards."},
+        {"t": "Reliability improvement", "d": "Performance and reliability gains across the lifecycle."}
+      ]
+    },
+    "ar": {
+      "oh": "هندسة تحافظ على جاهزية أسطولكم",
+      "op": "بقيادة نخبة من كبار المهندسين، يقدّم قسم الهندسة لدينا حلولاً تقنية تشمل هياكل الطائرات والأنظمة والمعدات المساندة — من التحليل والتكامل إلى استكشاف الأعطال في الموقع. نحوّل المتطلبات المعقّدة إلى نتائج عملية ومعتمدة تحافظ على أداء أسطولكم.",
+      "glance": ["بقيادة كبار المهندسين", "التصميم والتكامل والتحليل", "دعم فني في الموقع", "المعايير والاعتماد"],
+      "caps": [
+        {"t": "الحلول التقنية", "d": "إجابات هندسية عملية للاحتياجات المعقّدة للمنصّات والأنظمة."},
+        {"t": "تكامل الأنظمة", "d": "دمج المعدات والمكوّنات الجديدة في المنصّات القائمة."},
+        {"t": "التحليل والتقييم", "d": "تحليل إنشائي وميكانيكي وللأنظمة لدعم القرارات."},
+        {"t": "الدعم الميداني", "d": "استكشاف الأعطال والدعم الفني في موقعكم."},
+        {"t": "التوثيق", "d": "توثيق هندسي متوافق مع المعايير المعمول بها."},
+        {"t": "تحسين الموثوقية", "d": "تحسين الأداء والموثوقية على مدى دورة الحياة."}
+      ]
+    },
+    "ja": {
+      "oh": "運航を支えるエンジニアリング",
+      "op": "ベテランエンジニアが率いる当社のエンジニアリング部門は、機体・システム・支援機器にわたる技術ソリューションを提供します。解析や統合から現場でのトラブルシューティングまで、複雑な要件を実用的で認証された成果へと変えます。",
+      "glance": ["ベテランエンジニアが主導", "設計・統合・解析", "現場での技術サポート", "規格および認証"],
+      "caps": [
+        {"t": "技術ソリューション", "d": "複雑なプラットフォームやシステム要件への実用的な回答。"},
+        {"t": "システム統合", "d": "新しい機器やコンポーネントを既存プラットフォームへ統合。"},
+        {"t": "解析・評価", "d": "意思決定を支える構造・機械・システム解析。"},
+        {"t": "現場サポート", "d": "拠点でのハンズオンのトラブルシューティングと技術支援。"},
+        {"t": "ドキュメント", "d": "適用規格に準拠したエンジニアリング文書。"},
+        {"t": "信頼性向上", "d": "ライフサイクル全体での性能・信頼性の向上。"}
+      ]
+    },
+    "ko": {
+      "oh": "운항을 지원하는 엔지니어링",
+      "op": "숙련된 엔지니어가 이끄는 당사의 엔지니어링 부서는 기체, 시스템, 지원 장비 전반에 걸친 기술 솔루션을 제공합니다. 분석과 통합에서 현장 문제 해결까지, 복잡한 요구사항을 실용적이고 인증된 결과로 전환합니다.",
+      "glance": ["숙련된 엔지니어 주도", "설계·통합·분석", "현장 기술 지원", "표준 및 인증"],
+      "caps": [
+        {"t": "기술 솔루션", "d": "복잡한 플랫폼 및 시스템 요구에 대한 실용적 해법."},
+        {"t": "시스템 통합", "d": "신규 장비와 구성품을 기존 플랫폼에 통합."},
+        {"t": "분석 및 평가", "d": "의사결정을 위한 구조·기계·시스템 분석."},
+        {"t": "현장 지원", "d": "현장에서의 직접적인 문제 해결 및 기술 지원."},
+        {"t": "문서화", "d": "적용 표준에 부합하는 엔지니어링 문서."},
+        {"t": "신뢰성 개선", "d": "수명 주기 전반의 성능 및 신뢰성 향상."}
+      ]
+    }
+  },
+  "ai-solutions": {
+    "en": {
+      "oh": "Sovereign AI for real operations",
+      "op": "We build practical AI that runs your business — command centers, document intelligence, and operations agents. Everything is bilingual (Arabic & English) and runs with 100% in-Kingdom data residency, with approval gates and audit logs, so you get automation you can trust and audit.",
+      "glance": ["100% in-Kingdom data residency", "Bilingual — Arabic & English", "Approval gates & audit logs", "On-prem or sovereign cloud"],
+      "caps": [
+        {"t": "AI command centers", "d": "Unified briefings across ERP, email, calendar, and HR."},
+        {"t": "Document intelligence", "d": "Cited, auditable answers across policies and contracts."},
+        {"t": "Email & workflow automation", "d": "Triage, draft, and route with approval gates and logs."},
+        {"t": "ERP & HR copilots", "d": "Natural-language interfaces for your business systems."},
+        {"t": "Field & operations agents", "d": "Voice-first, offline-capable for procurement and maintenance."},
+        {"t": "Custom model deployment", "d": "On-prem or sovereign cloud, with evaluation and red-teaming."}
+      ]
+    },
+    "ar": {
+      "oh": "ذكاء اصطناعي سيادي لعملياتٍ حقيقية",
+      "op": "نبني ذكاءً اصطناعياً عملياً يُدير أعمالكم — مراكز قيادة، وذكاء المستندات، ووكلاء تشغيل. كل ذلك ثنائي اللغة (العربية والإنجليزية) ويعمل مع بقاء البيانات داخل المملكة بنسبة 100٪، مع بوابات موافقة وسجلات تدقيق، لتحصلوا على أتمتة يمكن الوثوق بها ومراجعتها.",
+      "glance": ["بقاء البيانات داخل المملكة 100٪", "ثنائي اللغة — العربية والإنجليزية", "بوابات موافقة وسجلات تدقيق", "محلي أو سحابة سيادية"],
+      "caps": [
+        {"t": "مراكز القيادة بالذكاء الاصطناعي", "d": "ملخّصات موحّدة عبر أنظمة تخطيط الموارد والبريد والتقويم والموارد البشرية."},
+        {"t": "ذكاء المستندات", "d": "إجابات موثّقة وقابلة للتدقيق عبر السياسات والعقود."},
+        {"t": "أتمتة البريد والمهام", "d": "الفرز والصياغة والتوجيه مع بوابات موافقة وسجلات."},
+        {"t": "مساعدو أنظمة الموارد والبشرية", "d": "واجهات بلغة طبيعية لأنظمة أعمالكم."},
+        {"t": "وكلاء الميدان والتشغيل", "d": "يعملون بالصوت أولاً وبلا اتصال للمشتريات والصيانة."},
+        {"t": "نشر النماذج المخصّصة", "d": "محلياً أو على سحابة سيادية مع التقييم واختبار الاختراق."}
+      ]
+    },
+    "ja": {
+      "oh": "実運用のためのソブリンAI",
+      "op": "業務を動かす実用的なAIを構築します — コマンドセンター、ドキュメントインテリジェンス、業務エージェント。すべてアラビア語・英語対応で、データは100%王国内に保持され、承認ゲートと監査ログを備えます。信頼でき、監査可能な自動化を提供します。",
+      "glance": ["データは100%王国内に保持", "アラビア語・英語対応", "承認ゲートと監査ログ", "オンプレミスまたはソブリンクラウド"],
+      "caps": [
+        {"t": "AIコマンドセンター", "d": "ERP・メール・カレンダー・人事を横断する統合ブリーフィング。"},
+        {"t": "ドキュメントインテリジェンス", "d": "ポリシーや契約を横断する引用付きで監査可能な回答。"},
+        {"t": "メール・ワークフロー自動化", "d": "承認ゲートとログを備えた振り分け・下書き・ルーティング。"},
+        {"t": "ERP・人事コパイロット", "d": "業務システム向けの自然言語インターフェース。"},
+        {"t": "現場・業務エージェント", "d": "音声優先・オフライン対応で調達や保守を支援。"},
+        {"t": "カスタムモデル導入", "d": "評価とレッドチーミングを伴うオンプレミス／ソブリンクラウド展開。"}
+      ]
+    },
+    "ko": {
+      "oh": "실제 운영을 위한 소버린 AI",
+      "op": "비즈니스를 운영하는 실용적인 AI를 구축합니다 — 커맨드 센터, 문서 인텔리전스, 운영 에이전트. 모두 아랍어·영어를 지원하며 데이터는 100% 왕국 내에 보관되고, 승인 게이트와 감사 로그를 갖춰 신뢰하고 감사할 수 있는 자동화를 제공합니다.",
+      "glance": ["데이터 100% 왕국 내 보관", "아랍어·영어 지원", "승인 게이트 및 감사 로그", "온프레미스 또는 소버린 클라우드"],
+      "caps": [
+        {"t": "AI 커맨드 센터", "d": "ERP·이메일·캘린더·인사를 아우르는 통합 브리핑."},
+        {"t": "문서 인텔리전스", "d": "정책과 계약 전반의 출처 표기 및 감사 가능한 답변."},
+        {"t": "이메일·워크플로 자동화", "d": "승인 게이트와 로그를 갖춘 분류·초안·라우팅."},
+        {"t": "ERP·인사 코파일럿", "d": "업무 시스템을 위한 자연어 인터페이스."},
+        {"t": "현장·운영 에이전트", "d": "음성 우선·오프라인 지원으로 조달과 정비를 지원."},
+        {"t": "맞춤형 모델 배포", "d": "평가 및 레드팀을 포함한 온프레미스/소버린 클라우드 배포."}
+      ]
+    }
+  },
+  "accounts": {
+    "en": {
+      "oh": "Financial management done right",
+      "op": "Our accounts and finance team keeps the numbers accurate, compliant, and transparent — from invoicing and payments to reporting and controls. Reliable financial operations that keep the business moving with confidence and give leadership a clear view at all times.",
+      "glance": ["Transparent & compliant", "Accurate, timely reporting", "Robust financial controls", "Efficient day-to-day operations"],
+      "caps": [
+        {"t": "Accounting & bookkeeping", "d": "Accurate day-to-day records, ledgers, and reconciliations."},
+        {"t": "Invoicing & payments", "d": "Timely billing, receivables, and payables management."},
+        {"t": "Financial reporting", "d": "Clear, timely statements and management reports."},
+        {"t": "Compliance & controls", "d": "Governance aligned with regulations and best practice."},
+        {"t": "Budgeting & planning", "d": "Budgets and forecasts that support sound decisions."},
+        {"t": "Audit support", "d": "Documentation and support for internal and external audits."}
+      ]
+    },
+    "ar": {
+      "oh": "إدارة مالية على أكمل وجه",
+      "op": "يحافظ فريق الحسابات والمالية لدينا على أرقامٍ دقيقة وممتثلة وشفافة — من إصدار الفواتير والمدفوعات إلى التقارير والضوابط. عمليات مالية موثوقة تُبقي الأعمال تسير بثقة وتمنح القيادة رؤية واضحة في كل وقت.",
+      "glance": ["شفافية وامتثال", "تقارير دقيقة وفي وقتها", "ضوابط مالية محكمة", "عمليات يومية فعّالة"],
+      "caps": [
+        {"t": "المحاسبة ومسك الدفاتر", "d": "سجلات ودفاتر وتسويات دقيقة بشكل يومي."},
+        {"t": "الفوترة والمدفوعات", "d": "إدارة الفواتير والمستحقات والمدفوعات في وقتها."},
+        {"t": "التقارير المالية", "d": "قوائم وتقارير إدارية واضحة وفي وقتها."},
+        {"t": "الامتثال والضوابط", "d": "حوكمة متوافقة مع الأنظمة وأفضل الممارسات."},
+        {"t": "إعداد الموازنات والتخطيط", "d": "موازنات وتوقّعات تدعم اتخاذ القرار السليم."},
+        {"t": "دعم التدقيق", "d": "توثيق ودعم لعمليات التدقيق الداخلي والخارجي."}
+      ]
+    },
+    "ja": {
+      "oh": "適切な財務管理",
+      "op": "当社の経理・財務チームは、請求や支払いから報告や統制まで、数字を正確・コンプライアンス準拠・透明に保ちます。信頼できる財務運営が事業を確かに前進させ、経営層に常に明確な視界を提供します。",
+      "glance": ["透明性とコンプライアンス", "正確かつ迅速な報告", "堅牢な財務統制", "効率的な日常業務"],
+      "caps": [
+        {"t": "会計・記帳", "d": "正確な日次記録、元帳、照合。"},
+        {"t": "請求・支払", "d": "適時の請求、売掛金・買掛金の管理。"},
+        {"t": "財務報告", "d": "明確かつ適時の財務諸表と経営報告。"},
+        {"t": "コンプライアンス・統制", "d": "規制とベストプラクティスに沿ったガバナンス。"},
+        {"t": "予算編成・計画", "d": "健全な意思決定を支える予算と予測。"},
+        {"t": "監査サポート", "d": "内部・外部監査のための文書化と支援。"}
+      ]
+    },
+    "ko": {
+      "oh": "제대로 된 재무 관리",
+      "op": "당사의 회계·재무 팀은 청구와 결제부터 보고와 통제까지 숫자를 정확하고 규정을 준수하며 투명하게 유지합니다. 신뢰할 수 있는 재무 운영으로 비즈니스를 자신 있게 이끌고 경영진에게 항상 명확한 시야를 제공합니다.",
+      "glance": ["투명성과 규정 준수", "정확하고 신속한 보고", "견고한 재무 통제", "효율적인 일상 운영"],
+      "caps": [
+        {"t": "회계 및 부기", "d": "정확한 일일 기록, 원장, 대사(對査)."},
+        {"t": "청구 및 결제", "d": "적시 청구와 매출·매입 채권 관리."},
+        {"t": "재무 보고", "d": "명확하고 신속한 재무제표 및 경영 보고."},
+        {"t": "규정 준수 및 통제", "d": "규제와 모범 사례에 부합하는 거버넌스."},
+        {"t": "예산 편성 및 계획", "d": "건전한 의사결정을 지원하는 예산과 예측."},
+        {"t": "감사 지원", "d": "내부 및 외부 감사를 위한 문서화와 지원."}
+      ]
+    }
+  }
+}

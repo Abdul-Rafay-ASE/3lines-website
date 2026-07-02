@@ -1236,11 +1236,16 @@
     function loc() { var l = (document.documentElement.getAttribute('lang') || 'en').toLowerCase(); return (l === 'ar' || l === 'ja' || l === 'ko') ? l : 'en'; }
     var LBL = {
       over: { en: 'Overview', ar: 'نظرة عامة', ja: '概要', ko: '개요' },
+      glance: { en: 'At a glance', ar: 'لمحة سريعة', ja: 'ハイライト', ko: '한눈에 보기' },
+      wwd: { en: 'What we do', ar: 'ما نقدمه', ja: '事業内容', ko: '우리의 역량' },
+      caps: { en: 'Capabilities', ar: 'القدرات', ja: '主なサービス', ko: '주요 역량' },
       eye: { en: 'What we do', ar: 'ما نقدمه', ja: '事業内容', ko: '핵심 역량' },
       cta: { en: 'Get in touch', ar: 'تواصل معنا', ja: 'お問い合わせ', ko: '문의하기' }
     };
-    function apply(svc) {
+    function esc(s) { return (s == null ? '' : String(s)).replace(/[&<>"]/g, function (m) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m]; }); }
+    function apply(svc, details) {
       var L = loc();
+      var rd = (details && details[slug]) ? details[slug][L] : null;
       var title = (svc.title && (svc.title[L] || svc.title.en)) || '';
       var desc = (svc.description && (svc.description[L] || svc.description.en)) || '';
       if (title) document.title = title + ' | 3Lines Advanced Technologies Company';
@@ -1253,13 +1258,32 @@
         var cta = hero && hero.querySelector('a[href*="contact"]'); if (cta) cta.innerHTML = (LBL.cta[L] || LBL.cta.en) + ' <span aria-hidden="true">&rarr;</span>';
       }
       var body = document.querySelector('[class*="space-y-10"]');
-      if (body && desc) {
-        body.innerHTML = '<section class="grid gap-6 lg:grid-cols-3 lg:items-start"><div class="lg:col-span-2">' +
-          '<p class="text-xs font-semibold uppercase tracking-wide text-[#5cc0ff]">' + (LBL.over[L] || LBL.over.en) + '</p>' +
-          '<h2 class="mt-1.5 text-xl font-bold text-zinc-100 sm:text-2xl"></h2>' +
-          '<p class="mt-3 leading-relaxed text-zinc-300"></p></div></section>';
-        body.querySelector('h2').textContent = title;
-        body.querySelectorAll('p')[1].textContent = desc;
+      if (body) {
+        var oh = (rd && rd.oh) || title, op = (rd && rd.op) || desc;
+        var html = '<section class="grid gap-6 lg:grid-cols-3 lg:items-start"><div class="lg:col-span-2">' +
+          '<p class="text-xs font-semibold uppercase tracking-wide text-[#5cc0ff]">' + esc(LBL.over[L] || LBL.over.en) + '</p>' +
+          '<h2 class="mt-1.5 text-xl font-bold text-zinc-100 sm:text-2xl">' + esc(oh) + '</h2>' +
+          '<p class="mt-3 leading-relaxed text-zinc-300">' + esc(op) + '</p></div>';
+        if (rd && rd.glance && rd.glance.length) {
+          html += '<div class="rounded-xl border border-white/10 bg-white/5 p-5">' +
+            '<p class="text-xs font-semibold uppercase tracking-wide text-[#5cc0ff]">' + esc(LBL.glance[L] || LBL.glance.en) + '</p>' +
+            '<ul class="mt-3 space-y-2 text-sm text-zinc-300">' +
+            rd.glance.map(function (g) { return '<li class="flex gap-2"><span class="text-[#5cc0ff]">&#10003;</span> ' + esc(g) + '</li>'; }).join('') +
+            '</ul></div>';
+        }
+        html += '</section>';
+        if (rd && rd.caps && rd.caps.length) {
+          var CHK = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5cc0ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
+          html += '<section><p class="text-xs font-semibold uppercase tracking-wide text-[#5cc0ff]">' + esc(LBL.wwd[L] || LBL.wwd.en) + '</p>' +
+            '<h2 class="mt-1.5 text-xl font-bold text-zinc-100 sm:text-2xl">' + esc(LBL.caps[L] || LBL.caps.en) + '</h2>' +
+            '<div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">' +
+            rd.caps.map(function (c) { return '<div class="rounded-xl border border-white/10 bg-white/5 p-5">' +
+              '<span class="inline-flex h-10 w-10 items-center justify-center rounded-lg" style="background:rgba(56,160,255,.12);border:1px solid #3aa0ff59;">' + CHK + '</span>' +
+              '<h3 class="mt-3 font-semibold text-zinc-100">' + esc(c.t) + '</h3>' +
+              '<p class="mt-1.5 text-sm leading-relaxed text-zinc-400">' + esc(c.d) + '</p></div>'; }).join('') +
+            '</div></section>';
+        }
+        body.innerHTML = html;
       }
       [].slice.call(document.querySelectorAll('meta[name="description"],meta[property="og:description"],meta[name="twitter:description"],meta[name="title"],meta[property="og:title"],meta[name="twitter:title"]')).forEach(function (mt) {
         var key = mt.getAttribute('property') || mt.getAttribute('name') || '';
@@ -1272,10 +1296,13 @@
       [].slice.call(document.querySelectorAll('link[rel="canonical"],link[rel="alternate"][hreflang]')).forEach(function (l) { l.setAttribute('href', rep(l.getAttribute('href'))); });
       var ogu = document.querySelector('meta[property="og:url"]'); if (ogu) ogu.setAttribute('content', rep(ogu.getAttribute('content')));
     }
-    fetch('/api/v1/services', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
-      if (!j) return; var list = j.data || j;
-      for (var i = 0; i < list.length; i++) if (list[i].slug === slug) { apply(list[i]); return; }
-    }).catch(function () { });
+    Promise.all([
+      fetch('/api/v1/services', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }),
+      fetch('/assets/service-details.json', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; })
+    ]).then(function (res) {
+      var j = res[0], details = res[1]; if (!j) return; var list = j.data || j;
+      for (var i = 0; i < list.length; i++) if (list[i].slug === slug) { apply(list[i], details); return; }
+    });
   })();
 
   /* ----- 16b) Tag flat/LIGHT partner logos -----
