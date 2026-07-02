@@ -694,8 +694,6 @@
     /* hero: one-time fade/rise once the gate lifts, plus a slow ambient drift on the globe canvas */
     '#hero.cln-hero-start{opacity:0;transform:translateY(16px);}' +
     '#hero.cln-hero-start.cln-hero-in{opacity:1;transform:none;transition:opacity .75s cubic-bezier(.16,.84,.44,1),transform .75s cubic-bezier(.16,.84,.44,1);}' +
-    '#hero canvas{animation:cln-drift 7.5s ease-in-out infinite;}' +
-    '@keyframes cln-drift{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}' +
     /* cards: subtle lift + brand-blue glow on hover (services / news / bento) */
     '#services a[class*="min-h-[10rem]"],#news article{transition:transform .25s cubic-bezier(.16,.84,.44,1),box-shadow .25s ease,border-color .25s ease;}' +
     '#services a[class*="min-h-[10rem]"]:hover,#news article:hover{transform:translateY(-4px);box-shadow:0 14px 34px -12px rgba(45,112,240,.42);}' +
@@ -778,9 +776,13 @@
      but flat/muddy on the dark bg, where the hover glow + borders already carry it. */
   var enhCss = document.createElement('style'); enhCss.id = 'cln-enhance-css';
   enhCss.textContent =
+    /* Perf: pause a section's continuous CSS animations while it is scrolled off-screen (added by the
+       runtime IntersectionObserver below). The original build stacks many always-on GPU animations
+       (aurora hero text, shimmer/spin button, 4 partner marquees) that otherwise repaint every frame
+       even when not visible, starving the compositor on integrated GPUs. */
+    '.cln-anim-off,.cln-anim-off *{animation-play-state:paused!important;}' +
+    '#hero.cln-anim-off canvas{visibility:hidden!important;}' + // drop the WebGL globe's compositing while the hero is scrolled away
     '@media (prefers-reduced-motion: no-preference){' +
-      '.dark body::before{animation:cln-glow 16s ease-in-out infinite;}' +
-      '@keyframes cln-glow{0%,100%{opacity:1}50%{opacity:.78}}' +
       '.cln-sec-h2::after{transition:width .7s cubic-bezier(.16,.84,.44,1);}' +
       '.cln-sec-h2.cln-reveal:not(.cln-in)::after{width:0;}' + // grows from 0 -> 60px as the heading reveals
       'header a.cln-navlink::after{content:"";position:absolute;left:.75rem;right:.75rem;bottom:.4rem;height:2px;border-radius:2px;background:linear-gradient(90deg,#2f7dff,#5cc0ff);transform:scaleX(0);transform-origin:center;transition:transform .25s cubic-bezier(.16,.84,.44,1);}' +
@@ -817,15 +819,32 @@
     top.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
     top.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); });
     function mount() { if (!document.body) return; if (!document.getElementById('cln-progress')) document.body.appendChild(bar); if (!document.getElementById('cln-top')) document.body.appendChild(top); }
+    // Cache the max scroll distance so the scroll handler never reads scrollHeight per-frame (that read
+    // forces a synchronous layout -> jank while scrolling). Recompute only on resize / after load.
+    var maxScroll = 0;
+    function recalc() { maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight); }
     var ticking = false;
     function update() {
       ticking = false;
-      var de = document.documentElement, st = window.pageYOffset || de.scrollTop || 0;
-      var h = de.scrollHeight - window.innerHeight, f = h > 0 ? Math.min(Math.max(st / h, 0), 1) : 0;
+      var st = window.pageYOffset || document.documentElement.scrollTop || 0;
+      var f = maxScroll > 0 ? Math.min(Math.max(st / maxScroll, 0), 1) : 0;
       bar.style.transform = 'scaleX(' + f.toFixed(4) + ')';
       if (st > 420) top.classList.add('cln-show'); else top.classList.remove('cln-show');
     }
     function onScroll() { if (ticking) return; ticking = true; requestAnimationFrame(update); }
+
+    // Perf: pause each heavy section's continuous animations while it is off-screen, so only what's
+    // actually visible animates (the partner marquees + animated hero effects are the biggest cost).
+    var pauseIO = null;
+    function armPause() {
+      if (pauseIO || !('IntersectionObserver' in window)) return;
+      var targets = [document.getElementById('hero'), document.querySelector('#mini-slider-partners')].filter(Boolean);
+      if (!targets.length) return;
+      pauseIO = new IntersectionObserver(function (ents) {
+        ents.forEach(function (en) { en.target.classList.toggle('cln-anim-off', !en.isIntersecting); });
+      }, { rootMargin: '150px 0px' });
+      targets.forEach(function (t) { pauseIO.observe(t); });
+    }
     // Tag the header's text nav links for the underline slide (skip logo, the CTA, and icon-only links).
     function tagNav() {
       [].slice.call(document.querySelectorAll('header a')).forEach(function (a) {
@@ -834,12 +853,13 @@
         a.classList.add('cln-navlink');
       });
     }
-    mount(); tagNav();
-    var n = 0, iv = setInterval(function () { mount(); tagNav(); if (++n > 16) clearInterval(iv); }, 250);
-    document.addEventListener('DOMContentLoaded', function () { mount(); tagNav(); update(); });
+    mount(); tagNav(); recalc(); armPause();
+    var n = 0, iv = setInterval(function () { mount(); tagNav(); recalc(); armPause(); if (++n > 16) clearInterval(iv); }, 250);
+    document.addEventListener('DOMContentLoaded', function () { mount(); tagNav(); recalc(); armPause(); update(); });
+    window.addEventListener('load', function () { recalc(); update(); });
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll, { passive: true });
-    setTimeout(update, 300);
+    window.addEventListener('resize', function () { recalc(); onScroll(); }, { passive: true });
+    setTimeout(function () { recalc(); update(); }, 300);
   })();
 
   /* ----- 15p) Newsletter signup band (reference: sami/aecl.com) -----
