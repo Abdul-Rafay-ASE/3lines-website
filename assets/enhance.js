@@ -1207,7 +1207,9 @@
         var clone = tpl.cloneNode(true);
         clone.setAttribute('data-cln-svc', nw.slug);
         clone.style.display = ''; clone.classList.add('cln-in'); clone.classList.remove('cln-reveal');
-        clone.setAttribute('href', '/' + L + '/services.html');
+        // Link to the contact page, NOT /services.html -- the latter collides with expandServices'
+        // "View all Services" button detector (a[href$="/services.html"]) and made it hide the grid.
+        clone.setAttribute('href', '/' + L + '/contact.html');
         [].slice.call(clone.querySelectorAll('.cln-linkext,.cln-sr-heading,.cln-bento-wm')).forEach(function (e) { e.remove(); });
         var h = clone.querySelector('h3,h2'); if (h) h.textContent = wanted;
         var p = clone.querySelector('p'); if (p) p.textContent = nw.d[L] || nw.d.en;
