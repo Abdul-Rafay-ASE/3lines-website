@@ -1124,6 +1124,34 @@
     document.addEventListener('DOMContentLoaded', run);
   })();
 
+  /* ----- 18b) Header brand wordmark -----
+     The header shows only the circular "3" mark; add the "LINES / Advanced Technologies Company"
+     wordmark beside it to match the footer branding. Text-based (crisp + theme-aware), desktop only
+     (hidden on small screens so the mobile header stays compact). The logo link keeps the a11y name,
+     so the wordmark is aria-hidden decoration. */
+  (function headerWordmark() {
+    var css = document.createElement('style'); css.id = 'cln-wordmark-css';
+    css.textContent =
+      '.cln-wordmark{display:none;flex-direction:column;justify-content:center;line-height:1.02;margin-inline-start:.4rem;white-space:nowrap;}' +
+      '@media(min-width:768px){.cln-wordmark{display:flex;}}' +
+      '.cln-wm-1{font-size:1.32rem;font-weight:500;letter-spacing:.27em;color:#cbd3df;}' +
+      '.ml-light .cln-wm-1{color:#5c6675;}' +
+      '.cln-wm-2{font-size:.5rem;font-weight:700;letter-spacing:.05em;color:#3aa0ff;margin-top:.2rem;}' +
+      '.ml-light .cln-wm-2{color:#0a73d4;}';
+    (document.head || document.documentElement).appendChild(css);
+    function run() {
+      var logo = document.getElementById('logo');
+      if (!logo || document.querySelector('.cln-wordmark')) return !!logo;
+      var wm = document.createElement('span'); wm.className = 'cln-wordmark'; wm.setAttribute('aria-hidden', 'true');
+      wm.innerHTML = '<span class="cln-wm-1">LINES</span><span class="cln-wm-2">Advanced Technologies Company</span>';
+      logo.parentNode.insertBefore(wm, logo.nextSibling);
+      return true;
+    }
+    var n = 0, iv = setInterval(function () { if (run() || ++n > 60) clearInterval(iv); }, 200);
+    if (document.readyState !== 'loading') run();
+    document.addEventListener('DOMContentLoaded', run);
+  })();
+
   /* ----- 16b) Tag flat/LIGHT partner logos -----
      The partner strip (rule 16) shows every logo in its REAL colour, at full opacity, all the time.
      A few logos are flat WHITE/near-white assets (Airbus, MI, SAMI Advanced ...) -- on the light
