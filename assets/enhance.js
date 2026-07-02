@@ -975,6 +975,10 @@
       '.cln-cbtn-cta{display:inline-flex;align-items:center;gap:.5rem;margin:2.1rem auto 0;padding:.85rem 1.7rem;border-radius:.75rem;background:linear-gradient(180deg,#2f7dff,#1c5fe0);color:#fff;font-weight:700;font-size:1rem;text-decoration:none;box-shadow:0 10px 24px -8px rgba(47,125,255,.6);transition:transform .18s ease,box-shadow .18s ease;}' +
       '.cln-cbtn-cta:hover{transform:translateY(-2px);box-shadow:0 14px 30px -8px rgba(47,125,255,.75);}' +
       '.cln-cbtn-cta svg{width:1.15rem;height:1.15rem;}' +
+      /* keep button text WHITE in both themes -- the light theme recolours <a> to blue, which made the
+         gradient button read blue-on-blue (invisible). Force it on the CTA link + the form submit. */
+      '.cln-cbtn-cta,.cln-cbtn-cta span,.cln-cbtn-cta:hover,.cln-cbtn-cta:focus,.cln-cf-btn{color:#fff !important;}' +
+      '.cln-cbtn-cta svg{stroke:#fff !important;}' +
       '.cln-cbtn-ctawrap{text-align:center;margin-bottom:1rem;}' +
       /* contact-page message form */
       '.cln-cform-wrap{max-width:34rem;margin:2.4rem auto 0;text-align:start;}' +
@@ -993,7 +997,9 @@
       '.ml-light .cln-cf-in::placeholder{color:#94a3b8;}' +
       '.ml-light .cln-cf-status.ok{color:#0a73d4;}' +
       /* proper breathing room between the contact block and the footer below it */
-      '.cln-contact{padding-bottom:4rem !important;}';
+      '.cln-contact{padding-bottom:6.5rem !important;}' +
+      /* hide the stray article-template date that renders at the top of the contact page */
+      '.cln-cdate-hide{display:none !important;}';
     (document.head || document.documentElement).appendChild(CSS);
 
     function loc() { var l = (document.documentElement.getAttribute('lang') || 'en').toLowerCase(); return (l === 'ar' || l === 'ko' || l === 'ja') ? l : 'en'; }
@@ -1002,7 +1008,7 @@
       phone: '<svg viewBox="0 0 24 24" fill="#1BAA55"><path d="M20 15.5c-1.2 0-2.4-.2-3.6-.6-.3-.1-.7 0-1 .3l-2.2 2.2c-2.8-1.5-5.2-3.9-6.7-6.7l2.2-2.2c.3-.3.4-.6.3-1-.4-1.1-.6-2.4-.6-3.6 0-.6-.5-1-1-1H4c-.6 0-1 .4-1 1 0 9.4 7.6 17 17 17 .6 0 1-.5 1-1V16.5c0-.5-.4-1-1-1z"/></svg>',
       wa: '<svg viewBox="0 0 24 24" fill="#25D366"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.47-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.9 0-3.18-1.24-6.16-3.48-8.41Z"/></svg>',
       in: '<svg viewBox="0 0 24 24" fill="#0A66C2"><path d="M4.98 3.5c0 1.38-1.11 2.5-2.48 2.5S.02 4.88.02 3.5 1.13 1 2.5 1s2.48 1.12 2.48 2.5zM5 8H0v16h5V8zm7.98 0H8.01v16h4.97v-8.4c0-4.67 6.03-5.05 6.03 0V24H24V13.87c0-7.88-8.92-7.59-11.02-3.71V8z"/></svg>',
-      gmaps: '<svg viewBox="0 0 24 24"><path fill="#EA4335" d="M12 2.2c-4.05 0-7.3 3.25-7.3 7.3 0 5.45 7.3 12.5 7.3 12.5s7.3-7.05 7.3-12.5c0-4.05-3.25-7.3-7.3-7.3z"/><circle cx="12" cy="9.3" r="2.75" fill="#fff"/></svg>',
+      gmaps: '<svg viewBox="0 0 24 24"><path fill="#EA4335" d="M12 2.2c-4.05 0-7.3 3.25-7.3 7.3 0 5.45 7.3 12.5 7.3 12.5s7.3-7.05 7.3-12.5c0-4.05-3.25-7.3-7.3-7.3z"/><circle cx="12" cy="9.4" r="2.9" fill="#fff"/><circle cx="12" cy="9.4" r="1.5" fill="#4285F4"/></svg>',
       chat: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>'
     };
     var mapsQ = encodeURIComponent('3Lines Advanced Technologies Company, Building 2148, King Abdullah Branch Road, Riyadh 13215, Saudi Arabia');
@@ -1062,6 +1068,18 @@
           .then(function () { btn.disabled = false; btn.textContent = old; });
       });
     }
+    // The contact page is built from an article template that stamps a published date near the top --
+    // nonsensical on a Contact page. Hide short date-looking nodes (weekday names across locales, or a
+    // "D Month YYYY" line). Scoped to the contact page, so real dates elsewhere (news) are untouched.
+    function hideStrayDate() {
+      var wd = /(Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|الأحد|الإثنين|الاثنين|الثلاثاء|الأربعاء|الخميس|الجمعة|السبت|日曜|月曜|火曜|水曜|木曜|金曜|土曜|일요일|월요일|화요일|수요일|목요일|금요일|토요일)/;
+      var dt = /^\s*\d{1,2}\s+\S+\s+20\d\d\s*$|20\d\d\s*年.*\d{1,2}\s*日|20\d\d\s*[.년]\s*\d{1,2}/;
+      [].slice.call(document.querySelectorAll('time, span, p, div, h2, h3')).forEach(function (e) {
+        if (e.childElementCount || e.closest('footer') || e.closest('.cln-contact')) return;
+        var t = (e.textContent || '').trim();
+        if (t.length > 0 && t.length < 40 && /\d/.test(t) && (wd.test(t) || dt.test(t))) e.classList.add('cln-cdate-hide');
+      });
+    }
     function bodyOf(it, sep) {
       if (!it) return '';
       var cl = it.cloneNode(true);
@@ -1093,7 +1111,7 @@
       var kill = ['.cln-contact-cta', '.cln-contact-grid', '.cln-contact-linkedin'];
       kill.forEach(function (sel) { var el = c.querySelector(sel); if (el) el.style.display = 'none'; });
       // The contact PAGE gets a real message form; everywhere else gets a CTA button that links to it.
-      if (/\/contact(\/|$|\.html)/.test(location.pathname)) buildForm(c, L); else buildCTA(c, L);
+      if (/\/contact(\/|$|\.html)/.test(location.pathname)) { buildForm(c, L); hideStrayDate(); } else buildCTA(c, L);
       return true;
     }
     var n = 0, iv = setInterval(function () { if (run() || ++n > 60) clearInterval(iv); }, 200);
