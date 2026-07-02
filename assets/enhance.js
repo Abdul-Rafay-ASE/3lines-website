@@ -791,11 +791,13 @@
     '#cln-progress{position:fixed;top:0;left:0;right:0;height:3px;transform:scaleX(0);transform-origin:0 50%;background:linear-gradient(90deg,#2f7dff,#3aa0ff,#5cc0ff);z-index:2147483600;pointer-events:none;will-change:transform;}' +
     'html[dir="rtl"] #cln-progress{transform-origin:100% 50%;}' +
     /* back-to-top FAB (sits ABOVE the theme toggle at bottom-right; mirrors to bottom-left in RTL) */
-    '#cln-top{position:fixed;bottom:5.4rem;right:2.2rem;width:2.75rem;height:2.75rem;border-radius:50%;border:1px solid rgba(255,255,255,.16);background:linear-gradient(180deg,#2f7dff,#1c5fe0);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .25s ease,transform .25s ease,visibility .25s;box-shadow:0 10px 24px -8px rgba(20,60,160,.55);z-index:2147483000;}' +
+    /* Stack DIRECTLY above the site's theme toggle (which sits at right:1.25rem / bottom:1.25rem, 44px):
+       same right offset + same width -> one clean vertical column, in both LTR and RTL (the toggle stays
+       on the right in RTL, so the back-to-top must NOT mirror to the left or they'd split apart). */
+    '#cln-top{position:fixed;bottom:4.75rem;right:1.25rem;width:2.75rem;height:2.75rem;border-radius:50%;border:1px solid rgba(255,255,255,.16);background:linear-gradient(180deg,#2f7dff,#1c5fe0);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .25s ease,transform .25s ease,visibility .25s;box-shadow:0 10px 24px -8px rgba(20,60,160,.55);z-index:2147483000;}' +
     '#cln-top.cln-show{opacity:1;visibility:visible;transform:none;}' +
     '#cln-top:hover{filter:brightness(1.1);transform:translateY(-2px);}' +
     '#cln-top svg{width:1.15rem;height:1.15rem;}' +
-    'html[dir="rtl"] #cln-top{right:auto;left:2.2rem;}' +
     '.ml-light #cln-top{border-color:rgba(2,12,30,.1);}' +
     /* subtle resting depth on cards -- LIGHT theme only */
     '.ml-light #services a[class*="min-h-[10rem]"],.ml-light #news article,.ml-light [class*="auto-rows-"] [class*="rounded-xl"]{box-shadow:0 4px 14px -9px rgba(16,42,90,.16);}' +
