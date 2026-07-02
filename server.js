@@ -138,6 +138,21 @@ app.use(express.static(REPO_ROOT, {
   },
 }));
 
+/* ---------- New service detail pages: these ship via the API (content/services.json) but aren't
+   prerendered into their own .html yet. Serve the same-language spare-parts page as a shell; the
+   detail-page runtime in assets/enhance.js rewrites the title/description from the API by slug. ---------- */
+const NEW_SERVICE_SLUGS = ['procurement', 'engineering', 'ai-solutions', 'accounts'];
+app.use((req, res, next) => {
+  if (req.method !== 'GET' && req.method !== 'HEAD') return next();
+  const m = req.path.match(/^\/(en|ar|ja|ko)\/services\/([a-z0-9-]+)\.html$/);
+  if (m && NEW_SERVICE_SLUGS.indexOf(m[2]) !== -1) {
+    let tpl = nodePath.join(REPO_ROOT, m[1], 'services', 'provide-spare-parts.html');
+    if (!fs.existsSync(tpl)) tpl = nodePath.join(REPO_ROOT, 'en', 'services', 'provide-spare-parts.html');
+    if (fs.existsSync(tpl)) return res.sendFile(tpl);
+  }
+  next();
+});
+
 /* ---------- KO/JP fallback: pages not yet translated serve their English
    equivalent instead of 404 (existing ko/ja .html files are served above first). ---------- */
 app.use((req, res, next) => {

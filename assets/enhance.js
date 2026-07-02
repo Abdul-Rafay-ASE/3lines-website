@@ -1207,9 +1207,10 @@
         var clone = tpl.cloneNode(true);
         clone.setAttribute('data-cln-svc', nw.slug);
         clone.style.display = ''; clone.classList.add('cln-in'); clone.classList.remove('cln-reveal');
-        // Link to the contact page, NOT /services.html -- the latter collides with expandServices'
-        // "View all Services" button detector (a[href$="/services.html"]) and made it hide the grid.
-        clone.setAttribute('href', '/' + L + '/contact.html');
+        // Real detail-page URL (ends in <slug>.html, so it does NOT collide with the /services.html
+        // View-all button detector). The server serves a template for these slugs and the detail-page
+        // runtime below fills in the correct content from the API.
+        clone.setAttribute('href', '/' + L + '/services/' + nw.slug + '.html');
         [].slice.call(clone.querySelectorAll('.cln-linkext,.cln-sr-heading,.cln-bento-wm')).forEach(function (e) { e.remove(); });
         var h = clone.querySelector('h3,h2'); if (h) h.textContent = wanted;
         var p = clone.querySelector('p'); if (p) p.textContent = nw.d[L] || nw.d.en;
@@ -1220,6 +1221,56 @@
     var m = 0, iv = setInterval(function () { run(); if (++m > 20) clearInterval(iv); }, 250);
     if (document.readyState !== 'loading') run();
     document.addEventListener('DOMContentLoaded', run);
+  })();
+
+  /* ----- 18d) New-service detail page -----
+     The server serves the spare-parts page as a shell for the four new /xx/services/<slug>.html routes.
+     Here we detect that slug and rewrite the shell's visible content (title, breadcrumb, hero, overview
+     body) + SEO metas from the API, so each department gets a correct, proper detail page. Only the four
+     new slugs are touched -- the real prerendered service pages are left exactly as built. */
+  (function serviceDetailPage() {
+    var ms = location.pathname.match(/\/services\/([a-z0-9-]+)\.html/);
+    var NEWSLUGS = ['procurement', 'engineering', 'ai-solutions', 'accounts'];
+    if (!ms || NEWSLUGS.indexOf(ms[1]) === -1) return;
+    var slug = ms[1];
+    function loc() { var l = (document.documentElement.getAttribute('lang') || 'en').toLowerCase(); return (l === 'ar' || l === 'ja' || l === 'ko') ? l : 'en'; }
+    var LBL = {
+      over: { en: 'Overview', ar: 'نظرة عامة', ja: '概要', ko: '개요' },
+      eye: { en: 'What we do', ar: 'ما نقدمه', ja: '事業内容', ko: '핵심 역량' },
+      cta: { en: 'Get in touch', ar: 'تواصل معنا', ja: 'お問い合わせ', ko: '문의하기' }
+    };
+    function apply(svc) {
+      var L = loc();
+      var title = (svc.title && (svc.title[L] || svc.title.en)) || '';
+      var desc = (svc.description && (svc.description[L] || svc.description.en)) || '';
+      if (title) document.title = title + ' | 3Lines Advanced Technologies Company';
+      var crumb = document.querySelector('[itemprop="current"]'); if (crumb && title) { crumb.textContent = title; crumb.setAttribute('title', title); }
+      var h1 = document.querySelector('h1');
+      if (h1 && title) {
+        h1.textContent = title;
+        var hero = h1.parentElement;
+        var eye = hero && hero.querySelector('p'); if (eye) eye.textContent = LBL.eye[L] || LBL.eye.en;
+        var cta = hero && hero.querySelector('a[href*="contact"]'); if (cta) cta.innerHTML = (LBL.cta[L] || LBL.cta.en) + ' <span aria-hidden="true">&rarr;</span>';
+      }
+      var body = document.querySelector('[class*="space-y-10"]');
+      if (body && desc) {
+        body.innerHTML = '<section class="grid gap-6 lg:grid-cols-3 lg:items-start"><div class="lg:col-span-2">' +
+          '<p class="text-xs font-semibold uppercase tracking-wide text-[#5cc0ff]">' + (LBL.over[L] || LBL.over.en) + '</p>' +
+          '<h2 class="mt-1.5 text-xl font-bold text-zinc-100 sm:text-2xl"></h2>' +
+          '<p class="mt-3 leading-relaxed text-zinc-300"></p></div></section>';
+        body.querySelector('h2').textContent = title;
+        body.querySelectorAll('p')[1].textContent = desc;
+      }
+      [].slice.call(document.querySelectorAll('meta[name="description"],meta[property="og:description"],meta[name="twitter:description"],meta[name="title"],meta[property="og:title"],meta[name="twitter:title"]')).forEach(function (mt) {
+        var key = mt.getAttribute('property') || mt.getAttribute('name') || '';
+        if (/description/.test(key) && desc) mt.setAttribute('content', desc);
+        else if (/title/.test(key) && title) mt.setAttribute('content', title);
+      });
+    }
+    fetch('/api/v1/services', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
+      if (!j) return; var list = j.data || j;
+      for (var i = 0; i < list.length; i++) if (list[i].slug === slug) { apply(list[i]); return; }
+    }).catch(function () { });
   })();
 
   /* ----- 16b) Tag flat/LIGHT partner logos -----
