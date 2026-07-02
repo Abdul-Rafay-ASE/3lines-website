@@ -963,39 +963,105 @@
   (function contactIcons() {
     var CSS = document.createElement('style'); CSS.id = 'cln-cbtn-css';
     CSS.textContent =
-      '.cln-cbtns{display:flex;flex-wrap:wrap;justify-content:center;gap:1.25rem;margin:1.6rem auto 0;max-width:42rem;}' +
-      '.cln-cbtn{display:flex;flex-direction:column;align-items:center;gap:.55rem;text-decoration:none;width:5rem;}' +
-      '.cln-cbtn-ico{width:3.35rem;height:3.35rem;border-radius:.95rem;display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:0 8px 20px -8px rgba(0,0,0,.55);transition:transform .2s ease,box-shadow .2s ease,filter .2s ease;}' +
-      '.cln-cbtn:hover .cln-cbtn-ico,.cln-cbtn:focus-visible .cln-cbtn-ico{transform:translateY(-3px);box-shadow:0 14px 28px -8px rgba(0,0,0,.6);filter:brightness(1.08);}' +
-      '.cln-cbtn-ico svg{width:1.55rem;height:1.55rem;}' +
-      '.cln-cbtn-label{font-size:.82rem;font-weight:600;color:#a1a1aa;}' +
-      '.ml-light .cln-cbtn-label{color:#475569;}' +
-      '.cln-cbtn-email .cln-cbtn-ico{background:#2f6fed;}' +
-      '.cln-cbtn-call .cln-cbtn-ico{background:#16a34a;}' +
-      '.cln-cbtn-wa .cln-cbtn-ico{background:#25d366;}' +
-      '.cln-cbtn-in .cln-cbtn-ico{background:#0a66c2;}' +
-      '.cln-cbtn-loc .cln-cbtn-ico{background:#dc2626;}' +
-      '.cln-cinfo{margin:1.7rem auto 0;font-size:.9rem;line-height:1.7;color:#a1a1aa;max-width:34rem;}' +
-      '.ml-light .cln-cinfo{color:#52525b;}' +
-      '.cln-cinfo b{color:#e4e4e7;font-weight:600;}.ml-light .cln-cinfo b{color:#0b1220;}';
+      /* Real brand app-icons: full-colour marks (Outlook / Call / WhatsApp / LinkedIn / Google Maps) on
+         clean white rounded tiles -- no text labels (the accessible name lives on aria-label/title). */
+      '.cln-cbtns{display:flex;flex-wrap:wrap;justify-content:center;gap:1.35rem;margin:1.9rem auto 0;max-width:42rem;}' +
+      '.cln-cbtn{display:flex;align-items:center;justify-content:center;text-decoration:none;}' +
+      '.cln-cbtn-ico{width:3.5rem;height:3.5rem;border-radius:1.05rem;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid rgba(0,0,0,.06);box-shadow:0 7px 18px -8px rgba(0,0,0,.5);transition:transform .2s ease,box-shadow .2s ease;}' +
+      '.cln-cbtn:hover .cln-cbtn-ico,.cln-cbtn:focus-visible .cln-cbtn-ico{transform:translateY(-3px);box-shadow:0 14px 26px -8px rgba(0,0,0,.55);}' +
+      '.ml-light .cln-cbtn-ico{box-shadow:0 7px 18px -9px rgba(16,42,90,.3);border-color:rgba(16,42,90,.10);}' +
+      '.cln-cbtn-ico svg{width:2.05rem;height:2.05rem;display:block;}' +
+      /* "Begin a conversation" CTA (homepage) -> contact page; the contact page shows the form instead */
+      '.cln-cbtn-cta{display:inline-flex;align-items:center;gap:.5rem;margin:2.1rem auto 0;padding:.85rem 1.7rem;border-radius:.75rem;background:linear-gradient(180deg,#2f7dff,#1c5fe0);color:#fff;font-weight:700;font-size:1rem;text-decoration:none;box-shadow:0 10px 24px -8px rgba(47,125,255,.6);transition:transform .18s ease,box-shadow .18s ease;}' +
+      '.cln-cbtn-cta:hover{transform:translateY(-2px);box-shadow:0 14px 30px -8px rgba(47,125,255,.75);}' +
+      '.cln-cbtn-cta svg{width:1.15rem;height:1.15rem;}' +
+      '.cln-cbtn-ctawrap{text-align:center;margin-bottom:1rem;}' +
+      /* contact-page message form */
+      '.cln-cform-wrap{max-width:34rem;margin:2.4rem auto 0;text-align:start;}' +
+      '.cln-cform{display:flex;flex-direction:column;gap:.8rem;}' +
+      '.cln-cf-in{width:100%;box-sizing:border-box;padding:.8rem 1rem;border-radius:.7rem;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.04);color:#f4f4f5;font-size:.98rem;font-family:inherit;}' +
+      '.cln-cf-in::placeholder{color:#8b8b93;}' +
+      '.cln-cf-in:focus{outline:none;border-color:rgba(58,160,255,.7);box-shadow:0 0 0 3px rgba(58,160,255,.15);}' +
+      '.cln-cf-msg{resize:vertical;min-height:6rem;}' +
+      '.cln-cf-btn{align-self:center;margin-top:.3rem;padding:.85rem 2rem;border:0;border-radius:.7rem;background:linear-gradient(180deg,#2f7dff,#1c5fe0);color:#fff;font-weight:700;font-size:1rem;cursor:pointer;box-shadow:0 10px 24px -8px rgba(47,125,255,.6);transition:transform .18s ease,box-shadow .18s ease;}' +
+      '.cln-cf-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 14px 30px -8px rgba(47,125,255,.75);}' +
+      '.cln-cf-btn:disabled{opacity:.6;cursor:default;}' +
+      '.cln-cf-status{min-height:1.2rem;margin:.4rem 0 0;font-size:.9rem;text-align:center;}' +
+      '.cln-cf-status.ok{color:#3aa0ff;}.cln-cf-status.err{color:#f87171;}' +
+      '.cln-cf-hp{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;opacity:0;}' +
+      '.ml-light .cln-cf-in{border-color:rgba(16,42,90,.15);background:#fff;color:#0b1220;}' +
+      '.ml-light .cln-cf-in::placeholder{color:#94a3b8;}' +
+      '.ml-light .cln-cf-status.ok{color:#0a73d4;}' +
+      /* proper breathing room between the contact block and the footer below it */
+      '.cln-contact{padding-bottom:4rem !important;}';
     (document.head || document.documentElement).appendChild(CSS);
 
     function loc() { var l = (document.documentElement.getAttribute('lang') || 'en').toLowerCase(); return (l === 'ar' || l === 'ko' || l === 'ja') ? l : 'en'; }
-    var S = { // lucide-style glyphs (stroke) + brand fills (WhatsApp/LinkedIn)
-      mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>',
-      phone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>',
-      wa: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.47-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.9 0-3.18-1.24-6.16-3.48-8.41Z"/></svg>',
-      in: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5c0 1.38-1.11 2.5-2.48 2.5S.02 4.88.02 3.5 1.13 1 2.5 1s2.48 1.12 2.48 2.5zM5 8H0v16h5V8zm7.98 0H8.01v16h4.97v-8.4c0-4.67 6.03-5.05 6.03 0V24H24V13.87c0-7.88-8.92-7.59-11.02-3.71V8z"/></svg>',
-      pin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>'
+    var S = { // real brand marks in their own colours (rendered on white app-icon tiles)
+      outlook: '<svg viewBox="0 0 32 32"><rect x="3" y="7" width="17" height="18" rx="2.6" fill="#0F6CBD"/><path fill="#fff" d="M11.5 11.6c-3 0-4.9 2.5-4.9 6.4s1.9 6.4 4.9 6.4 4.9-2.5 4.9-6.4-1.9-6.4-4.9-6.4zm0 10.1c-1.6 0-2.5-1.5-2.5-3.7s.9-3.7 2.5-3.7 2.5 1.5 2.5 3.7-.9 3.7-2.5 3.7z"/><path fill="#28A8EA" d="M20.5 10H29a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-8.5V10z"/><path fill="#fff" d="M30 11.5l-4.7 3.1-4.5-3v-.9l4.5 3 4.7-3.1z" opacity=".85"/></svg>',
+      phone: '<svg viewBox="0 0 24 24" fill="#1BAA55"><path d="M20 15.5c-1.2 0-2.4-.2-3.6-.6-.3-.1-.7 0-1 .3l-2.2 2.2c-2.8-1.5-5.2-3.9-6.7-6.7l2.2-2.2c.3-.3.4-.6.3-1-.4-1.1-.6-2.4-.6-3.6 0-.6-.5-1-1-1H4c-.6 0-1 .4-1 1 0 9.4 7.6 17 17 17 .6 0 1-.5 1-1V16.5c0-.5-.4-1-1-1z"/></svg>',
+      wa: '<svg viewBox="0 0 24 24" fill="#25D366"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.47-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.9 0-3.18-1.24-6.16-3.48-8.41Z"/></svg>',
+      in: '<svg viewBox="0 0 24 24" fill="#0A66C2"><path d="M4.98 3.5c0 1.38-1.11 2.5-2.48 2.5S.02 4.88.02 3.5 1.13 1 2.5 1s2.48 1.12 2.48 2.5zM5 8H0v16h5V8zm7.98 0H8.01v16h4.97v-8.4c0-4.67 6.03-5.05 6.03 0V24H24V13.87c0-7.88-8.92-7.59-11.02-3.71V8z"/></svg>',
+      gmaps: '<svg viewBox="0 0 24 24"><path fill="#EA4335" d="M12 2.2c-4.05 0-7.3 3.25-7.3 7.3 0 5.45 7.3 12.5 7.3 12.5s7.3-7.05 7.3-12.5c0-4.05-3.25-7.3-7.3-7.3z"/><circle cx="12" cy="9.3" r="2.75" fill="#fff"/></svg>',
+      chat: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>'
     };
     var mapsQ = encodeURIComponent('3Lines Advanced Technologies Company, Building 2148, King Abdullah Branch Road, Riyadh 13215, Saudi Arabia');
     var BTNS = [
-      { c: 'email', href: 'mailto:info@3lines.com.sa', svg: S.mail, lbl: { en: 'Email', ar: 'البريد', ja: 'メール', ko: '이메일' } },
+      { c: 'email', href: 'mailto:info@3lines.com.sa', svg: S.outlook, lbl: { en: 'Email', ar: 'البريد', ja: 'メール', ko: '이메일' } },
       { c: 'call', href: 'tel:+966112252433', svg: S.phone, lbl: { en: 'Call', ar: 'اتصل', ja: '電話', ko: '전화' } },
       { c: 'wa', href: 'https://wa.me/966112252433', ext: 1, svg: S.wa, lbl: { en: 'WhatsApp', ar: 'واتساب', ja: 'WhatsApp', ko: 'WhatsApp' } },
       { c: 'in', href: 'https://www.linkedin.com/company/3lines', ext: 1, svg: S.in, lbl: { en: 'LinkedIn', ar: 'لينكدإن', ja: 'LinkedIn', ko: 'LinkedIn' } },
-      { c: 'loc', href: 'https://www.google.com/maps/search/?api=1&query=' + mapsQ, ext: 1, svg: S.pin, lbl: { en: 'Location', ar: 'الموقع', ja: '所在地', ko: '위치' } }
+      { c: 'loc', href: 'https://www.google.com/maps/search/?api=1&query=' + mapsQ, ext: 1, svg: S.gmaps, lbl: { en: 'Location', ar: 'الموقع', ja: '所在地', ko: '위치' } }
     ];
+    var CTA = { en: 'Begin a conversation', ar: 'ابدأ محادثة', ja: 'お問い合わせを始める', ko: '문의 시작하기' };
+    var F = {
+      name: { en: 'Your name', ar: 'الاسم', ja: 'お名前', ko: '이름' },
+      email: { en: 'Email address', ar: 'البريد الإلكتروني', ja: 'メールアドレス', ko: '이메일 주소' },
+      msg: { en: 'How can we help?', ar: 'كيف يمكننا مساعدتك؟', ja: 'ご用件', ko: '무엇을 도와드릴까요?' },
+      send: { en: 'Send message', ar: 'إرسال الرسالة', ja: '送信する', ko: '메시지 보내기' },
+      sending: { en: 'Sending…', ar: 'جارٍ الإرسال…', ja: '送信中…', ko: '전송 중…' },
+      ok: { en: "Thanks — we'll get back to you shortly.", ar: 'شكراً — سنعاود التواصل معك قريباً.', ja: 'ありがとうございます。折り返しご連絡いたします。', ko: '감사합니다. 곧 연락드리겠습니다.' },
+      bad: { en: 'Please add your name, a valid email, and a message.', ar: 'يرجى إدخال الاسم وبريد إلكتروني صحيح ورسالة.', ja: 'お名前・有効なメール・メッセージをご入力ください。', ko: '이름, 유효한 이메일, 메시지를 입력해 주세요.' },
+      err: { en: 'Something went wrong. Please try again.', ar: 'حدث خطأ ما. حاول مرة أخرى.', ja: 'エラーが発生しました。もう一度お試しください。', ko: '문제가 발생했습니다. 다시 시도해 주세요.' }
+    };
+    var CRE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    function esc(s) { return (s || '').replace(/[&<>"]/g, function (m) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m]; }); }
+    // Homepage (and inner pages): a CTA button that takes visitors to the contact page's form.
+    function buildCTA(c, L) {
+      if (c.querySelector('.cln-cbtn-cta')) return;
+      var wrap = document.createElement('div'); wrap.className = 'cln-cbtn-ctawrap';
+      // Link to the .html URL the nav itself uses -- the clean /xx/contact path isn't an SPA route and bounces home.
+      var a = document.createElement('a'); a.className = 'cln-cbtn-cta'; a.href = '/' + L + '/contact.html';
+      a.innerHTML = S.chat + '<span>' + esc(CTA[L] || CTA.en) + '</span>';
+      wrap.appendChild(a); c.appendChild(wrap);
+    }
+    // Contact page: a real message form -> POST /api/v1/contact (stored server-side, honeypot-guarded).
+    function buildForm(c, L) {
+      if (c.querySelector('.cln-cform')) return;
+      var ph = function (k) { return esc(F[k][L] || F[k].en); };
+      var f = document.createElement('form'); f.className = 'cln-cform'; f.setAttribute('novalidate', '');
+      f.innerHTML =
+        '<input class="cln-cf-hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">' +
+        '<input class="cln-cf-in" name="name" type="text" required placeholder="' + ph('name') + '" aria-label="' + ph('name') + '">' +
+        '<input class="cln-cf-in" name="email" type="email" required placeholder="' + ph('email') + '" aria-label="' + ph('email') + '">' +
+        '<textarea class="cln-cf-in cln-cf-msg" name="message" rows="4" required placeholder="' + ph('msg') + '" aria-label="' + ph('msg') + '"></textarea>' +
+        '<button class="cln-cf-btn" type="submit">' + esc(F.send[L] || F.send.en) + '</button>' +
+        '<p class="cln-cf-status" aria-live="polite"></p>';
+      var wrap = document.createElement('div'); wrap.className = 'cln-cform-wrap'; wrap.appendChild(f); c.appendChild(wrap);
+      var status = f.querySelector('.cln-cf-status'), btn = f.querySelector('.cln-cf-btn');
+      f.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var name = f.name.value.trim(), email = f.email.value.trim(), message = f.message.value.trim();
+        status.className = 'cln-cf-status';
+        if (!name || !CRE.test(email) || message.length < 2) { status.textContent = F.bad[L] || F.bad.en; status.classList.add('err'); return; }
+        btn.disabled = true; var old = btn.textContent; btn.textContent = F.sending[L] || F.sending.en;
+        fetch('/api/v1/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: name, email: email, message: message, lang: L, company: f.company.value }) })
+          .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+          .then(function () { status.textContent = F.ok[L] || F.ok.en; status.classList.add('ok'); f.reset(); })
+          .catch(function () { status.textContent = F.err[L] || F.err.en; status.classList.add('err'); })
+          .then(function () { btn.disabled = false; btn.textContent = old; });
+      });
+    }
     function bodyOf(it, sep) {
       if (!it) return '';
       var cl = it.cloneNode(true);
@@ -1015,8 +1081,8 @@
       BTNS.forEach(function (b) {
         var a = document.createElement('a'); a.className = 'cln-cbtn cln-cbtn-' + b.c; a.href = b.href;
         if (b.ext) { a.target = '_blank'; a.rel = 'noopener'; }
-        var lb = b.lbl[L] || b.lbl.en; a.setAttribute('aria-label', lb);
-        a.innerHTML = '<span class="cln-cbtn-ico">' + b.svg + '</span><span class="cln-cbtn-label">' + lb + '</span>';
+        var lb = b.lbl[L] || b.lbl.en; a.setAttribute('aria-label', lb); a.setAttribute('title', lb);
+        a.innerHTML = '<span class="cln-cbtn-ico">' + b.svg + '</span>'; // icons only -- no text labels below
         row.appendChild(a);
       });
       var lead = c.querySelector('.cln-contact-lead');
@@ -1026,6 +1092,8 @@
       // the lead line + the coloured channel buttons, per client request.
       var kill = ['.cln-contact-cta', '.cln-contact-grid', '.cln-contact-linkedin'];
       kill.forEach(function (sel) { var el = c.querySelector(sel); if (el) el.style.display = 'none'; });
+      // The contact PAGE gets a real message form; everywhere else gets a CTA button that links to it.
+      if (/\/contact(\/|$|\.html)/.test(location.pathname)) buildForm(c, L); else buildCTA(c, L);
       return true;
     }
     var n = 0, iv = setInterval(function () { if (run() || ++n > 60) clearInterval(iv); }, 200);

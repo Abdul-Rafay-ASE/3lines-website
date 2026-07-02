@@ -25,6 +25,26 @@ async function handleSubscribe(req, res) {
   res.json({ ok: true }); // idempotent: re-subscribing is a silent success
 }
 
+// POST /api/v1/contact { name, email, message, lang } -> appends to content/contact-messages.json
+// (mode-agnostic via writeSection). Public + honeypot-guarded; captures the enquiry only (sends no mail).
+async function handleContact(req, res) {
+  corsJSON(res);
+  if (req.method !== 'POST') { res.status(405).json({ error: 'method not allowed' }); return; }
+  const body = (req.body && typeof req.body === 'object') ? req.body : {};
+  if (body.company) { res.json({ ok: true }); return; } // honeypot filled -> silently drop (bot)
+  const name = (body.name || '').toString().trim().slice(0, 120);
+  const email = (body.email || '').toString().trim().toLowerCase();
+  const message = (body.message || '').toString().trim().slice(0, 4000);
+  if (!name || !EMAIL_RE.test(email) || email.length > 254 || message.length < 2) {
+    res.status(400).json({ error: 'invalid input' }); return;
+  }
+  let list = await readSection('contact-messages');
+  if (!Array.isArray(list)) list = [];
+  list.push({ name, email, message, lang: (body.lang || '').toString().slice(0, 5), at: new Date().toISOString() });
+  await writeSection('contact-messages', list);
+  res.json({ ok: true });
+}
+
 const SECTIONS = {
   posts:      { editable: true,  envelope: false },
   partners:   { editable: true,  envelope: false },
@@ -39,6 +59,7 @@ const SECTIONS = {
 module.exports = async (req, res) => {
   const name = (req.query.section || '').toString();
   if (name === 'subscribe') return handleSubscribe(req, res);
+  if (name === 'contact') return handleContact(req, res);
   const meta = SECTIONS[name];
   if (!meta) { res.status(404).json({ error: 'unknown section' }); return; }
   corsJSON(res);
