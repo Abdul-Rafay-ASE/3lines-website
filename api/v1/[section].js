@@ -1,7 +1,29 @@
 // Single dynamic handler for all public /api/v1/* read endpoints.
 // Reads from GitHub-backed Blob if available; falls back to embedded seed data.
-const { readSection, corsJSON } = require('../cms/_lib');
+// Also hosts the one PUBLIC WRITE path: POST /api/v1/subscribe (newsletter capture),
+// kept here so no extra serverless function is needed (Vercel Hobby 12-function cap).
+const { readSection, writeSection, corsJSON } = require('../cms/_lib');
 const seeds = require('../cms/_seeds');
+
+// POST /api/v1/subscribe { email, lang } -> appends to content/subscribers.json
+// (mode-agnostic via writeSection: local disk self-hosted, GitHub on Vercel). Public,
+// unauthenticated (correct for a signup) with a honeypot; captures only — sends no email.
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+async function handleSubscribe(req, res) {
+  corsJSON(res); // application/json + Cache-Control: no-store
+  if (req.method !== 'POST') { res.status(405).json({ error: 'method not allowed' }); return; }
+  const body = (req.body && typeof req.body === 'object') ? req.body : {};
+  if (body.company) { res.json({ ok: true }); return; } // honeypot filled -> silently drop (bot)
+  const email = (body.email || '').toString().trim().toLowerCase();
+  if (!EMAIL_RE.test(email) || email.length > 254) { res.status(400).json({ error: 'invalid email' }); return; }
+  let list = await readSection('subscribers');
+  if (!Array.isArray(list)) list = [];
+  if (!list.some((s) => (s && s.email || '').toString().toLowerCase() === email)) {
+    list.push({ email, lang: (body.lang || '').toString().slice(0, 5), at: new Date().toISOString() });
+    await writeSection('subscribers', list);
+  }
+  res.json({ ok: true }); // idempotent: re-subscribing is a silent success
+}
 
 const SECTIONS = {
   posts:      { editable: true,  envelope: false },
@@ -16,6 +38,7 @@ const SECTIONS = {
 
 module.exports = async (req, res) => {
   const name = (req.query.section || '').toString();
+  if (name === 'subscribe') return handleSubscribe(req, res);
   const meta = SECTIONS[name];
   if (!meta) { res.status(404).json({ error: 'unknown section' }); return; }
   corsJSON(res);

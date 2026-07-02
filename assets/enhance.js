@@ -158,6 +158,8 @@
         lis.forEach(function (li) { var k = keyOf(li); if (k && !byKey[k]) byKey[k] = li; });
         ORDER.forEach(function (k) { if (byKey[k]) ul.appendChild(byKey[k]); });
         lis.forEach(function (li) { if (ORDER.indexOf(keyOf(li)) === -1) ul.appendChild(li); });
+        // Make Contact the nav's filled CTA (rule 15i). Desktop nav only; styling in cln-nav-cta.
+        if (byKey.contact) { var ca = byKey.contact.querySelector('a[href]'); if (ca) ca.classList.add('cln-nav-cta'); }
       })();
       done = true;
     }
@@ -190,19 +192,16 @@
      The homepage has no static .dshare, so this no-ops there and injectShare owns the home bar. */
   (function () {
     function placeShare() {
+      // "Share this page" row removed site-wide (per client). Strip the static .dshare wrapper that
+      // ships on inner pages (about/contact/service/news/legal). The homepage version is never
+      // injected (injectShare is disabled), and any already-placed .cln-share is removed too.
+      [].slice.call(document.querySelectorAll('.cln-share')).forEach(function (n) { if (n.parentNode) n.parentNode.removeChild(n); });
       var first = document.querySelector('.dshare');
-      if (!first || first.closest('.cln-share')) return;   // homepage/CMS: nothing static to place here
+      if (!first) return;
       var box = first;
       while (box && !/\bpt-20\b/.test(box.className || '')) box = box.parentElement;
-      box = box || first.closest('[class*="pt-20"]') || (first.parentElement && first.parentElement.parentElement);
-      if (!box) return;
-      // keep only WhatsApp + LinkedIn (matches the English page; trims the ar/ja/ko 7-icon set)
-      box.querySelectorAll('a.dshare').forEach(function (a) {
-        if (!/whatsapp|linkedin/i.test(a.getAttribute('href') || '')) { if (a.parentNode) a.parentNode.removeChild(a); }
-      });
-      // move it to the very end of the page, right above the footer
-      var footer = document.querySelector('footer');
-      if (footer && footer.parentNode && footer.previousElementSibling !== box) footer.parentNode.insertBefore(box, footer);
+      box = box || first.closest('[class*="pt-20"]') || (first.parentElement && first.parentElement.parentElement) || first;
+      if (box && box.parentNode) box.parentNode.removeChild(box);
     }
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', placeShare);
     else placeShare();
@@ -328,6 +327,11 @@
            leaves 9 cards which fill the native 3-col grid evenly, no lonely last card and no
            special layout needed. Applies on the landing and the /services page. */
     'a[class*="min-h-[10rem]"][href*="english-language-training"]{display:none !important;}' +
+    /* 10b) Drop the "Certificates" menu item. The label is hard-coded in the React bundle (route:null,
+            slug:"certificates") and its page was empty ("nothing shared yet") -> removed. Hide every
+            link to it (mobile menu route /{lang}/certificates, any legacy footer link) so nothing
+            points at a deleted page. Re-add real certificates later to bring it back. */
+    'a[href*="certificates"]{display:none !important;}' +
     /* 11) Two bento icons (Defense, Optokon) are FILLED icons (fill-zinc-400, grey) rather than
            stroked ones, so rule 8's color/stroke left them grey while XR/ATV went blue. Recolour
            the filled icons (and their paths) to the one brand blue, both themes. */
@@ -352,18 +356,14 @@
            line. Reserve bottom space so the CTA lands BELOW the description with a clear gap (both
            themes). The CTA is ~2.3rem tall, so ~2.6rem of bottom padding clears it. */
     'a[class*="min-h-[10rem]"]{padding-bottom:2.6rem !important;}' +
-    /* 16) Partner/client logos: a uniform grey strip at REST that pops to each logo's TRUE brand
-           colour on HOVER (restores the original group-hover:grayscale-0 intent -- e.g. Airbus going
-           blue). Light mode inverts at rest so the dark-card-built logos stay visible on white, then
-           drops the filter on hover to show real colour. The few flat-WHITE logos (Airbus, NPCO,
-           Optokon ...) have no colour to reveal -- they're tagged `cln-mono-logo` at runtime (16b)
-           and kept inverted-dark on hover in light mode so they don't go white-on-white and vanish. */
-    '.ml-light img[class*="group-hover:grayscale-0"]{filter:invert(1) grayscale(1) brightness(.5) contrast(1.15) !important;opacity:.82 !important;}' +
-    '.ml-light img[class*="group-hover:grayscale-0"]:hover{filter:none !important;opacity:1 !important;transform:scale(1.08) !important;}' +
-    'html.ml-light img.cln-mono-logo:hover{filter:invert(1) grayscale(1) brightness(.3) contrast(1.2) !important;}' +
-    '.dark img[class*="group-hover:grayscale-0"]{filter:grayscale(1) !important;opacity:.82 !important;}' +
-    '.dark img[class*="group-hover:grayscale-0"]:hover{filter:none !important;opacity:1 !important;transform:scale(1.08) !important;}' +
-    'img[class*="group-hover:grayscale-0"]{transition:filter .25s ease,opacity .22s ease,transform .22s ease !important;}' +
+    /* 16) Partner/client logos: shown in their REAL brand colour, at full opacity, ALL the time (client
+           request). The carousel keeps auto-scrolling and pauses on hover (React). Only the flat/LIGHT
+           logos -- which would go white-on-white on the light theme -- are inverted-dark in light mode;
+           they're detected by average brightness at runtime (16b) and tagged .cln-light-logo. Dark mode
+           shows every logo as-is (all read on the dark bg). Hover just lifts slightly. */
+    'img[class*="group-hover:grayscale-0"]{filter:none !important;opacity:1 !important;transition:transform .2s ease !important;}' +
+    '.ml-light img[class*="group-hover:grayscale-0"].cln-light-logo{filter:invert(1) grayscale(1) brightness(.4) contrast(1.15) !important;}' +
+    'img[class*="group-hover:grayscale-0"]:hover{transform:scale(1.06) !important;}' +
     /* 17) Footer brand logo: now that the long blurb paragraph is gone, give the logo a bigger,
            better-proportioned presence in the brand column (both themes). Also clear the anchor's
            redundant bg-logo background so only the <img> shows (no faint duplicate). */
@@ -381,7 +381,13 @@
            the bar off-screen on scroll-down (Tailwind v4 uses the CSS `translate` property, which is
            why it moves even though `transform` stays none). Pin it so it never hides while scrolling
            or after a nav-button jump. */
-    'header[class*="fixed"]{transform:none !important;translate:none !important;}';
+    'header[class*="fixed"]{transform:none !important;translate:none !important;}' +
+    /* 20) Bento card icon+title consistency: the "XR" feature card ships its content wrapper as
+           flex-row (icon jammed beside a tiny title), while every other bento card (Defense, Optokon,
+           ATV) stacks icon ABOVE the title. Force the icon/title/description block to column on all
+           bento cards so XR matches the rest -- icon on top, then title, then blurb. Scoped with
+           :has(> h3) so only the title block is affected, never the image/other flex children. */
+    '[class*="auto-rows-"] [class*="rounded-xl"] [class*="flex-col"]:has(> h3){flex-direction:column !important;align-items:flex-start !important;}';
   (document.head || document.documentElement).appendChild(perfCss);
 
   /* ----- 15b) Partner/Client logos: enlarge -----
@@ -432,25 +438,603 @@
     '@media (max-width:560px){.cln-contact-grid{grid-template-columns:minmax(0,1fr);gap:2rem}}';
   (document.head || document.documentElement).appendChild(contactCss);
 
-  /* ----- 16b) Tag monochrome (white) partner logos -----
-     The partner strip (rule 16) greys logos at rest and reveals their TRUE colour on hover. A few
-     logos are flat WHITE assets (Airbus, NPCO, Optokon ...) with no colour to reveal -- in light
-     mode `filter:none` on hover would make them white-on-white and vanish. Sample each logo's
-     pixels; if it carries no real colour (near-zero saturation), tag it `cln-mono-logo` so the CSS
-     keeps it inverted-dark on hover instead. Same-origin assets, so the canvas isn't tainted. */
+  /* ----- 15e) Footer separation in dark mode -----
+     The footer ships a bottom-weighted gradient (from-zinc-800/40 -> transparent) and NO top
+     border, so in dark mode its top edge is invisible — you can't tell where the content ends
+     and the footer begins. Light mode already has a 1px top border (light-theme.css); give dark
+     mode the same: a faint top border + a subtle surface lift so the footer reads as its own band. */
+  var footerCss = document.createElement('style'); footerCss.id = 'cln-footer-dark';
+  footerCss.textContent =
+    '.dark footer{border-top:1px solid rgba(255,255,255,.10) !important;background-color:rgba(255,255,255,.025) !important;}';
+  (document.head || document.documentElement).appendChild(footerCss);
+
+  /* ----- 15f) Hero CTA emphasis -----
+     The hero's "Who we are" button ships as a near-invisible dark ghost pill (bg = var(--bg),
+     border-white/10) that blends into the hero. Reference sites (ai3lines.com etc.) lead with a
+     confident accent CTA, so give it a brand-blue border + glow so it reads as the hero's primary
+     action. Theme-aware text (the hero is dark in dark mode, light in light mode). Scoped to #hero. */
+  var heroCtaCss = document.createElement('style'); heroCtaCss.id = 'cln-hero-cta';
+  heroCtaCss.textContent =
+    '#hero button[class*="var(--bg)"]{border-color:rgba(58,160,255,.9) !important;border-width:1.5px !important;box-shadow:0 0 0 1px rgba(58,160,255,.22),0 10px 34px -8px rgba(58,160,255,.5) !important;padding-left:2rem !important;padding-right:2rem !important;}' +
+    '#hero button[class*="var(--bg)"] *{font-weight:600 !important;letter-spacing:.03em !important;}' +
+    /* dark mode: the pill is a dark ghost -> force white label. Light mode already ships a solid
+       blue filled CTA (its own white label), so leave its text alone. */
+    '.dark #hero button[class*="var(--bg)"],.dark #hero button[class*="var(--bg)"] *{color:#fff !important;}';
+  (document.head || document.documentElement).appendChild(heroCtaCss);
+
+  /* ----- 15g) Dark-theme ambient glow -----
+     The dark theme ships a flat near-black canvas; reference dark sites (ai3lines.com etc.) get their
+     "premium" feel from soft off-screen brand-blue light pools that give the page tonal depth. Add two
+     faint radial glows via a viewport-fixed pseudo-element (composited -> smooth on scroll, unlike
+     background-attachment:fixed). z-index:-1 keeps it behind all content; the site's sections are
+     transparent so the glow reads through them. Dark mode only -- light mode already lifts its own bg. */
+  var glowCss = document.createElement('style'); glowCss.id = 'cln-dark-glow';
+  glowCss.textContent =
+    ".dark body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;" +
+    "background:radial-gradient(1300px 900px at 82% -12%, rgba(45,112,240,.26), transparent 60%)," +
+    "radial-gradient(1050px 800px at 6% 112%, rgba(58,160,255,.13), transparent 58%);}";
+  (document.head || document.documentElement).appendChild(glowCss);
+
+  /* ----- 15h) Section headers: eyebrow kicker + accent bar -----
+     Reference marketing sites frame each section with a small uppercase "eyebrow" label above the
+     heading and a short accent underline below it, so sections read as deliberately designed bands
+     rather than plain centered titles. The homepage headings ship as bare centered h2s (relative +
+     pb-12), so the accent bar drops into the existing bottom padding and the eyebrow prepends inside.
+     Eyebrow text is injected per-section in reorderSections() (localized); this is just the styling.
+     Arabic drops letter-spacing (it would break the connected script); accent tint follows theme. */
+  var secHeadCss = document.createElement('style'); secHeadCss.id = 'cln-sec-head';
+  secHeadCss.textContent =
+    '.cln-eyebrow{display:block;margin-bottom:.6rem;font-size:.72rem;line-height:1;font-weight:700;text-transform:uppercase;color:#5cc0ff;}' +
+    'html:not([lang="ar"]) .cln-eyebrow{letter-spacing:.2em;}' +
+    '.ml-light .cln-eyebrow{color:#1f6fd6;}' +
+    '.cln-sec-h2::after{content:"";position:absolute;left:50%;transform:translateX(-50%);bottom:1.4rem;width:60px;height:3px;border-radius:3px;background:linear-gradient(90deg,rgba(58,160,255,0),rgba(58,160,255,.9),rgba(58,160,255,0));}';
+  (document.head || document.documentElement).appendChild(secHeadCss);
+
+  /* ----- 15i) Header "Contact" as a filled CTA -----
+     Reference sites end the nav with a solid accent button so the primary action stands out from the
+     text links. The Contact link already ships as an h-9 rounded inline-flex pill inside a flex-centered
+     nav, so filling it with the brand gradient aligns perfectly with the other items -- no layout change.
+     `background` shorthand (not just -image) so it also clears the theme's hover:bg-accent tint. The
+     nav-reorder step tags the link with .cln-nav-cta (desktop nav only). */
+  var navCtaCss = document.createElement('style'); navCtaCss.id = 'cln-nav-cta';
+  navCtaCss.textContent =
+    '.cln-nav-cta{background:linear-gradient(180deg,#2f7dff,#1c5fe0) !important;color:#fff !important;box-shadow:0 6px 18px -7px rgba(47,125,255,.7) !important;transition:transform .2s ease,box-shadow .2s ease !important;}' +
+    '.cln-nav-cta:hover,.cln-nav-cta:focus{background:linear-gradient(180deg,#3f8bff,#2668ea) !important;color:#fff !important;box-shadow:0 9px 22px -7px rgba(47,125,255,.85) !important;transform:translateY(-1px) !important;}';
+  (document.head || document.documentElement).appendChild(navCtaCss);
+
+  /* ----- 15j) Accessibility contrast fixes (Lighthouse) -----
+     Two dark-mode text tokens fail WCAG AA on the near-black canvas: muted `text-zinc-500` body/date
+     text (4.1:1) and the `text-zinc-100/30` "Read more" card CTA (2.4:1). Lift both to an accessible
+     zinc-400; the Read-more keeps its dim->bright hover reveal via the group-hover rule. Also a
+     screen-reader-only utility used by the a11y runtime below (hidden headings / labels). */
+  var a11yCss = document.createElement('style'); a11yCss.id = 'cln-a11y-css';
+  a11yCss.textContent =
+    '.cln-sr-only{position:absolute !important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}' +
+    '.dark [class*="text-zinc-500"]{color:#a1a1aa !important;}' +
+    '.dark [class*="text-zinc-100/30"]{color:#a1a1aa !important;}' +
+    '.dark .group:hover [class*="text-zinc-100/30"]{color:#fafafa !important;}' +
+    /* The unified brand accent (#0a73d4, rules 12-13) is 4.18:1 on the near-black dark canvas -- just
+       under AA. In dark mode only, lift accent TEXT to #3aa0ff (~6.9:1, same hue as the glow/bars).
+       Light mode keeps #0a73d4 (passes on its light bg). Scoped to text so icon/border fills stay. */
+    '.dark [class*="text-[#5cc0ff]"]{color:#3aa0ff !important;}' +
+    '.dark #contact a[href^="tel"]:not([class*="bg-"]),.dark #contact a[href^="mailto"]:not([class*="bg-"]),.dark #contact a[href*="linkedin"]:not([class*="bg-"]){color:#3aa0ff !important;}';
+  (document.head || document.documentElement).appendChild(a11yCss);
+
+  /* ----- 15j-b) Bento card background parity (light mode) -----
+     The hero bento cards carry a decorative `bg-linear-180 from-transparent to-background` fade
+     overlay meant to blend content into the card bottom. In dark mode that fades to the dark bg
+     (fine), but in light mode `to-background` resolves to a ~4% slate tint -> those cards read as
+     grey-bottomed while the plain-white About/Services cards don't. Re-point the fade to white in
+     light mode so all three sections' cards share the same plain-white background (image cards still
+     blend their artwork cleanly to white at the bottom). */
+  var cardBgCss = document.createElement('style'); cardBgCss.id = 'cln-card-bg';
+  cardBgCss.textContent =
+    '.ml-light [class*="bg-linear-180"][class*="to-background"]{background-image:linear-gradient(180deg,transparent,#ffffff) !important;}';
+  (document.head || document.documentElement).appendChild(cardBgCss);
+
+  /* ----- 15j-c) About feature-card icon chips -----
+     Those cards' icon wrappers use h-11/w-11/bg-[#5cc0ff]/10 -- none of which exist in the prebuilt
+     Tailwind CSS -- so the wrapper stretched full-width and justify-center parked the bare icon in the
+     card's center, misaligned with the left-aligned title/text. Restore the intended 44px rounded blue
+     icon chip pinned top-left (matching the Services/bento cards), so the icon sits above its text. */
+  var aboutIconCss = document.createElement('style'); aboutIconCss.id = 'cln-about-icons';
+  aboutIconCss.textContent =
+    '#about-info [class*="h-11"][class*="w-11"]{width:2.75rem !important;height:2.75rem !important;flex:none !important;background:rgba(58,160,255,.12) !important;border-radius:.7rem !important;}';
+  (document.head || document.documentElement).appendChild(aboutIconCss);
+
+  /* ----- 15o) "Why 3Lines" auto-advancing slider (reference: sami/aecl.com) -----
+     A rotating value-proposition band after About -- the dynamic, credibility-first carousel peer
+     defense sites lead with. Self-contained (built in buildSlider), so no risk to the React content;
+     dark/light + RTL aware; autoplay pauses on hover/focus and is disabled under reduced-motion. */
+  var sliderCss = document.createElement('style'); sliderCss.id = 'cln-slider-css';
+  sliderCss.textContent =
+    /* Force LTR carousel mechanics (track/dots/arrows) so a positive RTL translateX never escapes
+       the viewport clip and creates horizontal page scroll; slide TEXT stays RTL for Arabic below. */
+    /* 75rem + 2rem padding -> a ~1136px panel that matches the About card row's width; arrows overlay
+       the panel edges (absolute) instead of eating side space, so the panel spans the full width. */
+    '.cln-slider{max-width:75rem;margin:1.5rem auto 0;padding:0 2rem;direction:ltr;overflow:hidden;}' +
+    '.cln-slider-frame{position:relative;}' +
+    '.cln-slider-viewport{overflow:hidden;border-radius:1rem;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.03);}' +
+    '.cln-slider-track{display:flex;transition:transform .55s cubic-bezier(.16,.84,.44,1);}' +
+    '@media(prefers-reduced-motion:reduce){.cln-slider-track{transition:none;}}' +
+    '.cln-slide{flex:0 0 100%;min-width:100%;box-sizing:border-box;padding:3rem 2rem;min-height:210px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;}' +
+    '.cln-slide-eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#3aa0ff;margin-bottom:.75rem;}' +
+    'html[lang="ar"] .cln-slide-eyebrow{letter-spacing:normal;}' +
+    'html[lang="ar"] .cln-slide{direction:rtl;}' +
+    '.cln-slide-head{font-size:1.6rem;font-weight:800;color:#f4f4f5;margin:0 0 .55rem;line-height:1.22;}' +
+    '@media(min-width:768px){.cln-slide-head{font-size:2.1rem;}}' +
+    '.cln-slide-sub{font-size:1rem;color:#a1a1aa;max-width:44rem;margin:0 auto;line-height:1.55;}' +
+    '.cln-slider-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:2.75rem;height:2.75rem;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:rgba(20,22,30,.55);backdrop-filter:blur(4px);color:#e4e4e7;font-size:1.4rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .2s ease,color .2s ease,background .2s ease;}' +
+    '.cln-slider-prev{left:.9rem;}.cln-slider-next{right:.9rem;}' +
+    '.cln-slider-arrow:hover,.cln-slider-arrow:focus-visible{border-color:rgba(58,160,255,.7);color:#3aa0ff;background:rgba(58,160,255,.14);}' +
+    '.cln-slider-dots{display:flex;justify-content:center;gap:.5rem;margin-top:1rem;}' +
+    '.cln-slider-dot{width:8px;height:8px;border-radius:999px;border:0;background:rgba(255,255,255,.25);cursor:pointer;padding:0;transition:width .25s ease,background .25s ease;}' +
+    '.cln-slider-dot[aria-current="true"]{width:22px;background:#3aa0ff;}' +
+    '.ml-light .cln-slider-viewport{border-color:rgba(3,18,44,.12);background:#ffffff;}' +
+    '.ml-light .cln-slide-head{color:#0b1220;}.ml-light .cln-slide-sub{color:#52525b;}.ml-light .cln-slide-eyebrow{color:#0a73d4;}' +
+    '.ml-light .cln-slider-arrow{border-color:rgba(3,18,44,.12);color:#334155;background:rgba(255,255,255,.85);box-shadow:0 2px 10px rgba(3,18,44,.12);}' +
+    '.ml-light .cln-slider-arrow:hover,.ml-light .cln-slider-arrow:focus-visible{border-color:rgba(10,115,212,.6);color:#0a73d4;background:rgba(10,115,212,.06);}' +
+    '.ml-light .cln-slider-dot{background:rgba(3,18,44,.2);}.ml-light .cln-slider-dot[aria-current="true"]{background:#0a73d4;}' +
+    '@media(max-width:640px){.cln-slider-arrow{display:none;}.cln-slide{padding:2.25rem 1.25rem;min-height:200px;}}';
+  (document.head || document.documentElement).appendChild(sliderCss);
+
+  /* ----- 15m) Scroll-reveal -----
+     Content blocks fade/rise in as they enter view -- pure feel, so it's opt-in via a JS-added class
+     (no-JS keeps everything visible) and uses ONLY opacity/transform (no layout shift -> the CLS work
+     is untouched). Disabled under prefers-reduced-motion. */
+  var polishCss = document.createElement('style'); polishCss.id = 'cln-polish-css';
+  polishCss.textContent =
+    '@media (prefers-reduced-motion: no-preference){' +
+    '.cln-reveal{opacity:0;transform:translateY(18px);transition:opacity .6s cubic-bezier(.16,.84,.44,1),transform .6s cubic-bezier(.16,.84,.44,1);}' +
+    '.cln-reveal.cln-in{opacity:1;transform:none;}}';
+  (document.head || document.documentElement).appendChild(polishCss);
+
+  /* ----- 15k) Accessibility DOM fixes (Lighthouse) -----
+     (a) Generic "Learn more"/"Read more" links get an aria-label naming their card (link-text/SEO).
+     (b) The language switcher ships as an <svg> menu trigger carrying aria-haspopup/aria-expanded,
+         which are invalid without a button role -> add role="button" + a localized label.
+     (c) The hero bento cards are <h3> straight after the hero <h1> (a skipped level); insert one
+         visually-hidden <h2> before the first skipped heading so the outline is sequential. Runs on a
+         short retry since news/bento content hydrates async; every step is guarded/idempotent. */
+  (function a11yRuntime() {
+    var GEN = /^(learn more|read more|もっと見る|続きを読む|자세히 보기|더 보기|اقرأ المزيد|المزيد|اعرف المزيد)$/i;
+    var LANGLBL = { en: 'Change language', ar: 'تغيير اللغة', ja: '言語を変更', ko: '언어 변경' };
+    var CAP = { en: 'Our Capabilities', ar: 'قدراتنا', ja: '事業領域', ko: '핵심 역량' };
+    function loc() { var l = (document.documentElement.getAttribute('lang') || 'en').toLowerCase(); return (l === 'ar' || l === 'ko' || l === 'ja') ? l : 'en'; }
+    function run() {
+      var L = loc();
+      // (a) descriptive link text: append visually-hidden context so the accessible name AND the
+      //     textContent Lighthouse reads both become descriptive (aria-label alone doesn't satisfy
+      //     the link-text SEO audit, which inspects visible text).
+      var ABOUT = { en: ' about ', ar: ' — ', ja: '：', ko: ' — ' };
+      [].slice.call(document.querySelectorAll('a')).forEach(function (a) {
+        if (a.querySelector('.cln-linkext')) return;
+        var t = (a.textContent || '').trim(); if (!GEN.test(t)) return;
+        var card = a, h = null;
+        for (var i = 0; i < 6 && card; i++) { card = card.parentElement; if (card) { h = card.querySelector('h1,h2,h3,h4'); if (h) break; } }
+        if (!h || /cln-sr-heading/.test(h.className || '')) return;
+        var name = h.textContent.trim().replace(/\s+/g, ' '); if (!name) return;
+        var s = document.createElement('span'); s.className = 'cln-sr-only cln-linkext';
+        s.textContent = (ABOUT[L] || ABOUT.en) + name;
+        a.appendChild(s);
+      });
+      // (b) language-switcher svg trigger
+      [].slice.call(document.querySelectorAll('svg[aria-haspopup],svg[aria-expanded]')).forEach(function (s) {
+        if (!s.getAttribute('role')) s.setAttribute('role', 'button');
+        if (!s.getAttribute('aria-label')) s.setAttribute('aria-label', LANGLBL[L] || LANGLBL.en);
+      });
+      // (c) heading-order: insert a hidden heading before the first skipped level
+      if (!document.querySelector('.cln-sr-heading')) {
+        var hs = [].slice.call(document.querySelectorAll('h1,h2,h3,h4,h5,h6'));
+        for (var j = 0; j < hs.length - 1; j++) {
+          var lc = +hs[j].tagName[1], ln = +hs[j + 1].tagName[1];
+          if (ln > lc + 1 && hs[j + 1].parentNode) {
+            var sh = document.createElement('h' + (lc + 1));
+            sh.className = 'cln-sr-only cln-sr-heading'; sh.textContent = CAP[L] || CAP.en;
+            hs[j + 1].parentNode.insertBefore(sh, hs[j + 1]);
+            break;
+          }
+        }
+      }
+    }
+    var n = 0, iv = setInterval(function () { run(); if (++n > 20) clearInterval(iv); }, 250);
+    if (document.readyState !== 'loading') run();
+    document.addEventListener('DOMContentLoaded', run);
+  })();
+
+  /* ----- 15n) Scroll-reveal runtime (styling in rule 15m) ----- */
+  (function polishRuntime() {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Scroll-reveal: fade/rise content blocks in as they enter view (opacity/transform only).
+    if (reduce || !('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function (ents) {
+      ents.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('cln-in'); io.unobserve(en.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    var SELS = ['.cln-sec-h2', '#about-info [class*="rounded-xl"]', '[id="services"] a[class*="min-h-[10rem]"]', '#news [class*="rounded-2xl"]', '#news article', '#contact .cln-contact-item'];
+    function collect() {
+      SELS.forEach(function (sel) {
+        [].slice.call(document.querySelectorAll(sel)).forEach(function (e) {
+          if (e.classList.contains('cln-reveal') || e.classList.contains('cln-in')) return;
+          if (e.closest('#hero')) return;
+          e.classList.add('cln-reveal');
+          var idx = e.parentElement ? [].slice.call(e.parentElement.children).indexOf(e) : 0;
+          e.style.transitionDelay = (Math.min(Math.max(idx, 0), 8) * 55) + 'ms';
+          io.observe(e);
+        });
+      });
+    }
+    // No blanket timer here: IntersectionObserver reliably reveals each block as it scrolls into view,
+    // and below-fold blocks must STAY hidden until then. (No-IO / reduced-motion already bail out above
+    // without ever adding .cln-reveal, so content is never left hidden when the effect is unavailable.)
+    function start() {
+      var m = 0, iv2 = setInterval(function () { collect(); if (++m > 16) clearInterval(iv2); }, 250);
+      if (document.readyState !== 'loading') collect();
+      document.addEventListener('DOMContentLoaded', collect);
+    }
+    // Wait until the homepage CLS gate has revealed (html loses .cln-gate) so we only observe against
+    // the SETTLED layout -- otherwise transient intersections during the initial reflow (gate + section
+    // reorder + async cards) falsely reveal below-fold blocks. Inner pages have no gate -> starts at once.
+    (function waitSettled(tries) {
+      if (!document.documentElement.classList.contains('cln-gate') || tries > 100) {
+        requestAnimationFrame(function () { requestAnimationFrame(start); });
+      } else { setTimeout(function () { waitSettled(tries + 1); }, 60); }
+    })(0);
+  })();
+
+  /* ----- 15q) Micro-interactions: hero entrance + globe drift, stat count-up, card & button hover -----
+     Everything here is composited-only (opacity / transform / box-shadow -> no layout shift, the CLS
+     work stays intact) and wrapped in prefers-reduced-motion:no-preference so it disables entirely for
+     users who opt out. Card lift/glow and button feedback are pure CSS; the hero entrance is gate-aware
+     (it only arms while the homepage CLS gate still hides the page, so the opacity:0 start can never
+     flash) and the count-up ticks the first time the stat row scrolls into view. */
+  var motionCss = document.createElement('style'); motionCss.id = 'cln-motion-css';
+  motionCss.textContent =
+    '@media (prefers-reduced-motion: no-preference){' +
+    /* hero: one-time fade/rise once the gate lifts, plus a slow ambient drift on the globe canvas */
+    '#hero.cln-hero-start{opacity:0;transform:translateY(16px);}' +
+    '#hero.cln-hero-start.cln-hero-in{opacity:1;transform:none;transition:opacity .75s cubic-bezier(.16,.84,.44,1),transform .75s cubic-bezier(.16,.84,.44,1);}' +
+    '#hero canvas{animation:cln-drift 7.5s ease-in-out infinite;}' +
+    '@keyframes cln-drift{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}' +
+    /* cards: subtle lift + brand-blue glow on hover (services / news / bento) */
+    '#services a[class*="min-h-[10rem]"],#news article{transition:transform .25s cubic-bezier(.16,.84,.44,1),box-shadow .25s ease,border-color .25s ease;}' +
+    '#services a[class*="min-h-[10rem]"]:hover,#news article:hover{transform:translateY(-4px);box-shadow:0 14px 34px -12px rgba(45,112,240,.42);}' +
+    '.ml-light #services a[class*="min-h-[10rem]"]:hover,.ml-light #news article:hover{box-shadow:0 14px 30px -14px rgba(10,115,212,.3);}' +
+    '[class*="auto-rows-"] [class*="rounded-xl"]{transition:transform .25s cubic-bezier(.16,.84,.44,1),box-shadow .25s ease;}' +
+    '[class*="auto-rows-"] [class*="rounded-xl"]:hover{transform:translateY(-3px);box-shadow:0 12px 30px -14px rgba(45,112,240,.38);}' +
+    '.ml-light [class*="auto-rows-"] [class*="rounded-xl"]:hover{box-shadow:0 12px 26px -16px rgba(10,115,212,.28);}' +
+    /* buttons: soft lift + glow (header CTA, hero "Who we are", news read-more) */
+    '.cln-nav-cta{transition:transform .18s ease,box-shadow .18s ease!important;}' +
+    '.cln-nav-cta:hover{transform:translateY(-1px)!important;box-shadow:0 8px 20px -6px rgba(47,125,255,.55)!important;}' +
+    '#hero button{transition:transform .18s ease,box-shadow .18s ease,filter .18s ease;}' +
+    '#hero button:hover{transform:translateY(-2px);box-shadow:0 12px 26px -8px rgba(47,125,255,.5);}' +
+    '#news article a{transition:transform .18s ease;}#news article a:hover{transform:translateY(-1px);}' +
+    '}';
+  (document.head || document.documentElement).appendChild(motionCss);
+
+  /* ----- 15q-b) Micro-interaction runtime: hero entrance arming + stat count-up ----- */
+  (function motionRuntime() {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    // (a) Hero entrance -- only arm while the page is still gate-hidden so the opacity:0 start-state
+    //     can never flash; when the gate lifts, fade/rise it in. If #hero mounts after the gate has
+    //     already lifted, we skip the entrance entirely (no flash) rather than hide a visible hero.
+    (function armHero(tries) {
+      if (!document.documentElement.classList.contains('cln-gate')) return; // gate already lifted -> skip
+      var hero = document.getElementById('hero');
+      if (hero) {
+        hero.classList.add('cln-hero-start');
+        var lift = function () { requestAnimationFrame(function () { hero.classList.add('cln-hero-in'); }); };
+        if ('MutationObserver' in window) {
+          var mo = new MutationObserver(function () {
+            if (!document.documentElement.classList.contains('cln-gate')) { mo.disconnect(); lift(); }
+          });
+          mo.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+          setTimeout(function () { try { mo.disconnect(); } catch (e) {} hero.classList.add('cln-hero-in'); }, 9000); // failsafe: never leave it hidden
+        } else { setTimeout(lift, 600); }
+        return;
+      }
+      if (tries < 40) setTimeout(function () { armHero(tries + 1); }, 80); // #hero not mounted yet, still gated
+    })(0);
+
+    // (b) Stat count-up: numbers >= 10 tick from 0 the first time the stat row scrolls into view.
+    //     Non-numeric stats ("1st", "∞") are left untouched. The exact original string is restored on
+    //     finish so any prefix/suffix ("+", "%") and locale formatting are preserved verbatim.
+    if (!('IntersectionObserver' in window)) return;
+    function countUp(el) {
+      if (el.getAttribute('data-cln-count')) return;
+      var raw = (el.textContent || '').trim();
+      var m = raw.match(/\d[\d,]*/); if (!m) return;
+      var target = parseInt(m[0].replace(/,/g, ''), 10);
+      if (!(target >= 10)) return; // counting "1"/tiny values looks pointless -> leave static
+      el.setAttribute('data-cln-count', '1');
+      var start = null, dur = 1200;
+      el.textContent = raw.replace(m[0], '0');
+      requestAnimationFrame(function tick(ts) {
+        if (start == null) start = ts;
+        var p = Math.min((ts - start) / dur, 1), eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = raw.replace(m[0], String(Math.round(eased * target)));
+        if (p < 1) requestAnimationFrame(tick); else el.textContent = raw; // restore exact original
+      });
+    }
+    var sio = new IntersectionObserver(function (ents) {
+      ents.forEach(function (en) { if (en.isIntersecting) { countUp(en.target); sio.unobserve(en.target); } });
+    }, { threshold: 0.6 });
+    function scanStats() {
+      [].slice.call(document.querySelectorAll('#about-info [class*="text-3xl"][class*="font-bold"]')).forEach(function (el) {
+        if (!el.getAttribute('data-cln-count-seen')) { el.setAttribute('data-cln-count-seen', '1'); sio.observe(el); }
+      });
+    }
+    var sc = 0, siv = setInterval(function () { scanStats(); if (++sc > 16) clearInterval(siv); }, 250);
+    if (document.readyState !== 'loading') scanStats();
+    document.addEventListener('DOMContentLoaded', scanStats);
+  })();
+
+  /* ----- 15s) Ambient motion + UX polish -----
+     Motion (hero-glow breathing, accent-bar grow-in on reveal, nav-link underline slide) is
+     composited-only and reduced-motion gated. The scroll-progress bar, back-to-top button and
+     keyboard focus rings are UX (not decoration) so they stay on regardless of motion preference.
+     Card resting depth is added on the LIGHT theme only -- soft shadows read as depth on a pale bg
+     but flat/muddy on the dark bg, where the hover glow + borders already carry it. */
+  var enhCss = document.createElement('style'); enhCss.id = 'cln-enhance-css';
+  enhCss.textContent =
+    '@media (prefers-reduced-motion: no-preference){' +
+      '.dark body::before{animation:cln-glow 16s ease-in-out infinite;}' +
+      '@keyframes cln-glow{0%,100%{opacity:1}50%{opacity:.78}}' +
+      '.cln-sec-h2::after{transition:width .7s cubic-bezier(.16,.84,.44,1);}' +
+      '.cln-sec-h2.cln-reveal:not(.cln-in)::after{width:0;}' + // grows from 0 -> 60px as the heading reveals
+      'header a.cln-navlink::after{content:"";position:absolute;left:.75rem;right:.75rem;bottom:.4rem;height:2px;border-radius:2px;background:linear-gradient(90deg,#2f7dff,#5cc0ff);transform:scaleX(0);transform-origin:center;transition:transform .25s cubic-bezier(.16,.84,.44,1);}' +
+      'header a.cln-navlink:hover::after,header a.cln-navlink:focus-visible::after{transform:scaleX(1);}' +
+    '}' +
+    'header a.cln-navlink{position:relative;}' +
+    /* scroll-progress bar (brand gradient, driven by transform:scaleX) */
+    '#cln-progress{position:fixed;top:0;left:0;right:0;height:3px;transform:scaleX(0);transform-origin:0 50%;background:linear-gradient(90deg,#2f7dff,#3aa0ff,#5cc0ff);z-index:2147483600;pointer-events:none;will-change:transform;}' +
+    'html[dir="rtl"] #cln-progress{transform-origin:100% 50%;}' +
+    /* back-to-top FAB (sits ABOVE the theme toggle at bottom-right; mirrors to bottom-left in RTL) */
+    '#cln-top{position:fixed;bottom:5.4rem;right:2.2rem;width:2.75rem;height:2.75rem;border-radius:50%;border:1px solid rgba(255,255,255,.16);background:linear-gradient(180deg,#2f7dff,#1c5fe0);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .25s ease,transform .25s ease,visibility .25s;box-shadow:0 10px 24px -8px rgba(20,60,160,.55);z-index:2147483000;}' +
+    '#cln-top.cln-show{opacity:1;visibility:visible;transform:none;}' +
+    '#cln-top:hover{filter:brightness(1.1);transform:translateY(-2px);}' +
+    '#cln-top svg{width:1.15rem;height:1.15rem;}' +
+    'html[dir="rtl"] #cln-top{right:auto;left:2.2rem;}' +
+    '.ml-light #cln-top{border-color:rgba(2,12,30,.1);}' +
+    /* subtle resting depth on cards -- LIGHT theme only */
+    '.ml-light #services a[class*="min-h-[10rem]"],.ml-light #news article,.ml-light [class*="auto-rows-"] [class*="rounded-xl"]{box-shadow:0 4px 14px -9px rgba(16,42,90,.16);}' +
+    /* keyboard focus rings (a11y) -- both themes */
+    'a:focus-visible,button:focus-visible,[role="button"]:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid #3aa0ff;outline-offset:2px;border-radius:6px;}' +
+    '.ml-light a:focus-visible,.ml-light button:focus-visible,.ml-light [role="button"]:focus-visible{outline-color:#0a73d4;}';
+  (document.head || document.documentElement).appendChild(enhCss);
+
+  /* ----- 15s-b) UX runtime: scroll-progress bar, back-to-top button, nav-link tagging ----- */
+  (function uxRuntime() {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function loc() { var l = (document.documentElement.getAttribute('lang') || 'en').toLowerCase(); return (l === 'ar' || l === 'ja' || l === 'ko') ? l : 'en'; }
+    var TOPLBL = { en: 'Back to top', ar: 'العودة إلى الأعلى', ja: 'トップへ戻る', ko: '맨 위로' };
+    var bar = document.createElement('div'); bar.id = 'cln-progress';
+    var top = document.createElement('button'); top.id = 'cln-top'; top.type = 'button';
+    top.setAttribute('aria-label', TOPLBL[loc()] || TOPLBL.en);
+    top.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
+    top.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); });
+    function mount() { if (!document.body) return; if (!document.getElementById('cln-progress')) document.body.appendChild(bar); if (!document.getElementById('cln-top')) document.body.appendChild(top); }
+    var ticking = false;
+    function update() {
+      ticking = false;
+      var de = document.documentElement, st = window.pageYOffset || de.scrollTop || 0;
+      var h = de.scrollHeight - window.innerHeight, f = h > 0 ? Math.min(Math.max(st / h, 0), 1) : 0;
+      bar.style.transform = 'scaleX(' + f.toFixed(4) + ')';
+      if (st > 420) top.classList.add('cln-show'); else top.classList.remove('cln-show');
+    }
+    function onScroll() { if (ticking) return; ticking = true; requestAnimationFrame(update); }
+    // Tag the header's text nav links for the underline slide (skip logo, the CTA, and icon-only links).
+    function tagNav() {
+      [].slice.call(document.querySelectorAll('header a')).forEach(function (a) {
+        if (a.id === 'logo' || a.classList.contains('cln-nav-cta') || a.classList.contains('cln-navlink')) return;
+        if ((a.textContent || '').trim().length < 2 || a.querySelector('svg,img')) return;
+        a.classList.add('cln-navlink');
+      });
+    }
+    mount(); tagNav();
+    var n = 0, iv = setInterval(function () { mount(); tagNav(); if (++n > 16) clearInterval(iv); }, 250);
+    document.addEventListener('DOMContentLoaded', function () { mount(); tagNav(); update(); });
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    setTimeout(update, 300);
+  })();
+
+  /* ----- 15p) Newsletter signup band (reference: sami/aecl.com) -----
+     A site-wide "Stay updated" band directly above the footer. Captures the email to
+     content/subscribers.json via POST /api/v1/subscribe (see api/v1/[section].js) -- works
+     self-hosted and on Vercel. Localized, dark/light + RTL aware, honeypot + inline status.
+     Inserted only AFTER the homepage CLS gate lifts, so the section reorder can't push it to
+     the top; inner pages have no gate and get it immediately. */
+  (function newsletter() {
+    return; // "Stay updated" newsletter band removed site-wide (per client). Re-enable by removing this
+            // line; the POST /api/v1/subscribe endpoint stays in place either way.
+    var CSS = document.createElement('style'); CSS.id = 'cln-news-css';
+    CSS.textContent =
+      '.cln-news{max-width:70rem;margin:0 auto;padding:2.5rem 1.5rem 0;}' +
+      '.cln-news-inner{border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.03);border-radius:1rem;padding:1.9rem 1.5rem;text-align:center;}' +
+      '.cln-news-h{font-size:1.3rem;font-weight:800;color:#f4f4f5;margin:0 0 .35rem;}' +
+      '.cln-news-sub{font-size:.9rem;color:#a1a1aa;margin:0 0 1.15rem;}' +
+      '.cln-news-form{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;max-width:34rem;margin:0 auto;}' +
+      '.cln-news-input{flex:1 1 16rem;min-width:0;height:2.9rem;padding:0 1rem;border-radius:.6rem;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.04);color:#f4f4f5;font-size:.95rem;}' +
+      '.cln-news-input::placeholder{color:#8b8b93;}' +
+      '.cln-news-input:focus{outline:none;border-color:rgba(58,160,255,.7);}' +
+      '.cln-news-btn{height:2.9rem;padding:0 1.6rem;border:0;border-radius:.6rem;background:linear-gradient(180deg,#2f7dff,#1c5fe0);color:#fff;font-weight:700;font-size:.95rem;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease;box-shadow:0 6px 18px -7px rgba(47,125,255,.7);}' +
+      '.cln-news-btn:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 9px 22px -7px rgba(47,125,255,.85);}' +
+      '.cln-news-btn:disabled{opacity:.6;cursor:default;}' +
+      '.cln-news-status{min-height:1.2rem;margin-top:.75rem;font-size:.85rem;}' +
+      '.cln-news-status.ok{color:#3aa0ff;}.cln-news-status.err{color:#f87171;}' +
+      /* clip-based hide (NOT left:-9999px, which extends scrollWidth ~9999px on RTL pages) */
+      '.cln-news-hp{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;opacity:0;}' +
+      '.ml-light .cln-news-inner{border-color:rgba(3,18,44,.12);background:#ffffff;}' +
+      '.ml-light .cln-news-h{color:#0b1220;}.ml-light .cln-news-sub{color:#52525b;}' +
+      '.ml-light .cln-news-input{border-color:rgba(3,18,44,.15);background:#fff;color:#0b1220;}' +
+      '.ml-light .cln-news-input::placeholder{color:#94a3b8;}' +
+      '.ml-light .cln-news-status.ok{color:#0a73d4;}' +
+      '@media(max-width:640px){.cln-news-form{flex-direction:column;}.cln-news-btn,.cln-news-input{width:100%;flex:0 0 auto;}}';
+    (document.head || document.documentElement).appendChild(CSS);
+
+    function loc() { var l = (document.documentElement.getAttribute('lang') || 'en').toLowerCase(); return (l === 'ar' || l === 'ko' || l === 'ja') ? l : 'en'; }
+    var T = {
+      h: { en: 'Stay updated', ar: 'ابقَ على اطلاع', ja: '最新情報を受け取る', ko: '최신 소식 받기' },
+      sub: { en: 'Get our latest news and updates.', ar: 'احصل على آخر أخبارنا ومستجداتنا.', ja: '最新のニュースとアップデートをお届けします。', ko: '최신 뉴스와 소식을 받아보세요.' },
+      ph: { en: 'Email address', ar: 'البريد الإلكتروني', ja: 'メールアドレス', ko: '이메일 주소' },
+      btn: { en: 'Subscribe', ar: 'اشترك', ja: '登録', ko: '구독' },
+      sending: { en: 'Subscribing…', ar: 'جارٍ الاشتراك…', ja: '登録中…', ko: '구독 중…' },
+      ok: { en: "Thanks — you're subscribed.", ar: 'شكراً — تم اشتراكك.', ja: 'ご登録ありがとうございます。', ko: '구독해 주셔서 감사합니다.' },
+      bad: { en: 'Please enter a valid email.', ar: 'يرجى إدخال بريد إلكتروني صحيح.', ja: '有効なメールアドレスを入力してください。', ko: '유효한 이메일을 입력해 주세요.' },
+      err: { en: 'Something went wrong. Please try again.', ar: 'حدث خطأ ما. حاول مرة أخرى.', ja: 'エラーが発生しました。もう一度お試しください。', ko: '문제가 발생했습니다. 다시 시도해 주세요.' }
+    };
+    var RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    function inject() {
+      if (document.querySelector('.cln-news')) return true;
+      var footer = document.querySelector('footer'); if (!footer || !footer.parentNode) return false;
+      var L = loc(); function t(k) { return T[k][L] || T[k].en; }
+      var sec = document.createElement('section'); sec.className = 'cln-news'; sec.setAttribute('aria-label', t('h'));
+      sec.innerHTML =
+        '<div class="cln-news-inner">' +
+        '<h2 class="cln-news-h">' + t('h') + '</h2>' +
+        '<p class="cln-news-sub">' + t('sub') + '</p>' +
+        '<form class="cln-news-form" novalidate>' +
+        '<label class="cln-sr-only" for="cln-news-email">' + t('ph') + '</label>' +
+        '<input id="cln-news-email" class="cln-news-input" type="email" autocomplete="email" placeholder="' + t('ph') + '" required>' +
+        '<input class="cln-news-hp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" name="company">' +
+        '<button class="cln-news-btn" type="submit">' + t('btn') + '</button>' +
+        '</form>' +
+        '<div class="cln-news-status" role="status" aria-live="polite"></div>' +
+        '</div>';
+      footer.parentNode.insertBefore(sec, footer);
+      var form = sec.querySelector('form'), input = sec.querySelector('.cln-news-input'),
+        hp = sec.querySelector('.cln-news-hp'), btn = sec.querySelector('.cln-news-btn'), status = sec.querySelector('.cln-news-status');
+      form.addEventListener('submit', function (e) {
+        e.preventDefault(); status.className = 'cln-news-status';
+        var email = (input.value || '').trim();
+        if (!RE.test(email)) { status.textContent = t('bad'); status.className = 'cln-news-status err'; return; }
+        var origLabel = btn.textContent;
+        btn.disabled = true; btn.textContent = t('sending'); // loading state -> clear click feedback
+        fetch('/api/v1/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: email, lang: L, company: hp.value }) })
+          .then(function (r) { return r.ok ? r.json() : Promise.reject(0); })
+          .then(function (d) { if (d && d.ok) { status.textContent = t('ok'); status.className = 'cln-news-status ok'; input.value = ''; } else throw 0; })
+          .catch(function () { status.textContent = t('err'); status.className = 'cln-news-status err'; })
+          .then(function () { btn.disabled = false; btn.textContent = origLabel; });
+      });
+      return true;
+    }
+    // Wait for the homepage CLS gate to lift (reorder done) so the band lands above the footer,
+    // then insert -- retrying only until the footer is present. Inner pages have no gate.
+    (function loop(tries) {
+      if (document.documentElement.classList.contains('cln-gate') && tries <= 100) { setTimeout(function () { loop(tries + 1); }, 60); return; }
+      if (inject() || tries > 160) return;
+      setTimeout(function () { loop(tries + 1); }, 120);
+    })(0);
+  })();
+
+  /* ----- 15r) Contact info as icon buttons -----
+     Present the contact methods as a row of colour-coded icon chips (like a share row) pointing to
+     each channel -- Email, Call, WhatsApp, LinkedIn, Location -- with the address + hours kept as a
+     small reference line. Replaces the wordier CTA + 4-cell grid; runs on the homepage contact section
+     (injected) and the standalone /contact page. Localized, dark/light aware, honours the .cln-contact. */
+  (function contactIcons() {
+    var CSS = document.createElement('style'); CSS.id = 'cln-cbtn-css';
+    CSS.textContent =
+      '.cln-cbtns{display:flex;flex-wrap:wrap;justify-content:center;gap:1.25rem;margin:1.6rem auto 0;max-width:42rem;}' +
+      '.cln-cbtn{display:flex;flex-direction:column;align-items:center;gap:.55rem;text-decoration:none;width:5rem;}' +
+      '.cln-cbtn-ico{width:3.35rem;height:3.35rem;border-radius:.95rem;display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:0 8px 20px -8px rgba(0,0,0,.55);transition:transform .2s ease,box-shadow .2s ease,filter .2s ease;}' +
+      '.cln-cbtn:hover .cln-cbtn-ico,.cln-cbtn:focus-visible .cln-cbtn-ico{transform:translateY(-3px);box-shadow:0 14px 28px -8px rgba(0,0,0,.6);filter:brightness(1.08);}' +
+      '.cln-cbtn-ico svg{width:1.55rem;height:1.55rem;}' +
+      '.cln-cbtn-label{font-size:.82rem;font-weight:600;color:#a1a1aa;}' +
+      '.ml-light .cln-cbtn-label{color:#475569;}' +
+      '.cln-cbtn-email .cln-cbtn-ico{background:#2f6fed;}' +
+      '.cln-cbtn-call .cln-cbtn-ico{background:#16a34a;}' +
+      '.cln-cbtn-wa .cln-cbtn-ico{background:#25d366;}' +
+      '.cln-cbtn-in .cln-cbtn-ico{background:#0a66c2;}' +
+      '.cln-cbtn-loc .cln-cbtn-ico{background:#dc2626;}' +
+      '.cln-cinfo{margin:1.7rem auto 0;font-size:.9rem;line-height:1.7;color:#a1a1aa;max-width:34rem;}' +
+      '.ml-light .cln-cinfo{color:#52525b;}' +
+      '.cln-cinfo b{color:#e4e4e7;font-weight:600;}.ml-light .cln-cinfo b{color:#0b1220;}';
+    (document.head || document.documentElement).appendChild(CSS);
+
+    function loc() { var l = (document.documentElement.getAttribute('lang') || 'en').toLowerCase(); return (l === 'ar' || l === 'ko' || l === 'ja') ? l : 'en'; }
+    var S = { // lucide-style glyphs (stroke) + brand fills (WhatsApp/LinkedIn)
+      mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>',
+      phone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>',
+      wa: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.47-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.9 0-3.18-1.24-6.16-3.48-8.41Z"/></svg>',
+      in: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5c0 1.38-1.11 2.5-2.48 2.5S.02 4.88.02 3.5 1.13 1 2.5 1s2.48 1.12 2.48 2.5zM5 8H0v16h5V8zm7.98 0H8.01v16h4.97v-8.4c0-4.67 6.03-5.05 6.03 0V24H24V13.87c0-7.88-8.92-7.59-11.02-3.71V8z"/></svg>',
+      pin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>'
+    };
+    var mapsQ = encodeURIComponent('3Lines Advanced Technologies Company, Building 2148, King Abdullah Branch Road, Riyadh 13215, Saudi Arabia');
+    var BTNS = [
+      { c: 'email', href: 'mailto:info@3lines.com.sa', svg: S.mail, lbl: { en: 'Email', ar: 'البريد', ja: 'メール', ko: '이메일' } },
+      { c: 'call', href: 'tel:+966112252433', svg: S.phone, lbl: { en: 'Call', ar: 'اتصل', ja: '電話', ko: '전화' } },
+      { c: 'wa', href: 'https://wa.me/966112252433', ext: 1, svg: S.wa, lbl: { en: 'WhatsApp', ar: 'واتساب', ja: 'WhatsApp', ko: 'WhatsApp' } },
+      { c: 'in', href: 'https://www.linkedin.com/company/3lines', ext: 1, svg: S.in, lbl: { en: 'LinkedIn', ar: 'لينكدإن', ja: 'LinkedIn', ko: 'LinkedIn' } },
+      { c: 'loc', href: 'https://www.google.com/maps/search/?api=1&query=' + mapsQ, ext: 1, svg: S.pin, lbl: { en: 'Location', ar: 'الموقع', ja: '所在地', ko: '위치' } }
+    ];
+    function bodyOf(it, sep) {
+      if (!it) return '';
+      var cl = it.cloneNode(true);
+      var h = cl.querySelector('h3'); if (h) h.remove();
+      var ic = cl.querySelector('.cln-contact-ico'); if (ic) ic.remove();
+      // break at <br> / block boundaries so multi-line address & hours don't run together
+      var tmp = document.createElement('div');
+      tmp.innerHTML = cl.innerHTML.replace(/<br\s*\/?>|<\/(p|small|div|li|h[1-6])>/gi, '|||');
+      var parts = tmp.textContent.split('|||').map(function (s) { return s.replace(/\s+/g, ' ').trim(); }).filter(Boolean);
+      return parts.join(sep || ', ');
+    }
+    function run() {
+      var c = document.querySelector('.cln-contact');
+      if (!c || c.querySelector('.cln-cbtns')) return !!c; // idempotent
+      var L = loc();
+      var row = document.createElement('div'); row.className = 'cln-cbtns';
+      BTNS.forEach(function (b) {
+        var a = document.createElement('a'); a.className = 'cln-cbtn cln-cbtn-' + b.c; a.href = b.href;
+        if (b.ext) { a.target = '_blank'; a.rel = 'noopener'; }
+        var lb = b.lbl[L] || b.lbl.en; a.setAttribute('aria-label', lb);
+        a.innerHTML = '<span class="cln-cbtn-ico">' + b.svg + '</span><span class="cln-cbtn-label">' + lb + '</span>';
+        row.appendChild(a);
+      });
+      var lead = c.querySelector('.cln-contact-lead');
+      if (lead && lead.parentNode === c) c.insertBefore(row, lead.nextSibling); else c.insertBefore(row, c.firstChild);
+      // Drop the wordy CTA / grid / linkedin line. The address + business hours are intentionally NOT
+      // repeated here (they already live in the footer address strip) -- the Contact section is now just
+      // the lead line + the coloured channel buttons, per client request.
+      var kill = ['.cln-contact-cta', '.cln-contact-grid', '.cln-contact-linkedin'];
+      kill.forEach(function (sel) { var el = c.querySelector(sel); if (el) el.style.display = 'none'; });
+      return true;
+    }
+    var n = 0, iv = setInterval(function () { if (run() || ++n > 60) clearInterval(iv); }, 200);
+    if (document.readyState !== 'loading') run();
+    document.addEventListener('DOMContentLoaded', run);
+  })();
+
+  /* ----- 16b) Tag flat/LIGHT partner logos -----
+     The partner strip (rule 16) shows every logo in its REAL colour, at full opacity, all the time.
+     A few logos are flat WHITE/near-white assets (Airbus, MI, SAMI Advanced ...) -- on the light
+     theme's pale bg `filter:none` would make them white-on-white and vanish. Sample each logo's
+     pixels: if its visible pixels are mostly bright AND carry little real colour, tag it
+     `cln-light-logo` so light mode inverts it dark (coloured/dark logos read fine as-is on both
+     backgrounds). Same-origin assets, so the canvas isn't tainted. */
   (function tagMonoLogos() {
     function sample(im) {
       try {
         var w = 24, h = 24, c = document.createElement('canvas'); c.width = w; c.height = h;
         var x = c.getContext('2d'); x.drawImage(im, 0, 0, w, h);
-        var d = x.getImageData(0, 0, w, h).data, maxSat = 0;
+        var d = x.getImageData(0, 0, w, h).data, sumLum = 0, opq = 0, colored = 0, trans = 0, tot = 0;
         for (var i = 0; i < d.length; i += 4) {
-          if (d[i + 3] < 30) continue; // ignore transparent pixels
+          tot++;
+          if (d[i + 3] < 30) { trans++; continue; } // transparent pixel
           var r = d[i], g = d[i + 1], b = d[i + 2], mx = Math.max(r, g, b), mn = Math.min(r, g, b);
-          var s = mx ? (mx - mn) / mx : 0; if (s > maxSat) maxSat = s;
+          sumLum += (0.299 * r + 0.587 * g + 0.114 * b) / 255; opq++;
+          if (mx && (mx - mn) / mx > 0.3) colored++; // a clearly-coloured pixel
         }
-        if (maxSat < 0.15) im.classList.add('cln-mono-logo');
-      } catch (e) { /* tainted/unsupported -> leave untagged (still greys + lifts on hover) */ }
+        if (!opq) return;
+        var avgLum = sumLum / opq, colorFrac = colored / opq, transFrac = trans / tot;
+        // Only invert TRUE white-on-transparent logos: they must have a genuinely transparent bg
+        // (transFrac) -- a logo baked onto an opaque white CARD (e.g. a .jpg) must NOT be inverted or
+        // its card turns into a black block. Among those, invert the bright, low-colour ones (they'd
+        // go white-on-white on the light theme); very bright logos count even with some edge tint.
+        if (transFrac > 0.1 && avgLum > 0.6 && (avgLum > 0.78 || colorFrac < 0.25)) im.classList.add('cln-light-logo');
+      } catch (e) { /* tainted/unsupported -> leave untagged (shows real colour) */ }
     }
     function consider(im) {
       if (im.getAttribute('data-cln-mono')) return; // already handled (guard also rides onto clones)
@@ -869,6 +1453,13 @@
 
     /* On the landing: pull About + Contact content in as sections, then honour any #hash. */
     if (isHome()) {
+      // enhance.js is alive on the homepage -> cancel the head's short (2.5s) reveal failsafe and set
+      // a longer backstop. Otherwise, on a slow device the failsafe fires BEFORE this script finishes
+      // assembling the landing (injecting About/Contact/Share, reordering, expanding services), so the
+      // raw half-built homepage flashes for a moment. reorderSections still reveals the instant it IS
+      // assembled; this 8s timer only fires if assembly never completes. (If enhance.js were blocked
+      // entirely this line never runs, so the head's 2.5s failsafe stays in effect as the backstop.)
+      try { if (window.__clnGateTimer) { clearTimeout(window.__clnGateTimer); window.__clnGateTimer = setTimeout(window.__clnReveal, 8000); } } catch (e) {}
       // Canonicalise /en.html -> /en in the address bar (no reload) so users never get stuck on
       // the raw .html homepage after a breadcrumb "Home" click or pressing Back. The page now
       // renders identically either way (isHome() matches both), so this is purely cosmetic URL tidy.
@@ -929,9 +1520,12 @@
                 var ds = wrap.querySelector('.dshare'); if (ds) { var n = ds; while (n && n.parentElement && n.parentElement !== wrap) n = n.parentElement; if (n) n.remove(); }
                 var L = lng();
                 var sec = document.createElement('section'); sec.id = id; sec.className = 'cln-merged-section';
-                sec.innerHTML = '<h1 class="relative pb-12 mx-auto max-w-4xl text-center text-2xl font-bold text-zinc-100 md:text-4xl">' + (HEAD[page][L] || HEAD[page].en) + '</h1>';
+                sec.innerHTML = '<h2 class="relative pb-12 mx-auto max-w-4xl text-center text-2xl font-bold text-zinc-100 md:text-4xl">' + (HEAD[page][L] || HEAD[page].en) + '</h2>';
                 var holder = document.createElement('div'); holder.className = 'mx-auto max-w-7xl px-6 lg:px-8 cln-merged-body';
                 holder.appendChild(document.importNode(wrap, true));
+                // The About content ships its own "About us" eyebrow -> redundant with the centered
+                // "About" section heading above, so drop it (about only) and "About" appears once.
+                if (page === 'about') { var eb = holder.querySelector('p[class*="uppercase"][class*="tracking-wide"]'); if (eb) eb.remove(); }
                 sec.appendChild(holder);
                 var footer = document.querySelector('footer'); if (footer && footer.parentNode) footer.parentNode.insertBefore(sec, footer);
               }
@@ -950,9 +1544,16 @@
          can't leave it half-expanded) plus a few timed retries. */
       function expandServices() {
         var L = lng();
-        var cache = null, fetching = false;
+        var cache = null, fetching = false, gaveUp = false;
         function gridEl() { var s = document.getElementById('services'); return s ? s.querySelector('[class*="grid-cols"]') : null; }
         function slugOf(a) { var m = (a.getAttribute('href') || '').match(/services\/([a-z0-9-]+)\.html/); return m ? m[1] : null; }
+        // The "View all Services" button + the 4 extra cards are added asynchronously. On a hard
+        // reload the CLS gate can reveal the page before services.html loads, flashing the button
+        // (with only 6 cards) before it's hidden. So hide it the moment the grid exists — long
+        // before any reveal — and only restore it if the fetch ultimately fails (rare fallback).
+        function btnWrap() { var s = document.getElementById('services'); var b = s && s.querySelector('a[href$="/services.html"]'); return b ? (b.closest('div') || b) : null; }
+        function hideBtn() { if (gaveUp) return; var w = btnWrap(); if (w && w.style.display !== 'none') w.style.display = 'none'; }
+        function showBtn() { var w = btnWrap(); if (w) w.style.display = ''; }
         function inject() {
           if (!cache) return;
           var grid = gridEl(); if (!grid) return;
@@ -968,6 +1569,7 @@
         }
         function ensure() {
           var grid = gridEl(); if (!grid) return;
+          hideBtn(); // as soon as the grid is present, before any reveal
           if (cache) { inject(); return; }
           if (fetching) return; fetching = true;
           fetch(homePath() + '/services.html', { cache: 'no-store' }).then(function (r) { return r.ok ? r.text() : null; }).then(function (html) {
@@ -982,13 +1584,14 @@
         if (sec && 'MutationObserver' in window) {
           var t; new MutationObserver(function () { clearTimeout(t); t = setTimeout(ensure, 80); }).observe(sec, { childList: true, subtree: true });
         }
-        var n = 0, iv = setInterval(function () { if (++n > 15) return clearInterval(iv); ensure(); }, 250);
+        var n = 0, iv = setInterval(function () { if (cache) return clearInterval(iv); if (++n > 15) { clearInterval(iv); gaveUp = true; showBtn(); return; } ensure(); }, 250);
       }
       /* Add the "Share this page" social row above the footer on the landing page. The static
          markup can't live in en.html (React reconciles unknown static nodes out on first render),
          so we clone the share block from contact.html AFTER React renders — same pattern as the
          merged sections, which persist. Share targets are retargeted from /en/contact to the home page. */
       function injectShare() {
+        return; // "Share this page" row removed site-wide (per client) -- do not inject it on the homepage.
         var footer = document.querySelector('footer');
         if (!footer || !footer.parentNode || document.querySelector('.cln-share')) return;
         fetch(homePath() + '/contact.html', { cache: 'no-store' }).then(function (r) { return r.ok ? r.text() : null; }).then(function (html) {
@@ -1023,18 +1626,112 @@
       function run() { injectPage('about', 'about-info'); injectPage('contact', 'contact'); expandServices(); injectShare(); }
       if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
 
-      /* Reorder the landing sections to follow the nav order: Hero + feature cards stay on top as
-         the "Home" intro, then About -> Services -> News -> Partners -> Contact -> Share -> footer.
-         Runs once the injected About/Contact/Share sections exist. (Two elements share id="services"
-         in the source HTML, so disambiguate by content.) */
+      /* Build (once) the "Why 3Lines" value-prop carousel. Self-contained: markup + autoplay + swipe
+         + dots/arrows, localized, dark/light + RTL aware, reduced-motion safe. Styling in rule 15o. */
+      function buildSlider() {
+        if (document.getElementById('cln-slider')) return document.getElementById('cln-slider');
+        var L = (document.documentElement.getAttribute('lang') || 'en').toLowerCase();
+        if (['ar', 'ko', 'ja'].indexOf(L) < 0) L = 'en';
+        var rtl = L === 'ar';
+        var EYE = { en: 'WHY 3LINES', ar: 'لماذا ثري لاينز', ja: '3Lines を選ぶ理由', ko: '3Lines를 선택하는 이유' };
+        var SLIDES = [
+          { h: { en: 'The first licensed Saudi company', ar: 'أول شركة سعودية مرخّصة', ja: 'サウジ初の認可企業', ko: '사우디 최초의 공인 기업' },
+            s: { en: 'For aircraft spare parts, ground support equipment & simulators.', ar: 'لتوريد قطع غيار الطائرات ومعدات الدعم الأرضي وأجهزة المحاكاة.', ja: '航空機スペアパーツ・地上支援機器・シミュレーターを供給します。', ko: '항공기 부품, 지상 지원 장비 및 시뮬레이터를 공급합니다.' } },
+          { h: { en: '30+ years of aviation expertise', ar: 'خبرة تتجاوز 30 عاماً في الطيران', ja: '30年以上の航空分野の専門知識', ko: '30년 이상의 항공 분야 전문성' },
+            s: { en: 'Trusted across civil and military operations.', ar: 'موثوقة في العمليات المدنية والعسكرية.', ja: '民間および軍用の運用で信頼されています。', ko: '민간 및 군용 운용 분야에서 신뢰받습니다.' } },
+          { h: { en: 'A global sourcing network', ar: 'شبكة توريد عالمية', ja: 'グローバルな調達ネットワーク', ko: '글로벌 소싱 네트워크' },
+            s: { en: 'Genuine parts from the United States and worldwide.', ar: 'قطع غيار أصلية من الولايات المتحدة وحول العالم.', ja: '米国および世界各地から純正部品を調達します。', ko: '미국 및 전 세계에서 정품 부품을 조달합니다.' } },
+          { h: { en: 'A professional Saudi team', ar: 'فريق سعودي محترف', ja: 'プロフェッショナルなサウジチーム', ko: '전문 사우디 팀' },
+            s: { en: 'Serving operators in the Kingdom and beyond.', ar: 'يخدم المشغّلين في المملكة وخارجها.', ja: '王国内外の事業者にサービスを提供します。', ko: '왕국 내외의 운영자에게 서비스를 제공합니다.' } }
+        ];
+        function pick(o) { return o[L] || o.en; }
+        var sec = document.createElement('section');
+        sec.id = 'cln-slider'; sec.className = 'cln-slider';
+        sec.setAttribute('aria-roledescription', 'carousel'); sec.setAttribute('aria-label', pick(EYE));
+        var slidesHtml = SLIDES.map(function (sl, i) {
+          return '<div class="cln-slide" role="group" aria-roledescription="slide" aria-label="' + (i + 1) + ' / ' + SLIDES.length + '">' +
+            '<span class="cln-slide-eyebrow">' + pick(EYE) + '</span>' +
+            '<h3 class="cln-slide-head">' + pick(sl.h) + '</h3>' +
+            '<p class="cln-slide-sub">' + pick(sl.s) + '</p></div>';
+        }).join('');
+        var dotsHtml = SLIDES.map(function (sl, i) {
+          return '<button class="cln-slider-dot" type="button" aria-label="' + pick(sl.h) + '"' + (i === 0 ? ' aria-current="true"' : '') + '></button>';
+        }).join('');
+        // In RTL the visual prev/next arrows swap sides; the labels stay semantic.
+        var prevLbl = rtl ? '‹' : '‹', nextLbl = rtl ? '›' : '›';
+        sec.innerHTML =
+          '<div class="cln-slider-frame">' +
+          '<button class="cln-slider-arrow cln-slider-prev" type="button" aria-label="Previous">' + prevLbl + '</button>' +
+          '<div class="cln-slider-viewport"><div class="cln-slider-track">' + slidesHtml + '</div></div>' +
+          '<button class="cln-slider-arrow cln-slider-next" type="button" aria-label="Next">' + nextLbl + '</button>' +
+          '</div><div class="cln-slider-dots">' + dotsHtml + '</div>';
+
+        var track = sec.querySelector('.cln-slider-track');
+        var dots = [].slice.call(sec.querySelectorAll('.cln-slider-dot'));
+        var n = SLIDES.length, idx = 0;
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        function go(i) {
+          idx = (i + n) % n;
+          // always negative -- the slider is forced direction:ltr (rule 15o) so this never overflows in RTL
+          track.style.transform = 'translateX(-' + (idx * 100) + '%)';
+          dots.forEach(function (d, di) { if (di === idx) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current'); });
+        }
+        sec.querySelector('.cln-slider-next').addEventListener('click', function () { go(idx + 1); rest(); });
+        sec.querySelector('.cln-slider-prev').addEventListener('click', function () { go(idx - 1); rest(); });
+        dots.forEach(function (d, di) { d.addEventListener('click', function () { go(di); rest(); }); });
+        // autoplay -- always on (user wants an auto slider); pauses on hover/focus. Under reduced-motion
+        // the slide TRANSITION is made instant via CSS (rule 15o) so it advances without a sliding animation.
+        var timer = null;
+        function play() { if (timer) return; timer = setInterval(function () { go(idx + 1); }, 4500); }
+        function stop() { if (timer) { clearInterval(timer); timer = null; } }
+        function rest() { stop(); play(); }
+        sec.addEventListener('mouseenter', stop); sec.addEventListener('mouseleave', play);
+        sec.addEventListener('focusin', stop); sec.addEventListener('focusout', play);
+        // swipe (pointer)
+        var x0 = null;
+        var vp = sec.querySelector('.cln-slider-viewport');
+        vp.addEventListener('pointerdown', function (e) { x0 = e.clientX; stop(); });
+        vp.addEventListener('pointerup', function (e) {
+          if (x0 === null) return; var dx = e.clientX - x0; x0 = null;
+          if (Math.abs(dx) > 40) { go(idx + (dx < 0 ? 1 : -1)); } // LTR mechanics: swipe left = next
+          play();
+        });
+        play();
+        return sec;
+      }
+
+      /* Reorder the landing sections to follow the nav order: Hero + feature cards stay on top as the
+         "Home" intro, then About -> Why-3Lines slider -> Services -> News -> Partners -> Contact ->
+         Share -> footer. Runs once the injected About/Contact/Share sections exist. (Two elements share
+         id="services" in the source HTML, so disambiguate by content.) */
       function reorderSections() {
         var footer = document.querySelector('footer'); if (!footer || !footer.parentNode) return;
         var parent = footer.parentNode;
         var svc = [].slice.call(document.querySelectorAll('[id="services"]'));
         var servicesSec = svc.filter(function (s) { return s.querySelector('a[class*="min-h-[10rem]"]'); })[0];
         var partnersSec = svc.filter(function (s) { return s.querySelector('#mini-slider-partners'); })[0];
-        var seq = [document.getElementById('about-info'), servicesSec, document.getElementById('news'), partnersSec, document.getElementById('contact'), document.querySelector('.cln-share')];
-        seq.forEach(function (sec) { if (sec && sec !== footer && sec.parentNode) parent.insertBefore(sec, footer); });
+        // Section eyebrows (rule 15h) -- localized kicker above each heading, complementing (not
+        // repeating) the title below it. Done here, pre-reveal, so the added line never shifts layout.
+        var EYE = {
+          services: { en: 'What we do', ar: 'ما نقوم به', ja: '事業内容', ko: '우리가 하는 일' },
+          partners: { en: 'Trusted by', ar: 'يثقون بنا', ja: '信頼と実績', ko: '신뢰의 파트너십' },
+          news: { en: 'Newsroom', ar: 'مستجدات', ja: 'お知らせ', ko: '새 소식' }
+        };
+        function decorateHeading(sec, key) {
+          if (!sec) return; var h2 = sec.querySelector('h2'); if (!h2 || h2.getAttribute('data-cln-eye')) return;
+          h2.setAttribute('data-cln-eye', '1'); h2.classList.add('cln-sec-h2');
+          var txt = EYE[key] && (EYE[key][lang()] || EYE[key].en); if (!txt) return;
+          var e = document.createElement('span'); e.className = 'cln-eyebrow'; e.textContent = txt;
+          h2.insertBefore(e, h2.firstChild);
+        }
+        decorateHeading(servicesSec, 'services');
+        decorateHeading(partnersSec, 'partners');
+        decorateHeading(document.getElementById('news'), 'news');
+        var slider = buildSlider();
+        var seq = [document.getElementById('about-info'), slider, servicesSec, document.getElementById('news'), partnersSec, document.getElementById('contact')];
+        // insertBefore MOVES existing sections and INSERTS the freshly-built slider (no parentNode yet),
+        // so gate only on null/footer -- not on parentNode.
+        seq.forEach(function (sec) { if (sec && sec !== footer) parent.insertBefore(sec, footer); });
         // landing layout is now assembled in its final order — reveal it (the head gate hid the
         // page with visibility:hidden so this whole reflow never shows as a jump / counts as CLS).
         // Also wait for the web fonts so the font-swap happens while still hidden (no post-reveal
@@ -1047,43 +1744,55 @@
       }
       var rtries = 0;
       var riv = setInterval(function () {
-        var ready = document.getElementById('about-info') && document.getElementById('contact') && document.querySelector('.cln-share');
+        var ready = document.getElementById('about-info') && document.getElementById('contact');
         if (ready || ++rtries > 60) { if (ready) reorderSections(); clearInterval(riv); }
       }, 150);
 
-      /* Add a 4th "Cybersecurity" feature card and rebalance the bento to a 2x2 on the left:
-         Defense shrinks from col-span-2 to col-span-1, and the new card sits beside it
-         (so the left becomes Defense + Cybersecurity / Optokon + ATV, with XR tall on the right). */
+      /* The synthetic "Cybersecurity" bento card was removed -- it was a clone with no real service,
+         page or link behind it, and only rendered on the English homepage. The bento now shows the
+         same real cards in every locale (Defense wide / Optokon + ATV / XR). This just reports when
+         the bento has rendered so the watermark pass below can run; Defense keeps its original span. */
       function addBentoCard() {
-        var h3s = [].slice.call(document.querySelectorAll('h3'));
-        function cardByTitle(re) {
-          var h = h3s.find(function (x) { return re.test(x.textContent.trim()); }); if (!h) return null;
-          var c = h; while (c && !/rounded-xl/.test((c.getAttribute && c.getAttribute('class')) || '')) c = c.parentElement; return c;
+        return [].slice.call(document.querySelectorAll('[class*="auto-rows-"] [class*="rounded-xl"]'))
+          .some(function (c) { return c.querySelector('h3'); });
+      }
+      /* Give the plain bento cards (Defense Technology, Cybersecurity) the visual weight the others
+         carry (Optokon logo / ATV "Soon!" / XR image): a large, faint ghosted clone of the card's OWN
+         icon in the top-right corner (overflow-hidden clips it for a peeking-corner effect). Subtle
+         (~10% opacity), brand-blue, theme-aware, brightens slightly on card hover. Skips any card that
+         already has an image, a logo bg, or the "Soon" watermark. */
+      function bentoWatermarks() {
+        if (!document.getElementById('cln-bento-wm-css')) {
+          var s = document.createElement('style'); s.id = 'cln-bento-wm-css';
+          s.textContent =
+            '.cln-bento-wm{position:absolute;top:-1.4rem;right:-1.4rem;width:11rem;height:11rem;pointer-events:none;color:#3aa0ff;opacity:.11;transition:opacity .3s ease,transform .3s ease;}' +
+            '.cln-bento-wm svg{width:100%;height:100%;display:block;}' +
+            '.ml-light .cln-bento-wm{color:#0a73d4;opacity:.085;}' +
+            '.group:hover .cln-bento-wm{opacity:.17;transform:scale(1.05) rotate(-4deg);}';
+          (document.head || document.documentElement).appendChild(s);
         }
-        var defense = cardByTitle(/^Defense Technology/);
-        var optokon = cardByTitle(/^Optokon Middle East/);
-        if (!defense || !optokon) return false;
-        var grid = optokon.parentElement; if (!grid) return false;
-        if (grid.querySelector('[data-cln-bento]')) return true; // idempotent
-        var clone = optokon.cloneNode(true);
-        clone.setAttribute('data-cln-bento', '1');
-        var logoBg = clone.querySelector('[style*="background-image"]'); if (logoBg && logoBg.parentNode) logoBg.parentNode.removeChild(logoBg);
-        var icon = clone.querySelector('svg');
-        if (icon) {
-          icon.setAttribute('viewBox', '0 0 24 24'); icon.setAttribute('fill', 'none'); icon.setAttribute('stroke', 'currentColor');
-          icon.setAttribute('stroke-width', '2'); icon.setAttribute('stroke-linecap', 'round'); icon.setAttribute('stroke-linejoin', 'round');
-          icon.setAttribute('class', ((icon.getAttribute('class') || '').replace(/fill-zinc-\d+/g, '')).replace(/\s+/g, ' ').trim());
-          icon.innerHTML = '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>';
-        }
-        var h3 = clone.querySelector('h3'); if (h3) h3.textContent = 'Cybersecurity';
-        var p = clone.querySelector('p'); if (p) p.textContent = 'Securing critical defense and aviation systems';
-        [].slice.call(clone.querySelectorAll('a')).forEach(function (a) { if (a.parentNode) a.parentNode.removeChild(a); });
-        if (defense.nextSibling) grid.insertBefore(clone, defense.nextSibling); else grid.appendChild(clone);
-        defense.setAttribute('class', defense.getAttribute('class').replace(/md:col-span-2/g, 'md:col-span-1').replace(/lg:col-span-2/g, 'lg:col-span-1'));
-        return true;
+        var cards = [].slice.call(document.querySelectorAll('[class*="auto-rows-"] [class*="rounded-xl"]'))
+          .filter(function (c) { return c.querySelector('h3'); });
+        cards.forEach(function (c) {
+          if (c.querySelector('.cln-bento-wm')) return;                       // idempotent
+          if (c.querySelector('img') || c.querySelector('[style*="background-image"]') || /soon/i.test(c.textContent)) return; // only plain cards
+          var icon = c.querySelector('svg'); if (!icon) return;
+          var wm = document.createElement('div'); wm.className = 'cln-bento-wm'; wm.setAttribute('aria-hidden', 'true');
+          var clone = icon.cloneNode(true);
+          clone.removeAttribute('width'); clone.removeAttribute('height'); clone.removeAttribute('class');
+          wm.appendChild(clone);
+          c.insertBefore(wm, c.firstChild);
+        });
       }
       var btries = 0;
-      var biv = setInterval(function () { if (addBentoCard() || ++btries > 60) clearInterval(biv); }, 150);
+      var biv = setInterval(function () {
+        if (addBentoCard() || ++btries > 60) {
+          clearInterval(biv);
+          // retry the (idempotent) watermark pass a few times so both plain cards get decorated
+          // regardless of when the Cybersecurity clone / icons finish settling.
+          var wt = 0, wiv = setInterval(function () { bentoWatermarks(); if (++wt > 15) clearInterval(wiv); }, 250);
+        }
+      }, 150);
     }
   })();
 })();
