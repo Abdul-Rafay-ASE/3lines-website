@@ -102,23 +102,6 @@
     }
   },
   {
-    "slug": "generators-and-ups",
-    "hue": "#ffb24a",
-    "icon": "zap",
-    "title": {
-      "en": "Generators and UPS",
-      "ar": "المولّدات وأنظمة الطاقة غير المنقطعة",
-      "ko": "발전기 및 UPS",
-      "ja": "発電機およびUPS"
-    },
-    "description": {
-      "en": "Maintain and repair generators and UPS systems to ensure power continuity and minimize downtime, with spare parts when needed.",
-      "ar": "صيانة وإصلاح المولّدات وأنظمة الطاقة غير المنقطعة لضمان استمرارية الطاقة وتقليل الأعطال مع توفير قطع الغيار عند الحاجة.",
-      "ko": "필요 시 예비 부품과 함께 발전기 및 UPS 시스템을 정비·수리하여 전력 연속성을 보장하고 가동 중단을 최소화합니다.",
-      "ja": "必要なときにスペアパーツとともに、発電機およびUPSシステムを整備・修理し、電力の継続性を確保しダウンタイムを最小限に抑えます。"
-    }
-  },
-  {
     "slug": "us-government-support-services",
     "hue": "#4f8cff",
     "icon": "shield",
@@ -136,23 +119,6 @@
     }
   },
   {
-    "slug": "english-language-training",
-    "hue": "#36c2cf",
-    "icon": "cap",
-    "title": {
-      "en": "English Language Training",
-      "ar": "تدريب اللغة الإنجليزية",
-      "ko": "영어 교육",
-      "ja": "英語教育"
-    },
-    "description": {
-      "en": "We provide advanced English language training with highly experienced trainers.",
-      "ar": "نقدّم تدريباً متقدماً في اللغة الإنجليزية على يد مدربين ذوي خبرة عالية.",
-      "ko": "풍부한 경험을 갖춘 강사진과 함께 고급 영어 교육을 제공합니다.",
-      "ja": "豊富な経験を持つ講師陣による高度な英語教育を提供します。"
-    }
-  },
-  {
     "slug": "radar-system",
     "hue": "#5cc0ff",
     "icon": "radar",
@@ -167,6 +133,74 @@
       "ar": "تطوير وإدارة مشاريع الرادار العسكرية والمدنية.",
       "ko": "군용 및 민간 레이더 프로젝트의 개발 및 관리.",
       "ja": "軍用および民生用レーダープロジェクトの開発・管理。"
+    }
+  },
+  {
+    "slug": "procurement",
+    "hue": "#3aa0ff",
+    "icon": "package",
+    "title": {
+      "en": "Procurement",
+      "ar": "المشتريات",
+      "ko": "조달",
+      "ja": "調達"
+    },
+    "description": {
+      "en": "A dedicated procurement team sourcing genuine parts, equipment, and components — dependable global supply from the United States and worldwide.",
+      "ar": "فريق مشتريات متخصص لتوريد قطع الغيار والمعدات والمكوّنات الأصلية — إمداد عالمي موثوق من الولايات المتحدة وحول العالم.",
+      "ko": "정품 부품·장비·구성품을 조달하는 전담 조달 팀 — 미국과 전 세계로부터의 신뢰할 수 있는 글로벌 공급.",
+      "ja": "純正部品・機器・コンポーネントを調達する専任の調達チーム。米国および世界中からの信頼できるグローバル供給。"
+    }
+  },
+  {
+    "slug": "engineering",
+    "hue": "#4f8cff",
+    "icon": "wrench",
+    "title": {
+      "en": "Engineering",
+      "ar": "الهندسة",
+      "ko": "엔지니어링",
+      "ja": "エンジニアリング"
+    },
+    "description": {
+      "en": "A dedicated engineering department led by senior engineers, delivering technical solutions, integration, and hands-on support.",
+      "ar": "قسم هندسي متخصص بقيادة نخبة من المهندسين، يقدّم الحلول التقنية والتكامل والدعم الميداني.",
+      "ko": "숙련된 엔지니어가 이끄는 전담 엔지니어링 부서가 기술 솔루션, 통합, 현장 지원을 제공합니다.",
+      "ja": "ベテランエンジニアが率いる専門のエンジニアリング部門が、技術ソリューション、統合、実地サポートを提供します。"
+    }
+  },
+  {
+    "slug": "ai-solutions",
+    "hue": "#7a7bff",
+    "icon": "monitor",
+    "title": {
+      "en": "AI Solutions",
+      "ar": "حلول الذكاء الاصطناعي",
+      "ko": "AI 솔루션",
+      "ja": "AIソリューション"
+    },
+    "description": {
+      "en": "Sovereign AI — command centers, document intelligence, and operations agents. Bilingual (Arabic & English) with 100% in-Kingdom data residency.",
+      "ar": "ذكاء اصطناعي سيادي — مراكز قيادة وذكاء المستندات ووكلاء التشغيل، بالعربية والإنجليزية مع بقاء البيانات داخل المملكة بنسبة 100٪.",
+      "ko": "소버린 AI — 커맨드 센터, 문서 인텔리전스, 운영 에이전트. 아랍어·영어 지원 및 데이터 100% 왕국 내 보관.",
+      "ja": "ソブリンAI — コマンドセンター、ドキュメントインテリジェンス、業務エージェント。アラビア語・英語対応、データは100%王国内に保持。"
+    }
+  },
+  {
+    "slug": "accounts",
+    "hue": "#36c2cf",
+    "icon": "gauge",
+    "title": {
+      "en": "Accounts & Finance",
+      "ar": "الحسابات والمالية",
+      "ko": "회계·재무",
+      "ja": "経理・財務"
+    },
+    "description": {
+      "en": "A professional accounts and finance team ensuring transparent, compliant, and efficient financial management.",
+      "ar": "فريق محاسبة ومالية محترف يضمن إدارة مالية شفافة وممتثلة وفعّالة.",
+      "ko": "투명하고 규정을 준수하며 효율적인 재무 관리를 보장하는 전문 회계·재무 팀.",
+      "ja": "透明で法令に準拠した効率的な財務管理を実現する、プロフェッショナルな経理・財務チーム。"
     }
   }
 ]

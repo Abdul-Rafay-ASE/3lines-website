@@ -1010,7 +1010,7 @@
     function loc() { var l = (document.documentElement.getAttribute('lang') || 'en').toLowerCase(); return (l === 'ar' || l === 'ko' || l === 'ja') ? l : 'en'; }
     var S = { // real brand marks in their own colours (rendered on white app-icon tiles)
       outlook: '<svg viewBox="0 0 32 32"><rect x="3" y="7" width="17" height="18" rx="2.6" fill="#0F6CBD"/><path fill="#fff" d="M11.5 11.6c-3 0-4.9 2.5-4.9 6.4s1.9 6.4 4.9 6.4 4.9-2.5 4.9-6.4-1.9-6.4-4.9-6.4zm0 10.1c-1.6 0-2.5-1.5-2.5-3.7s.9-3.7 2.5-3.7 2.5 1.5 2.5 3.7-.9 3.7-2.5 3.7z"/><path fill="#28A8EA" d="M20.5 10H29a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-8.5V10z"/><path fill="#fff" d="M30 11.5l-4.7 3.1-4.5-3v-.9l4.5 3 4.7-3.1z" opacity=".85"/></svg>',
-      phone: '<svg viewBox="0 0 24 24" fill="#1BAA55"><path d="M20 15.5c-1.2 0-2.4-.2-3.6-.6-.3-.1-.7 0-1 .3l-2.2 2.2c-2.8-1.5-5.2-3.9-6.7-6.7l2.2-2.2c.3-.3.4-.6.3-1-.4-1.1-.6-2.4-.6-3.6 0-.6-.5-1-1-1H4c-.6 0-1 .4-1 1 0 9.4 7.6 17 17 17 .6 0 1-.5 1-1V16.5c0-.5-.4-1-1-1z"/></svg>',
+      phone: '<svg viewBox="0 0 24 24" fill="#2f6fed"><path d="M20 15.5c-1.2 0-2.4-.2-3.6-.6-.3-.1-.7 0-1 .3l-2.2 2.2c-2.8-1.5-5.2-3.9-6.7-6.7l2.2-2.2c.3-.3.4-.6.3-1-.4-1.1-.6-2.4-.6-3.6 0-.6-.5-1-1-1H4c-.6 0-1 .4-1 1 0 9.4 7.6 17 17 17 .6 0 1-.5 1-1V16.5c0-.5-.4-1-1-1z"/></svg>',
       wa: '<svg viewBox="0 0 24 24" fill="#25D366"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.47-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.9 0-3.18-1.24-6.16-3.48-8.41Z"/></svg>',
       in: '<svg viewBox="0 0 24 24" fill="#0A66C2"><path d="M4.98 3.5c0 1.38-1.11 2.5-2.48 2.5S.02 4.88.02 3.5 1.13 1 2.5 1s2.48 1.12 2.48 2.5zM5 8H0v16h5V8zm7.98 0H8.01v16h4.97v-8.4c0-4.67 6.03-5.05 6.03 0V24H24V13.87c0-7.88-8.92-7.59-11.02-3.71V8z"/></svg>',
       gmaps: '<img src="/assets/logos/google-maps.png" alt="" loading="lazy" decoding="async">',
@@ -1148,6 +1148,74 @@
       return true;
     }
     var n = 0, iv = setInterval(function () { if (run() || ++n > 60) clearInterval(iv); }, 200);
+    if (document.readyState !== 'loading') run();
+    document.addEventListener('DOMContentLoaded', run);
+  })();
+
+  /* ----- 18c) Services: reflect the new department cards (Procurement / Engineering / AI / Accounts) -----
+     The services grid is prerendered from the build, so the content/services.json edit only reaches the
+     API -- not the static cards -- until the site is rebuilt. Mirror it client-side: hide the two retired
+     cards and clone the matching-icon card for each new one (so the icon + styling come free). Idempotent
+     and rebuild-safe: skips any card already present, so it won't duplicate once a rebuild ships them. */
+  (function injectServices() {
+    function loc() { var l = (document.documentElement.getAttribute('lang') || 'en').toLowerCase(); return (l === 'ar' || l === 'ja' || l === 'ko') ? l : 'en'; }
+    var HIDE = ['english-language-training', 'generators-and-ups'];
+    var NEW = [
+      { slug: 'procurement', from: 'provide-spare-parts',
+        t: { en: 'Procurement', ar: 'المشتريات', ja: '調達', ko: '조달' },
+        d: { en: 'A dedicated procurement team sourcing genuine parts, equipment, and components — dependable global supply from the United States and worldwide.',
+             ar: 'فريق مشتريات متخصص لتوريد قطع الغيار والمعدات والمكوّنات الأصلية — إمداد عالمي موثوق من الولايات المتحدة وحول العالم.',
+             ja: '純正部品・機器・コンポーネントを調達する専任の調達チーム。米国および世界中からの信頼できるグローバル供給。',
+             ko: '정품 부품·장비·구성품을 조달하는 전담 조달 팀 — 미국과 전 세계로부터의 신뢰할 수 있는 글로벌 공급.' } },
+      { slug: 'engineering', from: 'maintaining-and-repairing',
+        t: { en: 'Engineering', ar: 'الهندسة', ja: 'エンジニアリング', ko: '엔지니어링' },
+        d: { en: 'A dedicated engineering department led by senior engineers, delivering technical solutions, integration, and hands-on support.',
+             ar: 'قسم هندسي متخصص بقيادة نخبة من المهندسين، يقدّم الحلول التقنية والتكامل والدعم الميداني.',
+             ja: 'ベテランエンジニアが率いる専門のエンジニアリング部門が、技術ソリューション、統合、実地サポートを提供します。',
+             ko: '숙련된 엔지니어가 이끄는 전담 엔지니어링 부서가 기술 솔루션, 통합, 현장 지원을 제공합니다.' } },
+      { slug: 'ai-solutions', from: 'supporting-the-simulator-system',
+        t: { en: 'AI Solutions', ar: 'حلول الذكاء الاصطناعي', ja: 'AIソリューション', ko: 'AI 솔루션' },
+        d: { en: 'Sovereign AI — command centers, document intelligence, and operations agents. Bilingual (Arabic & English) with 100% in-Kingdom data residency.',
+             ar: 'ذكاء اصطناعي سيادي — مراكز قيادة وذكاء المستندات ووكلاء التشغيل، بالعربية والإنجليزية مع بقاء البيانات داخل المملكة بنسبة 100٪.',
+             ja: 'ソブリンAI — コマンドセンター、ドキュメントインテリジェンス、業務エージェント。アラビア語・英語対応、データは100%王国内に保持。',
+             ko: '소버린 AI — 커맨드 센터, 문서 인텔리전스, 운영 에이전트. 아랍어·영어 지원 및 데이터 100% 왕국 내 보관.' } },
+      { slug: 'accounts', from: 'hydraulic-pneumatic',
+        t: { en: 'Accounts & Finance', ar: 'الحسابات والمالية', ja: '経理・財務', ko: '회계·재무' },
+        d: { en: 'A professional accounts and finance team ensuring transparent, compliant, and efficient financial management.',
+             ar: 'فريق محاسبة ومالية محترف يضمن إدارة مالية شفافة وممتثلة وفعّالة.',
+             ja: '透明で法令に準拠した効率的な財務管理を実現する、プロフェッショナルな経理・財務チーム。',
+             ko: '투명하고 규정을 준수하며 효율적인 재무 관리를 보장하는 전문 회계·재무 팀.' } }
+    ];
+    function run() {
+      var any = document.querySelector('[id="services"] a[class*="min-h-[10rem]"]');
+      var grid = any ? any.parentElement : null;
+      if (!grid) return false;
+      var cards = [].slice.call(grid.querySelectorAll('a[class*="min-h-[10rem]"]'));
+      if (cards.length < 6) return false; // grid not fully rendered yet
+      var L = loc();
+      cards.forEach(function (c) {
+        var href = c.getAttribute('href') || '';
+        for (var i = 0; i < HIDE.length; i++) if (href.indexOf(HIDE[i]) !== -1) c.style.display = 'none';
+      });
+      NEW.forEach(function (nw) {
+        if (grid.querySelector('[data-cln-svc="' + nw.slug + '"]')) return;
+        var wanted = nw.t[L] || nw.t.en;
+        if (cards.some(function (c) { var h = c.querySelector('h3,h2'); return h && h.textContent.trim() === wanted; })) return; // already there (rebuilt)
+        var tpl = null;
+        cards.forEach(function (c) { if ((c.getAttribute('href') || '').indexOf(nw.from) !== -1) tpl = c; });
+        if (!tpl) return;
+        var clone = tpl.cloneNode(true);
+        clone.setAttribute('data-cln-svc', nw.slug);
+        clone.style.display = ''; clone.classList.add('cln-in'); clone.classList.remove('cln-reveal');
+        clone.setAttribute('href', '/' + L + '/services.html');
+        [].slice.call(clone.querySelectorAll('.cln-linkext,.cln-sr-heading,.cln-bento-wm')).forEach(function (e) { e.remove(); });
+        var h = clone.querySelector('h3,h2'); if (h) h.textContent = wanted;
+        var p = clone.querySelector('p'); if (p) p.textContent = nw.d[L] || nw.d.en;
+        grid.appendChild(clone);
+      });
+      return true;
+    }
+    var m = 0, iv = setInterval(function () { run(); if (++m > 20) clearInterval(iv); }, 250);
     if (document.readyState !== 'loading') run();
     document.addEventListener('DOMContentLoaded', run);
   })();
