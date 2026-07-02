@@ -782,6 +782,10 @@
        even when not visible, starving the compositor on integrated GPUs. */
     '.cln-anim-off,.cln-anim-off *{animation-play-state:paused!important;}' +
     '#hero.cln-anim-off canvas{visibility:hidden!important;}' + // drop the WebGL globe's compositing while the hero is scrolled away
+    /* Lighten the hero CTA: hide its two most expensive decorative layers -- the -inset-full spinning
+       conic-gradient (animate-spin-around, larger than the button) and the shimmer sweep. Both repaint
+       every frame for a small visual flourish; the solid button + glow remain. (Globe + aurora text kept.) */
+    '#hero [class*="animate-spin-around"],#hero [class*="animate-shimmer-slide"]{display:none!important;}' +
     '@media (prefers-reduced-motion: no-preference){' +
       '.cln-sec-h2::after{transition:width .7s cubic-bezier(.16,.84,.44,1);}' +
       '.cln-sec-h2.cln-reveal:not(.cln-in)::after{width:0;}' + // grows from 0 -> 60px as the heading reveals
