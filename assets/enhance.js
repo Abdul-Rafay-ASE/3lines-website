@@ -1266,6 +1266,11 @@
         if (/description/.test(key) && desc) mt.setAttribute('content', desc);
         else if (/title/.test(key) && title) mt.setAttribute('content', title);
       });
+      // The shell's canonical / hreflang / og:url still point at the spare-parts template -- retarget
+      // them to this slug so search engines don't treat these as duplicates of that page.
+      var rep = function (s) { return s ? s.replace(/\/provide-spare-parts(?=$|[/?#])/, '/' + slug) : s; };
+      [].slice.call(document.querySelectorAll('link[rel="canonical"],link[rel="alternate"][hreflang]')).forEach(function (l) { l.setAttribute('href', rep(l.getAttribute('href'))); });
+      var ogu = document.querySelector('meta[property="og:url"]'); if (ogu) ogu.setAttribute('content', rep(ogu.getAttribute('content')));
     }
     fetch('/api/v1/services', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
       if (!j) return; var list = j.data || j;
