@@ -996,8 +996,13 @@
       '.ml-light .cln-cf-in{border-color:rgba(16,42,90,.15);background:#fff;color:#0b1220;}' +
       '.ml-light .cln-cf-in::placeholder{color:#94a3b8;}' +
       '.ml-light .cln-cf-status.ok{color:#0a73d4;}' +
-      /* proper breathing room between the contact block and the footer below it */
+      /* proper breathing room between the contact block and the footer below it (homepage) */
       '.cln-contact{padding-bottom:6.5rem !important;}' +
+      /* the contact PAGE wraps the block in an article template with huge py-40 + pb-28 padding, which
+         stacked with the above left a big empty gap above AND below the form. Tighten it on that page. */
+      '.cln-contact-page .cln-contact{padding-bottom:1.5rem !important;}' +
+      '.cln-contact-page [class*="py-40"]:has(.cln-contact){padding-top:3rem !important;padding-bottom:3rem !important;}' +
+      '.cln-contact-page [class*="pb-28"]:has(.cln-contact){padding-bottom:1.5rem !important;padding-top:2rem !important;}' +
       /* hide the stray article-template date that renders at the top of the contact page */
       '.cln-cdate-hide{display:none !important;}';
     (document.head || document.documentElement).appendChild(CSS);
@@ -1008,7 +1013,7 @@
       phone: '<svg viewBox="0 0 24 24" fill="#1BAA55"><path d="M20 15.5c-1.2 0-2.4-.2-3.6-.6-.3-.1-.7 0-1 .3l-2.2 2.2c-2.8-1.5-5.2-3.9-6.7-6.7l2.2-2.2c.3-.3.4-.6.3-1-.4-1.1-.6-2.4-.6-3.6 0-.6-.5-1-1-1H4c-.6 0-1 .4-1 1 0 9.4 7.6 17 17 17 .6 0 1-.5 1-1V16.5c0-.5-.4-1-1-1z"/></svg>',
       wa: '<svg viewBox="0 0 24 24" fill="#25D366"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.47-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.9 0-3.18-1.24-6.16-3.48-8.41Z"/></svg>',
       in: '<svg viewBox="0 0 24 24" fill="#0A66C2"><path d="M4.98 3.5c0 1.38-1.11 2.5-2.48 2.5S.02 4.88.02 3.5 1.13 1 2.5 1s2.48 1.12 2.48 2.5zM5 8H0v16h5V8zm7.98 0H8.01v16h4.97v-8.4c0-4.67 6.03-5.05 6.03 0V24H24V13.87c0-7.88-8.92-7.59-11.02-3.71V8z"/></svg>',
-      gmaps: '<svg viewBox="0 0 24 24"><path fill="#EA4335" d="M12 2.2c-4.05 0-7.3 3.25-7.3 7.3 0 5.45 7.3 12.5 7.3 12.5s7.3-7.05 7.3-12.5c0-4.05-3.25-7.3-7.3-7.3z"/><circle cx="12" cy="9.4" r="2.9" fill="#fff"/><circle cx="12" cy="9.4" r="1.5" fill="#4285F4"/></svg>',
+      gmaps: '<svg viewBox="0 0 24 24"><path fill="#34A853" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><path fill="#EA4335" d="M12 9 7.76 4.76A6 6 0 0 1 16.24 4.76Z"/><path fill="#FBBC04" d="M12 9 16.24 4.76A6 6 0 0 1 16.24 13.24Z"/><path fill="#4285F4" d="M12 9 7.76 13.24A6 6 0 0 0 7.76 4.76Z"/><circle cx="12" cy="9" r="3" fill="#fff"/><circle cx="12" cy="9" r="1.6" fill="#1A73E8"/></svg>',
       chat: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>'
     };
     var mapsQ = encodeURIComponent('3Lines Advanced Technologies Company, Building 2148, King Abdullah Branch Road, Riyadh 13215, Saudi Arabia');
@@ -1111,7 +1116,7 @@
       var kill = ['.cln-contact-cta', '.cln-contact-grid', '.cln-contact-linkedin'];
       kill.forEach(function (sel) { var el = c.querySelector(sel); if (el) el.style.display = 'none'; });
       // The contact PAGE gets a real message form; everywhere else gets a CTA button that links to it.
-      if (/\/contact(\/|$|\.html)/.test(location.pathname)) { buildForm(c, L); hideStrayDate(); } else buildCTA(c, L);
+      if (/\/contact(\/|$|\.html)/.test(location.pathname)) { document.documentElement.classList.add('cln-contact-page'); buildForm(c, L); hideStrayDate(); } else buildCTA(c, L);
       return true;
     }
     var n = 0, iv = setInterval(function () { if (run() || ++n > 60) clearInterval(iv); }, 200);
