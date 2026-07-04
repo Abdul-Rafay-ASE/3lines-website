@@ -204,7 +204,14 @@ async function save(){
   }catch(e){ toast('Save failed: '+e.message, true); }
 }
 
-function setDirty(){ app.dirty=true; render(); }
+// Mark the document dirty and enable the Save button(s) WITHOUT a full re-render — re-rendering on
+// every keystroke destroys and recreates the focused field, dropping the cursor after each character.
+// Structural changes (add / delete / toggle a tag) call render() explicitly right after setDirty(),
+// since those change the layout, not just a field's value.
+function setDirty(){
+  app.dirty=true;
+  document.querySelectorAll('.toolbar .btn:not(.secondary):not(.danger)').forEach(b=>{ b.disabled=false; b.textContent='Save changes'; });
+}
 
 /* ----------------- Login screen ----------------- */
 function renderLogin(){
@@ -555,7 +562,7 @@ function renderPartners(root){
         el('p',{},'Logos in the home page partners carousel and on the Partners & Clients page.'),
       ),
       el('div',{class:'toolbar'},
-        el('button',{class:'btn secondary',onclick:()=>{ list.push(newPartner()); app.editing={type:'partner',index:list.length-1}; setDirty(); }},'+ Add partner'),
+        el('button',{class:'btn secondary',onclick:()=>{ list.push(newPartner()); app.editing={type:'partner',index:list.length-1}; setDirty(); render(); }},'+ Add partner'),
         el('button',{class:'btn',disabled:!app.dirty,onclick:save}, app.dirty?'Save changes':'Saved'),
       )
     ),
@@ -570,7 +577,7 @@ function renderPartners(root){
         ),
         el('div',{class:'actions'},
           el('button',{class:'iconbtn',title:'Edit',onclick:()=>{app.editing={type:'partner',index:i};render();}},'✎'),
-          el('button',{class:'iconbtn danger',title:'Delete',onclick:()=>{ if(confirm('Delete this partner?')){ list.splice(i,1); setDirty(); }}},'×'),
+          el('button',{class:'iconbtn danger',title:'Delete',onclick:()=>{ if(confirm('Delete this partner?')){ list.splice(i,1); setDirty(); render(); }}},'×'),
         )
       ))
     )
@@ -623,7 +630,7 @@ function renderPosts(root){
         el('p',{},'Articles shown on /news. Each post has a title, summary, body, cover image, date, and tags — in English and Arabic.'),
       ),
       el('div',{class:'toolbar'},
-        el('button',{class:'btn secondary',onclick:()=>{ list.unshift(newPost()); st.meta.total = list.length; app.editing={type:'post',index:0}; setDirty(); }},'+ New post'),
+        el('button',{class:'btn secondary',onclick:()=>{ list.unshift(newPost()); st.meta.total = list.length; app.editing={type:'post',index:0}; setDirty(); render(); }},'+ New post'),
         el('button',{class:'btn',disabled:!app.dirty,onclick:save}, app.dirty?'Save changes':'Saved'),
       )
     ),
@@ -639,7 +646,7 @@ function renderPosts(root){
         ),
         el('div',{class:'actions'},
           el('button',{class:'iconbtn',title:'Edit',onclick:()=>{app.editing={type:'post',index:i};render();}},'✎'),
-          el('button',{class:'iconbtn danger',title:'Delete',onclick:()=>{ if(confirm('Delete this post?')){ list.splice(i,1); st.meta.total=list.length; setDirty(); }}},'×'),
+          el('button',{class:'iconbtn danger',title:'Delete',onclick:()=>{ if(confirm('Delete this post?')){ list.splice(i,1); st.meta.total=list.length; setDirty(); render(); }}},'×'),
         )
       ))
     )
@@ -699,7 +706,7 @@ function renderPostEditor(root, st, idx){
           return el('span',{class:'tagpill'+(on?' on':''),onclick:()=>{
             if(on) p.tags = p.tags.filter(x=>x.slug!==t.slug);
             else p.tags = [...p.tags, t];
-            setDirty();
+            setDirty(); render();
           }}, '#'+(t.name && t.name.en || t.slug));
         })
       ),
