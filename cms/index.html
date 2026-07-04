@@ -87,6 +87,22 @@
   .crumbs{color:var(--muted);font-size:.85rem;margin-bottom:10px}
   .crumbs a{color:var(--muted);text-decoration:none}
   .crumbs a:hover{color:var(--text)}
+  /* grouped sidebar */
+  .navgroup{font-size:.64rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);padding:14px 10px 4px;font-weight:700;opacity:.6}
+  .navgroup:first-of-type{padding-top:2px}
+  /* dashboard stat tiles */
+  .stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-bottom:22px}
+  .stat{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px}
+  .stat .n{font-size:1.9rem;font-weight:800;color:#fff;line-height:1}
+  .stat .l{color:var(--muted);font-size:.8rem;margin-top:6px}
+  /* homepage building blocks */
+  .hp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+  .hp-card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:6px}
+  .hp-card h4{margin:0;font-size:.95rem}
+  .hp-card p{margin:0;color:var(--muted);font-size:.83rem;flex:1}
+  .hp-card .tag{align-self:flex-start;font-size:.68rem;color:var(--muted);border:1px solid var(--border);border-radius:9999px;padding:2px 9px;margin-top:4px}
+  .quick{display:flex;gap:8px;flex-wrap:wrap}
+  @media (max-width:780px){ .navgroup{flex-basis:100%} }
 </style>
 </head>
 <body><script>(function(){try{if(window.__mlLight){document.documentElement.classList.remove('dark');if(document.body)document.body.classList.remove('dark');}}catch(e){}})();</script>
@@ -117,14 +133,20 @@ function iconSvg(name, color="currentColor", size=18){
 }
 
 /* ----------------- App state ----------------- */
-const app = { state:null, section:'siteInfo', editing:null /* {type,index} */, dirty:false };
+const app = { state:null, section:'dashboard', editing:null /* {type,index} */, dirty:false };
 
-const SECTION_META = [
-  {id:'siteInfo', label:'Site Info', icon:'shield'},
-  {id:'services', label:'Services', icon:'wrench'},
-  {id:'partners', label:'Partners', icon:'cap'},
-  {id:'posts',    label:'News',     icon:'radar'},
+// Section registry — the sidebar AND the main router are both driven entirely by this one list, so
+// adding a new area of the CMS is just: one entry here + its render function. `group` clusters items
+// under a labeled heading in the sidebar; `render` is the (hoisted) function that draws the section.
+const SECTIONS = [
+  {id:'dashboard', label:'Dashboard', icon:'gauge',   group:'Overview',     render:renderDashboard},
+  {id:'home',      label:'Homepage',  icon:'monitor', group:'Landing page', render:renderHome},
+  {id:'siteInfo',  label:'Site Info', icon:'shield',  group:'Landing page', render:renderSiteInfo},
+  {id:'services',  label:'Services',  icon:'wrench',  group:'Content',      render:renderServices},
+  {id:'partners',  label:'Partners',  icon:'cap',     group:'Content',      render:renderPartners},
+  {id:'posts',     label:'News',      icon:'radar',   group:'Content',      render:renderPosts},
 ];
+const SECTION_BY_ID = Object.fromEntries(SECTIONS.map(s => [s.id, s]));
 
 function $(sel,root=document){return root.querySelector(sel)}
 function el(tag,attrs={},...kids){
@@ -218,12 +240,17 @@ function renderLogin(){
 /* ----------------- App shell ----------------- */
 function renderShell(){
   $('#root').innerHTML='';
-  const sidebar = el('aside',{class:'sidebar'},
-    el('div',{class:'brand'},'3Lines Advanced Technologies Company', el('span',{},'CMS')),
-    ...SECTION_META.map(s => el('button',{
+  const navItems = []; let lastGroup = null;
+  SECTIONS.forEach(s => {
+    if(s.group !== lastGroup){ navItems.push(el('div',{class:'navgroup'}, s.group)); lastGroup = s.group; }
+    navItems.push(el('button',{
       class:'navbtn'+(app.section===s.id?' active':''),
       onclick:()=>{ app.section=s.id; app.editing=null; render(); }
-    }, el('span',{class:'ic',html:iconSvg(s.icon,'currentColor',16)}), s.label)),
+    }, el('span',{class:'ic',html:iconSvg(s.icon,'currentColor',16)}), s.label));
+  });
+  const sidebar = el('aside',{class:'sidebar'},
+    el('div',{class:'brand'},'3Lines Advanced Technologies Company', el('span',{},'CMS')),
+    ...navItems,
     el('button',{class:'logout',onclick:async()=>{ await fetch('/api/cms/logout',{method:'POST'}); location.reload(); }},'⏻ Log out'),
   );
   const main = el('main',{class:'main',id:'main'});
@@ -233,10 +260,115 @@ function renderShell(){
 
 function renderMain(root){
   if(!app.state){ root.append(el('div',{},'Loading…')); return; }
-  if(app.section==='siteInfo') return renderSiteInfo(root);
-  if(app.section==='services') return renderServices(root);
-  if(app.section==='partners') return renderPartners(root);
-  if(app.section==='posts')    return renderPosts(root);
+  const sec = SECTION_BY_ID[app.section] || SECTION_BY_ID.dashboard;
+  return sec.render(root);
+}
+
+/* ============================================================ *
+ *  DASHBOARD  (Overview)
+ * ============================================================ */
+function countOf(x){ return Array.isArray(x) ? x.length : (x && Array.isArray(x.data) ? x.data.length : 0); }
+function statTile(n, label){ return el('div',{class:'stat'}, el('div',{class:'n'}, String(n)), el('div',{class:'l'}, label)); }
+function renderDashboard(root){
+  const st = app.state;
+  const go = id => { app.section=id; app.editing=null; render(); };
+  root.append(
+    el('div',{class:'pagehead'},
+      el('div',{},
+        el('h2',{},'Dashboard'),
+        el('p',{},'Overview of everything on the site. Jump into any area to edit its content.'),
+      ),
+      el('div',{class:'toolbar'},
+        el('a',{class:'btn secondary',href:'/en',target:'_blank',rel:'noopener'},'↗ View live site'),
+      )
+    ),
+    el('div',{class:'stat-grid'},
+      statTile(countOf(st.services), 'Services'),
+      statTile(countOf(st.partners), 'Partners & clients'),
+      statTile(countOf(st.posts),    'News posts'),
+      statTile(countOf(st.pages),    'Content pages'),
+    ),
+    el('div',{class:'card'},
+      el('h4',{style:{margin:'0 0 12px'}},'Quick actions'),
+      el('div',{class:'quick'},
+        el('button',{class:'btn secondary',onclick:()=>go('home')},'Manage homepage'),
+        el('button',{class:'btn secondary',onclick:()=>go('services')},'Edit services'),
+        el('button',{class:'btn secondary',onclick:()=>go('partners')},'Edit partners'),
+        el('button',{class:'btn secondary',onclick:()=>go('posts')},'Write a news post'),
+        el('button',{class:'btn secondary',onclick:()=>go('siteInfo')},'Edit footer'),
+      )
+    )
+  );
+}
+
+/* ============================================================ *
+ *  HOMEPAGE  (Landing page)
+ *  A control panel for the public landing page: quick links to each building block that IS
+ *  data-driven, plus the homepage's global SEO/brand text (persisted to content/constants.json).
+ * ============================================================ */
+function renderHome(root){
+  const st = app.state;
+  if(!st.constants || typeof st.constants!=='object') st.constants = { data:{} };
+  if(!st.constants.data) st.constants.data = {};
+  const c = st.constants.data;
+  const go = id => { app.section=id; app.editing=null; render(); };
+
+  const nServices = countOf(st.services);
+  const blocks = [
+    {t:'Hero banner',      d:'The animated globe banner at the very top of the page.',            tag:'Styled in theme'},
+    {t:'Why 3Lines',       d:'The rotating highlight slider just below the hero.',                 tag:'Styled in theme'},
+    {t:'Services',         d:'The grid of '+nServices+' service cards.',                           go:'services'},
+    {t:'Sectors we serve', d:'The industries grid (Defense, Aviation, Energy, …).',               tag:'Styled in theme'},
+    {t:'Partners & clients', d:'The scrolling logo carousel of partners and clients.',            go:'partners'},
+    {t:'Footer',           d:'Company description, address, registration numbers & social links.', go:'siteInfo'},
+  ];
+
+  // Local "save" button + a dirty() that enables it WITHOUT a full re-render, so typing never loses focus.
+  const saveBtn = el('button',{class:'btn',disabled:!app.dirty,onclick:save}, app.dirty?'Save changes':'Saved');
+  const dirty = () => { app.dirty = true; saveBtn.disabled = false; saveBtn.textContent = 'Save changes'; };
+
+  root.append(
+    el('div',{class:'pagehead'},
+      el('div',{},
+        el('h2',{},'Homepage'),
+        el('p',{},'The building blocks of the public landing page. Edit the data-driven ones below or jump to their editors — blocks marked “Styled in theme” are laid out in the site design.'),
+      ),
+      el('div',{class:'toolbar'},
+        el('a',{class:'btn secondary',href:'/en',target:'_blank',rel:'noopener'},'↗ View homepage'),
+        saveBtn,
+      )
+    ),
+    el('div',{class:'hp-grid'},
+      ...blocks.map(b => el('div',{class:'hp-card'},
+        el('h4',{}, b.t),
+        el('p',{}, b.d),
+        b.go
+          ? el('button',{class:'btn secondary',style:{alignSelf:'flex-start'},onclick:()=>go(b.go)},'Edit →')
+          : el('span',{class:'tag'}, b.tag)
+      ))
+    ),
+    el('hr',{}),
+    el('h3',{style:{margin:'6px 0 2px',fontSize:'1.05rem'}},'Homepage SEO & brand'),
+    el('p',{style:{color:'var(--muted)',margin:'0 0 10px',maxWidth:'580px'}},'The search-engine description, keywords and contact details used across the site’s pages, in English and Arabic.'),
+    el('div',{class:'card'},
+      el('label',{},'Meta description — English'),
+      el('textarea',{rows:2,oninput:e=>{c.description_en=e.target.value;dirty();}}, c.description_en||''),
+      el('label',{},'Meta description — Arabic'),
+      el('textarea',{rows:2,class:'ar-rtl',oninput:e=>{c.description_ar=e.target.value;dirty();}}, c.description_ar||''),
+      el('label',{},'Keywords (comma-separated)'),
+      el('input',{value:c.keywords||'',oninput:e=>{c.keywords=e.target.value;dirty();}}),
+      el('div',{class:'row'},
+        el('div',{},
+          el('label',{},'Contact email'),
+          el('input',{value:c.email||'',oninput:e=>{c.email=e.target.value;dirty();}}),
+        ),
+        el('div',{},
+          el('label',{},'LinkedIn URL'),
+          el('input',{value:c.linkedin||'',placeholder:'https://www.linkedin.com/company/...',oninput:e=>{c.linkedin=e.target.value;dirty();}}),
+        ),
+      ),
+    )
+  );
 }
 
 /* ----------------- Reusable bilingual field ----------------- */
