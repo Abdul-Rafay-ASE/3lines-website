@@ -355,7 +355,7 @@ function renderServices(root){
     el('div',{class:'pagehead'},
       el('div',{},
         el('h2',{},'Services'),
-        el('p',{},'Edit the 10 service cards shown on the home & services pages. Click a card to edit its content, icon, and accent color.'),
+        el('p',{},'Edit the '+list.length+' service cards shown on the home & services pages. Click a card to edit its content, icon, and accent color.'),
       ),
       el('div',{class:'toolbar'},
         el('button',{class:'btn',disabled:!app.dirty,onclick:save}, app.dirty?'Save changes':'Saved'),
