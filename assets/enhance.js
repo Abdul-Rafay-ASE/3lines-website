@@ -1492,6 +1492,25 @@
     document.addEventListener('DOMContentLoaded', ensure);
   })();
 
+  /* ----- 18j) Title Case for all card titles -----
+     Card titles shipped in sentence case ("OEM parts sourcing", "30+ years of aviation expertise"),
+     inconsistent from card to card. Capitalise every word for display. `text-transform:capitalize`
+     never lowercases (so OEM / AOG / US / RADAR / AI stay intact) and is a no-op on ar/ja/ko (those
+     scripts have no letter case) -- so it's safe on every locale and needs no per-string edits. Scoped
+     to card TITLES only (h3/h4 in cards + the two cln-* title classes), never headings or body. */
+  (function titleCaseCards() {
+    var s = document.createElement('style'); s.id = 'cln-titlecase-css';
+    s.textContent =
+      '.cln-slide-head,' +                                                              /* homepage "Why 3Lines" slider */
+      '.cln-sector-t,' +                                                                /* homepage "Sectors we serve" */
+      '[class*="auto-rows-"] h3,' +                                                     /* homepage bento cards */
+      'a[class*="min-h-[10rem]"] h3,' +                                                 /* homepage + /services grid cards */
+      '[class~="p-5"] > [class~="h-10"][class~="w-10"][class~="rounded-lg"] + h3,' +    /* service-detail capability cards */
+      '[class~="p-5"] > [class~="h-10"][class~="w-10"][class~="rounded-lg"] + h4' +
+      '{text-transform:capitalize !important;}';
+    (document.head || document.documentElement).appendChild(s);
+  })();
+
   /* ----- 16b) Tag flat/LIGHT partner logos -----
      The partner strip (rule 16) shows every logo in its REAL colour, at full opacity, all the time.
      A few logos are flat WHITE/near-white assets (Airbus, MI, SAMI Advanced ...) -- on the light
