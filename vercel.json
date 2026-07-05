@@ -5,7 +5,9 @@
     { "source": "/", "destination": "/en", "permanent": false }
   ],
   "rewrites": [
-    { "source": "/cms-assets/:path*", "destination": "/api/cms-asset?path=:path*" }
+    { "source": "/cms-assets/:path*", "destination": "/api/cms-asset?path=:path*" },
+    { "source": "/:lang(en|ar|ja|ko)/services/:slug(procurement|engineering|ai-solutions|cybersecurity)", "destination": "/:lang/services/provide-spare-parts.html" },
+    { "source": "/:lang(en|ar|ja|ko)/services/:slug(procurement|engineering|ai-solutions|cybersecurity).html", "destination": "/:lang/services/provide-spare-parts.html" }
   ],
   "headers": [
     {
