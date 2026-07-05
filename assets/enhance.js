@@ -1407,6 +1407,90 @@
     (document.head || document.documentElement).appendChild(s);
   })();
 
+  /* ----- 18g) Hero subline — a value-prop line under the rotating headline -----
+     The prerendered hero is just "We provide <word> / Globally / [Who we are]" with no supporting copy,
+     which left it sparse (both the reference site and competitors pair the headline with descriptive
+     text). Inject one concise, localized line between the headline and the CTA. */
+  (function heroSubline() {
+    function loc() { var l = (document.documentElement.getAttribute('lang') || 'en').toLowerCase(); return (l === 'ar' || l === 'ja' || l === 'ko') ? l : 'en'; }
+    var TXT = {
+      en: 'The first licensed Saudi company for aircraft spare parts, ground support equipment and simulators — serving civil and military operators worldwide.',
+      ar: 'أول شركة سعودية مرخّصة لتوريد قطع غيار الطائرات ومعدات الدعم الأرضي وأجهزة المحاكاة — لخدمة المشغّلين المدنيين والعسكريين حول العالم.',
+      ja: '航空機スペアパーツ、地上支援機器、シミュレーターを供給する初の認可サウジ企業として、世界中の民間・軍用オペレーターを支援します。',
+      ko: '항공기 부품, 지상 지원 장비 및 시뮬레이터를 공급하는 최초의 인가 사우디 기업으로서 전 세계 민간·군용 운영자를 지원합니다.'
+    };
+    var css = document.createElement('style'); css.id = 'cln-herosub-css';
+    css.textContent =
+      '.cln-hero-sub{max-width:44rem;margin:.25rem auto 0;text-align:center;font-size:clamp(.95rem,1.4vw,1.15rem);line-height:1.65;color:rgba(228,232,243,.75);text-wrap:balance;}' +
+      '.ml-light .cln-hero-sub{color:rgba(30,41,59,.82);}';
+    (document.head || document.documentElement).appendChild(css);
+    function ensure() {
+      var hero = document.getElementById('hero'); if (!hero) return false;
+      if (document.getElementById('cln-hero-sub')) return true;
+      // Anchor on the big "Globally" word by its class (language-agnostic) — the localized CTA text is
+      // not reliable to match. Insert the subline right after it, before the CTA button.
+      var big = hero.querySelector('[class~="text-7xl"]');
+      if (!big || !big.parentElement) return false;
+      var p = document.createElement('p'); p.id = 'cln-hero-sub'; p.className = 'cln-hero-sub';
+      p.textContent = TXT[loc()] || TXT.en;
+      big.parentElement.insertBefore(p, big.nextSibling);
+      return true;
+    }
+    var n = 0, iv = setInterval(function () { if (ensure() || ++n > 30) clearInterval(iv); }, 300);
+    if (document.readyState !== 'loading') ensure();
+    document.addEventListener('DOMContentLoaded', ensure);
+  })();
+
+  /* ----- 18h) Credibility stat band — glued directly after the hero -----
+     Both the reference (ai3lines.com) and competitors (SAMI) lead with a credibility stat strip; the
+     parent homepage had none. Four defensible numbers, localized + theme-aware, in the site's style. */
+  (function statBand() {
+    function loc() { var l = (document.documentElement.getAttribute('lang') || 'en').toLowerCase(); return (l === 'ar' || l === 'ja' || l === 'ko') ? l : 'en'; }
+    function esc(s) { return (s == null ? '' : String(s)).replace(/[&<>"]/g, function (m) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m]; }); }
+    var css = document.createElement('style'); css.id = 'cln-statband-css';
+    css.textContent =
+      '.cln-statband{padding:2.75rem 0 .5rem;}' +
+      '.cln-statband-in{max-width:72rem;margin:0 auto;padding:1.9rem 1.5rem;border-radius:1rem;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);}' +
+      '.ml-light .cln-statband-in{border-color:rgba(16,42,90,.1);background:#fff;box-shadow:0 6px 22px -14px rgba(16,42,90,.2);}' +
+      '.cln-statband-eye{display:block;text-align:center;margin-bottom:1.35rem;font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#5cc0ff;}' +
+      'html[lang="ar"] .cln-statband-eye{letter-spacing:normal;}' +
+      '.ml-light .cln-statband-eye{color:#1f6fd6;}' +
+      '.cln-statband-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem 1rem;}' +
+      '@media(min-width:768px){.cln-statband-grid{grid-template-columns:repeat(4,1fr);}}' +
+      '.cln-stat{text-align:center;position:relative;}' +
+      '@media(min-width:768px){.cln-stat + .cln-stat::before{content:"";position:absolute;inset-inline-start:0;top:15%;height:70%;width:1px;background:rgba(255,255,255,.12);}.ml-light .cln-stat + .cln-stat::before{background:rgba(16,42,90,.12);}}' +
+      '.cln-stat-v{font-size:clamp(1.8rem,3.6vw,2.6rem);font-weight:800;line-height:1;background:linear-gradient(90deg,#5cc0ff,#3aa0ff);-webkit-background-clip:text;background-clip:text;color:transparent;}' +
+      '.ml-light .cln-stat-v{background:linear-gradient(90deg,#1f6fd6,#0a73d4);-webkit-background-clip:text;background-clip:text;color:transparent;}' +
+      '.cln-stat-l{margin-top:.45rem;font-size:.82rem;line-height:1.4;color:#a1a1aa;}' +
+      '.ml-light .cln-stat-l{color:#52525b;}';
+    (document.head || document.documentElement).appendChild(css);
+    var EYE = { en: 'BY THE NUMBERS', ar: 'بالأرقام', ja: '数字で見る', ko: '수치로 보기' };
+    var STATS = [
+      { v: { en: '30+', ar: '+30', ja: '30+', ko: '30+' }, l: { en: 'Years of expertise', ar: 'سنوات من الخبرة', ja: '年の専門知識', ko: '년의 전문성' } },
+      { v: { en: '1st', ar: 'الأولى', ja: '初', ko: '최초' }, l: { en: 'Licensed Saudi company', ar: 'شركة سعودية مرخّصة', ja: '認可サウジ企業', ko: '인가 사우디 기업' } },
+      { v: { en: '12', ar: '12', ja: '12', ko: '12' }, l: { en: 'Specialized services', ar: 'خدمة متخصّصة', ja: '専門サービス', ko: '전문 서비스' } },
+      { v: { en: '100%', ar: '100%', ja: '100%', ko: '100%' }, l: { en: 'Genuine OEM parts', ar: 'قطع غيار أصلية', ja: '純正部品', ko: '정품 부품' } }
+    ];
+    function build() {
+      var L = loc();
+      var sec = document.createElement('section'); sec.id = 'cln-statband'; sec.className = 'cln-statband';
+      var cells = STATS.map(function (s) {
+        return '<div class="cln-stat"><div class="cln-stat-v">' + esc(s.v[L] || s.v.en) + '</div><div class="cln-stat-l">' + esc(s.l[L] || s.l.en) + '</div></div>';
+      }).join('');
+      sec.innerHTML = '<div class="cln-statband-in"><span class="cln-statband-eye">' + esc(EYE[L] || EYE.en) + '</span><div class="cln-statband-grid">' + cells + '</div></div>';
+      return sec;
+    }
+    function ensure() {
+      var hero = document.getElementById('hero'); if (!hero) return false;
+      var sec = document.getElementById('cln-statband') || build();
+      if (hero.nextSibling !== sec) hero.parentNode.insertBefore(sec, hero.nextSibling);
+      return true;
+    }
+    var n = 0, iv = setInterval(function () { ensure(); if (++n > 24) clearInterval(iv); }, 300);
+    if (document.readyState !== 'loading') ensure();
+    document.addEventListener('DOMContentLoaded', ensure);
+  })();
+
   /* ----- 16b) Tag flat/LIGHT partner logos -----
      The partner strip (rule 16) shows every logo in its REAL colour, at full opacity, all the time.
      A few logos are flat WHITE/near-white assets (Airbus, MI, SAMI Advanced ...) -- on the light
