@@ -1441,56 +1441,6 @@
     document.addEventListener('DOMContentLoaded', ensure);
   })();
 
-  /* ----- 18h) Credibility stat band — glued directly after the hero -----
-     Both the reference (ai3lines.com) and competitors (SAMI) lead with a credibility stat strip; the
-     parent homepage had none. Four defensible numbers, localized + theme-aware, in the site's style. */
-  (function statBand() {
-    function loc() { var l = (document.documentElement.getAttribute('lang') || 'en').toLowerCase(); return (l === 'ar' || l === 'ja' || l === 'ko') ? l : 'en'; }
-    function esc(s) { return (s == null ? '' : String(s)).replace(/[&<>"]/g, function (m) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m]; }); }
-    var css = document.createElement('style'); css.id = 'cln-statband-css';
-    css.textContent =
-      '.cln-statband{padding:2.75rem 0 .5rem;}' +
-      '.cln-statband-in{max-width:72rem;margin:0 auto;padding:1.9rem 1.5rem;border-radius:1rem;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);}' +
-      '.ml-light .cln-statband-in{border-color:rgba(16,42,90,.1);background:#fff;box-shadow:0 6px 22px -14px rgba(16,42,90,.2);}' +
-      '.cln-statband-eye{display:block;text-align:center;margin-bottom:1.35rem;font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#5cc0ff;}' +
-      'html[lang="ar"] .cln-statband-eye{letter-spacing:normal;}' +
-      '.ml-light .cln-statband-eye{color:#1f6fd6;}' +
-      '.cln-statband-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem 1rem;}' +
-      '@media(min-width:768px){.cln-statband-grid{grid-template-columns:repeat(4,1fr);}}' +
-      '.cln-stat{text-align:center;position:relative;}' +
-      '@media(min-width:768px){.cln-stat + .cln-stat::before{content:"";position:absolute;inset-inline-start:0;top:15%;height:70%;width:1px;background:rgba(255,255,255,.12);}.ml-light .cln-stat + .cln-stat::before{background:rgba(16,42,90,.12);}}' +
-      '.cln-stat-v{font-size:clamp(1.8rem,3.6vw,2.6rem);font-weight:800;line-height:1;background:linear-gradient(90deg,#5cc0ff,#3aa0ff);-webkit-background-clip:text;background-clip:text;color:transparent;}' +
-      '.ml-light .cln-stat-v{background:linear-gradient(90deg,#1f6fd6,#0a73d4);-webkit-background-clip:text;background-clip:text;color:transparent;}' +
-      '.cln-stat-l{margin-top:.45rem;font-size:.82rem;line-height:1.4;color:#a1a1aa;}' +
-      '.ml-light .cln-stat-l{color:#52525b;}';
-    (document.head || document.documentElement).appendChild(css);
-    var EYE = { en: 'BY THE NUMBERS', ar: 'بالأرقام', ja: '数字で見る', ko: '수치로 보기' };
-    var STATS = [
-      { v: { en: '30+', ar: '+30', ja: '30+', ko: '30+' }, l: { en: 'Years of expertise', ar: 'سنوات من الخبرة', ja: '年の専門知識', ko: '년의 전문성' } },
-      { v: { en: '1st', ar: 'الأولى', ja: '初', ko: '최초' }, l: { en: 'Licensed Saudi company', ar: 'شركة سعودية مرخّصة', ja: '認可サウジ企業', ko: '인가 사우디 기업' } },
-      { v: { en: '12', ar: '12', ja: '12', ko: '12' }, l: { en: 'Specialized services', ar: 'خدمة متخصّصة', ja: '専門サービス', ko: '전문 서비스' } },
-      { v: { en: '100%', ar: '100%', ja: '100%', ko: '100%' }, l: { en: 'Genuine OEM parts', ar: 'قطع غيار أصلية', ja: '純正部品', ko: '정품 부품' } }
-    ];
-    function build() {
-      var L = loc();
-      var sec = document.createElement('section'); sec.id = 'cln-statband'; sec.className = 'cln-statband';
-      var cells = STATS.map(function (s) {
-        return '<div class="cln-stat"><div class="cln-stat-v">' + esc(s.v[L] || s.v.en) + '</div><div class="cln-stat-l">' + esc(s.l[L] || s.l.en) + '</div></div>';
-      }).join('');
-      sec.innerHTML = '<div class="cln-statband-in"><span class="cln-statband-eye">' + esc(EYE[L] || EYE.en) + '</span><div class="cln-statband-grid">' + cells + '</div></div>';
-      return sec;
-    }
-    function ensure() {
-      var hero = document.getElementById('hero'); if (!hero) return false;
-      var sec = document.getElementById('cln-statband') || build();
-      if (hero.nextSibling !== sec) hero.parentNode.insertBefore(sec, hero.nextSibling);
-      return true;
-    }
-    var n = 0, iv = setInterval(function () { ensure(); if (++n > 24) clearInterval(iv); }, 300);
-    if (document.readyState !== 'loading') ensure();
-    document.addEventListener('DOMContentLoaded', ensure);
-  })();
-
   /* ----- 16b) Tag flat/LIGHT partner logos -----
      The partner strip (rule 16) shows every logo in its REAL colour, at full opacity, all the time.
      A few logos are flat WHITE/near-white assets (Airbus, MI, SAMI Advanced ...) -- on the light
