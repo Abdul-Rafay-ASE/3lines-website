@@ -1449,11 +1449,13 @@
   (function aiBentoCard() {
     function loc() { var l = (document.documentElement.getAttribute('lang') || 'en').toLowerCase(); return (l === 'ar' || l === 'ja' || l === 'ko') ? l : 'en'; }
     var T = { en: 'AI Solutions', ar: 'حلول الذكاء الاصطناعي', ja: 'AIソリューション', ko: 'AI 솔루션' };
+    // One line only — the sibling bento cards (Optokon/XR) have single-line taglines, and these cards
+    // bottom-align their content, so a 2-line blurb lifts this card's icon/title out of alignment.
     var D = {
-      en: 'Sovereign AI — agents, command centers & document intelligence',
-      ar: 'ذكاء اصطناعي سيادي — وكلاء ومراكز قيادة وذكاء المستندات',
-      ja: 'ソブリンAI — エージェント、コマンドセンター、文書インテリジェンス',
-      ko: '소버린 AI — 에이전트, 커맨드 센터, 문서 인텔리전스'
+      en: 'Sovereign AI that runs your operations',
+      ar: 'ذكاء اصطناعي سيادي يدير عملياتك',
+      ja: '業務を動かすソブリンAI',
+      ko: '업무를 운영하는 소버린 AI'
     };
     // lucide "brain-circuit" — kept stroked so rule 8's brand-blue recolour + the hover-scale still apply.
     var BRAIN = '<path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M9 13a4.5 4.5 0 0 0 3-4"/><path d="M6.003 5.125A3 3 0 0 0 6.401 6.5"/><path d="M3.477 10.896a4 4 0 0 1 .585-.396"/><path d="M6 18a4 4 0 0 1-1.967-.516"/><path d="M12 13h4"/><path d="M12 18h6a2 2 0 0 1 2 2v1"/><path d="M12 8h8"/><path d="M16 8V5a2 2 0 0 1 2-2"/><circle cx="16" cy="13" r=".5"/><circle cx="18" cy="3" r=".5"/><circle cx="20" cy="21" r=".5"/><circle cx="20" cy="8" r=".5"/>';
@@ -1468,9 +1470,10 @@
       icon.setAttribute('viewBox', '0 0 24 24');
       icon.innerHTML = BRAIN;
       icon.classList.remove('lucide-satellite'); icon.classList.add('lucide-brain-circuit');
-      // 2) drop the "Soon!" watermark
+      // 2) drop the "Soon!" watermark — hide its wrapper AND blank the span (its animated ::after uses
+      //    content:attr(data-text), so clear both so nothing can flash even if the wrapper is styled back)
       var wm = card.querySelector('[data-text]');
-      if (wm) { var box = wm.closest('div[class*="absolute"]') || wm.parentElement; if (box) box.style.display = 'none'; }
+      if (wm) { wm.setAttribute('data-text', ''); wm.textContent = ''; var box = wm.closest('div[class*="absolute"]') || wm.parentElement; if (box) box.style.display = 'none'; }
       // 3) title + description
       var h = card.querySelector('h3,h4'); if (h) h.textContent = T[L] || T.en;
       var p = card.querySelector('p'); if (p) p.textContent = D[L] || D.en;
