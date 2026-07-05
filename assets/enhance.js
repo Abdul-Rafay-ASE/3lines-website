@@ -1440,6 +1440,58 @@
     document.addEventListener('DOMContentLoaded', ensure);
   })();
 
+  /* ----- 18i) Replace the "ATV — Soon!" bento card with the AI Division -----
+     The ATV card was a placeholder (big faint "Soon!" watermark, not clickable). Repurpose that bento
+     cell into a real division card for the AI arm: swap the satellite icon for a brain-circuit, drop the
+     "Soon!" watermark, relocalize the title/description, and make the whole card open ai3lines.com — the
+     same "venture with its own site" pattern the XR card uses. Anchored on the language-agnostic
+     .lucide-satellite icon so it works in every locale; idempotent + hydration-safe via a short retry. */
+  (function aiBentoCard() {
+    function loc() { var l = (document.documentElement.getAttribute('lang') || 'en').toLowerCase(); return (l === 'ar' || l === 'ja' || l === 'ko') ? l : 'en'; }
+    var T = { en: 'AI Solutions', ar: 'حلول الذكاء الاصطناعي', ja: 'AIソリューション', ko: 'AI 솔루션' };
+    var D = {
+      en: 'Sovereign AI — agents, command centers & document intelligence',
+      ar: 'ذكاء اصطناعي سيادي — وكلاء ومراكز قيادة وذكاء المستندات',
+      ja: 'ソブリンAI — エージェント、コマンドセンター、文書インテリジェンス',
+      ko: '소버린 AI — 에이전트, 커맨드 센터, 문서 인텔리전스'
+    };
+    // lucide "brain-circuit" — kept stroked so rule 8's brand-blue recolour + the hover-scale still apply.
+    var BRAIN = '<path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M9 13a4.5 4.5 0 0 0 3-4"/><path d="M6.003 5.125A3 3 0 0 0 6.401 6.5"/><path d="M3.477 10.896a4 4 0 0 1 .585-.396"/><path d="M6 18a4 4 0 0 1-1.967-.516"/><path d="M12 13h4"/><path d="M12 18h6a2 2 0 0 1 2 2v1"/><path d="M12 8h8"/><path d="M16 8V5a2 2 0 0 1 2-2"/><circle cx="16" cy="13" r=".5"/><circle cx="18" cy="3" r=".5"/><circle cx="20" cy="21" r=".5"/><circle cx="20" cy="8" r=".5"/>';
+    function ensure() {
+      var icon = document.querySelector('[class*="auto-rows-"] svg.lucide-satellite');
+      if (!icon) return false;
+      var card = icon.closest('[class*="rounded-xl"]');
+      if (!card) return false;
+      if (card.getAttribute('data-cln-ai') === '1') return true;
+      var L = loc();
+      // 1) icon: satellite -> brain-circuit (keep classes for the blue recolour + hover-scale)
+      icon.setAttribute('viewBox', '0 0 24 24');
+      icon.innerHTML = BRAIN;
+      icon.classList.remove('lucide-satellite'); icon.classList.add('lucide-brain-circuit');
+      // 2) drop the "Soon!" watermark
+      var wm = card.querySelector('[data-text]');
+      if (wm) { var box = wm.closest('div[class*="absolute"]') || wm.parentElement; if (box) box.style.display = 'none'; }
+      // 3) title + description
+      var h = card.querySelector('h3,h4'); if (h) h.textContent = T[L] || T.en;
+      var p = card.querySelector('p'); if (p) p.textContent = D[L] || D.en;
+      // 4) whole card -> ai3lines.com (full-card overlay link; the card is position:relative)
+      if (!card.querySelector('.cln-ai-link')) {
+        var a = document.createElement('a');
+        a.className = 'cln-ai-link';
+        a.href = 'https://ai3lines.com/'; a.target = '_blank'; a.rel = 'noopener';
+        a.setAttribute('aria-label', T[L] || T.en);
+        a.style.cssText = 'position:absolute;inset:0;z-index:6;';
+        card.appendChild(a);
+        card.style.cursor = 'pointer';
+      }
+      card.setAttribute('data-cln-ai', '1');
+      return true;
+    }
+    var n = 0, iv = setInterval(function () { ensure(); if (++n > 40) clearInterval(iv); }, 300);
+    if (document.readyState !== 'loading') ensure();
+    document.addEventListener('DOMContentLoaded', ensure);
+  })();
+
   /* ----- 16b) Tag flat/LIGHT partner logos -----
      The partner strip (rule 16) shows every logo in its REAL colour, at full opacity, all the time.
      A few logos are flat WHITE/near-white assets (Airbus, MI, SAMI Advanced ...) -- on the light
