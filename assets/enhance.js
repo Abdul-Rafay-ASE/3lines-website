@@ -1584,6 +1584,10 @@
       "html[lang='ar'] .cln-banner-eye{letter-spacing:normal;}" +
       ".cln-banner-h{font-size:clamp(1.8rem,4vw,3rem);font-weight:800;line-height:1.14;color:#fff;margin:0;text-shadow:0 2px 22px rgba(0,0,0,.55);}" +
       ".cln-banner-sub{margin:1.05rem auto 0;max-width:40rem;font-size:clamp(1rem,1.5vw,1.15rem);line-height:1.6;color:rgba(228,232,243,.86);}" +
+      /* the banner image is dark in BOTH themes, so keep its text light — the light theme otherwise recolours the h2/eyebrow to dark. */
+      ".cln-banner-h,.ml-light .cln-banner-h{color:#fff !important;}" +
+      ".cln-banner-sub,.ml-light .cln-banner-sub{color:rgba(228,232,243,.9) !important;}" +
+      ".cln-banner-eye,.ml-light .cln-banner-eye{color:#5cc0ff !important;}" +
       ".cln-banner-cta{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.7rem;padding:.85rem 1.9rem;border-radius:.7rem;background:linear-gradient(180deg,#2f7dff,#1c5fe0);color:#fff !important;font-weight:700;font-size:1rem;text-decoration:none;box-shadow:0 12px 30px -10px rgba(47,125,255,.7);transition:transform .18s ease,box-shadow .18s ease;}" +
       ".cln-banner-cta:hover{transform:translateY(-2px);box-shadow:0 16px 36px -10px rgba(47,125,255,.85);}";
     (document.head || document.documentElement).appendChild(css);
