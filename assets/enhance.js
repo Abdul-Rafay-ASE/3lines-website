@@ -1566,52 +1566,6 @@
     }, true);
   })();
 
-  /* ----- 18m) Cinematic statement banner -----
-     Top defense/aerospace sites (SAMI, Airbus) lead with cinematic imagery; this site had none. Inject
-     a full-width statement band with a hangar/aircraft photo (dark overlay for legibility) + a localized
-     tagline and CTA, placed after "Sectors we serve". Home-page only; theme-independent (dark image). */
-  (function statementBanner() {
-    if (!/^\/(en|ar|ja|ko)\/?$/.test(location.pathname)) return;
-    function loc() { var l = (document.documentElement.getAttribute('lang') || 'en').toLowerCase(); return (l === 'ar' || l === 'ja' || l === 'ko') ? l : 'en'; }
-    function esc(s) { return (s == null ? '' : String(s)).replace(/[&<>"]/g, function (m) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m]; }); }
-    var css = document.createElement('style'); css.id = 'cln-banner-css';
-    css.textContent =
-      ".cln-banner{position:relative;min-height:clamp(340px,52vh,560px);display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:#06111f url('/assets/img/hangar.jpg') center/cover no-repeat;}" +
-      "@supports (background-image:image-set(url('x') type('image/webp'))){.cln-banner{background-image:image-set(url('/assets/img/hangar.webp') type('image/webp'),url('/assets/img/hangar.jpg') type('image/jpeg'));}}" +
-      ".cln-banner::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,10,20,.74),rgba(6,10,20,.6) 42%,rgba(6,10,20,.82));}" +
-      ".cln-banner-in{position:relative;z-index:1;max-width:52rem;padding:2.5rem 1.5rem;}" +
-      ".cln-banner-eye{display:block;margin-bottom:.9rem;font-size:.72rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#5cc0ff;}" +
-      "html[lang='ar'] .cln-banner-eye{letter-spacing:normal;}" +
-      ".cln-banner-h{font-size:clamp(1.8rem,4vw,3rem);font-weight:800;line-height:1.14;color:#fff;margin:0;text-shadow:0 2px 22px rgba(0,0,0,.55);}" +
-      ".cln-banner-sub{margin:1.05rem auto 0;max-width:40rem;font-size:clamp(1rem,1.5vw,1.15rem);line-height:1.6;color:rgba(228,232,243,.86);}" +
-      ".cln-banner-cta{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.7rem;padding:.85rem 1.9rem;border-radius:.7rem;background:linear-gradient(180deg,#2f7dff,#1c5fe0);color:#fff !important;font-weight:700;font-size:1rem;text-decoration:none;box-shadow:0 12px 30px -10px rgba(47,125,255,.7);transition:transform .18s ease,box-shadow .18s ease;}" +
-      ".cln-banner-cta:hover{transform:translateY(-2px);box-shadow:0 16px 36px -10px rgba(47,125,255,.85);}";
-    (document.head || document.documentElement).appendChild(css);
-    var EYE = { en: 'BUILT FOR MISSION-CRITICAL', ar: 'لمهام حاسمة', ja: 'ミッションクリティカル対応', ko: '미션 크리티컬 대응' };
-    var H = { en: 'Defense-grade capability, delivered in the Kingdom', ar: 'قدرات بمستوى الدفاع، تُنجَز داخل المملكة', ja: '国防レベルの能力を、王国内で', ko: '국방 수준의 역량을 왕국 내에서' };
-    var SUB = { en: 'Spare parts, MRO and technical support for civil and military aviation — sourced worldwide, supported locally.', ar: 'قطع الغيار والصيانة والدعم الفني للطيران المدني والعسكري — توريد عالمي ودعم محلي.', ja: '民間・軍用航空のスペアパーツ・整備・技術支援 — 世界から調達し、現地で支援。', ko: '민간·군용 항공을 위한 부품·정비·기술 지원 — 전 세계 조달, 현지 지원.' };
-    var CTA = { en: 'Get in touch', ar: 'تواصل معنا', ja: 'お問い合わせ', ko: '문의하기' };
-    function build() {
-      var L = loc();
-      var sec = document.createElement('section'); sec.id = 'cln-banner'; sec.className = 'cln-banner';
-      sec.innerHTML = '<div class="cln-banner-in"><span class="cln-banner-eye">' + esc(EYE[L] || EYE.en) + '</span>' +
-        '<h2 class="cln-banner-h">' + esc(H[L] || H.en) + '</h2>' +
-        '<p class="cln-banner-sub">' + esc(SUB[L] || SUB.en) + '</p>' +
-        '<a class="cln-banner-cta" href="/' + L + '/contact.html">' + esc(CTA[L] || CTA.en) + ' ' + (L === 'ar' ? '←' : '→') + '</a></div>';
-      return sec;
-    }
-    function ensure() {
-      var anchor = document.getElementById('cln-sectors') || document.getElementById('services');
-      if (!anchor) return false;
-      var sec = document.getElementById('cln-banner') || build();
-      if (anchor.nextSibling !== sec) anchor.parentNode.insertBefore(sec, anchor.nextSibling);
-      return true;
-    }
-    var n = 0, iv = setInterval(function () { ensure(); if (++n > 24) clearInterval(iv); }, 300);
-    if (document.readyState !== 'loading') ensure();
-    document.addEventListener('DOMContentLoaded', ensure);
-  })();
-
   /* ----- 16b) Tag flat/LIGHT partner logos -----
      The partner strip (rule 16) shows every logo in its REAL colour, at full opacity, all the time.
      A few logos are flat WHITE/near-white assets (Airbus, MI, SAMI Advanced ...) -- on the light
