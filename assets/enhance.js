@@ -1526,6 +1526,44 @@
     ensure('link[rel="apple-touch-icon"]', function () { var l = document.createElement('link'); l.rel = 'apple-touch-icon'; l.href = '/assets/logos/favicon.png'; return l; });
   })();
 
+  /* ----- 18l) Return to the Services section after visiting a service page -----
+     Clicking a service card opens its detail page; coming back to the home page used to dump you at the
+     top, losing your place. Remember the click, and on the next home-page load bring the Services grid
+     back into view (offset for the fixed header). Home-page-only; bfcache-safe. */
+  (function returnToServices() {
+    if (!/^\/(en|ar|ja|ko)\/?$/.test(location.pathname)) return; // only the home page
+    var KEY = 'cln-return-services';
+    function toServices() {
+      // The hero/about/slider above #services keep loading for ~1-2s, which pushes #services down. So
+      // rather than scroll once (and land short), keep the section pinned to just below the header on
+      // each frame until its position holds steady — the user lands on Services immediately and stays
+      // there as the layout settles. Stops as soon as it's stable (or after a short cap).
+      var last = -1, stable = 0, n = 0;
+      var iv = setInterval(function () {
+        n++;
+        var svc = document.getElementById('services');
+        if (svc) {
+          var top = Math.round(svc.getBoundingClientRect().top + window.pageYOffset);
+          var header = document.querySelector('header');
+          var off = (header ? header.offsetHeight : 0) + 14;
+          window.scrollTo({ top: Math.max(0, top - off), behavior: 'auto' });
+          if (top === last) stable++; else { stable = 0; last = top; }
+          if (stable >= 3 || n > 22) clearInterval(iv);
+        } else if (n > 22) { clearInterval(iv); }
+      }, 120);
+    }
+    // bfcache restore already keeps the scroll position — just clear the flag so it can't misfire.
+    window.addEventListener('pageshow', function (e) { if (e.persisted) { try { sessionStorage.removeItem(KEY); } catch (x) {} } });
+    try { if (sessionStorage.getItem(KEY)) { sessionStorage.removeItem(KEY); toServices(); } } catch (x) {}
+    // Flag a click on a service DETAIL card (…/services/<slug>), not the "all services" listing link.
+    document.addEventListener('click', function (e) {
+      var a = e.target && e.target.closest ? e.target.closest('a[href*="/services/"]') : null;
+      if (a && /\/services\/[^/?#]+/.test(a.getAttribute('href') || '')) {
+        try { sessionStorage.setItem(KEY, '1'); } catch (x) {}
+      }
+    }, true);
+  })();
+
   /* ----- 16b) Tag flat/LIGHT partner logos -----
      The partner strip (rule 16) shows every logo in its REAL colour, at full opacity, all the time.
      A few logos are flat WHITE/near-white assets (Airbus, MI, SAMI Advanced ...) -- on the light
