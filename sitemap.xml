@@ -1,0 +1,1121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://3lines.com.sa/en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ar</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ja</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ko</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/en/about</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/about"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/about"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/about"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/about"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ar/about</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/about"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/about"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/about"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/about"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ja/about</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/about"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/about"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/about"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/about"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ko/about</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/about"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/about"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/about"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/about"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/en/services</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ar/services</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ja/services</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ko/services</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/en/news</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/news"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/news"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/news"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/news"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/news"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ar/news</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/news"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/news"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/news"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/news"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/news"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ja/news</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/news"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/news"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/news"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/news"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/news"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ko/news</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/news"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/news"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/news"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/news"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/news"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/en/partners-and-clients</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/partners-and-clients"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/partners-and-clients"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/partners-and-clients"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/partners-and-clients"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/partners-and-clients"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ar/partners-and-clients</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/partners-and-clients"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/partners-and-clients"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/partners-and-clients"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/partners-and-clients"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/partners-and-clients"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ja/partners-and-clients</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/partners-and-clients"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/partners-and-clients"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/partners-and-clients"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/partners-and-clients"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/partners-and-clients"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ko/partners-and-clients</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/partners-and-clients"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/partners-and-clients"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/partners-and-clients"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/partners-and-clients"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/partners-and-clients"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/en/contact</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/contact"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/contact"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/contact"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ar/contact</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/contact"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/contact"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/contact"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ja/contact</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/contact"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/contact"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/contact"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ko/contact</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/contact"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/contact"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/contact"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/en/pages-index</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/pages-index"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/pages-index"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/pages-index"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/pages-index"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/pages-index"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ar/pages-index</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/pages-index"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/pages-index"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/pages-index"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/pages-index"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/pages-index"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ja/pages-index</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/pages-index"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/pages-index"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/pages-index"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/pages-index"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/pages-index"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ko/pages-index</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/pages-index"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/pages-index"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/pages-index"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/pages-index"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/pages-index"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/en/legal</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/legal"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/legal"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/legal"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ar/legal</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/legal"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/legal"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/legal"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/en/services/provide-spare-parts</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/provide-spare-parts"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/provide-spare-parts"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/provide-spare-parts"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/provide-spare-parts"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/provide-spare-parts"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ar/services/provide-spare-parts</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/provide-spare-parts"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/provide-spare-parts"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/provide-spare-parts"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/provide-spare-parts"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/provide-spare-parts"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ja/services/provide-spare-parts</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/provide-spare-parts"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/provide-spare-parts"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/provide-spare-parts"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/provide-spare-parts"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/provide-spare-parts"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ko/services/provide-spare-parts</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/provide-spare-parts"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/provide-spare-parts"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/provide-spare-parts"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/provide-spare-parts"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/provide-spare-parts"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/en/services/maintaining-and-repairing-of-spare-parts</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/maintaining-and-repairing-of-spare-parts"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/maintaining-and-repairing-of-spare-parts"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/maintaining-and-repairing-of-spare-parts"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/maintaining-and-repairing-of-spare-parts"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/maintaining-and-repairing-of-spare-parts"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ar/services/maintaining-and-repairing-of-spare-parts</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/maintaining-and-repairing-of-spare-parts"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/maintaining-and-repairing-of-spare-parts"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/maintaining-and-repairing-of-spare-parts"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/maintaining-and-repairing-of-spare-parts"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/maintaining-and-repairing-of-spare-parts"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ja/services/maintaining-and-repairing-of-spare-parts</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/maintaining-and-repairing-of-spare-parts"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/maintaining-and-repairing-of-spare-parts"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/maintaining-and-repairing-of-spare-parts"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/maintaining-and-repairing-of-spare-parts"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/maintaining-and-repairing-of-spare-parts"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ko/services/maintaining-and-repairing-of-spare-parts</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/maintaining-and-repairing-of-spare-parts"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/maintaining-and-repairing-of-spare-parts"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/maintaining-and-repairing-of-spare-parts"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/maintaining-and-repairing-of-spare-parts"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/maintaining-and-repairing-of-spare-parts"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/en/services/supporting-ground-equipment</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/supporting-ground-equipment"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/supporting-ground-equipment"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/supporting-ground-equipment"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/supporting-ground-equipment"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/supporting-ground-equipment"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ar/services/supporting-ground-equipment</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/supporting-ground-equipment"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/supporting-ground-equipment"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/supporting-ground-equipment"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/supporting-ground-equipment"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/supporting-ground-equipment"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ja/services/supporting-ground-equipment</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/supporting-ground-equipment"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/supporting-ground-equipment"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/supporting-ground-equipment"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/supporting-ground-equipment"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/supporting-ground-equipment"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ko/services/supporting-ground-equipment</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/supporting-ground-equipment"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/supporting-ground-equipment"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/supporting-ground-equipment"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/supporting-ground-equipment"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/supporting-ground-equipment"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/en/services/structure-and-frame</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/structure-and-frame"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/structure-and-frame"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/structure-and-frame"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/structure-and-frame"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/structure-and-frame"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ar/services/structure-and-frame</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/structure-and-frame"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/structure-and-frame"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/structure-and-frame"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/structure-and-frame"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/structure-and-frame"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ja/services/structure-and-frame</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/structure-and-frame"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/structure-and-frame"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/structure-and-frame"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/structure-and-frame"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/structure-and-frame"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ko/services/structure-and-frame</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/structure-and-frame"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/structure-and-frame"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/structure-and-frame"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/structure-and-frame"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/structure-and-frame"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/en/services/supporting-the-simulator-system</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/supporting-the-simulator-system"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/supporting-the-simulator-system"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/supporting-the-simulator-system"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/supporting-the-simulator-system"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/supporting-the-simulator-system"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ar/services/supporting-the-simulator-system</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/supporting-the-simulator-system"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/supporting-the-simulator-system"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/supporting-the-simulator-system"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/supporting-the-simulator-system"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/supporting-the-simulator-system"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ja/services/supporting-the-simulator-system</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/supporting-the-simulator-system"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/supporting-the-simulator-system"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/supporting-the-simulator-system"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/supporting-the-simulator-system"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/supporting-the-simulator-system"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ko/services/supporting-the-simulator-system</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/supporting-the-simulator-system"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/supporting-the-simulator-system"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/supporting-the-simulator-system"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/supporting-the-simulator-system"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/supporting-the-simulator-system"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/en/services/hydraulic-pneumatic-equipment-and-components</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/hydraulic-pneumatic-equipment-and-components"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/hydraulic-pneumatic-equipment-and-components"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/hydraulic-pneumatic-equipment-and-components"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/hydraulic-pneumatic-equipment-and-components"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/hydraulic-pneumatic-equipment-and-components"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ar/services/hydraulic-pneumatic-equipment-and-components</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/hydraulic-pneumatic-equipment-and-components"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/hydraulic-pneumatic-equipment-and-components"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/hydraulic-pneumatic-equipment-and-components"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/hydraulic-pneumatic-equipment-and-components"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/hydraulic-pneumatic-equipment-and-components"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ja/services/hydraulic-pneumatic-equipment-and-components</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/hydraulic-pneumatic-equipment-and-components"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/hydraulic-pneumatic-equipment-and-components"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/hydraulic-pneumatic-equipment-and-components"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/hydraulic-pneumatic-equipment-and-components"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/hydraulic-pneumatic-equipment-and-components"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ko/services/hydraulic-pneumatic-equipment-and-components</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/hydraulic-pneumatic-equipment-and-components"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/hydraulic-pneumatic-equipment-and-components"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/hydraulic-pneumatic-equipment-and-components"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/hydraulic-pneumatic-equipment-and-components"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/hydraulic-pneumatic-equipment-and-components"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/en/services/us-government-support-services</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/us-government-support-services"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/us-government-support-services"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/us-government-support-services"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/us-government-support-services"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/us-government-support-services"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ar/services/us-government-support-services</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/us-government-support-services"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/us-government-support-services"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/us-government-support-services"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/us-government-support-services"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/us-government-support-services"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ja/services/us-government-support-services</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/us-government-support-services"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/us-government-support-services"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/us-government-support-services"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/us-government-support-services"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/us-government-support-services"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ko/services/us-government-support-services</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/us-government-support-services"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/us-government-support-services"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/us-government-support-services"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/us-government-support-services"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/us-government-support-services"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/en/services/radar-system</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/radar-system"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/radar-system"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/radar-system"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/radar-system"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/radar-system"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ar/services/radar-system</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/radar-system"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/radar-system"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/radar-system"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/radar-system"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/radar-system"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ja/services/radar-system</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/radar-system"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/radar-system"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/radar-system"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/radar-system"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/radar-system"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ko/services/radar-system</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/radar-system"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/radar-system"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/radar-system"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/radar-system"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/radar-system"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/en/services/english-language-training</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/english-language-training"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/english-language-training"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/english-language-training"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/english-language-training"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/english-language-training"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ar/services/english-language-training</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/english-language-training"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/english-language-training"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/english-language-training"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/english-language-training"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/english-language-training"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ja/services/english-language-training</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/english-language-training"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/english-language-training"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/english-language-training"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/english-language-training"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/english-language-training"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ko/services/english-language-training</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/english-language-training"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/english-language-training"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/english-language-training"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/english-language-training"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/english-language-training"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/en/services/generators-and-ups</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/generators-and-ups"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/generators-and-ups"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/generators-and-ups"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/generators-and-ups"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/generators-and-ups"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ar/services/generators-and-ups</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/generators-and-ups"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/generators-and-ups"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/generators-and-ups"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/generators-and-ups"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/generators-and-ups"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ja/services/generators-and-ups</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/generators-and-ups"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/generators-and-ups"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/generators-and-ups"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/generators-and-ups"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/generators-and-ups"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ko/services/generators-and-ups</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/generators-and-ups"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/generators-and-ups"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/generators-and-ups"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/generators-and-ups"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/generators-and-ups"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/en/services/procurement</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/procurement"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/procurement"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/procurement"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/procurement"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/procurement"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ar/services/procurement</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/procurement"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/procurement"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/procurement"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/procurement"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/procurement"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ja/services/procurement</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/procurement"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/procurement"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/procurement"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/procurement"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/procurement"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ko/services/procurement</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/procurement"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/procurement"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/procurement"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/procurement"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/procurement"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/en/services/engineering</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/engineering"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/engineering"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/engineering"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/engineering"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/engineering"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ar/services/engineering</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/engineering"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/engineering"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/engineering"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/engineering"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/engineering"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ja/services/engineering</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/engineering"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/engineering"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/engineering"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/engineering"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/engineering"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ko/services/engineering</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/engineering"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/engineering"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/engineering"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/engineering"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/engineering"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/en/services/ai-solutions</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/ai-solutions"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/ai-solutions"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/ai-solutions"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/ai-solutions"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/ai-solutions"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ar/services/ai-solutions</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/ai-solutions"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/ai-solutions"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/ai-solutions"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/ai-solutions"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/ai-solutions"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ja/services/ai-solutions</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/ai-solutions"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/ai-solutions"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/ai-solutions"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/ai-solutions"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/ai-solutions"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ko/services/ai-solutions</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/ai-solutions"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/ai-solutions"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/ai-solutions"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/ai-solutions"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/ai-solutions"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/en/services/cybersecurity</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/cybersecurity"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/cybersecurity"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/cybersecurity"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/cybersecurity"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/cybersecurity"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ar/services/cybersecurity</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/cybersecurity"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/cybersecurity"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/cybersecurity"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/cybersecurity"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/cybersecurity"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ja/services/cybersecurity</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/cybersecurity"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/cybersecurity"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/cybersecurity"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/cybersecurity"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/cybersecurity"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ko/services/cybersecurity</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/services/cybersecurity"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/services/cybersecurity"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/services/cybersecurity"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/services/cybersecurity"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/services/cybersecurity"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/en/news/advanced-simulator-support</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/news/advanced-simulator-support"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/news/advanced-simulator-support"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/news/advanced-simulator-support"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/news/advanced-simulator-support"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/news/advanced-simulator-support"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ar/news/advanced-simulator-support</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/news/advanced-simulator-support"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/news/advanced-simulator-support"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/news/advanced-simulator-support"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/news/advanced-simulator-support"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/news/advanced-simulator-support"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ja/news/advanced-simulator-support</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/news/advanced-simulator-support"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/news/advanced-simulator-support"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/news/advanced-simulator-support"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/news/advanced-simulator-support"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/news/advanced-simulator-support"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ko/news/advanced-simulator-support</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/news/advanced-simulator-support"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/news/advanced-simulator-support"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/news/advanced-simulator-support"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/news/advanced-simulator-support"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/news/advanced-simulator-support"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/en/news/advancing-radar-sensor-support</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/news/advancing-radar-sensor-support"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/news/advancing-radar-sensor-support"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/news/advancing-radar-sensor-support"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/news/advancing-radar-sensor-support"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/news/advancing-radar-sensor-support"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ar/news/advancing-radar-sensor-support</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/news/advancing-radar-sensor-support"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/news/advancing-radar-sensor-support"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/news/advancing-radar-sensor-support"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/news/advancing-radar-sensor-support"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/news/advancing-radar-sensor-support"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ja/news/advancing-radar-sensor-support</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/news/advancing-radar-sensor-support"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/news/advancing-radar-sensor-support"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/news/advancing-radar-sensor-support"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/news/advancing-radar-sensor-support"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/news/advancing-radar-sensor-support"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ko/news/advancing-radar-sensor-support</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/news/advancing-radar-sensor-support"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/news/advancing-radar-sensor-support"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/news/advancing-radar-sensor-support"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/news/advancing-radar-sensor-support"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/news/advancing-radar-sensor-support"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/en/news/expanding-spare-parts-capabilities</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/news/expanding-spare-parts-capabilities"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/news/expanding-spare-parts-capabilities"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/news/expanding-spare-parts-capabilities"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/news/expanding-spare-parts-capabilities"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/news/expanding-spare-parts-capabilities"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ar/news/expanding-spare-parts-capabilities</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/news/expanding-spare-parts-capabilities"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/news/expanding-spare-parts-capabilities"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/news/expanding-spare-parts-capabilities"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/news/expanding-spare-parts-capabilities"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/news/expanding-spare-parts-capabilities"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ja/news/expanding-spare-parts-capabilities</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/news/expanding-spare-parts-capabilities"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/news/expanding-spare-parts-capabilities"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/news/expanding-spare-parts-capabilities"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/news/expanding-spare-parts-capabilities"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/news/expanding-spare-parts-capabilities"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ko/news/expanding-spare-parts-capabilities</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/news/expanding-spare-parts-capabilities"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/news/expanding-spare-parts-capabilities"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/news/expanding-spare-parts-capabilities"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/news/expanding-spare-parts-capabilities"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/news/expanding-spare-parts-capabilities"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/en/news/ground-support-equipment-services</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/news/ground-support-equipment-services"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/news/ground-support-equipment-services"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/news/ground-support-equipment-services"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/news/ground-support-equipment-services"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/news/ground-support-equipment-services"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ar/news/ground-support-equipment-services</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/news/ground-support-equipment-services"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/news/ground-support-equipment-services"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/news/ground-support-equipment-services"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/news/ground-support-equipment-services"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/news/ground-support-equipment-services"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ja/news/ground-support-equipment-services</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/news/ground-support-equipment-services"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/news/ground-support-equipment-services"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/news/ground-support-equipment-services"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/news/ground-support-equipment-services"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/news/ground-support-equipment-services"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://3lines.com.sa/ko/news/ground-support-equipment-services</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://3lines.com.sa/en/news/ground-support-equipment-services"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://3lines.com.sa/ar/news/ground-support-equipment-services"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://3lines.com.sa/ja/news/ground-support-equipment-services"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://3lines.com.sa/ko/news/ground-support-equipment-services"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://3lines.com.sa/en/news/ground-support-equipment-services"/>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+</urlset>

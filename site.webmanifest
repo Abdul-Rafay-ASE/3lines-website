@@ -1,0 +1,15 @@
+{
+  "name": "3Lines Advanced Technologies Company",
+  "short_name": "3Lines",
+  "description": "The first licensed Saudi company for aircraft spare parts, ground support equipment and simulators — serving civil and military operators worldwide.",
+  "start_url": "/en",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0a0f1c",
+  "theme_color": "#0a0f1c",
+  "lang": "en",
+  "dir": "auto",
+  "icons": [
+    { "src": "/assets/logos/favicon.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

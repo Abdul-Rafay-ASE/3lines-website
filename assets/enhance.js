@@ -1514,6 +1514,18 @@
     (document.head || document.documentElement).appendChild(s);
   })();
 
+  /* ----- 18k) PWA / mobile head tags -----
+     The prerendered pages ship no web-app manifest, theme-color or apple-touch-icon. Inject them once
+     (idempotent) so mobile browsers get the brand colour on the address bar, a proper "add to home
+     screen" identity, and an iOS icon. Head-only; safe on every page/locale. */
+  (function pwaHead() {
+    var head = document.head || document.documentElement;
+    function ensure(sel, make) { if (!document.querySelector(sel)) head.appendChild(make()); }
+    ensure('link[rel="manifest"]', function () { var l = document.createElement('link'); l.rel = 'manifest'; l.href = '/site.webmanifest'; return l; });
+    ensure('meta[name="theme-color"]', function () { var m = document.createElement('meta'); m.name = 'theme-color'; m.content = '#0a0f1c'; return m; });
+    ensure('link[rel="apple-touch-icon"]', function () { var l = document.createElement('link'); l.rel = 'apple-touch-icon'; l.href = '/assets/logos/favicon.png'; return l; });
+  })();
+
   /* ----- 16b) Tag flat/LIGHT partner logos -----
      The partner strip (rule 16) shows every logo in its REAL colour, at full opacity, all the time.
      A few logos are flat WHITE/near-white assets (Airbus, MI, SAMI Advanced ...) -- on the light

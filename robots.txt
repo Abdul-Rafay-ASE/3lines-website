@@ -1,0 +1,8 @@
+# https://3lines.com.sa
+User-agent: *
+Allow: /
+Disallow: /cms
+Disallow: /cms/
+Disallow: /api/
+
+Sitemap: https://3lines.com.sa/sitemap.xml
