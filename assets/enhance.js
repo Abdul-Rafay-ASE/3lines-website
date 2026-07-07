@@ -1622,6 +1622,30 @@
     document.addEventListener('DOMContentLoaded', ensure);
   })();
 
+  /* ----- 18n) Swap the "Global sourcing reach" ∞ stat for a globe icon -----
+     The infinity glyph read as ambiguous. Replace the ∞ stat VALUE with a globe (clear "global reach"),
+     inheriting the value's blue colour and font-size. Skipped on /services/<slug> pages, where ∞ is used
+     for a different stat ("Civil + military"). Idempotent + hydration-safe. */
+  (function globalReachIcon() {
+    if (/\/services\/[^/]+$/.test(location.pathname)) return;
+    var GLOBE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:inline-block;vertical-align:-0.12em;"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>';
+    function ensure() {
+      var all = document.querySelectorAll('div,span'), hit = false;
+      for (var i = 0; i < all.length; i++) {
+        var el = all[i];
+        if (el.children.length === 0 && el.getAttribute('data-cln-globe') == null && el.textContent.trim() === '∞') {
+          el.setAttribute('data-cln-globe', '1');
+          el.innerHTML = GLOBE;
+          hit = true;
+        }
+      }
+      return hit;
+    }
+    var n = 0, iv = setInterval(function () { ensure(); if (++n > 20) clearInterval(iv); }, 300);
+    if (document.readyState !== 'loading') ensure();
+    document.addEventListener('DOMContentLoaded', ensure);
+  })();
+
   /* ----- 16b) Tag flat/LIGHT partner logos -----
      The partner strip (rule 16) shows every logo in its REAL colour, at full opacity, all the time.
      A few logos are flat WHITE/near-white assets (Airbus, MI, SAMI Advanced ...) -- on the light
