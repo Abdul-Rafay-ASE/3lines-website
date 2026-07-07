@@ -1576,20 +1576,22 @@
     function esc(s) { return (s == null ? '' : String(s)).replace(/[&<>"]/g, function (m) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m]; }); }
     var css = document.createElement('style'); css.id = 'cln-banner-css';
     css.textContent =
-      ".cln-banner{position:relative;min-height:clamp(340px,52vh,560px);display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:#06111f url('/assets/img/hangar.jpg?v=2') center/cover no-repeat;}" +
-      "@supports (background-image:image-set(url('x') type('image/webp'))){.cln-banner{background-image:image-set(url('/assets/img/hangar.webp?v=2') type('image/webp'),url('/assets/img/hangar.jpg?v=2') type('image/jpeg'));}}" +
-      ".cln-banner::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,10,20,.74),rgba(6,10,20,.6) 42%,rgba(6,10,20,.82));}" +
-      ".cln-banner-in{position:relative;z-index:1;max-width:52rem;padding:2.5rem 1.5rem;}" +
-      ".cln-banner-eye{display:block;margin-bottom:.9rem;font-size:.72rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#5cc0ff;}" +
+      /* aircraft SHOWN AS A CUTOUT on the page's own background (no dark photo box); a soft brand-blue
+         glow sits behind it. Text is theme-aware (dark in light mode, light in dark mode). */
+      ".cln-banner{position:relative;overflow:hidden;padding:3.75rem 1.5rem 2.5rem;text-align:center;}" +
+      ".cln-banner::before{content:'';position:absolute;left:50%;top:63%;transform:translate(-50%,-50%);width:min(94%,1150px);height:80%;background:radial-gradient(ellipse at center,rgba(58,160,255,.17),transparent 68%);pointer-events:none;z-index:0;}" +
+      ".cln-banner-in{position:relative;z-index:1;max-width:60rem;margin:0 auto;}" +
+      ".cln-banner-eye{display:block;margin-bottom:.85rem;font-size:.72rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#5cc0ff;}" +
       "html[lang='ar'] .cln-banner-eye{letter-spacing:normal;}" +
-      ".cln-banner-h{font-size:clamp(1.8rem,4vw,3rem);font-weight:800;line-height:1.14;color:#fff;margin:0;text-shadow:0 2px 22px rgba(0,0,0,.55);}" +
-      ".cln-banner-sub{margin:1.05rem auto 0;max-width:40rem;font-size:clamp(1rem,1.5vw,1.15rem);line-height:1.6;color:rgba(228,232,243,.86);}" +
-      /* the banner image is dark in BOTH themes, so keep its text light — the light theme otherwise recolours the h2/eyebrow to dark. */
-      ".cln-banner-h,.ml-light .cln-banner-h{color:#fff !important;}" +
-      ".cln-banner-sub,.ml-light .cln-banner-sub{color:rgba(228,232,243,.9) !important;}" +
-      ".cln-banner-eye,.ml-light .cln-banner-eye{color:#5cc0ff !important;}" +
-      ".cln-banner-cta{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.7rem;padding:.85rem 1.9rem;border-radius:.7rem;background:linear-gradient(180deg,#2f7dff,#1c5fe0);color:#fff !important;font-weight:700;font-size:1rem;text-decoration:none;box-shadow:0 12px 30px -10px rgba(47,125,255,.7);transition:transform .18s ease,box-shadow .18s ease;}" +
-      ".cln-banner-cta:hover{transform:translateY(-2px);box-shadow:0 16px 36px -10px rgba(47,125,255,.85);}";
+      ".ml-light .cln-banner-eye{color:#1f6fd6;}" +
+      ".cln-banner-h{font-size:clamp(1.8rem,4vw,3rem);font-weight:800;line-height:1.14;margin:0;color:#f4f4f5;}" +
+      ".ml-light .cln-banner-h{color:#0b1220;}" +
+      ".cln-banner-sub{margin:1.05rem auto 0;max-width:40rem;font-size:clamp(1rem,1.5vw,1.15rem);line-height:1.6;color:#a1a1aa;}" +
+      ".ml-light .cln-banner-sub{color:#52525b;}" +
+      ".cln-banner-cta{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.6rem;padding:.85rem 1.9rem;border-radius:.7rem;background:linear-gradient(180deg,#2f7dff,#1c5fe0);color:#fff !important;font-weight:700;font-size:1rem;text-decoration:none;box-shadow:0 12px 30px -10px rgba(47,125,255,.7);transition:transform .18s ease,box-shadow .18s ease;}" +
+      ".cln-banner-cta:hover{transform:translateY(-2px);box-shadow:0 16px 36px -10px rgba(47,125,255,.85);}" +
+      ".cln-banner-img{display:block;width:min(100%,1000px);height:auto;margin:1.9rem auto 0;filter:drop-shadow(0 34px 42px rgba(0,0,0,.45));}" +
+      ".ml-light .cln-banner-img{filter:drop-shadow(0 28px 40px rgba(16,42,90,.28));}";
     (document.head || document.documentElement).appendChild(css);
     var EYE = { en: 'BUILT FOR MISSION-CRITICAL', ar: 'لمهام حاسمة', ja: 'ミッションクリティカル対応', ko: '미션 크리티컬 대응' };
     var H = { en: 'Defense-grade capability, delivered in the Kingdom', ar: 'قدرات بمستوى الدفاع، تُنجَز داخل المملكة', ja: '国防レベルの能力を、王国内で', ko: '국방 수준의 역량을 왕국 내에서' };
@@ -1601,7 +1603,9 @@
       sec.innerHTML = '<div class="cln-banner-in"><span class="cln-banner-eye">' + esc(EYE[L] || EYE.en) + '</span>' +
         '<h2 class="cln-banner-h">' + esc(H[L] || H.en) + '</h2>' +
         '<p class="cln-banner-sub">' + esc(SUB[L] || SUB.en) + '</p>' +
-        '<a class="cln-banner-cta" href="/' + L + '/contact.html">' + esc(CTA[L] || CTA.en) + ' ' + (L === 'ar' ? '←' : '→') + '</a></div>';
+        '<a class="cln-banner-cta" href="/' + L + '/contact.html">' + esc(CTA[L] || CTA.en) + ' ' + (L === 'ar' ? '←' : '→') + '</a>' +
+        '<picture><source srcset="/assets/img/plane.webp" type="image/webp"><img class="cln-banner-img" src="/assets/img/plane.png" alt="Military transport aircraft" loading="lazy" decoding="async"></picture>' +
+        '</div>';
       return sec;
     }
     function ensure() {
