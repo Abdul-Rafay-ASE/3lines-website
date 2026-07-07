@@ -1331,8 +1331,10 @@
     function esc(s) { return (s == null ? '' : String(s)).replace(/[&<>"]/g, function (m) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m]; }); }
     var css = document.createElement('style'); css.id = 'cln-sectors-css';
     css.textContent =
-      '.cln-sectors{padding:5.5rem 0;}' +
+      '.cln-sectors{padding:6rem 0;}' +   /* match the site's 96px section rhythm */
       '.cln-sectors-in{max-width:80rem;margin:0 auto;padding:0 1.5rem;}' +
+      /* Services grid ships grid-cols-1 lg:grid-cols-3 (1 col until 1024px) -> sparse on tablet. Give it 2 cols in the 640-1024 range. */
+      '@media(min-width:640px) and (max-width:1023.98px){#services [class~="grid-cols-1"][class~="lg:grid-cols-3"]{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}}' +
       '.cln-sectors-head{text-align:center;margin-bottom:2.75rem;}' +
       '.cln-sectors-eye{display:block;margin-bottom:.6rem;font-size:.72rem;line-height:1;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:#5cc0ff;}' +
       'html[lang="ar"] .cln-sectors-eye{letter-spacing:normal;}' +
