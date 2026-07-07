@@ -1576,8 +1576,8 @@
     function esc(s) { return (s == null ? '' : String(s)).replace(/[&<>"]/g, function (m) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m]; }); }
     var css = document.createElement('style'); css.id = 'cln-banner-css';
     css.textContent =
-      ".cln-banner{position:relative;min-height:clamp(340px,52vh,560px);display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:#06111f url('/assets/img/hangar.jpg') center/cover no-repeat;}" +
-      "@supports (background-image:image-set(url('x') type('image/webp'))){.cln-banner{background-image:image-set(url('/assets/img/hangar.webp') type('image/webp'),url('/assets/img/hangar.jpg') type('image/jpeg'));}}" +
+      ".cln-banner{position:relative;min-height:clamp(340px,52vh,560px);display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:#06111f url('/assets/img/hangar.jpg?v=2') center/cover no-repeat;}" +
+      "@supports (background-image:image-set(url('x') type('image/webp'))){.cln-banner{background-image:image-set(url('/assets/img/hangar.webp?v=2') type('image/webp'),url('/assets/img/hangar.jpg?v=2') type('image/jpeg'));}}" +
       ".cln-banner::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,10,20,.74),rgba(6,10,20,.6) 42%,rgba(6,10,20,.82));}" +
       ".cln-banner-in{position:relative;z-index:1;max-width:52rem;padding:2.5rem 1.5rem;}" +
       ".cln-banner-eye{display:block;margin-bottom:.9rem;font-size:.72rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#5cc0ff;}" +
