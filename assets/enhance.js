@@ -1606,7 +1606,7 @@
         '<h2 class="cln-banner-h">' + esc(H[L] || H.en) + '</h2>' +
         '<p class="cln-banner-sub">' + esc(SUB[L] || SUB.en) + '</p>' +
         '<a class="cln-banner-cta" href="/' + L + '/contact.html">' + esc(CTA[L] || CTA.en) + ' ' + (L === 'ar' ? '←' : '→') + '</a>' +
-        '<picture><source srcset="/assets/img/plane.webp" type="image/webp"><img class="cln-banner-img" src="/assets/img/plane.png" alt="Military transport aircraft" loading="lazy" decoding="async"></picture>' +
+        '<picture><source srcset="/assets/img/plane.webp?v=2" type="image/webp"><img class="cln-banner-img" src="/assets/img/plane.png?v=2" alt="Military transport aircraft" loading="lazy" decoding="async"></picture>' +
         '</div>';
       return sec;
     }
