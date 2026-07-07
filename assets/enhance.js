@@ -970,6 +970,8 @@
       '.cln-cbtn-ico{width:3.5rem;height:3.5rem;display:flex;align-items:center;justify-content:center;background:transparent;border:0;box-shadow:none;transition:transform .2s ease;}' +
       '.cln-cbtn:hover .cln-cbtn-ico,.cln-cbtn:focus-visible .cln-cbtn-ico{transform:translateY(-3px) scale(1.06);}' +
       '.cln-cbtn-ico svg,.cln-cbtn-ico img{width:2.65rem;height:2.65rem;display:block;object-fit:contain;}' +
+      /* keep all 5 channel icons on one row on phones (was wrapping 4+1) */
+      '@media(max-width:430px){.cln-cbtns{gap:.9rem;}.cln-cbtn-ico{width:3rem;height:3rem;}.cln-cbtn-ico svg,.cln-cbtn-ico img{width:2.2rem;height:2.2rem;}}' +
       /* "Begin a conversation" CTA (homepage) -> contact page; the contact page shows the form instead */
       '.cln-cbtn-cta{display:inline-flex;align-items:center;gap:.5rem;margin:2.1rem auto 0;padding:.85rem 1.7rem;border-radius:.75rem;background:linear-gradient(180deg,#2f7dff,#1c5fe0);color:#fff;font-weight:700;font-size:1rem;text-decoration:none;box-shadow:0 10px 24px -8px rgba(47,125,255,.6);transition:transform .18s ease,box-shadow .18s ease;}' +
       '.cln-cbtn-cta:hover{transform:translateY(-2px);box-shadow:0 14px 30px -8px rgba(47,125,255,.75);}' +
