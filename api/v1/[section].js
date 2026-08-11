@@ -52,7 +52,10 @@ const SECTIONS = {
   services:   { editable: true,  envelope: true  }, // wrap as {data}
   'site-info':{ editable: true,  envelope: true, seedKey: 'siteInfo' },
   tags:       { editable: false, envelope: false, seedKey: 'tags' },
-  pages:      { editable: false, envelope: false, seedKey: 'pages' },
+  // `editable` here only decides whether content/<section>.json is read before falling back to the
+  // embedded seed. pages/ is read from disk so the About + capability copy in content/pages.json is
+  // what ships; tags/slides stay seed-only (their content/*.json are empty placeholders).
+  pages:      { editable: true,  envelope: false, seedKey: 'pages' },
   slides:     { editable: false, envelope: false, seedKey: 'slides' },
 };
 

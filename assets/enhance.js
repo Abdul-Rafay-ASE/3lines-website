@@ -280,7 +280,7 @@
       'box-shadow:0 1px 2px rgba(0,0,0,.5),0 14px 30px -14px rgba(0,0,0,.7),0 -20px 80px -20px #ffffff24 inset !important;}' +
     '.dark header.fixed,.dark header[class*="fixed"]{background-color:rgba(9,12,18,.9) !important;}' +
     /* 3) uniform subtle hover lift on all cards (both themes) */
-    'figure[class*="min-h-40"],a[class*="min-h-[10rem]"],[class*="group/spotlight"]{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease,background-color .25s ease !important;}' +
+    'figure[class*="min-h-40"],a[class*="min-h-[10rem]"],[class*="group/spotlight"]{transition:transform .25s cubic-bezier(.215,.61,.355,1),box-shadow .25s cubic-bezier(.215,.61,.355,1),border-color .25s cubic-bezier(.215,.61,.355,1),background-color .25s cubic-bezier(.215,.61,.355,1) !important;}' +
     'figure[class*="min-h-40"]:hover,a[class*="min-h-[10rem]"]:hover,[class*="group/spotlight"]:hover{transform:translateY(-4px) !important;}' +
     '.dark figure[class*="min-h-40"]:hover,.dark a[class*="min-h-[10rem]"]:hover,.dark [class*="group/spotlight"]:hover{border-color:rgba(255,255,255,.30) !important;box-shadow:0 10px 22px rgba(0,0,0,.5),0 20px 44px -18px rgba(0,0,0,.7),0 -20px 80px -20px #ffffff2e inset !important;}' +
     /* 4) XR spotlight card: on hover its content slid up and a "Learn more" CTA appeared —
@@ -361,7 +361,7 @@
            logos -- which would go white-on-white on the light theme -- are inverted-dark in light mode;
            they're detected by average brightness at runtime (16b) and tagged .cln-light-logo. Dark mode
            shows every logo as-is (all read on the dark bg). Hover just lifts slightly. */
-    'img[class*="group-hover:grayscale-0"]{filter:none !important;opacity:1 !important;transition:transform .2s ease !important;}' +
+    'img[class*="group-hover:grayscale-0"]{filter:none !important;opacity:1 !important;transition:transform .2s cubic-bezier(.215,.61,.355,1) !important;}' +
     '.ml-light img[class*="group-hover:grayscale-0"].cln-light-logo{filter:invert(1) grayscale(1) brightness(.4) contrast(1.15) !important;}' +
     'img[class*="group-hover:grayscale-0"]:hover{transform:scale(1.06) !important;}' +
     /* 17) Footer brand logo: now that the long blurb paragraph is gone, give the logo a bigger,
@@ -486,7 +486,7 @@
   secHeadCss.textContent =
     '.cln-eyebrow{display:block;margin-bottom:.6rem;font-size:.72rem;line-height:1;font-weight:700;text-transform:uppercase;color:#5cc0ff;}' +
     'html:not([lang="ar"]) .cln-eyebrow{letter-spacing:.2em;}' +
-    '.ml-light .cln-eyebrow{color:#1f6fd6;}' +
+    '.ml-light .cln-eyebrow{color:#12559f;}' +
     '.cln-sec-h2::after{content:"";position:absolute;left:50%;transform:translateX(-50%);bottom:1.4rem;width:60px;height:3px;border-radius:3px;background:linear-gradient(90deg,rgba(58,160,255,0),rgba(58,160,255,.9),rgba(58,160,255,0));}';
   (document.head || document.documentElement).appendChild(secHeadCss);
 
@@ -498,7 +498,7 @@
      nav-reorder step tags the link with .cln-nav-cta (desktop nav only). */
   var navCtaCss = document.createElement('style'); navCtaCss.id = 'cln-nav-cta';
   navCtaCss.textContent =
-    '.cln-nav-cta{background:linear-gradient(180deg,#2f7dff,#1c5fe0) !important;color:#fff !important;box-shadow:0 6px 18px -7px rgba(47,125,255,.7) !important;transition:transform .2s ease,box-shadow .2s ease !important;}' +
+    '.cln-nav-cta{background:linear-gradient(180deg,#2f7dff,#1c5fe0) !important;color:#fff !important;box-shadow:0 6px 18px -7px rgba(47,125,255,.7) !important;transition:transform .2s cubic-bezier(.215,.61,.355,1),box-shadow .2s cubic-bezier(.215,.61,.355,1) !important;}' +
     '.cln-nav-cta:hover,.cln-nav-cta:focus{background:linear-gradient(180deg,#3f8bff,#2668ea) !important;color:#fff !important;box-shadow:0 9px 22px -7px rgba(47,125,255,.85) !important;transform:translateY(-1px) !important;}';
   (document.head || document.documentElement).appendChild(navCtaCss);
 
@@ -568,13 +568,19 @@
     '.cln-slider-prev{left:.9rem;}.cln-slider-next{right:.9rem;}' +
     '.cln-slider-arrow:hover,.cln-slider-arrow:focus-visible{border-color:rgba(58,160,255,.7);color:#3aa0ff;background:rgba(58,160,255,.14);}' +
     '.cln-slider-dots{display:flex;justify-content:center;gap:.5rem;margin-top:1rem;}' +
-    '.cln-slider-dot{width:8px;height:8px;border-radius:999px;border:0;background:rgba(255,255,255,.25);cursor:pointer;padding:0;transition:width .25s ease,background .25s ease;}' +
-    '.cln-slider-dot[aria-current="true"]{width:22px;background:#3aa0ff;}' +
+    /* The button carries a 24x24 hit area (WCAG 2.5.8 target size); the visible 8px pip is drawn by
+       ::before. Previously the button WAS the 8px pip, which failed the audit on touch devices. */
+    '.cln-slider-dot{position:relative;display:inline-flex;align-items:center;justify-content:center;' +
+      'width:24px;height:24px;border:0;background:none;cursor:pointer;padding:0;transition:width .25s ease;}' +
+    '.cln-slider-dot::before{content:"";display:block;width:8px;height:8px;border-radius:999px;' +
+      'background:rgba(255,255,255,.25);transition:width .25s ease,background .25s ease;}' +
+    '.cln-slider-dot[aria-current="true"]{width:38px;}' +
+    '.cln-slider-dot[aria-current="true"]::before{width:22px;background:#3aa0ff;}' +
     '.ml-light .cln-slider-viewport{border-color:rgba(3,18,44,.12);background:#ffffff;}' +
     '.ml-light .cln-slide-head{color:#0b1220;}.ml-light .cln-slide-sub{color:#52525b;}.ml-light .cln-slide-eyebrow{color:#0a73d4;}' +
     '.ml-light .cln-slider-arrow{border-color:rgba(3,18,44,.12);color:#334155;background:rgba(255,255,255,.85);box-shadow:0 2px 10px rgba(3,18,44,.12);}' +
     '.ml-light .cln-slider-arrow:hover,.ml-light .cln-slider-arrow:focus-visible{border-color:rgba(10,115,212,.6);color:#0a73d4;background:rgba(10,115,212,.06);}' +
-    '.ml-light .cln-slider-dot{background:rgba(3,18,44,.2);}.ml-light .cln-slider-dot[aria-current="true"]{background:#0a73d4;}' +
+    '.ml-light .cln-slider-dot::before{background:rgba(3,18,44,.2);}.ml-light .cln-slider-dot[aria-current="true"]::before{background:#0a73d4;}' +
     '@media(max-width:640px){.cln-slider-arrow{display:none;}.cln-slide{padding:2.25rem 1.25rem;min-height:200px;}}';
   (document.head || document.documentElement).appendChild(sliderCss);
 
@@ -965,7 +971,7 @@
     CSS.textContent =
       /* Real brand app-icons: full-colour marks (Outlook / Call / WhatsApp / LinkedIn / Google Maps)
          shown bare -- no white tile behind them, no text labels (accessible name lives on aria-label/title). */
-      '.cln-cbtns{display:flex;flex-wrap:wrap;justify-content:center;gap:1.6rem;margin:1.9rem auto 0;max-width:42rem;}' +
+      '.cln-cbtns{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(.55rem,3.4vw,1.6rem);margin:1.9rem auto 0;max-width:42rem;}' +
       '.cln-cbtn{display:flex;align-items:center;justify-content:center;text-decoration:none;}' +
       '.cln-cbtn-ico{width:3.5rem;height:3.5rem;display:flex;align-items:center;justify-content:center;background:transparent;border:0;box-shadow:none;transition:transform .2s ease;}' +
       '.cln-cbtn:hover .cln-cbtn-ico,.cln-cbtn:focus-visible .cln-cbtn-ico{transform:translateY(-3px) scale(1.06);}' +
@@ -1002,7 +1008,12 @@
       /* the contact PAGE wraps the block in an article template with huge py-40 + pb-28 padding, which
          stacked with the above left a big empty gap above AND below the form. Tighten it on that page. */
       '.cln-contact-page .cln-contact{padding-bottom:1.5rem !important;}' +
-      '.cln-contact-page [class*="py-40"]:has(.cln-contact){padding-top:3rem !important;padding-bottom:3rem !important;}' +
+      /* padding-top is deliberately NOT !important: the interior-page header-clearance pass (2c) sets an
+         inline padding-top sized to the LIVE fixed-header height, and an !important here beat it -- so
+         3rem (48px) won against a 76px header and the breadcrumb tucked behind it. The selector is
+         specific enough to beat Tailwind's py-40 on its own, and 7.5rem is a safe no-JS fallback that
+         still clears the header while staying far tighter than py-40's 160px. */
+      '.cln-contact-page [class*="py-40"]:has(.cln-contact){padding-top:7.5rem;padding-bottom:3rem !important;}' +
       '.cln-contact-page [class*="pb-28"]:has(.cln-contact){padding-bottom:1.5rem !important;padding-top:2rem !important;}' +
       /* hide the stray article-template date that renders at the top of the contact page */
       '.cln-cdate-hide{display:none !important;}';
@@ -1153,85 +1164,20 @@
     document.addEventListener('DOMContentLoaded', run);
   })();
 
-  /* ----- 18c) Services: reflect the new department cards (Procurement / Engineering / AI / Accounts) -----
-     The services grid is prerendered from the build, so the content/services.json edit only reaches the
-     API -- not the static cards -- until the site is rebuilt. Mirror it client-side: hide the two retired
-     cards and clone the matching-icon card for each new one (so the icon + styling come free). Idempotent
-     and rebuild-safe: skips any card already present, so it won't duplicate once a rebuild ships them. */
-  (function injectServices() {
-    function loc() { var l = (document.documentElement.getAttribute('lang') || 'en').toLowerCase(); return (l === 'ar' || l === 'ja' || l === 'ko') ? l : 'en'; }
-    var HIDE = ['english-language-training', 'generators-and-ups'];
-    var NEW = [
-      { slug: 'procurement', from: 'provide-spare-parts',
-        t: { en: 'Procurement', ar: 'المشتريات', ja: '調達', ko: '조달' },
-        d: { en: 'A dedicated procurement team sourcing genuine parts, equipment, and components — dependable global supply from the United States and worldwide.',
-             ar: 'فريق مشتريات متخصص لتوريد قطع الغيار والمعدات والمكوّنات الأصلية — إمداد عالمي موثوق من الولايات المتحدة وحول العالم.',
-             ja: '純正部品・機器・コンポーネントを調達する専任の調達チーム。米国および世界中からの信頼できるグローバル供給。',
-             ko: '정품 부품·장비·구성품을 조달하는 전담 조달 팀 — 미국과 전 세계로부터의 신뢰할 수 있는 글로벌 공급.' } },
-      { slug: 'engineering', from: 'maintaining-and-repairing',
-        t: { en: 'Engineering', ar: 'الهندسة', ja: 'エンジニアリング', ko: '엔지니어링' },
-        d: { en: 'A dedicated engineering department led by senior engineers, delivering technical solutions, integration, and hands-on support.',
-             ar: 'قسم هندسي متخصص بقيادة نخبة من المهندسين، يقدّم الحلول التقنية والتكامل والدعم الميداني.',
-             ja: 'ベテランエンジニアが率いる専門のエンジニアリング部門が、技術ソリューション、統合、実地サポートを提供します。',
-             ko: '숙련된 엔지니어가 이끄는 전담 엔지니어링 부서가 기술 솔루션, 통합, 현장 지원을 제공합니다.' } },
-      { slug: 'ai-solutions', from: 'supporting-the-simulator-system',
-        t: { en: 'AI Solutions', ar: 'حلول الذكاء الاصطناعي', ja: 'AIソリューション', ko: 'AI 솔루션' },
-        d: { en: 'Sovereign AI — command centers, document intelligence, and operations agents. Bilingual (Arabic & English) with 100% in-Kingdom data residency.',
-             ar: 'ذكاء اصطناعي سيادي — مراكز قيادة وذكاء المستندات ووكلاء التشغيل، بالعربية والإنجليزية مع بقاء البيانات داخل المملكة بنسبة 100٪.',
-             ja: 'ソブリンAI — コマンドセンター、ドキュメントインテリジェンス、業務エージェント。アラビア語・英語対応、データは100%王国内に保持。',
-             ko: '소버린 AI — 커맨드 센터, 문서 인텔리전스, 운영 에이전트. 아랍어·영어 지원 및 데이터 100% 왕국 내 보관.' } },
-      { slug: 'cybersecurity', from: 'us-government-support-services',
-        t: { en: 'Cybersecurity', ar: 'الأمن السيبراني', ja: 'サイバーセキュリティ', ko: '사이버보안' },
-        d: { en: 'Protecting critical systems and data with a sovereign, in-Kingdom approach — assessment, hardening, monitoring, and incident response.',
-             ar: 'حماية الأنظمة والبيانات الحسّاسة بنهج سيادي داخل المملكة — تقييم وتحصين ومراقبة واستجابة للحوادث.',
-             ja: '主権的で王国内で運用するアプローチにより、重要なシステムとデータを保護します — 評価、堅牢化、監視、インシデント対応。',
-             ko: '주권적이고 왕국 내에서 운영되는 접근으로 중요한 시스템과 데이터를 보호합니다 — 평가, 강화, 모니터링, 사고 대응.' } }
-    ];
-    function run() {
-      var any = document.querySelector('[id="services"] a[class*="min-h-[10rem]"]');
-      var grid = any ? any.parentElement : null;
-      if (!grid) return false;
-      var cards = [].slice.call(grid.querySelectorAll('a[class*="min-h-[10rem]"]'));
-      if (cards.length < 6) return false; // grid not fully rendered yet
-      var L = loc();
-      cards.forEach(function (c) {
-        var href = c.getAttribute('href') || '';
-        for (var i = 0; i < HIDE.length; i++) if (href.indexOf(HIDE[i]) !== -1) c.style.display = 'none';
-      });
-      NEW.forEach(function (nw) {
-        if (grid.querySelector('[data-cln-svc="' + nw.slug + '"]')) return;
-        var wanted = nw.t[L] || nw.t.en;
-        if (cards.some(function (c) { var h = c.querySelector('h3,h2'); return h && h.textContent.trim() === wanted; })) return; // already there (rebuilt)
-        var tpl = null;
-        cards.forEach(function (c) { if ((c.getAttribute('href') || '').indexOf(nw.from) !== -1) tpl = c; });
-        if (!tpl) return;
-        var clone = tpl.cloneNode(true);
-        clone.setAttribute('data-cln-svc', nw.slug);
-        clone.style.display = ''; clone.classList.add('cln-in'); clone.classList.remove('cln-reveal');
-        // Real detail-page URL (ends in <slug>.html, so it does NOT collide with the /services.html
-        // View-all button detector). The server serves a template for these slugs and the detail-page
-        // runtime below fills in the correct content from the API.
-        clone.setAttribute('href', '/' + L + '/services/' + nw.slug + '.html');
-        [].slice.call(clone.querySelectorAll('.cln-linkext,.cln-sr-heading,.cln-bento-wm')).forEach(function (e) { e.remove(); });
-        var h = clone.querySelector('h3,h2'); if (h) h.textContent = wanted;
-        var p = clone.querySelector('p'); if (p) p.textContent = nw.d[L] || nw.d.en;
-        grid.appendChild(clone);
-      });
-      return true;
-    }
-    var m = 0, iv = setInterval(function () { run(); if (++m > 20) clearInterval(iv); }, 250);
-    if (document.readyState !== 'loading') run();
-    document.addEventListener('DOMContentLoaded', run);
-  })();
-
   /* ----- 18d) New-service detail page -----
-     The server serves the spare-parts page as a shell for the four new /xx/services/<slug>.html routes.
+     The server serves the spare-parts page as a shell for the ten capability /xx/services/<slug>.html routes.
      Here we detect that slug and rewrite the shell's visible content (title, breadcrumb, hero, overview
      body) + SEO metas from the API, so each department gets a correct, proper detail page. Only the four
      new slugs are touched -- the real prerendered service pages are left exactly as built. */
   (function serviceDetailPage() {
-    var ms = location.pathname.match(/\/services\/([a-z0-9-]+)\.html/);
-    var NEWSLUGS = ['procurement', 'engineering', 'ai-solutions', 'cybersecurity'];
+    // Both forms reach the same shell: the cards link to <slug>.html, but cleanUrls (and the legacy
+    // 301s) land on the extensionless path, so match either or the clean URL renders the raw template.
+    var ms = location.pathname.match(/\/services\/([a-z0-9-]+)(?:\.html)?$/);
+    var NEWSLUGS = ['radar-electronics-communications-sustainment', 'government-relations-and-life-support',
+                    'power-systems-support', 'electronics-diagnostic-and-repair-workshops',
+                    'ground-support-equipment-sustainment', 'spare-parts-logistics-and-warehousing',
+                    'simulation-systems', 'training-and-capability-enablement',
+                    'defense-systems-sustainment-mro', 'program-management-and-localization'];
     if (!ms || NEWSLUGS.indexOf(ms[1]) === -1) return;
     var slug = ms[1];
     function loc() { var l = (document.documentElement.getAttribute('lang') || 'en').toLowerCase(); return (l === 'ar' || l === 'ja' || l === 'ko') ? l : 'en'; }
@@ -1338,7 +1284,7 @@
       '.cln-sectors-head{text-align:center;margin-bottom:2.75rem;}' +
       '.cln-sectors-eye{display:block;margin-bottom:.6rem;font-size:.72rem;line-height:1;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:#5cc0ff;}' +
       'html[lang="ar"] .cln-sectors-eye{letter-spacing:normal;}' +
-      '.ml-light .cln-sectors-eye{color:#1f6fd6;}' +
+      '.ml-light .cln-sectors-eye{color:#12559f;}' +
       '.cln-sectors-h2{position:relative;display:inline-block;font-size:clamp(1.75rem,3vw,2.4rem);font-weight:800;line-height:1.1;padding-bottom:1rem;margin:0;color:#f4f4f5;}' +
       '.ml-light .cln-sectors-h2{color:#0b1220;}' +
       '.cln-sectors-h2::after{content:"";position:absolute;left:50%;transform:translateX(-50%);bottom:0;width:60px;height:3px;border-radius:3px;background:linear-gradient(90deg,rgba(58,160,255,0),rgba(58,160,255,.9),rgba(58,160,255,0));}' +
@@ -1417,8 +1363,8 @@
   (function heroSubline() {
     function loc() { var l = (document.documentElement.getAttribute('lang') || 'en').toLowerCase(); return (l === 'ar' || l === 'ja' || l === 'ko') ? l : 'en'; }
     var TXT = {
-      en: 'The first licensed Saudi company for aircraft spare parts, ground support equipment and simulators — serving civil and military operators worldwide.',
-      ar: 'أول شركة سعودية مرخّصة لتوريد قطع غيار الطائرات ومعدات الدعم الأرضي وأجهزة المحاكاة — لخدمة المشغّلين المدنيين والعسكريين حول العالم.',
+      en: 'A Saudi defense and advanced technology group — procurement, maintenance, repair and manufacturing that sustain operational readiness in the Kingdom and abroad.',
+      ar: 'مجموعة سعودية للدفاع والتقنيات المتقدمة — المشتريات والصيانة والإصلاح والتصنيع لدعم الجاهزية التشغيلية داخل المملكة وخارجها.',
       ja: '航空機スペアパーツ、地上支援機器、シミュレーターを供給する初の認可サウジ企業として、世界中の民間・軍用オペレーターを支援します。',
       ko: '항공기 부품, 지상 지원 장비 및 시뮬레이터를 공급하는 최초의 인가 사우디 기업으로서 전 세계 민간·군용 운영자를 지원합니다.'
     };
@@ -1499,25 +1445,22 @@
     document.addEventListener('DOMContentLoaded', ensure);
   })();
 
-  /* ----- 18j) Title Case for all card titles -----
-     Card titles shipped in sentence case ("OEM parts sourcing", "30+ years of aviation expertise"),
-     inconsistent from card to card. Capitalise every word for display. `text-transform:capitalize`
-     never lowercases (so OEM / AOG / US / RADAR / AI stay intact) and is a no-op on ar/ja/ko (those
-     scripts have no letter case) -- so it's safe on every locale and needs no per-string edits. Scoped
-     to card TITLES only (h3/h4 in cards + the two cln-* title classes), never headings or body. */
+  /* ----- 18j) Title Case for card titles -----
+     `text-transform:capitalize` never lowercases (so OEM / AOG / US / RADAR / AI stay intact) and is
+     a no-op on ar/ja/ko, which have no letter case — safe on every locale, no per-string edits.
+
+     Scoped to the two card families whose titles already ship in Title Case, so this only guards
+     against a regression. It deliberately no longer covers the service-detail capability cards or
+     the "Why 3Lines" slider: that copy is authored in sentence case, and capitalising it rendered
+     "Fault Isolation And Repair" and "Built To Sustain" — capitalising the conjunctions too. */
   (function titleCaseCards() {
     var s = document.createElement('style'); s.id = 'cln-titlecase-css';
     s.textContent =
-      '.cln-slide-head,' +                                                              /* homepage "Why 3Lines" slider */
-      '.cln-sector-t,' +                                                                /* homepage "Sectors we serve" */
-      '[class*="auto-rows-"] h3,' +                                                     /* homepage bento cards */
-      'a[class*="min-h-[10rem]"] h3,' +                                                 /* homepage + /services grid cards */
-      '[class~="p-5"] > [class~="h-10"][class~="w-10"][class~="rounded-lg"] + h3,' +    /* service-detail capability cards */
-      '[class~="p-5"] > [class~="h-10"][class~="w-10"][class~="rounded-lg"] + h4' +
+      '.cln-sector-t,' +               /* homepage "Sectors we serve" */
+      '[class*="auto-rows-"] h3' +     /* homepage bento cards */
       '{text-transform:capitalize !important;}';
     (document.head || document.documentElement).appendChild(s);
   })();
-
   /* ----- 18k) PWA / mobile head tags -----
      The prerendered pages ship no web-app manifest, theme-color or apple-touch-icon. Inject them once
      (idempotent) so mobile browsers get the brand colour on the address bar, a proper "add to home
@@ -1585,7 +1528,7 @@
       ".cln-banner-in{position:relative;z-index:1;max-width:60rem;margin:0 auto;}" +
       ".cln-banner-eye{display:block;margin-bottom:.85rem;font-size:.72rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#5cc0ff;}" +
       "html[lang='ar'] .cln-banner-eye{letter-spacing:normal;}" +
-      ".ml-light .cln-banner-eye{color:#1f6fd6;}" +
+      ".ml-light .cln-banner-eye{color:#12559f;}" +
       ".cln-banner-h{font-size:clamp(1.8rem,4vw,3rem);font-weight:800;line-height:1.14;margin:0;color:#f4f4f5;}" +
       ".ml-light .cln-banner-h{color:#0b1220;}" +
       ".cln-banner-sub{margin:1.05rem auto 0;max-width:40rem;font-size:clamp(1rem,1.5vw,1.15rem);line-height:1.6;color:#a1a1aa;}" +
@@ -1646,6 +1589,337 @@
     document.addEventListener('DOMContentLoaded', ensure);
   })();
 
+  /* ----- 18o) Unify the secondary card background with the services grid -----
+     Three card families sat on different backgrounds in dark mode: the About feature cards + stat
+     tiles use Tailwind `bg-white/5` and the "Sectors we serve" cards use rgba(255,255,255,.04) --
+     both a translucent WHITE wash, so they read as lifted charcoal. The services grid cards instead
+     carry a dark navy gradient over their watermark and read near-black. Layer that SAME gradient
+     onto the other two families so every card shares one background. Dark theme only: in light mode
+     these cards are deliberately white (see the .ml-light rules in 18h / the sectors block). */
+  (function unifyCardBg() {
+    var s = document.createElement('style'); s.id = 'cln-cardbg-css';
+    s.textContent =
+      'html:not(.ml-light) [class~="bg-white/5"],' +   /* About feature cards + stat tiles (home + /about) */
+      'html:not(.ml-light) .cln-sector' +              /* "Sectors we serve" cards */
+      '{background-image:linear-gradient(155deg,rgba(8,12,22,.72) 0%,rgba(8,12,22,.93) 70%) !important;}';
+    (document.head || document.documentElement).appendChild(s);
+  })();
+
+  /* ----- 18s) Type + motion polish pass -----
+     Audited against how the best defense/aerospace sites are set (Anduril, Boeing, AEC). Three gaps:
+
+       1. Display headings shipped at `letter-spacing: normal`. Large bold type needs slightly NEGATIVE
+          tracking (-0.01 to -0.03em) or it reads loose and templated -- the clearest typographic tell
+          between a designed page and a default one. Deliberately excluded for Arabic: negative tracking
+          breaks cursive joining, so this is gated on html:not([lang="ar"]).
+       2. Heading line-height was inconsistent -- 1.33 on the 24px headings vs 1.10 on the 28px ones.
+          Big type wants tighter leading, so they are brought onto one ramp.
+       3. Five different easing curves and four durations were in play across interactive elements.
+          One shared curve + two durations makes the whole page feel like one system.
+
+     Interaction transforms are gated behind prefers-reduced-motion. */
+  (function typeMotionPolish() {
+    var s = document.createElement('style'); s.id = 'cln-polish-css';
+    s.textContent =
+      ':root{--cln-ease:cubic-bezier(.215,.61,.355,1);--cln-dur:.28s;--cln-dur-fast:.16s;}' +
+
+      /* --- 1 + 2: optical tracking and a single leading ramp (latin only) --- */
+      'html:not([lang="ar"]) h1,html:not([lang="ar"]) h2{letter-spacing:-.018em;}' +
+      'html:not([lang="ar"]) h2{line-height:1.18;}' +
+      'html:not([lang="ar"]) .cln-slide-head,html:not([lang="ar"]) .cln-sectors-h2,' +
+      'html:not([lang="ar"]) .cln-certs-h2,html:not([lang="ar"]) .cln-capshow-h{letter-spacing:-.022em;}' +
+      /* small uppercase labels want the opposite treatment - already set per-component, reinforced here */
+      'html:not([lang="ar"]) .cln-certs-eye,html:not([lang="ar"]) .cln-sectors-eye,' +
+      'html:not([lang="ar"]) .cln-capshow-eye{letter-spacing:.2em;}' +
+
+      /* --- 3: one easing vocabulary --- */
+      'body a,body button,body article,body [class*="rounded-xl"],body [class*="rounded-2xl"]' +
+        '{transition-timing-function:var(--cln-ease);}' +
+
+      /* --- card feedback for the families I added, which had no hover state of their own.
+             The service/sector/news cards already have one (section 2a) -- that rule was retuned onto
+             this same curve rather than layering a competing !important on top of it. --- */
+      '@media (hover:hover) and (prefers-reduced-motion:no-preference){' +
+        '.cln-cert-card,.cln-cert-plate{' +
+          'transition:transform var(--cln-dur) var(--cln-ease),border-color var(--cln-dur) var(--cln-ease),' +
+          'box-shadow var(--cln-dur) var(--cln-ease);}' +
+        '.cln-cert-card:hover,.cln-cert-plate:hover{transform:translateY(-4px);' +
+          'border-color:rgba(92,192,255,.38);box-shadow:0 18px 40px -24px rgba(0,0,0,.9);}' +
+        '.ml-light .cln-cert-card:hover,.ml-light .cln-cert-plate:hover{' +
+          'border-color:rgba(31,111,214,.35);box-shadow:0 18px 40px -26px rgba(15,23,42,.45);}' +
+      '}' +
+
+
+      /* --- visible keyboard focus (was relying on the UA default over a dark canvas) --- */
+      'body a:focus-visible,body button:focus-visible,body input:focus-visible,body textarea:focus-visible' +
+        '{outline:2px solid #5cc0ff;outline-offset:3px;border-radius:6px;}' +
+      '.ml-light body a:focus-visible,.ml-light body button:focus-visible,' +
+      '.ml-light body input:focus-visible,.ml-light body textarea:focus-visible{outline-color:#12559f;}';
+    (document.head || document.documentElement).appendChild(s);
+  })();
+
+  /* ----- 18r) "Certifications & Licences" homepage band -----
+     The company profile devotes a full spread to Certifications & Licences, and the site had none of
+     it. Built as a trust band immediately before the Contact CTA -- the same placement the reference
+     sites use for credentials (proof, then ask). Marks are shown on white plates because every one of
+     them is artwork designed for light backgrounds.
+
+     Content is taken from the certificates themselves, not paraphrased: the ISO 9001 number, scope and
+     expiry are read off the certificate on p17 of the profile. Note the EN ISO 14001 certificate in
+     that same spread belongs to OPTOKON a.s. (the Czech partner), NOT to 3Lines, so it is deliberately
+     not claimed here -- 3Lines' own 14001 comes via the SAAC integrated-management-system mark. */
+  (function certsSection() {
+    // Renders on the landing AND on the standalone /about page. It must exist in exactly one place per
+    // page: the landing pulls About in as a section, so having a copy in about.html too showed it twice.
+    var onHome = /\/(en|ar|ja|ko)(\/|\.html)?$/.test(location.pathname) || location.pathname === '/';
+    var onAbout = /\/(en|ar|ja|ko)\/about(\.html)?$/.test(location.pathname);
+    if (!onHome && !onAbout) return;
+    function loc() { var l = (document.documentElement.getAttribute('lang') || 'en').toLowerCase(); return (l === 'ar' || l === 'ja' || l === 'ko') ? l : 'en'; }
+    function esc(s) { return (s == null ? '' : String(s)).replace(/[&<>"]/g, function (m) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m]; }); }
+
+    var css = document.createElement('style'); css.id = 'cln-certs-css';
+    css.textContent =
+      '.cln-certs{padding:6rem 0;}' +
+      '.cln-certs-in{max-width:80rem;margin:0 auto;padding:0 1.5rem;}' +
+      '.cln-certs-head{text-align:center;margin-bottom:2.75rem;}' +
+      '.cln-certs-eye{display:block;margin-bottom:.6rem;font-size:.72rem;line-height:1;font-weight:700;' +
+        'text-transform:uppercase;letter-spacing:.2em;color:#5cc0ff;}' +
+      'html[lang="ar"] .cln-certs-eye{letter-spacing:normal;}' +
+      '.ml-light .cln-certs-eye{color:#12559f;}' +
+      '.cln-certs-h2{position:relative;display:inline-block;font-size:clamp(1.75rem,3vw,2.4rem);font-weight:800;' +
+        'line-height:1.1;padding-bottom:1rem;margin:0;color:#f4f4f5;}' +
+      '.ml-light .cln-certs-h2{color:#0b1220;}' +
+      '.cln-certs-h2::after{content:"";position:absolute;left:50%;transform:translateX(-50%);bottom:0;width:60px;' +
+        'height:3px;border-radius:3px;background:linear-gradient(90deg,rgba(58,160,255,0),rgba(58,160,255,.9),rgba(58,160,255,0));}' +
+      '.cln-certs-sub{max-width:46rem;margin:.9rem auto 0;font-size:.98rem;line-height:1.6;color:#a1a1aa;}' +
+      '.ml-light .cln-certs-sub{color:#4b5563;}' +
+      '.cln-certs-marks{display:grid;grid-template-columns:1fr;gap:1rem;margin-bottom:1rem;}' +
+      '@media(min-width:820px){.cln-certs-marks{grid-template-columns:auto 1fr 1fr;align-items:stretch;}}' +
+      '.cln-cert-plate{background:#fff;border-radius:14px;padding:1.1rem;display:flex;align-items:center;' +
+        'justify-content:center;border:1px solid rgba(255,255,255,.12);}' +
+      '.ml-light .cln-cert-plate{border-color:rgba(15,23,42,.12);box-shadow:0 10px 30px -18px rgba(15,23,42,.35);}' +
+      '.cln-cert-plate img{display:block;max-width:100%;height:auto;}' +
+      '.cln-cert-plate.is-badge img{width:168px;}' +
+      '@media(max-width:819.98px){.cln-cert-plate.is-badge img{width:140px;}}' +
+      '.cln-certs-facts{display:grid;grid-template-columns:1fr;gap:1rem;}' +
+      '@media(min-width:820px){.cln-certs-facts{grid-template-columns:1fr 1fr;}}' +
+      '.cln-cert-card{border-radius:14px;padding:1.5rem;border:1px solid rgba(255,255,255,.1);' +
+        'background:linear-gradient(155deg,rgba(8,12,22,.72) 0%,rgba(8,12,22,.93) 70%);}' +
+      '.ml-light .cln-cert-card{background:#fff;border-color:rgba(15,23,42,.1);}' +
+      '.cln-cert-t{margin:0 0 .5rem;font-size:1.02rem;font-weight:700;color:#f4f4f5;}' +
+      '.ml-light .cln-cert-t{color:#0b1220;}' +
+      '.cln-cert-d{margin:0;font-size:.9rem;line-height:1.6;color:#b6c1d1;}' +
+      '.ml-light .cln-cert-d{color:#4b5563;}' +
+      '.cln-cert-meta{margin-top:.85rem;font-size:.8rem;line-height:1.7;color:#8b97a8;}' +
+      '.ml-light .cln-cert-meta{color:#6b7280;}' +
+      '.cln-cert-meta b{color:#cbd5e1;font-weight:600;}' +
+      '.ml-light .cln-cert-meta b{color:#334155;}';
+    (document.head || document.documentElement).appendChild(css);
+
+    var T = {
+      en: {
+        eye: 'ACCREDITED', h2: 'Certifications &amp; Licences',
+        sub: 'Independently audited against international aviation, quality, environmental, safety and business-continuity standards, and licensed by the General Authority for Military Industries.',
+        isoT: 'ISO 9001:2015 &mdash; Quality Management System',
+        isoD: 'Scope: provision of aircraft, simulator, and command and intelligence control systems, spare parts, and maintenance, repair and overhaul.',
+        isoM: '<b>Certificate</b> 26EQQN67 &nbsp;&middot;&nbsp; <b>Valid to</b> 30 March 2029 &nbsp;&middot;&nbsp; <b>Accreditation</b> EGAC / IAF',
+        gamiT: 'General Authority for Military Industries (GAMI)',
+        gamiD: 'Establishment permit for providing military services (technical activities), and a licence for the trading of military articles.',
+        gamiM: '<b>Standards held</b> ISO 9001 &middot; 45001 &middot; 14001 &middot; 50001 &middot; 22301 &nbsp;&middot;&nbsp; ISO 56001 &middot; 42001 &middot; AS9110 &middot; AS9120B &middot; ASA-100'
+      },
+      ar: {
+        eye: 'معتمدون', h2: 'الشهادات والتراخيص',
+        sub: 'تدقيق مستقل وفق المعايير الدولية للطيران والجودة والبيئة والسلامة واستمرارية الأعمال، وترخيص من الهيئة العامة للصناعات العسكرية.',
+        isoT: 'ISO 9001:2015 &mdash; نظام إدارة الجودة',
+        isoD: 'النطاق: توفير الطائرات وأجهزة المحاكاة وأنظمة القيادة والسيطرة والاستخبارات وقطع الغيار وأعمال الصيانة والإصلاح والعمرة.',
+        isoM: '<b>رقم الشهادة</b> 26EQQN67 &nbsp;&middot;&nbsp; <b>سارية حتى</b> 30 مارس 2029 &nbsp;&middot;&nbsp; <b>الاعتماد</b> EGAC / IAF',
+        gamiT: 'الهيئة العامة للصناعات العسكرية (GAMI)',
+        gamiD: 'تصريح إنشاء لتقديم الخدمات العسكرية (الأنشطة الفنية)، ورخصة للاتجار في السلع العسكرية.',
+        gamiM: '<b>المعايير المعتمدة</b> ISO 9001 &middot; 45001 &middot; 14001 &middot; 50001 &middot; 22301 &nbsp;&middot;&nbsp; ISO 56001 &middot; 42001 &middot; AS9110 &middot; AS9120B &middot; ASA-100'
+      }
+    };
+
+    function build() {
+      if (document.getElementById('cln-certs')) return true;
+      // landing: sit just before the Contact CTA (proof, then ask). /about: append after the prose.
+      var anchor = document.getElementById('contact');
+      var host = null;
+      if (anchor && anchor.parentNode) host = anchor.parentNode;
+      else if (onAbout) {
+        var prose = document.querySelector('.not-prose');
+        var box = prose && prose.parentElement && prose.parentElement.parentElement;
+        if (box && box.parentNode) { host = box.parentNode; anchor = box.nextSibling; }
+      }
+      if (!host) return false;
+      var L = loc(), t = T[L] || T.en;
+      var sec = document.createElement('section');
+      sec.id = 'cln-certs'; sec.className = 'cln-certs';
+      sec.innerHTML =
+        '<div class="cln-certs-in">' +
+          '<div class="cln-certs-head">' +
+            '<span class="cln-certs-eye">' + t.eye + '</span>' +
+            '<h2 class="cln-certs-h2">' + t.h2 + '</h2>' +
+            '<p class="cln-certs-sub">' + t.sub + '</p>' +
+          '</div>' +
+          '<div class="cln-certs-marks">' +
+            '<div class="cln-cert-plate is-badge"><img src="/assets/certs/cert-asa100-badge.png?v=1785677904650" alt="ASA-100 certified company, accredited by the European Accreditation Council" width="420" height="420" loading="lazy" decoding="async"></div>' +
+            '<div class="cln-cert-plate"><img src="/assets/certs/cert-euac-strip.png?v=1785674873312" alt="ISO Cert International and EUAC accreditation: ISO 56001, ISO 42001, AS9110, ASA100, AS9120B" width="1200" height="737" loading="lazy" decoding="async"></div>' +
+            '<div class="cln-cert-plate"><img src="/assets/certs/cert-saac-strip.png?v=1785674873800" alt="Saudi Accreditation Center integrated management system: ISO 9001, 45001, 14001, 50001, 22301" width="1200" height="737" loading="lazy" decoding="async"></div>' +
+          '</div>' +
+          '<div class="cln-certs-facts">' +
+            '<div class="cln-cert-card"><h3 class="cln-cert-t">' + t.isoT + '</h3>' +
+              '<p class="cln-cert-d">' + t.isoD + '</p>' +
+              '<div class="cln-cert-meta">' + t.isoM + '</div></div>' +
+            '<div class="cln-cert-card"><h3 class="cln-cert-t">' + t.gamiT + '</h3>' +
+              '<p class="cln-cert-d">' + t.gamiD + '</p>' +
+              '<div class="cln-cert-meta">' + t.gamiM + '</div></div>' +
+          '</div>' +
+        '</div>';
+      host.insertBefore(sec, anchor || null);
+      return true;
+    }
+    if (!build()) {
+      var n = 0, iv = setInterval(function () { if (build() || ++n > 40) clearInterval(iv); }, 200);
+    }
+  })();
+
+  /* ----- 18q) Capability detail: pair the copy with real photography -----
+     Reference layout: services.boeing.com/about/mro-services and aecl.com — both lead a capability
+     with a photograph of the work actually being done, set beside the copy, rather than an icon. Our
+     detail pages were text-only while 40 real photos from the company decks sat unused.
+
+     Insert one split band per page: the capability's photo alongside a short "what this looks like in
+     practice" list built from its own capability set. Placed just above the WHAT WE DO block, so it
+     reads photo -> proof-points -> detail, the same order Boeing uses. The image comes from `img` in
+     assets/service-details.json, so adding artwork never means touching this file. */
+  (function capabilityShowcase() {
+    var ms = location.pathname.match(/\/services\/([a-z0-9-]+)(?:\.html)?$/);
+    if (!ms) return;
+    var slug = ms[1];
+    function loc() { var l = (document.documentElement.getAttribute('lang') || 'en').toLowerCase(); return (l === 'ar' || l === 'ja' || l === 'ko') ? l : 'en'; }
+    function esc(s) { return (s == null ? '' : String(s)).replace(/[&<>"]/g, function (m) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m]; }); }
+
+    var css = document.createElement('style'); css.id = 'cln-capshow-css';
+    css.textContent =
+      '.cln-capshow{max-width:80rem;margin:0 auto;padding:1rem 1.5rem 3.5rem;}' +
+      '.cln-capshow-in{display:grid;grid-template-columns:1fr;gap:2rem;align-items:center;}' +
+      '@media(min-width:900px){.cln-capshow-in{grid-template-columns:1.05fr .95fr;gap:3rem;}}' +
+      '.cln-capshow-fig{margin:0;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.12);' +
+        'box-shadow:0 24px 60px -30px rgba(0,0,0,.85);}' +
+      '.ml-light .cln-capshow-fig{border-color:rgba(15,23,42,.12);box-shadow:0 24px 60px -34px rgba(15,23,42,.4);}' +
+      '.cln-capshow-fig img{display:block;width:100%;height:100%;object-fit:cover;aspect-ratio:4/3;}' +
+      '.cln-capshow-eye{display:block;margin-bottom:.7rem;font-size:.72rem;line-height:1;font-weight:700;' +
+        'text-transform:uppercase;letter-spacing:.2em;color:#5cc0ff;}' +
+      'html[lang="ar"] .cln-capshow-eye{letter-spacing:normal;}' +
+      '.ml-light .cln-capshow-eye{color:#12559f;}' +
+      '.cln-capshow-h{margin:0 0 1.1rem;font-size:clamp(1.4rem,2.4vw,1.9rem);font-weight:800;line-height:1.2;color:#f4f4f5;}' +
+      '.ml-light .cln-capshow-h{color:#0b1220;}' +
+      '.cln-capshow-list{list-style:none;margin:0;padding:0;}' +
+      '.cln-capshow-list li{position:relative;padding-inline-start:1.9rem;margin-bottom:.95rem;' +
+        'font-size:.95rem;line-height:1.55;color:#c2ccdb;}' +
+      '.ml-light .cln-capshow-list li{color:#465266;}' +
+      '.cln-capshow-list li:last-child{margin-bottom:0;}' +
+      '.cln-capshow-list b{display:block;font-weight:650;color:#f4f4f5;margin-bottom:.1rem;}' +
+      '.ml-light .cln-capshow-list b{color:#0b1220;}' +
+      '.cln-capshow-list li::before{content:"";position:absolute;inset-inline-start:0;top:.34em;width:1.05rem;' +
+        'height:1.05rem;border-radius:50%;background:rgba(92,192,255,.16);border:1px solid rgba(92,192,255,.5);}' +
+      '.cln-capshow-list li::after{content:"";position:absolute;inset-inline-start:.36rem;top:.63em;width:.3rem;' +
+        'height:.16rem;border-inline-start:1.5px solid #5cc0ff;border-bottom:1.5px solid #5cc0ff;transform:rotate(-45deg);}';
+    (document.head || document.documentElement).appendChild(css);
+
+    function build(det) {
+      if (!det || !det.img || document.getElementById('cln-capshow')) return true;
+      var L = loc(), d = det[L] || det.en; if (!d) return true;
+      // anchor: the WHAT WE DO block. Find its eyebrow, then mount just above that section.
+      // Anchor on the Capabilities heading, using the exact strings the detail-page runtime (18d) puts
+      // on the page -- guessing at the wording drifts per locale (ar renders "ما نقدمه", not "ما نقوم به").
+      var LABEL = { en: 'Capabilities', ar: 'القدرات', ja: '主なサービス', ko: '주요 역량' };
+      var EYE  = { en: 'IN PRACTICE', ar: 'في الميدان', ja: '現場では', ko: '현장에서' };
+      var HEAD = { en: 'How we deliver it', ar: 'كيف ننفّذها', ja: '提供の進め方', ko: '수행 방식' };
+      var want = (LABEL[L] || LABEL.en).toLowerCase();
+      // "WHAT WE DO" appears twice: once as the hero eyebrow, once above the capability grid. Take the
+      // LAST match so the band lands above the capabilities, not above the page title.
+      var hits = [];
+      [].slice.call(document.querySelectorAll('p,span,div,h2,h3')).forEach(function (e) {
+        if (e.children.length) return;
+        if ((e.textContent || '').trim().toLowerCase() === want) hits.push(e);
+      });
+      var anchor = hits[hits.length - 1];
+      if (!anchor) return false;
+      var host = anchor;
+      while (host.parentElement && host.parentElement !== document.body &&
+             host.getBoundingClientRect().width < window.innerWidth * 0.6) host = host.parentElement;
+      var sec = document.createElement('section');
+      sec.id = 'cln-capshow'; sec.className = 'cln-capshow';
+      var picked = (d.caps || []).slice(0, 4);
+      sec.innerHTML =
+        '<div class="cln-capshow-in">' +
+          '<figure class="cln-capshow-fig"><img src="' + esc(det.img.src) + '" alt="' + esc(det.img.alt || '') +
+            '" loading="lazy" decoding="async"></figure>' +
+          // Deliberately NOT `d.oh` here -- that heading already sits above, in the OVERVIEW block, and
+          // repeating it verbatim a few hundred pixels later just reads as a duplicate.
+          '<div><span class="cln-capshow-eye">' + esc(EYE[L] || EYE.en) + '</span>' +
+          '<h2 class="cln-capshow-h">' + esc(HEAD[L] || HEAD.en) + '</h2>' +
+          '<ul class="cln-capshow-list">' +
+            picked.map(function (c) { return '<li><b>' + esc(c.t) + '</b>' + esc(c.d) + '</li>'; }).join('') +
+          '</ul></div>' +
+        '</div>';
+      host.parentNode.insertBefore(sec, host);
+      return true;
+    }
+
+    fetch('/assets/service-details.json', { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (all) {
+        var det = all && all[slug]; if (!det) return;
+        if (build(det)) return;
+        var n = 0, iv = setInterval(function () { if (build(det) || ++n > 24) clearInterval(iv); }, 250);
+      }).catch(function () {});
+  })();
+
+  /* ----- 18p) Company history, cut as a stat matrix -----
+     Milestones began as a flat 19-item bullet list with no dates. Reading the profile deck back as an
+     image recovered the year mapping (it renders as a horizontal 2019-2026 chevron bar, which plain
+     text extraction flattens), so the section is grouped by year: 8 years, 22 events.
+
+     Presented in the same matrix language as the 3Lines AI division site: one cell per year, the year
+     set large with negative tracking over a small uppercase count. The hairlines come from gap:1px
+     over a container background in the divider colour -- cells paint their own surface on top, so the
+     seams stay exactly 1px with no doubled borders. Reuses the existing markup untouched. */
+  (function timelineMatrix() {
+    var s = document.createElement('style'); s.id = 'cln-timeline-css';
+    s.textContent =
+      /* container: the background IS the divider colour, revealed through the 1px gap */
+      '.cln-tl{display:grid;grid-template-columns:1fr;gap:1px;list-style:none;margin:1.75rem 0 0;' +
+        'padding:0;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.09);' +
+        'border-radius:18px;overflow:hidden;}' +
+      '@media(min-width:600px){.cln-tl{grid-template-columns:repeat(2,minmax(0,1fr));}}' +
+      '@media(min-width:1040px){.cln-tl{grid-template-columns:repeat(4,minmax(0,1fr));}}' +
+      '.ml-light .cln-tl{background:rgba(15,23,42,.12);border-color:rgba(15,23,42,.12);}' +
+
+      /* cells paint over the container background; the old rail/pill treatment is unset */
+      '.cln-tl>li{display:block;padding:1.75rem 1.25rem;background:#0d1118;}' +
+      '.ml-light .cln-tl>li{background:#ffffff;}' +
+      '.cln-tl>li::before{display:none;}' +
+
+      '.cln-tl-year{display:block;width:auto;height:auto;background:none;box-shadow:none;border-radius:0;' +
+        'font-size:1.875rem;font-weight:700;line-height:1;letter-spacing:-.03em;color:#7fd3ff;' +
+        'margin-bottom:.9rem;}' +
+      '.ml-light .cln-tl-year{color:#12559f;}' +
+      /* Arabic renders the years in latin digits, so the negative tracking is safe here */
+
+      '.cln-tl-body{padding:0;}' +
+      '.cln-tl-body ul{list-style:none;margin:0;padding:0;}' +
+      '.cln-tl-body li{position:relative;padding-inline-start:.85rem;margin-bottom:.55rem;font-size:.83rem;' +
+        'line-height:1.5;color:#aeb9c9;}' +
+      '.cln-tl-body li:last-child{margin-bottom:0;}' +
+      '.ml-light .cln-tl-body li{color:#4a5568;}' +
+      '.cln-tl-body li::before{content:"";position:absolute;inset-inline-start:0;top:.6em;width:4px;' +
+        'height:4px;border-radius:50%;background:#5cc0ff;opacity:.7;}' +
+
+      '@media(max-width:599.98px){.cln-tl>li{padding:1.4rem 1.1rem;}.cln-tl-year{font-size:1.6rem;}}';
+    (document.head || document.documentElement).appendChild(s);
+  })();
   /* ----- 16b) Tag flat/LIGHT partner logos -----
      The partner strip (rule 16) shows every logo in its REAL colour, at full opacity, all the time.
      A few logos are flat WHITE/near-white assets (Airbus, MI, SAMI Advanced ...) -- on the light
@@ -1850,38 +2124,84 @@
     zap:'<path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>',
     shield:'<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>',
     cap:'<path d="M21.42 10.92a1 1 0 0 0-.02-1.84L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.83l8.57 3.91a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/>',
-    radar:'<path d="M19.07 4.93A10 10 0 0 0 6.99 3.34"/><path d="M4 6h.01"/><path d="M2.29 9.62A10 10 0 1 0 21.31 8.35"/><path d="M16.24 7.76A6 6 0 1 0 8.23 16.67"/><path d="M12 18h.01"/><path d="M17.99 11.66A6 6 0 0 1 15.77 16.67"/><circle cx="12" cy="12" r="2"/><path d="m13.41 10.59 5.66-5.66"/>'
+    radar:'<path d="M19.07 4.93A10 10 0 0 0 6.99 3.34"/><path d="M4 6h.01"/><path d="M2.29 9.62A10 10 0 1 0 21.31 8.35"/><path d="M16.24 7.76A6 6 0 1 0 8.23 16.67"/><path d="M12 18h.01"/><path d="M17.99 11.66A6 6 0 0 1 15.77 16.67"/><circle cx="12" cy="12" r="2"/><path d="m13.41 10.59 5.66-5.66"/>',
+    target:'<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>'
   };
   function iconSVG(name, color){
     var p = ICONS[name] || ICONS.package;
     return '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="'+(color||'#5cc0ff')+'" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+p+'</svg>';
   }
 
+  /* Swap every service card over to the official capability set (content/services.json).
+
+     `legacy` in content/services.json names the retired card each capability replaces. Two different
+     strategies are needed, because the same card markup appears in two very different places:
+
+       - The homepage grid (#services) is React-rendered from the *build’s* baked-in aviation list and
+         re-renders after first paint. Rewriting those nodes loses the fight (React restores its copy,
+         leaving both visible) and deleting them is worse (React re-inserts). So there we only hide — a
+         style change React leaves alone — and clone a replacement card in beside it.
+       - /pages-index and the /services listing are plain prerendered HTML with relative hrefs
+         ("services/<slug>.html"). Nothing re-renders them, so they are rewritten in place.
+
+     The selector deliberately omits the leading slash so those relative hrefs are matched too; the
+     regex still requires services/<slug>, so "/en/services" and "services.html" are not touched. */
   function applyServiceOverrides(services) {
-    if (!Array.isArray(services)) return;
-    var bySlug = {}; services.forEach(function (s) { bySlug[s.slug] = s; });
-    var cards = document.querySelectorAll('a[href*="/services/"]');
-    cards.forEach(function (a) {
-      var m = (a.getAttribute('href') || '').match(/services\/([a-z0-9-]+)(?:\.html|\/|$)/);
+    if (!Array.isArray(services)) return false;
+    var L = lang();
+    var bySlug = {}, byLegacy = {};
+    services.forEach(function (s) { bySlug[s.slug] = s; if (s.legacy) byLegacy[s.legacy] = s; });
+
+    function fill(el, s) {
+      var title = pickLang(s.title), desc = pickLang(s.description);
+      var h = el.querySelector('h3') || el.querySelector('h2');
+      if (h && h.textContent !== title) h.textContent = title;
+      var p = el.querySelector('p');
+      if (p && p.textContent !== desc) p.textContent = desc;
+      var ic = el.querySelector('span > svg');
+      if (ic && ic.getAttribute('stroke') !== s.hue) ic.outerHTML = iconSVG(s.icon, s.hue);
+      var span = el.querySelector('span');
+      if (span && span.parentElement === el) span.style.borderColor = s.hue + '59';
+    }
+
+    var grid = null, tpl = {}, fallback = null, hit = 0;
+    [].slice.call(document.querySelectorAll('a[href*="services/"]')).forEach(function (a) {
+      var href = a.getAttribute('href') || '';
+      var m = href.match(/services\/([a-z0-9-]+)(?:\.html|\/|$)/);
       if (!m) return;
-      var s = bySlug[m[1]]; if (!s) return;
       // Only touch cards (skip nav/footer links): require the card class signature.
       if (!/min-h-\[10rem\]/.test(a.className) && !a.querySelector('h3')) return;
-      var h3 = a.querySelector('h3'); if (h3) h3.textContent = pickLang(s.title);
-      var p = a.querySelector('p');   if (p)  p.textContent = pickLang(s.description);
-      var iconHolder = a.querySelector('span > svg'); // first inline icon
-      if (iconHolder) iconHolder.outerHTML = iconSVG(s.icon, s.hue);
-      // recolor icon container border + accent and update bg-image accent
-      var span = a.querySelector('span');
-      if (span && span.parentElement === a) {
-        span.style.borderColor = s.hue + '59';
-      }
-      if (s.hue && a.style && a.style.backgroundImage) {
-        // we don't rebuild the SVG bg URL — slug is the file name; just keep it.
+      if (a.getAttribute('data-cln-cap')) return; // already handled / one of our clones
+      var s = byLegacy[m[1]] || bySlug[m[1]]; if (!s) return;
+      hit++;
+      if (a.closest && a.closest('#services')) {   // React-owned grid -> hide, then clone below
+        grid = grid || a.parentElement;
+        fallback = fallback || a;
+        if (!tpl[s.slug]) tpl[s.slug] = a;
+        if (a.style.display !== 'none') a.style.display = 'none';
+      } else {                                     // static markup -> rewrite in place
+        a.setAttribute('data-cln-cap', s.slug);
+        a.setAttribute('href', href.replace(/services\/[a-z0-9-]+(\.html)?/, 'services/' + s.slug + '$1'));
+        fill(a, s);
       }
     });
-  }
 
+    if (grid) {
+      services.forEach(function (s) {
+        if (grid.querySelector('[data-cln-cap="' + s.slug + '"]')) return;
+        var src = tpl[s.slug] || fallback; if (!src) return;
+        var c = src.cloneNode(true);
+        c.setAttribute('data-cln-cap', s.slug);
+        c.style.display = '';
+        c.classList.add('cln-in'); c.classList.remove('cln-reveal');
+        c.setAttribute('href', '/' + L + '/services/' + s.slug + '.html');
+        [].slice.call(c.querySelectorAll('.cln-linkext,.cln-sr-heading,.cln-bento-wm')).forEach(function (e) { e.remove(); });
+        fill(c, s);
+        grid.appendChild(c);
+      });
+    }
+    return hit > 0;
+  }
   function applyFooterOverrides(info) {
     if (!info) return;
     var footer = document.querySelector('footer'); if (!footer) return;
@@ -1937,11 +2257,96 @@
      added directly in en/ar/ko/ja .html). The News nav button smooth-scrolls to #news
      (see section 6). No JS injection needed here anymore. */
 
+  /* ----- 3d) News card padding -----
+     The news cards ship with p-4 (16px) while every other card family on the site sits on 24px
+     (service cards p-5/p-6, About + sector cards p-6), which left the tag row, headline and date
+     crowded against the card edge on a ~600px card. Match the rest of the site: 24px horizontal
+     throughout, and drop the doubled vertical gap where the tag row meets the body block. Scoped by
+     the card's own rounded-2xl signature so it applies on the homepage section and /news alike. */
+  (function newsCardPadding() {
+    var s = document.createElement('style'); s.id = 'cln-newspad-css';
+    s.textContent =
+      'article[class*="rounded-2xl"] [class~="p-4"]{padding-left:1.5rem !important;padding-right:1.5rem !important;}' +
+      'article[class*="rounded-2xl"] [class~="p-4"][class~="items-center"]{padding-top:1.25rem !important;padding-bottom:0 !important;}' +
+      'article[class*="rounded-2xl"] [class~="p-4"][class~="flex-col"]{padding-top:.5rem !important;padding-bottom:1.5rem !important;}';
+    (document.head || document.documentElement).appendChild(s);
+  })();
+
+  /* ----- 3e) Partners & Clients page: fill the grid from the API -----
+     /partners-and-clients is prerendered with the partner list as it stood at build time, so every
+     customer, university and Tier One partner added to content/partners.json since was missing here --
+     even though the homepage logo strip, which is API-driven, showed all of them. Clone the prerendered
+     tile for each partner the page lacks (matched on the visible name) and fill it in. Note the tile
+     renders its logo as a CSS background-image, not an <img>. Idempotent; no-ops off this page. */
+  function fillPartnersGrid(list) {
+    if (!Array.isArray(list) || !list.length) return false;
+    var first = document.querySelector('a > div[class*="transform-gpu"] > span.tag');
+    if (!first) return false;
+    var tpl = first.parentElement.parentElement;          // the <a> wrapper
+    var grid = tpl.parentElement;
+    if (!grid) return false;
+    var have = {};
+    [].slice.call(grid.querySelectorAll('h3')).forEach(function (h) { have[h.textContent.trim().toLowerCase()] = 1; });
+    function flag(code) {
+      if (!code || code.length !== 2) return '';
+      var cps = [];
+      for (var i = 0; i < 2; i++) cps.push(0x1F1E6 + code.toUpperCase().charCodeAt(i) - 65);
+      return String.fromCodePoint.apply(String, cps);
+    }
+    var added = 0;
+    list.forEach(function (p) {
+      var name = pickLang(p.name); if (!name) return;
+      if (have[name.trim().toLowerCase()]) return;
+      have[name.trim().toLowerCase()] = 1;
+      var c = tpl.cloneNode(true);
+      c.setAttribute('data-cln-partner', '1');
+      if (p.link) c.setAttribute('href', p.link); else c.removeAttribute('href');
+      var tag = c.querySelector('span.tag');
+      if (tag && p.type && p.type.name) tag.textContent = pickLang(p.type.name);
+      var logo = c.querySelector('div[style*="background-image"]');
+      if (logo) {
+        logo.style.backgroundImage = p.logo && p.logo.uri ? 'url(/' + p.logo.uri.replace(/^\//, '') + ')' : 'none';
+        logo.setAttribute('title', name);
+      }
+      var h3 = c.querySelector('h3'); if (h3) h3.textContent = name;
+      var desc = c.querySelector('p'); if (desc) desc.textContent = pickLang(p.description) || '';
+      var flg = c.querySelector('div[class*="flex-col"] span[title]');
+      if (flg && p.country) { flg.textContent = flag(p.country.code); flg.setAttribute('title', pickLang(p.country.name)); }
+      grid.appendChild(c);
+      added++;
+    });
+    return added > 0;
+  }
+
   function loadCMSOverrides() {
     // Don't run inside the CMS page itself
     if (location.pathname.replace(/\/$/,'') === '/cms' || /^\/cms\b/.test(location.pathname)) return;
+    fetch('/api/v1/partners', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
+      if (!j) return;
+      var list = j.data || j;
+      if (fillPartnersGrid(list)) return;
+      // the grid can mount late; retry briefly, then give up quietly on pages without one
+      var n = 0, iv = setInterval(function () {
+        if (fillPartnersGrid(list) || ++n > 20) clearInterval(iv);
+      }, 250);
+    }).catch(function(){});
     fetch('/api/v1/services', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
-      if (j && j.data) applyServiceOverrides(j.data);
+      if (!j || !j.data) return;
+      var svc = j.data, pending = 0;
+      applyServiceOverrides(svc);
+      // The grid mounts late and React re-renders it more than once; re-apply on any DOM change
+      // under the services section rather than racing it with a fixed timeout. Safe to loop on:
+      // applyServiceOverrides only writes when a value actually differs.
+      var host = document.getElementById('services') || document.body;
+      if (window.MutationObserver) {
+        new MutationObserver(function () {
+          clearTimeout(pending);
+          pending = setTimeout(function () { applyServiceOverrides(svc); }, 60);
+        }).observe(host, { childList: true, subtree: true });
+      }
+      var tries = 0, iv = setInterval(function () {
+        applyServiceOverrides(svc); if (++tries > 24) clearInterval(iv);
+      }, 250);
     }).catch(function(){});
     fetch('/api/v1/site-info', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
       if (j && j.data) applyFooterOverrides(j.data);
@@ -2274,14 +2679,14 @@
         var rtl = L === 'ar';
         var EYE = { en: 'WHY 3LINES', ar: 'لماذا ثري لاينز', ja: '3Lines を選ぶ理由', ko: '3Lines를 선택하는 이유' };
         var SLIDES = [
-          { h: { en: 'The first licensed Saudi company', ar: 'أول شركة سعودية مرخّصة', ja: 'サウジ初の認可企業', ko: '사우디 최초의 공인 기업' },
-            s: { en: 'For aircraft spare parts, ground support equipment & simulators.', ar: 'لتوريد قطع غيار الطائرات ومعدات الدعم الأرضي وأجهزة المحاكاة.', ja: '航空機スペアパーツ・地上支援機器・シミュレーターを供給します。', ko: '항공기 부품, 지상 지원 장비 및 시뮬레이터를 공급합니다.' } },
-          { h: { en: '30+ years of aviation expertise', ar: 'خبرة تتجاوز 30 عاماً في الطيران', ja: '30年以上の航空分野の専門知識', ko: '30년 이상의 항공 분야 전문성' },
-            s: { en: 'Trusted across civil and military operations.', ar: 'موثوقة في العمليات المدنية والعسكرية.', ja: '民間および軍用の運用で信頼されています。', ko: '민간 및 군용 운용 분야에서 신뢰받습니다.' } },
-          { h: { en: 'A global sourcing network', ar: 'شبكة توريد عالمية', ja: 'グローバルな調達ネットワーク', ko: '글로벌 소싱 네트워크' },
-            s: { en: 'Genuine parts from the United States and worldwide.', ar: 'قطع غيار أصلية من الولايات المتحدة وحول العالم.', ja: '米国および世界各地から純正部品を調達します。', ko: '미국 및 전 세계에서 정품 부품을 조달합니다.' } },
-          { h: { en: 'A professional Saudi team', ar: 'فريق سعودي محترف', ja: 'プロフェッショナルなサウジチーム', ko: '전문 사우디 팀' },
-            s: { en: 'Serving operators in the Kingdom and beyond.', ar: 'يخدم المشغّلين في المملكة وخارجها.', ja: '王国内外の事業者にサービスを提供します。', ko: '왕국 내외의 운영자에게 서비스를 제공합니다.' } }
+          { h: { en: 'Built to sustain, trusted to operate', ar: 'مصممة للاستدامة، موثوقة في التشغيل', ja: '持続を支え、運用で信頼される', ko: '지속을 위해 설계되고 운영에서 신뢰받는' },
+            s: { en: 'Localizing defense and advanced technology in the Kingdom since 2019.', ar: 'توطين الدفاع والتقنيات المتقدمة داخل المملكة منذ 2019.', ja: '2019年以来、王国内で防衛と先端技術の国産化を進めています。', ko: '2019년부터 왕국 내 방위 및 첨단 기술의 현지화를 추진합니다.' } },
+          { h: { en: 'Radar and C4I sustained in-Kingdom', ar: 'استدامة الرادار وأنظمة C4I داخل المملكة', ja: '王国内でのレーダーとC4Iの維持', ko: '왕국 내 레이더 및 C4I 유지' },
+            s: { en: '4th-line maintenance under an MLA with Northrop Grumman.', ar: 'صيانة حتى المستوى الرابع بموجب اتفاقية MLA مع نورثروب جرومان.', ja: 'ノースロップ・グラマンとのMLAに基づく第4次レベル整備。', ko: '노스롭 그럼먼과의 MLA에 따른 4차 정비.' } },
+          { h: { en: 'Three core operational pillars', ar: 'ثلاث ركائز تشغيلية أساسية', ja: '3つの中核的な運用の柱', ko: '3개의 핵심 운영 축' },
+            s: { en: 'Procurement, maintenance, and repair and manufacturing.', ar: 'المشتريات، والصيانة، والإصلاح والتصنيع.', ja: '調達、保守、修理・製造。', ko: '조달, 정비, 수리 및 제조.' } },
+          { h: { en: '+30 strategic partners', ar: 'أكثر من 30 شريكًا استراتيجيًا', ja: '30以上の戦略的パートナー', ko: '30개 이상의 전략적 파트너' },
+            s: { en: 'Delivering across Saudi Arabia, the USA, Mexico, Poland and the Czech Republic.', ar: 'ننفّذ في السعودية والولايات المتحدة والمكسيك وبولندا وجمهورية التشيك.', ja: 'サウジアラビア、米国、メキシコ、ポーランド、チェコで展開。', ko: '사우디아라비아, 미국, 멕시코, 폴란드, 체코에서 수행.' } }
         ];
         function pick(o) { return o[L] || o.en; }
         var sec = document.createElement('section');
@@ -2377,8 +2782,17 @@
         // reflow); the head's 2.5s failsafe still reveals regardless if fonts stall.
         if (window.__clnReveal) {
           var doReveal = function () { requestAnimationFrame(function () { requestAnimationFrame(window.__clnReveal); }); };
-          if (document.fonts && document.fonts.ready && document.fonts.ready.then) document.fonts.ready.then(doReveal, doReveal);
-          else doReveal();
+          // Waiting on document.fonts.ready unconditionally hands a third-party font host veto power
+          // over first paint: the whole page stays visibility:hidden until 5 woff2 files land, which
+          // measured as a ~3s LCP (99.9% of it render delay, on the hero H1). Cap the wait -- the
+          // layout is already assembled by this point, and the fonts load with display=swap, so a
+          // late arrival swaps the face rather than moving blocks around.
+          var revealed = false;
+          var once = function () { if (revealed) return; revealed = true; doReveal(); };
+          if (document.fonts && document.fonts.ready && document.fonts.ready.then) {
+            document.fonts.ready.then(once, once);
+            setTimeout(once, 450);
+          } else once();
         }
       }
       var rtries = 0;

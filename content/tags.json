@@ -4,7 +4,7 @@
       "id": "a1795770-37ea-4ea7-83a1-0a1b774c20b9",
       "name": {
         "ar": "المشتريات",
-        "en": "Consultation Services"
+        "en": "Procurement"
       },
       "slug": "procurement",
       "description": {
@@ -16,12 +16,12 @@
       "id": "a1795770-3998-434a-9170-a891135b6559",
       "name": {
         "ar": "الصناعة",
-        "en": "Manifacturing"
+        "en": "Manufacturing"
       },
       "slug": "manifacturing",
       "description": {
         "ar": "أخبار مرتبطة بمجال الصناعة.",
-        "en": "News related to Manifacturing."
+        "en": "News related to Manufacturing."
       }
     },
     {

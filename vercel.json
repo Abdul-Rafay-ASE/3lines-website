@@ -4,12 +4,23 @@
   "redirects": [
     { "source": "/", "destination": "/en", "permanent": false },
     { "source": "/ja/legal", "destination": "/en/legal", "permanent": false },
-    { "source": "/ko/legal", "destination": "/en/legal", "permanent": false }
+    { "source": "/ko/legal", "destination": "/en/legal", "permanent": false },
+
+    { "source": "/:lang(en|ar|ja|ko)/services/:slug(radar-system)", "destination": "/:lang/services/radar-electronics-communications-sustainment", "permanent": true },
+    { "source": "/:lang(en|ar|ja|ko)/services/:slug(us-government-support-services)", "destination": "/:lang/services/government-relations-and-life-support", "permanent": true },
+    { "source": "/:lang(en|ar|ja|ko)/services/:slug(generators-and-ups)", "destination": "/:lang/services/power-systems-support", "permanent": true },
+    { "source": "/:lang(en|ar|ja|ko)/services/:slug(structure-and-frame)", "destination": "/:lang/services/electronics-diagnostic-and-repair-workshops", "permanent": true },
+    { "source": "/:lang(en|ar|ja|ko)/services/:slug(supporting-ground-equipment)", "destination": "/:lang/services/ground-support-equipment-sustainment", "permanent": true },
+    { "source": "/:lang(en|ar|ja|ko)/services/:slug(provide-spare-parts|procurement)", "destination": "/:lang/services/spare-parts-logistics-and-warehousing", "permanent": true },
+    { "source": "/:lang(en|ar|ja|ko)/services/:slug(supporting-the-simulator-system)", "destination": "/:lang/services/simulation-systems", "permanent": true },
+    { "source": "/:lang(en|ar|ja|ko)/services/:slug(english-language-training)", "destination": "/:lang/services/training-and-capability-enablement", "permanent": true },
+    { "source": "/:lang(en|ar|ja|ko)/services/:slug(maintaining-and-repairing-of-spare-parts|engineering)", "destination": "/:lang/services/defense-systems-sustainment-mro", "permanent": true },
+    { "source": "/:lang(en|ar|ja|ko)/services/:slug(hydraulic-pneumatic-equipment-and-components)", "destination": "/:lang/services/program-management-and-localization", "permanent": true }
   ],
   "rewrites": [
     { "source": "/cms-assets/:path*", "destination": "/api/cms-asset?path=:path*" },
-    { "source": "/:lang(en|ar|ja|ko)/services/:slug(procurement|engineering|ai-solutions|cybersecurity)", "destination": "/:lang/services/provide-spare-parts.html" },
-    { "source": "/:lang(en|ar|ja|ko)/services/:slug(procurement|engineering|ai-solutions|cybersecurity).html", "destination": "/:lang/services/provide-spare-parts.html" }
+    { "source": "/:lang(en|ar|ja|ko)/services/:slug(radar-electronics-communications-sustainment|government-relations-and-life-support|power-systems-support|electronics-diagnostic-and-repair-workshops|ground-support-equipment-sustainment|spare-parts-logistics-and-warehousing|simulation-systems|training-and-capability-enablement|defense-systems-sustainment-mro|program-management-and-localization)", "destination": "/:lang/services/provide-spare-parts.html" },
+    { "source": "/:lang(en|ar|ja|ko)/services/:slug(radar-electronics-communications-sustainment|government-relations-and-life-support|power-systems-support|electronics-diagnostic-and-repair-workshops|ground-support-equipment-sustainment|spare-parts-logistics-and-warehousing|simulation-systems|training-and-capability-enablement|defense-systems-sustainment-mro|program-management-and-localization).html", "destination": "/:lang/services/provide-spare-parts.html" }
   ],
   "headers": [
     {

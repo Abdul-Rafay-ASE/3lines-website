@@ -110,6 +110,19 @@ app.use((req, res, next) => {
   next();
 });
 
+/* ---------- legacy service URLs -> replacement capability (301) ----------
+   Must sit ahead of cleanUrls/static: the retired slugs still have prerendered .html files on disk,
+   so without this they would be served instead of redirecting. ---------- */
+app.use((req, res, next) => {
+  if (req.method !== 'GET' && req.method !== 'HEAD') return next();
+  const m = req.path.match(/^\/(en|ar|ja|ko)\/services\/([a-z0-9-]+)(\.html)?$/);
+  if (m) {
+    const to = LEGACY_SERVICE_REDIRECTS[m[2]];
+    if (to) return res.redirect(301, `/${m[1]}/services/${to}`);
+  }
+  next();
+});
+
 /* ---------- cleanUrls: serve <path>.html (handles /en, /en/about, /ar, ...) ---------- */
 app.use((req, res, next) => {
   if (req.method !== 'GET' && req.method !== 'HEAD') return next();
@@ -122,6 +135,28 @@ app.use((req, res, next) => {
   next();
 });
 
+/* ---------- WebP content negotiation ----------
+   Every .jpg/.png under /assets has a .webp twin (39% smaller overall). Rather than rewriting ~40
+   image references across the HTML and enhance.js into <picture> elements, negotiate on the request:
+   if the browser advertises image/webp and a twin exists, serve that instead. One code path, covers
+   markup and CSS background-images alike, and degrades silently for anything that cannot take WebP.
+   `Vary: Accept` is required so proxies and CDNs cache the two variants separately. ---------- */
+app.use((req, res, next) => {
+  if (req.method !== 'GET' && req.method !== 'HEAD') return next();
+  if (!/^\/assets\/.+\.(jpe?g|png)$/i.test(req.path)) return next();
+  if (!/\bimage\/webp\b/i.test(req.headers.accept || '')) return next();
+  let p;
+  try { p = decodeURIComponent(req.path); } catch { return next(); }
+  const webpRel = p.replace(/\.(jpe?g|png)$/i, '.webp');
+  const abs = nodePath.normalize(nodePath.join(REPO_ROOT, webpRel));
+  if (!abs.startsWith(REPO_ROOT + nodePath.sep)) return next();
+  if (!fs.existsSync(abs)) return next();
+  res.setHeader('Vary', 'Accept');
+  res.setHeader('Content-Type', 'image/webp');
+  res.setHeader('Cache-Control', 'public, max-age=604800');
+  return res.sendFile(abs);
+});
+
 /* ---------- static assets (build, assets, cms UI, favicons, ...) ---------- */
 app.use(express.static(REPO_ROOT, {
   dotfiles: 'ignore', index: 'index.html', redirect: true,
@@ -129,6 +164,9 @@ app.use(express.static(REPO_ROOT, {
     // /build/assets/* filenames carry a content hash -> they are immutable; cache hard so
     // repeat visits never re-download the heavy JS/CSS (incl. the 2.4MB globe).
     if (/[\\/]build[\\/]assets[\\/]/.test(filePath)) {
+      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+    } else if (/[\\/]assets[\\/]fonts[\\/]/.test(filePath)) {
+      // self-hosted Tajawal: filenames encode subset+weight and never change content -> cache hard
       res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
     } else if (/\.(?:png|jpe?g|svg|webp|gif|ico|woff2?|ttf|otf)$/i.test(filePath)) {
       res.setHeader('Cache-Control', 'public, max-age=604800'); // images/fonts: 1 week
@@ -141,10 +179,33 @@ app.use(express.static(REPO_ROOT, {
 /* ---------- New service detail pages: these ship via the API (content/services.json) but aren't
    prerendered into their own .html yet. Serve the same-language spare-parts page as a shell; the
    detail-page runtime in assets/enhance.js rewrites the title/description from the API by slug. ---------- */
-const NEW_SERVICE_SLUGS = ['procurement', 'engineering', 'ai-solutions', 'cybersecurity'];
+const NEW_SERVICE_SLUGS = [
+  'radar-electronics-communications-sustainment', 'government-relations-and-life-support',
+  'power-systems-support', 'electronics-diagnostic-and-repair-workshops',
+  'ground-support-equipment-sustainment', 'spare-parts-logistics-and-warehousing',
+  'simulation-systems', 'training-and-capability-enablement',
+  'defense-systems-sustainment-mro', 'program-management-and-localization'
+];
+
+/* Legacy service URLs -> their replacement capability. The 2026 company profile supersedes the old
+   aviation service list; these keep every previously published /services/<slug> URL alive. */
+const LEGACY_SERVICE_REDIRECTS = {
+  'radar-system': 'radar-electronics-communications-sustainment',
+  'us-government-support-services': 'government-relations-and-life-support',
+  'generators-and-ups': 'power-systems-support',
+  'structure-and-frame': 'electronics-diagnostic-and-repair-workshops',
+  'supporting-ground-equipment': 'ground-support-equipment-sustainment',
+  'provide-spare-parts': 'spare-parts-logistics-and-warehousing',
+  'supporting-the-simulator-system': 'simulation-systems',
+  'english-language-training': 'training-and-capability-enablement',
+  'maintaining-and-repairing-of-spare-parts': 'defense-systems-sustainment-mro',
+  'hydraulic-pneumatic-equipment-and-components': 'program-management-and-localization',
+  'procurement': 'spare-parts-logistics-and-warehousing',
+  'engineering': 'defense-systems-sustainment-mro'
+};
 app.use((req, res, next) => {
   if (req.method !== 'GET' && req.method !== 'HEAD') return next();
-  const m = req.path.match(/^\/(en|ar|ja|ko)\/services\/([a-z0-9-]+)\.html$/);
+  const m = req.path.match(/^\/(en|ar|ja|ko)\/services\/([a-z0-9-]+)(?:\.html)?$/);
   if (m && NEW_SERVICE_SLUGS.indexOf(m[2]) !== -1) {
     let tpl = nodePath.join(REPO_ROOT, m[1], 'services', 'provide-spare-parts.html');
     if (!fs.existsSync(tpl)) tpl = nodePath.join(REPO_ROOT, 'en', 'services', 'provide-spare-parts.html');

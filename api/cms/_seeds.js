@@ -1,4 +1,5 @@
-// Auto-generated initial seed data for CMS. Sourced from the live site.
+// Auto-generated initial seed data for CMS. Mirrors content/*.json (the live source of truth);
+// used only as a fallback when the content store is unreachable.
 module.exports = {
   "posts": {
     "data": [
@@ -6,15 +7,19 @@ module.exports = {
         "id": "expanding-spare-parts-capabilities",
         "slug": "expanding-spare-parts-capabilities",
         "title": {
-          "en": "Expanding Our Aircraft Spare Parts Capabilities",
-          "ar": "توسيع قدراتنا في توفير قطع غيار الطائرات"
+          "en": "Expanding Our Spare Parts, Logistics and Warehousing Capabilities",
+          "ar": "توسيع قدراتنا في قطع الغيار والخدمات اللوجستية والتخزين",
+          "ko": "항공기 예비 부품 역량 확대",
+          "ja": "航空機スペアパーツ能力の拡大"
         },
         "description": {
-          "en": "A look at how we are growing our inventory and global sourcing network for civil and military aircraft spare parts.",
-          "ar": "نظرة على كيفية تنمية مخزوننا وشبكة التوريد العالمية لدينا لقطع غيار الطائرات المدنية والعسكرية."
+          "en": "Growing end-to-end procurement, secure warehousing and inventory management for military and civilian platforms — sourced from the United States and worldwide.",
+          "ar": "نظرة على كيفية تنمية مخزوننا وشبكة التوريد العالمية لدينا لقطع غيار الطائرات المدنية والعسكرية.",
+          "ko": "민간 및 군용 항공기 예비 부품을 위한 재고와 글로벌 소싱 네트워크를 어떻게 성장시키고 있는지 살펴봅니다.",
+          "ja": "民間および軍用航空機スペアパーツの在庫とグローバル調達ネットワークをどのように成長させているかをご紹介します。"
         },
         "cover": {
-          "uri": "assets/news/expanding-spare-parts-capabilities.svg"
+          "uri": "assets/news/expanding-spare-parts-capabilities.jpg"
         },
         "publish_date": "2026-05-12T09:00:00.000000Z",
         "tags": [
@@ -22,7 +27,9 @@ module.exports = {
             "id": "a1795770-37ea-4ea7-83a1-0a1b774c20b9",
             "name": {
               "ar": "المشتريات",
-              "en": "Consultation Services"
+              "en": "Procurement",
+              "ko": "제조",
+              "ja": "製造"
             },
             "slug": "procurement",
             "description": {
@@ -34,12 +41,14 @@ module.exports = {
             "id": "a1795770-3998-434a-9170-a891135b6559",
             "name": {
               "ar": "الصناعة",
-              "en": "Manifacturing"
+              "en": "Manufacturing",
+              "ko": "제조",
+              "ja": "製造"
             },
             "slug": "manifacturing",
             "description": {
               "ar": "أخبار مرتبطة بمجال الصناعة.",
-              "en": "News related to Manifacturing."
+              "en": "News related to Manufacturing."
             }
           }
         ]
@@ -48,15 +57,19 @@ module.exports = {
         "id": "advanced-simulator-support",
         "slug": "advanced-simulator-support",
         "title": {
-          "en": "Investing in Advanced Simulator Support",
-          "ar": "الاستثمار في دعم أنظمة المحاكاة المتقدمة"
+          "en": "Investing in Simulation and XR-Based Training",
+          "ar": "الاستثمار في المحاكاة والتدريب القائم على الواقع الممتد",
+          "ko": "고급 시뮬레이터 지원에 대한 투자",
+          "ja": "高度なシミュレーター支援への投資"
         },
         "description": {
-          "en": "Our specialized services keep flight and maintenance simulators operating at peak readiness.",
-          "ar": "خدماتنا المتخصصة تُبقي أجهزة محاكاة الطيران والصيانة في جاهزية تشغيلية عالية."
+          "en": "Full-motion and static simulation platforms supported end to end, extended through 3Lines XR into immersive training for the defense and aviation sectors.",
+          "ar": "خدماتنا المتخصصة تُبقي أجهزة محاكاة الطيران والصيانة في جاهزية تشغيلية عالية.",
+          "ko": "저희의 전문 서비스는 비행 및 정비 시뮬레이터가 최상의 준비 상태로 작동하도록 유지합니다.",
+          "ja": "当社の専門サービスは、飛行および整備シミュレーターを最高の準備状態で稼働させ続けます。"
         },
         "cover": {
-          "uri": "assets/news/advanced-simulator-support.svg"
+          "uri": "assets/news/advanced-simulator-support.jpg"
         },
         "publish_date": "2026-04-28T09:00:00.000000Z",
         "tags": [
@@ -64,7 +77,9 @@ module.exports = {
             "id": "a1795770-3a5f-4c45-aae1-3552a85ac66b",
             "name": {
               "ar": "التكنولوجيا",
-              "en": "Technology"
+              "en": "Technology",
+              "ko": "기술",
+              "ja": "テクノロジー"
             },
             "slug": "technology",
             "description": {
@@ -78,15 +93,19 @@ module.exports = {
         "id": "ground-support-equipment-services",
         "slug": "ground-support-equipment-services",
         "title": {
-          "en": "Strengthening Ground Support Equipment Services",
-          "ar": "تعزيز خدمات معدات الدعم الأرضي"
+          "en": "Strengthening Ground Support Equipment Sustainment",
+          "ar": "تعزيز استدامة معدات الدعم الأرضي",
+          "ko": "지상 지원 장비 서비스 강화",
+          "ja": "地上支援機器サービスの強化"
         },
         "description": {
-          "en": "Comprehensive maintenance and spare parts to ensure operational readiness on the ground.",
-          "ar": "صيانة شاملة وقطع غيار لضمان الجاهزية التشغيلية على الأرض."
+          "en": "Maintenance and availability support for aviation and land-based ground support assets, backed by in-Kingdom workshops and spare parts provisioning.",
+          "ar": "صيانة شاملة وقطع غيار لضمان الجاهزية التشغيلية على الأرض.",
+          "ko": "지상에서의 운영 준비 태세를 보장하기 위한 포괄적인 정비 및 예비 부품.",
+          "ja": "地上での運用準備態勢を確保するための包括的な整備とスペアパーツ。"
         },
         "cover": {
-          "uri": "assets/news/ground-support-equipment-services.svg"
+          "uri": "assets/news/ground-support-equipment-services.jpg"
         },
         "publish_date": "2026-03-15T09:00:00.000000Z",
         "tags": [
@@ -94,19 +113,59 @@ module.exports = {
             "id": "a1795770-3998-434a-9170-a891135b6559",
             "name": {
               "ar": "الصناعة",
-              "en": "Manifacturing"
+              "en": "Manufacturing",
+              "ko": "제조",
+              "ja": "製造"
             },
             "slug": "manifacturing",
             "description": {
               "ar": "أخبار مرتبطة بمجال الصناعة.",
-              "en": "News related to Manifacturing."
+              "en": "News related to Manufacturing."
             }
           },
           {
             "id": "a1795770-3a5f-4c45-aae1-3552a85ac66b",
             "name": {
               "ar": "التكنولوجيا",
-              "en": "Technology"
+              "en": "Technology",
+              "ko": "기술",
+              "ja": "テクノロジー"
+            },
+            "slug": "technology",
+            "description": {
+              "ar": "أخبار مرتبطة بمجال التكنولوجيا.",
+              "en": "News related to Technology."
+            }
+          }
+        ]
+      },
+      {
+        "id": "advancing-radar-sensor-support",
+        "slug": "advancing-radar-sensor-support",
+        "title": {
+          "en": "Advancing Radar, C4I and Tactical Communications Sustainment",
+          "ar": "تطوير استدامة الرادار وأنظمة C4I والاتصالات التكتيكية",
+          "ko": "레이더 및 센서 시스템 지원 강화",
+          "ja": "レーダーおよびセンサーシステム支援の強化"
+        },
+        "description": {
+          "en": "Radar maintenance to 4th-line level inside the Kingdom — including the AN/TPS-78 — under a Maintenance Level Agreement with Northrop Grumman.",
+          "ar": "توسيع قدراتنا في تركيب ومعايرة وصيانة أنظمة الرادار وأجهزة الاستشعار لتطبيقات المراقبة والحركة الجوية.",
+          "ko": "감시 및 항공 교통 운영을 위한 레이더 및 센서 시스템의 설치, 보정, 유지보수 역량을 확장하고 있습니다.",
+          "ja": "監視および航空交通の運用に向けて、レーダーおよびセンサーシステムの設置・校正・整備の能力を拡大しています。"
+        },
+        "cover": {
+          "uri": "assets/news/advancing-radar-sensor-support.jpg"
+        },
+        "publish_date": "2026-02-25T09:00:00.000000Z",
+        "tags": [
+          {
+            "id": "a1795770-3a5f-4c45-aae1-3552a85ac66b",
+            "name": {
+              "ar": "التكنولوجيا",
+              "en": "Technology",
+              "ko": "기술",
+              "ja": "テクノロジー"
             },
             "slug": "technology",
             "description": {
@@ -121,7 +180,7 @@ module.exports = {
       "current_page": 1,
       "last_page": 1,
       "per_page": 4,
-      "total": 3
+      "total": 4
     }
   },
   "partners": {
@@ -144,7 +203,9 @@ module.exports = {
           "id": "a1795770-42c3-474a-9de7-6842540ddf94",
           "name": {
             "ar": "إتفاقية",
-            "en": "Agreement"
+            "en": "Agreement",
+            "ko": "협약",
+            "ja": "協定"
           }
         },
         "logo": {
@@ -164,7 +225,9 @@ module.exports = {
           "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
           "name": {
             "ar": "المملكة العربية السعودية",
-            "en": "Saudi Arabia"
+            "en": "Saudi Arabia",
+            "ko": "사우디아라비아",
+            "ja": "サウジアラビア"
           },
           "code": "SA"
         }
@@ -184,7 +247,9 @@ module.exports = {
           "id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
           "name": {
             "ar": "عميل",
-            "en": "Client"
+            "en": "Client",
+            "ko": "고객",
+            "ja": "クライアント"
           }
         },
         "logo": {
@@ -204,7 +269,9 @@ module.exports = {
           "id": "a179576f-32a2-4900-abab-62023d63beff",
           "name": {
             "ar": "فرنسا",
-            "en": "France"
+            "en": "France",
+            "ko": "프랑스",
+            "ja": "フランス"
           },
           "code": "FR"
         }
@@ -224,7 +291,9 @@ module.exports = {
           "id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
           "name": {
             "ar": "عميل",
-            "en": "Client"
+            "en": "Client",
+            "ko": "고객",
+            "ja": "クライアント"
           }
         },
         "logo": {
@@ -244,7 +313,9 @@ module.exports = {
           "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
           "name": {
             "ar": "المملكة العربية السعودية",
-            "en": "Saudi Arabia"
+            "en": "Saudi Arabia",
+            "ko": "사우디아라비아",
+            "ja": "サウジアラビア"
           },
           "code": "SA"
         }
@@ -264,7 +335,9 @@ module.exports = {
           "id": "a1795770-41fe-472f-be98-a898753cb1dc",
           "name": {
             "ar": "شريك",
-            "en": "Partner"
+            "en": "Partner",
+            "ko": "파트너",
+            "ja": "パートナー"
           }
         },
         "logo": {
@@ -284,7 +357,9 @@ module.exports = {
           "id": "a179576f-3365-4140-ad7e-71f8fb4bd64b",
           "name": {
             "ar": "الولايات المتحدة",
-            "en": "United States"
+            "en": "United States",
+            "ko": "미국",
+            "ja": "米国"
           },
           "code": "US"
         }
@@ -307,7 +382,9 @@ module.exports = {
           "id": "a1795770-42c3-474a-9de7-6842540ddf94",
           "name": {
             "ar": "إتفاقية",
-            "en": "Agreement"
+            "en": "Agreement",
+            "ko": "협약",
+            "ja": "協定"
           }
         },
         "logo": {
@@ -327,7 +404,9 @@ module.exports = {
           "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
           "name": {
             "ar": "المملكة العربية السعودية",
-            "en": "Saudi Arabia"
+            "en": "Saudi Arabia",
+            "ko": "사우디아라비아",
+            "ja": "サウジアラビア"
           },
           "code": "SA"
         }
@@ -350,7 +429,9 @@ module.exports = {
           "id": "a1795770-42c3-474a-9de7-6842540ddf94",
           "name": {
             "ar": "إتفاقية",
-            "en": "Agreement"
+            "en": "Agreement",
+            "ko": "협약",
+            "ja": "協定"
           }
         },
         "logo": {
@@ -370,7 +451,9 @@ module.exports = {
           "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
           "name": {
             "ar": "المملكة العربية السعودية",
-            "en": "Saudi Arabia"
+            "en": "Saudi Arabia",
+            "ko": "사우디아라비아",
+            "ja": "サウジアラビア"
           },
           "code": "SA"
         }
@@ -390,7 +473,9 @@ module.exports = {
           "id": "a1795770-41fe-472f-be98-a898753cb1dc",
           "name": {
             "ar": "شريك",
-            "en": "Partner"
+            "en": "Partner",
+            "ko": "파트너",
+            "ja": "パートナー"
           }
         },
         "logo": {
@@ -410,7 +495,9 @@ module.exports = {
           "id": "a179576f-3365-4140-ad7e-71f8fb4bd64b",
           "name": {
             "ar": "الولايات المتحدة",
-            "en": "United States"
+            "en": "United States",
+            "ko": "미국",
+            "ja": "米国"
           },
           "code": "US"
         }
@@ -430,7 +517,9 @@ module.exports = {
           "id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
           "name": {
             "ar": "عميل",
-            "en": "Client"
+            "en": "Client",
+            "ko": "고객",
+            "ja": "クライアント"
           }
         },
         "logo": {
@@ -450,7 +539,9 @@ module.exports = {
           "id": "a179576f-3365-4140-ad7e-71f8fb4bd64b",
           "name": {
             "ar": "الولايات المتحدة",
-            "en": "United States"
+            "en": "United States",
+            "ko": "미국",
+            "ja": "米国"
           },
           "code": "US"
         }
@@ -473,7 +564,9 @@ module.exports = {
           "id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
           "name": {
             "ar": "عميل",
-            "en": "Client"
+            "en": "Client",
+            "ko": "고객",
+            "ja": "クライアント"
           }
         },
         "logo": {
@@ -493,7 +586,9 @@ module.exports = {
           "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
           "name": {
             "ar": "المملكة العربية السعودية",
-            "en": "Saudi Arabia"
+            "en": "Saudi Arabia",
+            "ko": "사우디아라비아",
+            "ja": "サウジアラビア"
           },
           "code": "SA"
         }
@@ -516,7 +611,9 @@ module.exports = {
           "id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
           "name": {
             "ar": "عميل",
-            "en": "Client"
+            "en": "Client",
+            "ko": "고객",
+            "ja": "クライアント"
           }
         },
         "logo": {
@@ -536,7 +633,9 @@ module.exports = {
           "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
           "name": {
             "ar": "المملكة العربية السعودية",
-            "en": "Saudi Arabia"
+            "en": "Saudi Arabia",
+            "ko": "사우디아라비아",
+            "ja": "サウジアラビア"
           },
           "code": "SA"
         }
@@ -556,7 +655,9 @@ module.exports = {
           "id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
           "name": {
             "ar": "عميل",
-            "en": "Client"
+            "en": "Client",
+            "ko": "고객",
+            "ja": "クライアント"
           }
         },
         "logo": {
@@ -576,7 +677,9 @@ module.exports = {
           "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
           "name": {
             "ar": "المملكة العربية السعودية",
-            "en": "Saudi Arabia"
+            "en": "Saudi Arabia",
+            "ko": "사우디아라비아",
+            "ja": "サウジアラビア"
           },
           "code": "SA"
         }
@@ -596,7 +699,9 @@ module.exports = {
           "id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
           "name": {
             "ar": "عميل",
-            "en": "Client"
+            "en": "Client",
+            "ko": "고객",
+            "ja": "クライアント"
           }
         },
         "logo": {
@@ -616,7 +721,9 @@ module.exports = {
           "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
           "name": {
             "ar": "المملكة العربية السعودية",
-            "en": "Saudi Arabia"
+            "en": "Saudi Arabia",
+            "ko": "사우디아라비아",
+            "ja": "サウジアラビア"
           },
           "code": "SA"
         }
@@ -636,7 +743,9 @@ module.exports = {
           "id": "a1795770-41fe-472f-be98-a898753cb1dc",
           "name": {
             "ar": "شريك",
-            "en": "Partner"
+            "en": "Partner",
+            "ko": "파트너",
+            "ja": "パートナー"
           }
         },
         "logo": {
@@ -656,7 +765,9 @@ module.exports = {
           "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
           "name": {
             "ar": "المملكة العربية السعودية",
-            "en": "Saudi Arabia"
+            "en": "Saudi Arabia",
+            "ko": "사우디아라비아",
+            "ja": "サウジアラビア"
           },
           "code": "SA"
         }
@@ -679,7 +790,9 @@ module.exports = {
           "id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
           "name": {
             "ar": "عميل",
-            "en": "Client"
+            "en": "Client",
+            "ko": "고객",
+            "ja": "クライアント"
           }
         },
         "logo": {
@@ -699,7 +812,9 @@ module.exports = {
           "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
           "name": {
             "ar": "المملكة العربية السعودية",
-            "en": "Saudi Arabia"
+            "en": "Saudi Arabia",
+            "ko": "사우디아라비아",
+            "ja": "サウジアラビア"
           },
           "code": "SA"
         }
@@ -719,18 +834,20 @@ module.exports = {
           "id": "a1795770-41fe-472f-be98-a898753cb1dc",
           "name": {
             "ar": "شريك",
-            "en": "Partner"
+            "en": "Partner",
+            "ko": "파트너",
+            "ja": "パートナー"
           }
         },
         "logo": {
-          "id": "a1795770-5fc1-4a28-ad47-d5c53744d570",
+          "id": "a2795770-6000-4f00-9500-600000000000",
           "original_name": "optokon-middle-east-logo.png",
           "file_name": "optokon-middle-east-logo.png",
           "uri": "assets/logos/optokon-middle-east-logo.png",
           "location": "assets/logos/optokon-middle-east-logo.png",
           "mime_type": "image/png",
           "extension": "png",
-          "size": "204",
+          "size": "6868",
           "width": null,
           "height": null,
           "type": "logo"
@@ -739,7 +856,9 @@ module.exports = {
           "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
           "name": {
             "ar": "المملكة العربية السعودية",
-            "en": "Saudi Arabia"
+            "en": "Saudi Arabia",
+            "ko": "사우디아라비아",
+            "ja": "サウジアラビア"
           },
           "code": "SA"
         }
@@ -759,7 +878,9 @@ module.exports = {
           "id": "a1795770-41fe-472f-be98-a898753cb1dc",
           "name": {
             "ar": "شريك",
-            "en": "Partner"
+            "en": "Partner",
+            "ko": "파트너",
+            "ja": "パートナー"
           }
         },
         "logo": {
@@ -779,7 +900,1090 @@ module.exports = {
           "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
           "name": {
             "ar": "المملكة العربية السعودية",
-            "en": "Saudi Arabia"
+            "en": "Saudi Arabia",
+            "ko": "사우디아라비아",
+            "ja": "サウジアラビア"
+          },
+          "code": "SA"
+        }
+      },
+      {
+        "id": "c1795770-2000-4b00-9100-200000000000",
+        "order": null,
+        "name": {
+          "en": "Royal Saudi Air Force",
+          "ar": "القوات الجوية الملكية السعودية"
+        },
+        "description": {
+          "en": "Radar sustainment including the AN/TPS-78, and aviation support.",
+          "ar": "استدامة الرادارات والدعم الجوي."
+        },
+        "link": null,
+        "country_id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+        "type_id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+        "type": {
+          "id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+          "name": {
+            "ar": "عميل",
+            "en": "Client",
+            "ko": "고객",
+            "ja": "クライアント"
+          }
+        },
+        "logo": {
+          "id": null,
+          "original_name": "cust-rsaf.png",
+          "file_name": "cust-rsaf.png",
+          "uri": "assets/logos/cust-rsaf.png",
+          "location": "assets/logos/cust-rsaf.png",
+          "mime_type": "image/png",
+          "extension": "png",
+          "size": null,
+          "width": null,
+          "height": null,
+          "type": "logo"
+        },
+        "country": {
+          "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+          "name": {
+            "ar": "المملكة العربية السعودية",
+            "en": "Saudi Arabia",
+            "ko": "사우디아라비아",
+            "ja": "サウジアラビア"
+          },
+          "code": "SA"
+        }
+      },
+      {
+        "id": "c1795770-2001-4b00-9100-200000000001",
+        "order": null,
+        "name": {
+          "en": "Royal Saudi Air Defense Forces",
+          "ar": "قوات الدفاع الجوي الملكي السعودي"
+        },
+        "description": {
+          "en": "Air defense systems sustainment and technical support.",
+          "ar": "استدامة أنظمة الدفاع الجوي والدعم الفني."
+        },
+        "link": null,
+        "country_id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+        "type_id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+        "type": {
+          "id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+          "name": {
+            "ar": "عميل",
+            "en": "Client",
+            "ko": "고객",
+            "ja": "クライアント"
+          }
+        },
+        "logo": {
+          "id": null,
+          "original_name": "cust-rsadf.png",
+          "file_name": "cust-rsadf.png",
+          "uri": "assets/logos/cust-rsadf.png",
+          "location": "assets/logos/cust-rsadf.png",
+          "mime_type": "image/png",
+          "extension": "png",
+          "size": null,
+          "width": null,
+          "height": null,
+          "type": "logo"
+        },
+        "country": {
+          "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+          "name": {
+            "ar": "المملكة العربية السعودية",
+            "en": "Saudi Arabia",
+            "ko": "사우디아라비아",
+            "ja": "サウジアラビア"
+          },
+          "code": "SA"
+        }
+      },
+      {
+        "id": "c1795770-2002-4b00-9100-200000000002",
+        "order": null,
+        "name": {
+          "en": "Ministry of National Guard",
+          "ar": "وزارة الحرس الوطني"
+        },
+        "description": {
+          "en": "ELT, AMSP and COUNS School programs delivered with the U.S. Government.",
+          "ar": "برامج ELT وAMSP ومدرسة COUNS بالتعاون مع الحكومة الأمريكية."
+        },
+        "link": null,
+        "country_id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+        "type_id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+        "type": {
+          "id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+          "name": {
+            "ar": "عميل",
+            "en": "Client",
+            "ko": "고객",
+            "ja": "クライアント"
+          }
+        },
+        "logo": {
+          "id": null,
+          "original_name": "cust-mng.png",
+          "file_name": "cust-mng.png",
+          "uri": "assets/logos/cust-mng.png",
+          "location": "assets/logos/cust-mng.png",
+          "mime_type": "image/png",
+          "extension": "png",
+          "size": null,
+          "width": null,
+          "height": null,
+          "type": "logo"
+        },
+        "country": {
+          "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+          "name": {
+            "ar": "المملكة العربية السعودية",
+            "en": "Saudi Arabia",
+            "ko": "사우디아라비아",
+            "ja": "サウジアラビア"
+          },
+          "code": "SA"
+        }
+      },
+      {
+        "id": "c1795770-2003-4b00-9100-200000000003",
+        "order": null,
+        "name": {
+          "en": "Ministry of Defense",
+          "ar": "وزارة الدفاع"
+        },
+        "description": {
+          "en": "Defense sustainment and localization programs.",
+          "ar": "برامج الاستدامة الدفاعية والتوطين."
+        },
+        "link": null,
+        "country_id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+        "type_id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+        "type": {
+          "id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+          "name": {
+            "ar": "عميل",
+            "en": "Client",
+            "ko": "고객",
+            "ja": "クライアント"
+          }
+        },
+        "logo": {
+          "id": null,
+          "original_name": "cust-mod.png",
+          "file_name": "cust-mod.png",
+          "uri": "assets/logos/cust-mod.png",
+          "location": "assets/logos/cust-mod.png",
+          "mime_type": "image/png",
+          "extension": "png",
+          "size": null,
+          "width": null,
+          "height": null,
+          "type": "logo"
+        },
+        "country": {
+          "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+          "name": {
+            "ar": "المملكة العربية السعودية",
+            "en": "Saudi Arabia",
+            "ko": "사우디아라비아",
+            "ja": "サウジアラビア"
+          },
+          "code": "SA"
+        }
+      },
+      {
+        "id": "c1795770-2004-4b00-9100-200000000004",
+        "order": null,
+        "name": {
+          "en": "Special Security Forces",
+          "ar": "قوات الأمن الخاصة"
+        },
+        "description": {
+          "en": "Technical and equipment support for special security operations.",
+          "ar": "الدعم الفني والمعدات لعمليات الأمن الخاص."
+        },
+        "link": null,
+        "country_id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+        "type_id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+        "type": {
+          "id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+          "name": {
+            "ar": "عميل",
+            "en": "Client",
+            "ko": "고객",
+            "ja": "クライアント"
+          }
+        },
+        "logo": {
+          "id": null,
+          "original_name": "cust-ssf.png",
+          "file_name": "cust-ssf.png",
+          "uri": "assets/logos/cust-ssf.png",
+          "location": "assets/logos/cust-ssf.png",
+          "mime_type": "image/png",
+          "extension": "png",
+          "size": null,
+          "width": null,
+          "height": null,
+          "type": "logo"
+        },
+        "country": {
+          "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+          "name": {
+            "ar": "المملكة العربية السعودية",
+            "en": "Saudi Arabia",
+            "ko": "사우디아라비아",
+            "ja": "サウジアラビア"
+          },
+          "code": "SA"
+        }
+      },
+      {
+        "id": "c1795770-2005-4b00-9100-200000000005",
+        "order": null,
+        "name": {
+          "en": "Strategic Missile Force",
+          "ar": "قوة الصواريخ الاستراتيجية"
+        },
+        "description": {
+          "en": "Specialised technical and sustainment support.",
+          "ar": "دعم فني واستدامة متخصص."
+        },
+        "link": null,
+        "country_id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+        "type_id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+        "type": {
+          "id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+          "name": {
+            "ar": "عميل",
+            "en": "Client",
+            "ko": "고객",
+            "ja": "クライアント"
+          }
+        },
+        "logo": {
+          "id": null,
+          "original_name": "cust-smf.png",
+          "file_name": "cust-smf.png",
+          "uri": "assets/logos/cust-smf.png",
+          "location": "assets/logos/cust-smf.png",
+          "mime_type": "image/png",
+          "extension": "png",
+          "size": null,
+          "width": null,
+          "height": null,
+          "type": "logo"
+        },
+        "country": {
+          "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+          "name": {
+            "ar": "المملكة العربية السعودية",
+            "en": "Saudi Arabia",
+            "ko": "사우디아라비아",
+            "ja": "サウジアラビア"
+          },
+          "code": "SA"
+        }
+      },
+      {
+        "id": "c1795770-2006-4b00-9100-200000000006",
+        "order": null,
+        "name": {
+          "en": "Royal Saudi Naval Forces",
+          "ar": "القوات البحرية الملكية السعودية"
+        },
+        "description": {
+          "en": "Naval helicopter spare parts under the SAMI Aerospace framework contract.",
+          "ar": "قطع غيار المروحيات البحرية ضمن العقد الإطاري مع SAMI."
+        },
+        "link": null,
+        "country_id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+        "type_id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+        "type": {
+          "id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+          "name": {
+            "ar": "عميل",
+            "en": "Client",
+            "ko": "고객",
+            "ja": "クライアント"
+          }
+        },
+        "logo": {
+          "id": "a2795770-6001-4f00-9500-600000000001",
+          "original_name": "cust-rsnf.png",
+          "file_name": "cust-rsnf.png",
+          "uri": "assets/logos/cust-rsnf.png",
+          "location": "assets/logos/cust-rsnf.png",
+          "mime_type": "image/png",
+          "extension": "png",
+          "size": "31461",
+          "width": null,
+          "height": null,
+          "type": "logo"
+        },
+        "country": {
+          "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+          "name": {
+            "ar": "المملكة العربية السعودية",
+            "en": "Saudi Arabia",
+            "ko": "사우디아라비아",
+            "ja": "サウジアラビア"
+          },
+          "code": "SA"
+        }
+      },
+      {
+        "id": "c1795770-2007-4b00-9100-200000000007",
+        "order": null,
+        "name": {
+          "en": "Royal Saudi Land Forces",
+          "ar": "القوات البرية الملكية السعودية"
+        },
+        "description": {
+          "en": "Land systems spare parts, communications and sustainment.",
+          "ar": "قطع غيار الأنظمة البرية والاتصالات والاستدامة."
+        },
+        "link": null,
+        "country_id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+        "type_id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+        "type": {
+          "id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+          "name": {
+            "ar": "عميل",
+            "en": "Client",
+            "ko": "고객",
+            "ja": "クライアント"
+          }
+        },
+        "logo": {
+          "id": "a2795770-6002-4f00-9500-600000000002",
+          "original_name": "cust-rslf.png",
+          "file_name": "cust-rslf.png",
+          "uri": "assets/logos/cust-rslf.png",
+          "location": "assets/logos/cust-rslf.png",
+          "mime_type": "image/png",
+          "extension": "png",
+          "size": "26827",
+          "width": null,
+          "height": null,
+          "type": "logo"
+        },
+        "country": {
+          "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+          "name": {
+            "ar": "المملكة العربية السعودية",
+            "en": "Saudi Arabia",
+            "ko": "사우디아라비아",
+            "ja": "サウジアラビア"
+          },
+          "code": "SA"
+        }
+      },
+      {
+        "id": "c1795770-2008-4b00-9100-200000000008",
+        "order": null,
+        "name": {
+          "en": "Saudi Border Guard",
+          "ar": "حرس الحدود السعودي"
+        },
+        "description": {
+          "en": "Surveillance, communications and equipment support.",
+          "ar": "دعم المراقبة والاتصالات والمعدات."
+        },
+        "link": null,
+        "country_id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+        "type_id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+        "type": {
+          "id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+          "name": {
+            "ar": "عميل",
+            "en": "Client",
+            "ko": "고객",
+            "ja": "クライアント"
+          }
+        },
+        "logo": {
+          "id": "e1795770-4000-4d00-9300-400000000000",
+          "original_name": "cust-border-guard.png",
+          "file_name": "cust-border-guard.png",
+          "uri": "assets/logos/cust-border-guard.png",
+          "location": "assets/logos/cust-border-guard.png",
+          "mime_type": "image/png",
+          "extension": "png",
+          "size": "53038",
+          "width": null,
+          "height": null,
+          "type": "logo"
+        },
+        "country": {
+          "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+          "name": {
+            "ar": "المملكة العربية السعودية",
+            "en": "Saudi Arabia",
+            "ko": "사우디아라비아",
+            "ja": "サウジアラビア"
+          },
+          "code": "SA"
+        }
+      },
+      {
+        "id": "c1795770-2009-4b00-9100-200000000009",
+        "order": null,
+        "name": {
+          "en": "SEDENA — Secretaría de la Defensa Nacional",
+          "ar": "وزارة الدفاع الوطني المكسيكية (SEDENA)"
+        },
+        "description": {
+          "en": "Defense projects delivered with the Mexican Government through SEDENA.",
+          "ar": "مشاريع دفاعية مع الحكومة المكسيكية."
+        },
+        "link": null,
+        "country_id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+        "type_id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+        "type": {
+          "id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+          "name": {
+            "ar": "عميل",
+            "en": "Client",
+            "ko": "고객",
+            "ja": "クライアント"
+          }
+        },
+        "logo": {
+          "id": "a2795770-6004-4f00-9500-600000000004",
+          "original_name": "cust-sedena.png",
+          "file_name": "cust-sedena.png",
+          "uri": "assets/logos/cust-sedena.png",
+          "location": "assets/logos/cust-sedena.png",
+          "mime_type": "image/png",
+          "extension": "png",
+          "size": "21883",
+          "width": null,
+          "height": null,
+          "type": "logo"
+        },
+        "country": {
+          "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+          "name": {
+            "ar": "المملكة العربية السعودية",
+            "en": "Saudi Arabia",
+            "ko": "사우디아라비아",
+            "ja": "サウジアラビア"
+          },
+          "code": "SA"
+        }
+      },
+      {
+        "id": "c1795770-2015-4b00-9100-200000000015",
+        "order": null,
+        "name": {
+          "en": "ABI",
+          "ar": "ABI"
+        },
+        "description": {
+          "en": "Strategic partnership established 2024.",
+          "ar": "شراكة استراتيجية منذ 2024."
+        },
+        "link": null,
+        "country_id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+        "type_id": "a1795770-41fe-472f-be98-a898753cb1dc",
+        "type": {
+          "id": "a1795770-41fe-472f-be98-a898753cb1dc",
+          "name": {
+            "ar": "شريك",
+            "en": "Partner",
+            "ko": "파트너",
+            "ja": "パートナー"
+          }
+        },
+        "logo": {
+          "id": "a2795770-6003-4f00-9500-600000000003",
+          "original_name": "partner-abi.png",
+          "file_name": "partner-abi.png",
+          "uri": "assets/logos/partner-abi.png",
+          "location": "assets/logos/partner-abi.png",
+          "mime_type": "image/png",
+          "extension": "png",
+          "size": "19266",
+          "width": null,
+          "height": null,
+          "type": "logo"
+        },
+        "country": {
+          "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+          "name": {
+            "ar": "المملكة العربية السعودية",
+            "en": "Saudi Arabia",
+            "ko": "사우디아라비아",
+            "ja": "サウジアラビア"
+          },
+          "code": "SA"
+        }
+      },
+      {
+        "id": "c1795770-2018-4b00-9100-200000000018",
+        "order": null,
+        "name": {
+          "en": "Princess Nourah bint Abdulrahman University",
+          "ar": "جامعة الأميرة نورة بنت عبدالرحمن"
+        },
+        "description": {
+          "en": "Autonomous systems and simulation technologies.",
+          "ar": "الأنظمة الذاتية وتقنيات المحاكاة."
+        },
+        "link": "https://www.pnu.edu.sa/",
+        "country_id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+        "type_id": "a1795770-41fe-472f-be98-a898753cb1dc",
+        "type": {
+          "id": "a1795770-41fe-472f-be98-a898753cb1dc",
+          "name": {
+            "ar": "شريك",
+            "en": "Partner",
+            "ko": "파트너",
+            "ja": "パートナー"
+          }
+        },
+        "logo": {
+          "id": null,
+          "original_name": "org-pnu.png",
+          "file_name": "org-pnu.png",
+          "uri": "assets/logos/org-pnu.png",
+          "location": "assets/logos/org-pnu.png",
+          "mime_type": "image/png",
+          "extension": "png",
+          "size": null,
+          "width": null,
+          "height": null,
+          "type": "logo"
+        },
+        "country": {
+          "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+          "name": {
+            "ar": "المملكة العربية السعودية",
+            "en": "Saudi Arabia",
+            "ko": "사우디아라비아",
+            "ja": "サウジアラビア"
+          },
+          "code": "SA"
+        }
+      },
+      {
+        "id": "c1795770-2019-4b00-9100-200000000019",
+        "order": null,
+        "name": {
+          "en": "Prince Sattam bin Abdulaziz University",
+          "ar": "جامعة الأمير سطام بن عبدالعزيز"
+        },
+        "description": {
+          "en": "R&D and manufacturing in jamming and electronic warfare systems.",
+          "ar": "البحث والتطوير والتصنيع في أنظمة التشويش والحرب الإلكترونية."
+        },
+        "link": "https://www.psau.edu.sa/",
+        "country_id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+        "type_id": "a1795770-41fe-472f-be98-a898753cb1dc",
+        "type": {
+          "id": "a1795770-41fe-472f-be98-a898753cb1dc",
+          "name": {
+            "ar": "شريك",
+            "en": "Partner",
+            "ko": "파트너",
+            "ja": "パートナー"
+          }
+        },
+        "logo": {
+          "id": "e1795770-4001-4d00-9300-400000000001",
+          "original_name": "org-psau.png",
+          "file_name": "org-psau.png",
+          "uri": "assets/logos/org-psau.png",
+          "location": "assets/logos/org-psau.png",
+          "mime_type": "image/png",
+          "extension": "png",
+          "size": "30252",
+          "width": null,
+          "height": null,
+          "type": "logo"
+        },
+        "country": {
+          "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+          "name": {
+            "ar": "المملكة العربية السعودية",
+            "en": "Saudi Arabia",
+            "ko": "사우디아라비아",
+            "ja": "サウジアラビア"
+          },
+          "code": "SA"
+        }
+      },
+      {
+        "id": "c1795770-2021-4b00-9100-200000000021",
+        "order": null,
+        "name": {
+          "en": "NARS — National Academy for Radar and Space Communications",
+          "ar": "الأكاديمية الوطنية للرادارات والاتصالات الفضائية"
+        },
+        "description": {
+          "en": "Non-profit academy qualifying national talent — 5 core specializations, +500 trainees.",
+          "ar": "أكاديمية غير ربحية لتأهيل الكفاءات الوطنية — 5 تخصصات وأكثر من 500 متدرب."
+        },
+        "link": null,
+        "country_id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+        "type_id": "a1795770-41fe-472f-be98-a898753cb1dc",
+        "type": {
+          "id": "a1795770-41fe-472f-be98-a898753cb1dc",
+          "name": {
+            "ar": "شريك",
+            "en": "Partner",
+            "ko": "파트너",
+            "ja": "パートナー"
+          }
+        },
+        "logo": {
+          "id": null,
+          "original_name": "org-nars.png",
+          "file_name": "org-nars.png",
+          "uri": "assets/logos/org-nars.png",
+          "location": "assets/logos/org-nars.png",
+          "mime_type": "image/png",
+          "extension": "png",
+          "size": null,
+          "width": null,
+          "height": null,
+          "type": "logo"
+        },
+        "country": {
+          "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+          "name": {
+            "ar": "المملكة العربية السعودية",
+            "en": "Saudi Arabia",
+            "ko": "사우디아라비아",
+            "ja": "サウジアラビア"
+          },
+          "code": "SA"
+        }
+      },
+      {
+        "id": "f1795770-5002-4e00-9400-500000000002",
+        "order": null,
+        "name": {
+          "en": "Saudi Electricity Company",
+          "ar": "الشركة السعودية للكهرباء"
+        },
+        "description": {
+          "en": "Power systems and critical infrastructure support.",
+          "ar": "دعم أنظمة الطاقة والبنى التحتية الحرجة."
+        },
+        "link": "https://www.se.com.sa/",
+        "country_id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+        "type_id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+        "type": {
+          "id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+          "name": {
+            "ar": "عميل",
+            "en": "Client",
+            "ko": "고객",
+            "ja": "クライアント"
+          }
+        },
+        "logo": {
+          "id": "e1795770-4002-4d00-9300-400000000002",
+          "original_name": "cust-saudi-electricity.png",
+          "file_name": "cust-saudi-electricity.png",
+          "uri": "assets/logos/cust-saudi-electricity.png",
+          "location": "assets/logos/cust-saudi-electricity.png",
+          "mime_type": "image/png",
+          "extension": "png",
+          "size": "19940",
+          "width": null,
+          "height": null,
+          "type": "logo"
+        },
+        "country": {
+          "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+          "name": {
+            "ar": "المملكة العربية السعودية",
+            "en": "Saudi Arabia",
+            "ko": "사우디아라비아",
+            "ja": "サウジアラビア"
+          },
+          "code": "SA"
+        }
+      },
+      {
+        "id": "f1795770-5003-4e00-9400-500000000003",
+        "order": null,
+        "name": {
+          "en": "Mobily",
+          "ar": "موبايلي"
+        },
+        "description": {
+          "en": "Communications and IT infrastructure collaboration.",
+          "ar": "التعاون في الاتصالات والبنية التقنية."
+        },
+        "link": "https://www.mobily.com.sa/",
+        "country_id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+        "type_id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+        "type": {
+          "id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+          "name": {
+            "ar": "عميل",
+            "en": "Client",
+            "ko": "고객",
+            "ja": "クライアント"
+          }
+        },
+        "logo": {
+          "id": "e1795770-4003-4d00-9300-400000000003",
+          "original_name": "cust-mobily.png",
+          "file_name": "cust-mobily.png",
+          "uri": "assets/logos/cust-mobily.png",
+          "location": "assets/logos/cust-mobily.png",
+          "mime_type": "image/png",
+          "extension": "png",
+          "size": "15723",
+          "width": null,
+          "height": null,
+          "type": "logo"
+        },
+        "country": {
+          "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+          "name": {
+            "ar": "المملكة العربية السعودية",
+            "en": "Saudi Arabia",
+            "ko": "사우디아라비아",
+            "ja": "サウジアラビア"
+          },
+          "code": "SA"
+        }
+      },
+      {
+        "id": "f1795770-5004-4e00-9400-500000000004",
+        "order": null,
+        "name": {
+          "en": "SITECH",
+          "ar": "SITECH"
+        },
+        "description": {
+          "en": "Industrial and technical services collaboration.",
+          "ar": "التعاون في الخدمات الصناعية والفنية."
+        },
+        "link": null,
+        "country_id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+        "type_id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+        "type": {
+          "id": "a1795770-4114-4ded-994a-0f9dbdbc0c0e",
+          "name": {
+            "ar": "عميل",
+            "en": "Client",
+            "ko": "고객",
+            "ja": "クライアント"
+          }
+        },
+        "logo": {
+          "id": "e1795770-4004-4d00-9300-400000000004",
+          "original_name": "cust-sitech.png",
+          "file_name": "cust-sitech.png",
+          "uri": "assets/logos/cust-sitech.png",
+          "location": "assets/logos/cust-sitech.png",
+          "mime_type": "image/png",
+          "extension": "png",
+          "size": "19877",
+          "width": null,
+          "height": null,
+          "type": "logo"
+        },
+        "country": {
+          "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+          "name": {
+            "ar": "المملكة العربية السعودية",
+            "en": "Saudi Arabia",
+            "ko": "사우디아라비아",
+            "ja": "サウジアラビア"
+          },
+          "code": "SA"
+        }
+      },
+      {
+        "id": "f1795770-5005-4e00-9400-500000000005",
+        "order": null,
+        "name": {
+          "en": "SAMI ALSALAM Aerospace Industries",
+          "ar": "شركة السلام لصناعة الطيران"
+        },
+        "description": {
+          "en": "Aerospace industries partnership.",
+          "ar": "شراكة في صناعة الطيران."
+        },
+        "link": null,
+        "country_id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+        "type_id": "a1795770-41fe-472f-be98-a898753cb1dc",
+        "type": {
+          "id": "a1795770-41fe-472f-be98-a898753cb1dc",
+          "name": {
+            "ar": "شريك",
+            "en": "Partner",
+            "ko": "파트너",
+            "ja": "パートナー"
+          }
+        },
+        "logo": {
+          "id": "e1795770-4005-4d00-9300-400000000005",
+          "original_name": "partner-sami-alsalam.png",
+          "file_name": "partner-sami-alsalam.png",
+          "uri": "assets/logos/partner-sami-alsalam.png",
+          "location": "assets/logos/partner-sami-alsalam.png",
+          "mime_type": "image/png",
+          "extension": "png",
+          "size": "22274",
+          "width": null,
+          "height": null,
+          "type": "logo"
+        },
+        "country": {
+          "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+          "name": {
+            "ar": "المملكة العربية السعودية",
+            "en": "Saudi Arabia",
+            "ko": "사우디아라비아",
+            "ja": "サウジアラビア"
+          },
+          "code": "SA"
+        }
+      },
+      {
+        "id": "f1795770-5006-4e00-9400-500000000006",
+        "order": null,
+        "name": {
+          "en": "Technical and Vocational Training Corporation",
+          "ar": "المؤسسة العامة للتدريب التقني والمهني"
+        },
+        "description": {
+          "en": "National technical and vocational training partnership.",
+          "ar": "شراكة في التدريب التقني والمهني."
+        },
+        "link": "https://www.tvtc.gov.sa/",
+        "country_id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+        "type_id": "a1795770-41fe-472f-be98-a898753cb1dc",
+        "type": {
+          "id": "a1795770-41fe-472f-be98-a898753cb1dc",
+          "name": {
+            "ar": "شريك",
+            "en": "Partner",
+            "ko": "파트너",
+            "ja": "パートナー"
+          }
+        },
+        "logo": {
+          "id": "e1795770-4006-4d00-9300-400000000006",
+          "original_name": "partner-tvtc.png",
+          "file_name": "partner-tvtc.png",
+          "uri": "assets/logos/partner-tvtc.png",
+          "location": "assets/logos/partner-tvtc.png",
+          "mime_type": "image/png",
+          "extension": "png",
+          "size": "55014",
+          "width": null,
+          "height": null,
+          "type": "logo"
+        },
+        "country": {
+          "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+          "name": {
+            "ar": "المملكة العربية السعودية",
+            "en": "Saudi Arabia",
+            "ko": "사우디아라비아",
+            "ja": "サウジアラビア"
+          },
+          "code": "SA"
+        }
+      },
+      {
+        "id": "f1795770-5007-4e00-9400-500000000007",
+        "order": null,
+        "name": {
+          "en": "Karachi Shipyard & Engineering Works",
+          "ar": "حوض كراتشي لبناء السفن"
+        },
+        "description": {
+          "en": "Naval engineering and shipbuilding collaboration.",
+          "ar": "التعاون في الهندسة البحرية وبناء السفن."
+        },
+        "link": null,
+        "country_id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+        "type_id": "a1795770-41fe-472f-be98-a898753cb1dc",
+        "type": {
+          "id": "a1795770-41fe-472f-be98-a898753cb1dc",
+          "name": {
+            "ar": "شريك",
+            "en": "Partner",
+            "ko": "파트너",
+            "ja": "パートナー"
+          }
+        },
+        "logo": {
+          "id": "e1795770-4007-4d00-9300-400000000007",
+          "original_name": "partner-karachi-shipyard.png",
+          "file_name": "partner-karachi-shipyard.png",
+          "uri": "assets/logos/partner-karachi-shipyard.png",
+          "location": "assets/logos/partner-karachi-shipyard.png",
+          "mime_type": "image/png",
+          "extension": "png",
+          "size": "38764",
+          "width": null,
+          "height": null,
+          "type": "logo"
+        },
+        "country": {
+          "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+          "name": {
+            "ar": "المملكة العربية السعودية",
+            "en": "Saudi Arabia",
+            "ko": "사우디아라비아",
+            "ja": "サウジアラビア"
+          },
+          "code": "SA"
+        }
+      },
+      {
+        "id": "b2795770-7005-5000-9600-700000000005",
+        "order": null,
+        "name": {
+          "en": "Raytheon",
+          "ar": "ريثيون"
+        },
+        "description": {
+          "en": "Defense systems collaboration.",
+          "ar": "التعاون في الأنظمة الدفاعية."
+        },
+        "link": "https://www.rtx.com/",
+        "country_id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+        "type_id": "a1795770-41fe-472f-be98-a898753cb1dc",
+        "type": {
+          "id": "a1795770-41fe-472f-be98-a898753cb1dc",
+          "name": {
+            "ar": "شريك",
+            "en": "Partner",
+            "ko": "파트너",
+            "ja": "パートナー"
+          }
+        },
+        "logo": {
+          "id": "a2795770-6005-4f00-9500-600000000005",
+          "original_name": "partner-raytheon.png",
+          "file_name": "partner-raytheon.png",
+          "uri": "assets/logos/partner-raytheon.png",
+          "location": "assets/logos/partner-raytheon.png",
+          "mime_type": "image/png",
+          "extension": "png",
+          "size": "27696",
+          "width": null,
+          "height": null,
+          "type": "logo"
+        },
+        "country": {
+          "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+          "name": {
+            "ar": "المملكة العربية السعودية",
+            "en": "Saudi Arabia",
+            "ko": "사우디아라비아",
+            "ja": "サウジアラビア"
+          },
+          "code": "SA"
+        }
+      },
+      {
+        "id": "b2795770-7006-5000-9600-700000000006",
+        "order": null,
+        "name": {
+          "en": "USASAC",
+          "ar": "USASAC"
+        },
+        "description": {
+          "en": "U.S. Army Security Assistance Command programs.",
+          "ar": "برامج قيادة المساعدة الأمنية للجيش الأمريكي."
+        },
+        "link": null,
+        "country_id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+        "type_id": "a1795770-41fe-472f-be98-a898753cb1dc",
+        "type": {
+          "id": "a1795770-41fe-472f-be98-a898753cb1dc",
+          "name": {
+            "ar": "شريك",
+            "en": "Partner",
+            "ko": "파트너",
+            "ja": "パートナー"
+          }
+        },
+        "logo": {
+          "id": "a2795770-6006-4f00-9500-600000000006",
+          "original_name": "partner-usasac.png",
+          "file_name": "partner-usasac.png",
+          "uri": "assets/logos/partner-usasac.png",
+          "location": "assets/logos/partner-usasac.png",
+          "mime_type": "image/png",
+          "extension": "png",
+          "size": "32491",
+          "width": null,
+          "height": null,
+          "type": "logo"
+        },
+        "country": {
+          "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+          "name": {
+            "ar": "المملكة العربية السعودية",
+            "en": "Saudi Arabia",
+            "ko": "사우디아라비아",
+            "ja": "サウジアラビア"
+          },
+          "code": "SA"
+        }
+      },
+      {
+        "id": "b2795770-7007-5000-9600-700000000007",
+        "order": null,
+        "name": {
+          "en": "Redstone Systems",
+          "ar": "Redstone Systems"
+        },
+        "description": {
+          "en": "Defense technology partnership.",
+          "ar": "شراكة في تقنيات الدفاع."
+        },
+        "link": null,
+        "country_id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+        "type_id": "a1795770-41fe-472f-be98-a898753cb1dc",
+        "type": {
+          "id": "a1795770-41fe-472f-be98-a898753cb1dc",
+          "name": {
+            "ar": "شريك",
+            "en": "Partner",
+            "ko": "파트너",
+            "ja": "パートナー"
+          }
+        },
+        "logo": {
+          "id": "a2795770-6007-4f00-9500-600000000007",
+          "original_name": "partner-redstone.png",
+          "file_name": "partner-redstone.png",
+          "uri": "assets/logos/partner-redstone.png",
+          "location": "assets/logos/partner-redstone.png",
+          "mime_type": "image/png",
+          "extension": "png",
+          "size": "17973",
+          "width": null,
+          "height": null,
+          "type": "logo"
+        },
+        "country": {
+          "id": "a179576f-3329-4ff4-b8b2-682b7df16e4d",
+          "name": {
+            "ar": "المملكة العربية السعودية",
+            "en": "Saudi Arabia",
+            "ko": "사우디아라비아",
+            "ja": "サウジアラビア"
           },
           "code": "SA"
         }
@@ -791,19 +1995,19 @@ module.exports = {
     "status_code": 200,
     "data": {
       "behance": null,
-      "description_ar": "توفير قطع غيار الطائرات وأجهزة المحاكاة - أول شركة سعودية مرخصة لتوريد قطع غيار الطائرات ومعدات الدعم الأرضي وأجهزة المحاكاة من الولايات المتحدة وجميع أنحاء العالم. نحن فريق سعودي محترف يتمتع بخبرة تزيد عن 30 عامًا.",
-      "description_en": "Provision of Aircraft Spare Parts & Simulator - The first licensed Saudi Company for supplying aircrafts spare parts, ground support equipment and simulators from the United Sates and all over the world. We are a professional Saudi team that has an experience of over 30 years.",
+      "description_ar": "تأسست مجموعة 3LINES ADVANCED TECHNOLOGIES في عام 2019 تماشيًا مع رؤية السعودية 2030 بهدف توطين الخدمات العسكرية والمدنية داخل المملكة. تقدم المجموعة خدمات متكاملة في سلاسل الإمداد والخدمات الفنية — المشتريات والخدمات اللوجستية والصيانة والإصلاح والتصنيع — دعمًا للجاهزية التشغيلية في قطاعي الدفاع والتقنيات المتقدمة محليًا ودوليًا.",
+      "description_en": "3Lines Advanced Technologies Group was established in 2019 in alignment with Saudi Vision 2030 to localize military and civilian services within the Kingdom. The Group delivers integrated supply chain and technical services — procurement, logistics, maintenance, repair and manufacturing — supporting operational readiness across the defense and advanced technology sectors, locally and internationally.",
       "email": "info@3lines.com.sa",
       "facebook": null,
       "favicon_uri": "/assets/logos/favicon.png",
       "github": null,
       "instagram": null,
-      "keywords": "threelines,three,lines,provision,aircraft,spare,parts,simulator,saudi,company,supplying,aircrafts,spare,parts,,ground,support,equipment,and,simulators,3lines,المسارات الثلاثية",
+      "keywords": "threelines,three,lines,provision,aircraft,spare,parts,simulator,saudi,company,supplying,aircrafts,spare,parts,,ground,support,equipment,and,simulators,3lines,ثريلاينز آدفانسد تكنولجيز",
       "linkedin": "https://www.linkedin.com/company/3lines",
       "logo_uri": "assets/logos/logo.png",
       "meta": "",
-      "name_ar": "المسارات الثلاثية",
-      "name_en": "Three Lines",
+      "name_ar": "ثريلاينز آدفانسد تكنولجيز",
+      "name_en": "3Lines Advanced Technologies Company",
       "phone": "+966112252433",
       "pinterest": null,
       "skype": null,
@@ -813,145 +2017,199 @@ module.exports = {
       "twitter": null,
       "website": "https://3lines.com.sa",
       "whatsapp": null,
-      "youtube": null
+      "youtube": null,
+      "name_ko": "쓰리라인즈 어드밴스드 테크놀로지스",
+      "name_ja": "スリーラインズ アドバンスト テクノロジーズ"
     }
   },
   "services": [
     {
-      "slug": "provide-spare-parts",
-      "hue": "#3aa0ff",
-      "icon": "package",
-      "title": {
-        "en": "Provide Spare Parts",
-        "ar": "توفير قطع الغيار"
-      },
-      "description": {
-        "en": "Providing all original spare parts for civil and military aircraft and supporting equipment.",
-        "ar": "توفير جميع قطع الغيار الأصلية للطائرات المدنية والعسكرية والمعدات المساندة."
-      }
-    },
-    {
-      "slug": "maintaining-and-repairing-of-spare-parts",
-      "hue": "#36c2cf",
-      "icon": "wrench",
-      "title": {
-        "en": "Maintaining and Repairing of Spare Parts",
-        "ar": "صيانة وإصلاح قطع الغيار"
-      },
-      "description": {
-        "en": "An experienced, professional team of engineers and technicians delivering the best maintenance and repair services.",
-        "ar": "فريق محترف من المهندسين والفنيين ذوي الخبرة لتقديم أفضل خدمات الصيانة والإصلاح."
-      }
-    },
-    {
-      "slug": "supporting-ground-equipment",
-      "hue": "#4f8cff",
-      "icon": "truck",
-      "title": {
-        "en": "Supporting Ground Equipment",
-        "ar": "دعم المعدات الأرضية"
-      },
-      "description": {
-        "en": "Maintenance and support for civil and military aircraft auxiliary equipment, with spare parts to ensure operational readiness.",
-        "ar": "خدمات صيانة ودعم للمعدات المساندة للطائرات المدنية والعسكرية مع توفير قطع الغيار لضمان الجاهزية التشغيلية."
-      }
-    },
-    {
-      "slug": "structure-and-frame",
-      "hue": "#5cc0ff",
-      "icon": "plane",
-      "title": {
-        "en": "Structure and Frame",
-        "ar": "الهيكل والإطار"
-      },
-      "description": {
-        "en": "Maintain and repair structures and tires to ensure safety and optimal performance, with the necessary spare parts.",
-        "ar": "صيانة وإصلاح الهياكل والإطارات لضمان السلامة والأداء الأمثل مع توفير قطع الغيار اللازمة."
-      }
-    },
-    {
-      "slug": "supporting-the-simulator-system",
-      "hue": "#7a7bff",
-      "icon": "monitor",
-      "title": {
-        "en": "Supporting the Simulator System",
-        "ar": "دعم أنظمة المحاكاة"
-      },
-      "description": {
-        "en": "Supporting the simulator system by providing a range of specialized supporting services.",
-        "ar": "دعم أنظمة المحاكاة عبر تقديم مجموعة متنوعة من الخدمات المساندة المتخصصة."
-      }
-    },
-    {
-      "slug": "hydraulic-pneumatic-equipment-and-components",
-      "hue": "#38b6ff",
-      "icon": "gauge",
-      "title": {
-        "en": "Hydraulic, Pneumatic Equipment and Components",
-        "ar": "المعدات والمكونات الهيدروليكية والهوائية"
-      },
-      "description": {
-        "en": "Specialized services to maintain and repair hydraulic and pneumatic systems efficiently and reliably, with the required components.",
-        "ar": "خدمات متخصصة لصيانة وإصلاح الأنظمة الهيدروليكية والهوائية بكفاءة وموثوقية مع توفير المكونات المطلوبة."
-      }
-    },
-    {
-      "slug": "generators-and-ups",
-      "hue": "#ffb24a",
-      "icon": "zap",
-      "title": {
-        "en": "Generators and UPS",
-        "ar": "المولّدات وأنظمة الطاقة غير المنقطعة"
-      },
-      "description": {
-        "en": "Maintain and repair generators and UPS systems to ensure power continuity and minimize downtime, with spare parts when needed.",
-        "ar": "صيانة وإصلاح المولّدات وأنظمة الطاقة غير المنقطعة لضمان استمرارية الطاقة وتقليل الأعطال مع توفير قطع الغيار عند الحاجة."
-      }
-    },
-    {
-      "slug": "us-government-support-services",
-      "hue": "#4f8cff",
-      "icon": "shield",
-      "title": {
-        "en": "US Government Support Services",
-        "ar": "خدمات دعم الحكومة الأمريكية"
-      },
-      "description": {
-        "en": "We provide world-class US Government support services.",
-        "ar": "نقدّم خدمات دعم للحكومة الأمريكية بمستوى عالمي."
-      }
-    },
-    {
-      "slug": "english-language-training",
-      "hue": "#36c2cf",
-      "icon": "cap",
-      "title": {
-        "en": "English Language Training",
-        "ar": "تدريب اللغة الإنجليزية"
-      },
-      "description": {
-        "en": "We provide advanced English language training with highly experienced trainers.",
-        "ar": "نقدّم تدريباً متقدماً في اللغة الإنجليزية على يد مدربين ذوي خبرة عالية."
-      }
-    },
-    {
-      "slug": "radar-system",
+      "slug": "radar-electronics-communications-sustainment",
+      "legacy": "radar-system",
       "hue": "#5cc0ff",
       "icon": "radar",
       "title": {
-        "en": "RADAR System",
-        "ar": "أنظمة الرادار"
+        "en": "Radar Maintenance, Electronics & Tactical Communications Sustainment",
+        "ar": "صيانة الرادارات والإلكترونيات واستدامة الاتصالات التكتيكية",
+        "ko": "레이더 정비, 전자 및 전술 통신 유지",
+        "ja": "レーダー整備、電子機器および戦術通信の維持"
       },
       "description": {
-        "en": "Military and civilian RADAR project development and management.",
-        "ar": "تطوير وإدارة مشاريع الرادار العسكرية والمدنية."
+        "en": "Sustainment, diagnostics, and repair of radar, surveillance, C4I, and secure communication systems through in-country capabilities.",
+        "ar": "استدامة وتشخيص وإصلاح أنظمة الرادار والمراقبة والقيادة والسيطرة (C4I) والاتصالات الآمنة عبر قدرات محلية داخل المملكة.",
+        "ko": "국내 역량을 통한 레이더, 감시, C4I 및 보안 통신 시스템의 유지, 진단 및 수리.",
+        "ja": "国内能力によるレーダー、監視、C4I、セキュア通信システムの維持・診断・修理。"
+      }
+    },
+    {
+      "slug": "government-relations-and-life-support",
+      "legacy": "us-government-support-services",
+      "hue": "#4f8cff",
+      "icon": "shield",
+      "title": {
+        "en": "Government Relations, Personnel Consulting & Life Support Services",
+        "ar": "العلاقات الحكومية واستشارات الكوادر وخدمات الإعاشة المتكاملة",
+        "ko": "정부 관계, 인력 컨설팅 및 생활 지원 서비스",
+        "ja": "政府渉外、人材コンサルティングおよびライフサポートサービス"
+      },
+      "description": {
+        "en": "Regulatory coordination, manpower consulting, and integrated life support services.",
+        "ar": "التنسيق التنظيمي واستشارات القوى العاملة وخدمات الإعاشة المتكاملة.",
+        "ko": "규제 조정, 인력 컨설팅 및 통합 생활 지원 서비스.",
+        "ja": "規制対応の調整、人材コンサルティング、統合ライフサポートサービス。"
+      }
+    },
+    {
+      "slug": "power-systems-support",
+      "legacy": "generators-and-ups",
+      "hue": "#38b6ff",
+      "icon": "zap",
+      "title": {
+        "en": "Power Systems Support (Generators & UPS)",
+        "ar": "دعم أنظمة الطاقة (المولدات وأنظمة الطاقة غير المنقطعة)",
+        "ko": "전력 시스템 지원 (발전기 및 UPS)",
+        "ja": "電源システム支援（発電機・UPS）"
+      },
+      "description": {
+        "en": "Installation, maintenance, and lifecycle support for critical power and backup systems.",
+        "ar": "تركيب وصيانة ودعم دورة الحياة لأنظمة الطاقة الحرجة وأنظمة الطاقة الاحتياطية.",
+        "ko": "중요 전력 및 백업 시스템의 설치, 정비 및 수명주기 지원.",
+        "ja": "重要電源およびバックアップシステムの設置、保守、ライフサイクル支援。"
+      }
+    },
+    {
+      "slug": "electronics-diagnostic-and-repair-workshops",
+      "legacy": "structure-and-frame",
+      "hue": "#36c2cf",
+      "icon": "gauge",
+      "title": {
+        "en": "Electronics Diagnostic & Repair Workshops",
+        "ar": "ورش تشخيص وإصلاح الإلكترونيات",
+        "ko": "전자 진단 및 수리 워크숍",
+        "ja": "電子機器の診断・修理ワークショップ"
+      },
+      "description": {
+        "en": "Localized facilities providing fault isolation, testing, repair, and validation for mission-critical electronic systems.",
+        "ar": "منشآت موطّنة داخل المملكة توفّر عزل الأعطال والاختبار والإصلاح والتحقق للأنظمة الإلكترونية الحرجة.",
+        "ko": "미션 크리티컬 전자 시스템의 결함 격리, 테스트, 수리 및 검증을 제공하는 현지화된 시설.",
+        "ja": "ミッションクリティカルな電子システムの故障切り分け、試験、修理、検証を行う国内拠点。"
+      }
+    },
+    {
+      "slug": "ground-support-equipment-sustainment",
+      "legacy": "supporting-ground-equipment",
+      "hue": "#4f8cff",
+      "icon": "truck",
+      "title": {
+        "en": "Ground Support Equipment (GSE) Sustainment",
+        "ar": "استدامة معدات الدعم الأرضي",
+        "ko": "지상 지원 장비(GSE) 유지",
+        "ja": "地上支援機材（GSE）の維持"
+      },
+      "description": {
+        "en": "Maintenance and availability support for aviation and land-based ground support assets.",
+        "ar": "الصيانة ودعم الجاهزية لأصول الدعم الأرضي في القطاعين الجوي والبري.",
+        "ko": "항공 및 지상 기반 지원 자산의 정비와 가용성 지원.",
+        "ja": "航空および陸上の地上支援資産に対する整備と可用性支援。"
+      }
+    },
+    {
+      "slug": "spare-parts-logistics-and-warehousing",
+      "legacy": "provide-spare-parts",
+      "hue": "#3aa0ff",
+      "icon": "package",
+      "title": {
+        "en": "Aviation & Land Systems Spare Parts, Logistics, and Warehousing",
+        "ar": "قطع غيار الأنظمة الجوية والبرية والخدمات اللوجستية والتخزين",
+        "ko": "항공·지상 시스템 예비 부품, 물류 및 창고 운영",
+        "ja": "航空・陸上システムのスペアパーツ、物流および倉庫管理"
+      },
+      "description": {
+        "en": "End-to-end procurement, secure warehousing, inventory management, and distribution for military and civilian platforms.",
+        "ar": "مشتريات متكاملة وتخزين آمن وإدارة للمخزون وتوزيع للمنصات العسكرية والمدنية.",
+        "ko": "군용 및 민간 플랫폼을 위한 종합 조달, 보안 창고, 재고 관리 및 배송.",
+        "ja": "軍用・民生プラットフォーム向けの一貫調達、セキュア倉庫、在庫管理、配送。"
+      }
+    },
+    {
+      "slug": "simulation-systems",
+      "legacy": "supporting-the-simulator-system",
+      "hue": "#7a7bff",
+      "icon": "monitor",
+      "title": {
+        "en": "Simulation Systems (Full Motion & Static)",
+        "ar": "أنظمة المحاكاة (كاملة الحركة والثابتة)",
+        "ko": "시뮬레이션 시스템 (풀 모션 및 고정형)",
+        "ja": "シミュレーションシステム（フルモーション・固定式）"
+      },
+      "description": {
+        "en": "Supply, operations, maintenance, and training support for advanced simulation and readiness platforms.",
+        "ar": "التوريد والتشغيل والصيانة ودعم التدريب لمنصات المحاكاة والجاهزية المتقدمة.",
+        "ko": "첨단 시뮬레이션 및 준비태세 플랫폼의 공급, 운영, 정비 및 교육 지원.",
+        "ja": "先進シミュレーション・即応プラットフォームの供給、運用、保守、訓練支援。"
+      }
+    },
+    {
+      "slug": "training-and-capability-enablement",
+      "legacy": "english-language-training",
+      "hue": "#36c2cf",
+      "icon": "cap",
+      "title": {
+        "en": "Training, Simulation & Capability Enablement",
+        "ar": "التدريب والمحاكاة وتمكين القدرات",
+        "ko": "교육, 시뮬레이션 및 역량 강화",
+        "ja": "訓練、シミュレーションおよび能力構築"
+      },
+      "description": {
+        "en": "Military and civilian training delivery, knowledge transfer, and operational capability development.",
+        "ar": "تقديم التدريب العسكري والمدني ونقل المعرفة وتطوير القدرات التشغيلية.",
+        "ko": "군·민간 교육 제공, 지식 이전 및 운영 역량 개발.",
+        "ja": "軍・民間向け訓練の提供、知識移転、運用能力の開発。"
+      }
+    },
+    {
+      "slug": "defense-systems-sustainment-mro",
+      "legacy": "maintaining-and-repairing-of-spare-parts",
+      "hue": "#5cc0ff",
+      "icon": "wrench",
+      "title": {
+        "en": "Defense Systems Sustainment (MRO)",
+        "ar": "استدامة الأنظمة الدفاعية (الصيانة والإصلاح والعمرة)",
+        "ko": "방산 시스템 유지 (MRO)",
+        "ja": "防衛システムの維持（MRO）"
+      },
+      "description": {
+        "en": "Comprehensive maintenance, repair, and overhaul services supporting operational readiness across defense systems.",
+        "ar": "خدمات شاملة للصيانة والإصلاح والعمرة تدعم الجاهزية التشغيلية عبر الأنظمة الدفاعية.",
+        "ko": "방산 시스템 전반의 운영 준비태세를 지원하는 종합 정비·수리·오버홀 서비스.",
+        "ja": "防衛システム全体の運用即応性を支える包括的な整備・修理・オーバーホールサービス。"
+      }
+    },
+    {
+      "slug": "program-management-and-localization",
+      "legacy": "hydraulic-pneumatic-equipment-and-components",
+      "hue": "#7a7bff",
+      "icon": "target",
+      "title": {
+        "en": "Program Management & Localization Enablement",
+        "ar": "إدارة البرامج وتمكين التوطين",
+        "ko": "프로그램 관리 및 현지화 지원",
+        "ja": "プログラム管理およびローカライゼーション推進"
+      },
+      "description": {
+        "en": "End-to-end program execution, localization, and national capability development aligned with Saudi Vision 2030.",
+        "ar": "تنفيذ متكامل للبرامج والتوطين وتطوير القدرات الوطنية بما يتماشى مع رؤية السعودية 2030.",
+        "ko": "사우디 비전 2030에 부합하는 전 과정 프로그램 실행, 현지화 및 국가 역량 개발.",
+        "ja": "サウジ・ビジョン2030に沿った一貫したプログラム遂行、国産化、国家能力の育成。"
       }
     }
   ],
   "siteInfo": {
     "companyDescription": {
-      "en": "Provision of Aircraft Spare Parts & Simulator - The first licensed Saudi Company for supplying aircrafts spare parts, ground support equipment and simulators from the United Sates and all over the world. We are a professional Saudi team that has an experience of over 30 years.",
-      "ar": "توفير قطع غيار الطائرات وأجهزة المحاكاة - أول شركة سعودية مرخّصة لتوريد قطع غيار الطائرات ومعدات الدعم الأرضي وأجهزة المحاكاة من الولايات المتحدة ومن جميع أنحاء العالم. نحن فريق سعودي محترف يمتلك خبرة تزيد عن 30 عاماً."
+      "en": "3Lines Advanced Technologies Group was established in 2019 in alignment with Saudi Vision 2030 to localize military and civilian services within the Kingdom. The Group delivers integrated supply chain and technical services — procurement, logistics, maintenance, repair and manufacturing — supporting operational readiness across the defense and advanced technology sectors, locally and internationally.",
+      "ar": "تأسست مجموعة 3LINES ADVANCED TECHNOLOGIES في عام 2019 تماشيًا مع رؤية السعودية 2030 بهدف توطين الخدمات العسكرية والمدنية داخل المملكة. تقدم المجموعة خدمات متكاملة في سلاسل الإمداد والخدمات الفنية — المشتريات والخدمات اللوجستية والصيانة والإصلاح والتصنيع — دعمًا للجاهزية التشغيلية في قطاعي الدفاع والتقنيات المتقدمة محليًا ودوليًا.",
+      "ko": "3Lines Advanced Technologies Group은 사우디 비전 2030에 맞춰 2019년 설립되었습니다. 조달, 물류, 정비, 수리, 제조를 아우르는 통합 공급망 및 기술 서비스를 통해 방위 및 첨단 기술 분야의 운영 준비태세를 지원합니다.",
+      "ja": "3Lines Advanced Technologies Groupは、サウジ・ビジョン2030に沿い2019年に設立されました。調達・物流・保守・修理・製造を包含する統合サプライチェーンおよび技術サービスを提供し、防衛および先端技術分野の運用即応性を支えます。"
     },
     "address": "RFFA2148 Office 203, 2nd floor Building #2148, King Abdullah Branch Road, King Faisal Dist. Riyadh. 13215",
     "commercialRegNo": "1010589885",
@@ -965,7 +2223,7 @@ module.exports = {
         "id": "a1795770-37ea-4ea7-83a1-0a1b774c20b9",
         "name": {
           "ar": "المشتريات",
-          "en": "Consultation Services"
+          "en": "Procurement"
         },
         "slug": "procurement",
         "description": {
@@ -977,19 +2235,21 @@ module.exports = {
         "id": "a1795770-3998-434a-9170-a891135b6559",
         "name": {
           "ar": "الصناعة",
-          "en": "Manifacturing"
+          "en": "Manufacturing"
         },
         "slug": "manifacturing",
         "description": {
           "ar": "أخبار مرتبطة بمجال الصناعة.",
-          "en": "News related to Manifacturing."
+          "en": "News related to Manufacturing."
         }
       },
       {
         "id": "a1795770-3a5f-4c45-aae1-3552a85ac66b",
         "name": {
           "ar": "التكنولوجيا",
-          "en": "Technology"
+          "en": "Technology",
+          "ko": "기술",
+          "ja": "テクノロジー"
         },
         "slug": "technology",
         "description": {
@@ -1043,12 +2303,12 @@ module.exports = {
         "order": null,
         "description": [],
         "body": {
-          "en": "About Us Content",
-          "ar": "محتوى من نحن",
+          "en": "3Lines Advanced Technologies Group was established in 2019 in alignment with Saudi Arabia’s Vision 2030, with the objective of localizing military and civilian services within the Kingdom of Saudi Arabia.\n\nThe company has evolved from a spare parts provider into an integrated partner in supply chain and technical services, delivering comprehensive solutions encompassing procurement, logistics, maintenance, repair, and manufacturing.\n\nToday, the Group focuses on supporting operational readiness, enhancing sustainability, and executing projects across the defense and advanced technology sectors, both locally and internationally — delivered by a professional Saudi team with over 30 years of combined experience.\n\nThe name 3Lines represents an integrated operational model built on three core pillars — Procurement, Maintenance, and Repair and Manufacturing — enabling us to execute advanced defense projects, operate C4I repair facilities, and deliver integrated logistical and technical solutions that support readiness and sustainability, in alignment with localization goals and Saudi Vision 2030.\n\nOur Vision: to become the leading supply chain and advanced technology company in Saudi Arabia, working in partnership with Tier One global and local companies to deliver fully localized, world-class solutions.\n\nOur Mission: to deliver reliable, high-availability defense and security sustainment, in partnership with Tier One companies, while enabling localization, knowledge transfer, and national capability development across Saudi Arabia.\n\nGlobal Presence: over the years, 3Lines has expanded its presence across strategic international markets through the execution of partnerships and defense projects in the Kingdom of Saudi Arabia, the United States of America, Mexico, Poland, and the Czech Republic.",
+          "ar": "تأسست مجموعة 3LINES ADVANCED TECHNOLOGIES في عام 2019 تماشيًا مع رؤية المملكة العربية السعودية 2030، بهدف توطين الخدمات العسكرية والمدنية داخل المملكة.\n\nوقد تطورت الشركة من مزود لقطع الغيار إلى شريك متكامل في سلاسل الإمداد والخدمات الفنية، حيث تقدم حلولاً شاملة تشمل المشتريات والخدمات اللوجستية والصيانة والإصلاح والتصنيع.\n\nاليوم تركز المجموعة على دعم الجاهزية التشغيلية، وتعزيز الاستدامة، وتنفيذ المشاريع في قطاعي الدفاع والتقنيات المتقدمة، على الصعيدين المحلي والدولي.\n\nيمثل اسم 3Lines نموذجاً تشغيلياً متكاملاً قائماً على ثلاث ركائز أساسية — المشتريات، والصيانة، والإصلاح والتصنيع.\n\nرؤيتنا: أن نكون الشركة الرائدة في سلاسل الإمداد والتقنيات المتقدمة في المملكة العربية السعودية.\n\nرسالتنا: تقديم خدمات دعم واستدامة موثوقة وعالية الجاهزية في مجالي الدفاع والأمن، مع تمكين التوطين ونقل المعرفة وتطوير القدرات الوطنية.\n\nالحضور العالمي: وسّعت 3Lines حضورها في الأسواق الدولية الاستراتيجية من خلال تنفيذ الشراكات والمشاريع الدفاعية في المملكة العربية السعودية، والولايات المتحدة الأمريكية، والمكسيك، وبولندا، وجمهورية التشيك.",
           "ko": "",
           "ja": ""
         },
-        "keywords": "about,us,about us,من,نحن",
+        "keywords": "about,3lines,advanced technologies,defense,localization,vision 2030,supply chain,MRO,C4I",
         "type": "information",
         "publish_date": "2026-04-05 21:41:40",
         "cover_id": null,
@@ -1144,20 +2404,21 @@ module.exports = {
         "icon": null
       },
       {
-        "id": "a1795770-1e87-4e48-aa8b-c95b5189534c",
+        "id": "b1795770-1000-4a00-9000-100000000000",
         "title": {
-          "en": "Provide Spare Parts"
+          "en": "Radar Maintenance, Electronics & Tactical Communications Sustainment",
+          "ar": "صيانة الرادارات والإلكترونيات واستدامة الاتصالات التكتيكية"
         },
-        "slug": "provide-spare-parts",
-        "order": null,
+        "slug": "radar-electronics-communications-sustainment",
+        "order": 1,
         "description": [],
         "body": {
-          "en": "Providing all original spare parts for civil and military aircraft and supporting equipment.",
-          "ar": "",
+          "en": "Radar and C4I sustainment, inside the Kingdom\n\n3Lines maintains radar systems to 4th-line level inside Saudi Arabia, including the AN/TPS-78 for the Royal Saudi Air Force. We hold a Maintenance Level Agreement (MLA) with Northrop Grumman, the radar’s manufacturer, enabling in-country sustainment that raises operational readiness and localizes advanced technical capability. Our teams cover radar, surveillance, C4I and secure tactical communications end to end — diagnostics, repair, calibration and return to service.\n\nRadar sustainment — Scheduled and corrective maintenance for surveillance and air-defense radars.\nFault isolation and repair — Diagnostics down to module and component level in local workshops.\nC4I systems support — Command, control, communications and intelligence systems kept mission-ready.\nSecure communications — Sustainment of tactical and encrypted communication systems.\nCalibration and validation — Test, alignment and verification before return to service.\nField service teams — On-site support at operating locations across the Kingdom.",
+          "ar": "استدامة الرادارات وأنظمة C4I داخل المملكة\n\nتقوم 3Lines بصيانة منظومات الرادارات حتى المستوى الرابع داخل المملكة العربية السعودية، بما في ذلك رادار AN/TPS-78 لصالح القوات الجوية الملكية السعودية. وقد حصلت الشركة على اتفاقية مستوى الصيانة (MLA) من شركة NORTHROP GRUMMAN المصنّعة للرادار، بما يعزز الجاهزية التشغيلية ويدعم توطين القدرات الفنية المتقدمة.\n\nاستدامة الرادارات — صيانة دورية وتصحيحية لرادارات المراقبة والدفاع الجوي.\nعزل الأعطال والإصلاح — تشخيص حتى مستوى الوحدات والمكوّنات في ورش محلية.\nدعم أنظمة C4I — إبقاء أنظمة القيادة والسيطرة والاتصالات جاهزة للمهمة.\nالاتصالات الآمنة — استدامة أنظمة الاتصال التكتيكية والمشفّرة.\nالمعايرة والتحقق — اختبار ومحاذاة وتحقق قبل الإعادة للخدمة.\nفرق الخدمة الميدانية — دعم موقعي في مواقع التشغيل في جميع أنحاء المملكة.",
           "ko": "",
           "ja": ""
         },
-        "keywords": "spare,parts,civil,military,aircraft,supporting,equipment",
+        "keywords": "radar,maintenance,electronics,tactical,communications,sustainment",
         "type": "services",
         "publish_date": "2026-04-05 21:41:40",
         "cover_id": null,
@@ -1165,20 +2426,21 @@ module.exports = {
         "icon": null
       },
       {
-        "id": "a1795770-20c8-48d2-9eb9-d8ba90622cb5",
+        "id": "b1795770-1001-4a00-9000-100000000001",
         "title": {
-          "en": "Maintaining and Repairing of Spare Parts"
+          "en": "Government Relations, Personnel Consulting & Life Support Services",
+          "ar": "العلاقات الحكومية واستشارات الكوادر وخدمات الإعاشة المتكاملة"
         },
-        "slug": "maintaining-and-repairing-of-spare-parts",
-        "order": null,
+        "slug": "government-relations-and-life-support",
+        "order": 2,
         "description": [],
         "body": {
-          "en": "We have an experienced and professional team of engineers and technicians to provide you the best maintenance and repair services. We have a team of highly experienced and professional engineers and technicians, committed to providing the best maintenance and repair services for all types of equipment and aircraft. Our team works to the highest standards of quality and precision to ensure efficient operation, minimize breakdowns, and extend the operational life of the equipment. We ensure that all customer needs are met quickly and reliably, while providing optimal technical solutions for every challenge you may face.",
-          "ar": "",
+          "en": "Regulatory coordination and life support, handled\n\nWe manage the government-facing side of complex programs — regulatory coordination, permits and approvals — alongside manpower consulting and integrated life support services. This lets Tier One primes and international partners operate in the Kingdom without carrying the administrative and logistical overhead themselves.\n\nGovernment relations — Coordination with Saudi authorities on permits, approvals and compliance.\nPersonnel consulting — Sourcing, qualifying and managing specialised technical manpower.\nLife support services — Accommodation, catering, transport and site services for deployed teams.\nUS Government support — World-class support services delivered to US Government programs.\nProgram compliance — Documentation and reporting aligned with contractual obligations.\nIn-country presence — A local team that resolves issues on the ground, quickly.",
+          "ar": "التنسيق التنظيمي وخدمات الإعاشة المتكاملة\n\nنتولّى الجانب الحكومي من البرامج المعقدة — من التنسيق التنظيمي والتصاريح والموافقات — إلى جانب استشارات القوى العاملة وخدمات الإعاشة المتكاملة، بما يمكّن الشركاء الدوليين من العمل داخل المملكة بكفاءة.\n\nالعلاقات الحكومية — التنسيق مع الجهات السعودية بشأن التصاريح والموافقات والامتثال.\nاستشارات الكوادر — استقطاب وتأهيل وإدارة الكوادر الفنية المتخصصة.\nخدمات الإعاشة — السكن والإعاشة والنقل وخدمات المواقع للفرق الميدانية.\nدعم الحكومة الأمريكية — خدمات دعم بمستوى عالمي لبرامج الحكومة الأمريكية.\nامتثال البرامج — توثيق وتقارير متوافقة مع الالتزامات التعاقدية.\nحضور محلي — فريق محلي يعالج المسائل ميدانيًا وبسرعة.",
           "ko": "",
           "ja": ""
         },
-        "keywords": null,
+        "keywords": "government,relations,personnel,consulting,life,support,services",
         "type": "services",
         "publish_date": "2026-04-05 21:41:40",
         "cover_id": null,
@@ -1186,20 +2448,21 @@ module.exports = {
         "icon": null
       },
       {
-        "id": "a1795770-23a8-4cc2-9cb0-f943944dcc15",
+        "id": "b1795770-1002-4a00-9000-100000000002",
         "title": {
-          "en": "Supporting Ground Equipment"
+          "en": "Power Systems Support (Generators & UPS)",
+          "ar": "دعم أنظمة الطاقة (المولدات وأنظمة الطاقة غير المنقطعة)"
         },
-        "slug": "supporting-ground-equipment",
-        "order": null,
+        "slug": "power-systems-support",
+        "order": 3,
         "description": [],
         "body": {
-          "en": "Maintenance and support services for civil and military aircraft auxiliary equipment with the provision of spare parts to ensure operational readiness. We provide comprehensive maintenance and support services for civil and military aircraft auxiliary equipment, with a focus on ensuring operational readiness and high efficiency. Our work includes regular inspection, repair, and rehabilitation of all types of ground equipment, with all necessary spare parts available and supplied to you when needed. Our specialized team works to provide reliable solutions that minimize downtime and ensure continuity of operations at the highest level of performance and accuracy. We are committed to applying the highest safety and quality standards to ensure that the equipment operates efficiently and reliably to support flight operations.",
-          "ar": "",
+          "en": "Power that does not fail\n\nInstallation, maintenance and lifecycle support for generators, UPS and critical backup power. We keep continuous power behind radar sites, operations centres, workshops and infrastructure — with scheduled maintenance, accurate diagnosis, professional repair and the spare parts to back it up.\n\nInstallation and commissioning — Specification, installation and handover of power and backup systems.\nPreventive maintenance — Scheduled servicing that keeps power continuity uninterrupted.\nFault diagnosis and repair — Accurate diagnosis and professional repair to minimize downtime.\nBattery and UPS support — Battery health, replacement and uninterruptible supply sustainment.\nLoad testing — Verification under load so systems perform when they are needed.\nSpare parts supply — Provision of the components required to keep systems running.",
+          "ar": "طاقة لا تتوقف\n\nتركيب وصيانة ودعم دورة الحياة للمولدات وأنظمة الطاقة غير المنقطعة والطاقة الاحتياطية الحرجة، لضمان استمرارية التغذية الكهربائية خلف مواقع الرادار ومراكز العمليات والورش والبنى التحتية.\n\nالتركيب والتشغيل — تحديد المواصفات والتركيب والتسليم لأنظمة الطاقة.\nالصيانة الوقائية — صيانة مجدولة تحافظ على استمرارية الطاقة.\nتشخيص الأعطال والإصلاح — تشخيص دقيق وإصلاح احترافي لتقليل فترات التوقف.\nدعم البطاريات وأنظمة UPS — متابعة حالة البطاريات واستبدالها واستدامة التغذية المستمرة.\nاختبار الأحمال — التحقق تحت الحمل لضمان الأداء عند الحاجة.\nتوريد قطع الغيار — توفير المكوّنات اللازمة لاستمرار التشغيل.",
           "ko": "",
           "ja": ""
         },
-        "keywords": null,
+        "keywords": "power,systems,support,generators",
         "type": "services",
         "publish_date": "2026-04-05 21:41:40",
         "cover_id": null,
@@ -1207,20 +2470,21 @@ module.exports = {
         "icon": null
       },
       {
-        "id": "a1795770-2608-48ae-8b05-9e8889f542ef",
+        "id": "b1795770-1003-4a00-9000-100000000003",
         "title": {
-          "en": "Structure and Frame"
+          "en": "Electronics Diagnostic & Repair Workshops",
+          "ar": "ورش تشخيص وإصلاح الإلكترونيات"
         },
-        "slug": "structure-and-frame",
-        "order": null,
+        "slug": "electronics-diagnostic-and-repair-workshops",
+        "order": 4,
         "description": [],
         "body": {
-          "en": "maintain and repair structures and tires to ensure safety and optimal performance, and provide you with the necessary spare parts. We provide specialized services to inspect, maintain and repair structures and tires to ensure the safety and optimal performance of aircraft and ancillary equipment. Our work includes accurate damage diagnosis, professional repair, and rehabilitation to ensure structural and tire quality and operational continuity. We provide and supply all necessary spare parts when needed, adhering to the highest standards of quality and precision to minimize failures and enhance equipment efficiency and longevity.",
-          "ar": "",
+          "en": "Localized workshops for mission-critical electronics\n\nOur electronics workshops inside the Kingdom provide fault isolation, testing, repair and validation for mission-critical systems. Equipped for component-level work — RF test benches, signal generators, power meters and calibrated instrumentation — they return assemblies to service locally instead of shipping them abroad, cutting turnaround and reducing dependence on external sources.\n\nFault isolation — Systematic diagnosis to identify the failed assembly or component.\nComponent-level repair — Board and component repair rather than whole-unit replacement.\nRF and microwave testing — Signal generation and power measurement across radar frequency bands.\nFunctional validation — Full functional test before an item is certified back to service.\nCalibration — Alignment and calibration against traceable reference standards.\nReverse engineering — Recreating obsolete components to sustain ageing systems.",
+          "ar": "ورش موطّنة للإلكترونيات الحرجة\n\nتوفر ورشنا الإلكترونية داخل المملكة عزل الأعطال والاختبار والإصلاح والتحقق للأنظمة الحرجة، وهي مجهزة للعمل على مستوى المكوّنات بمنصات اختبار الترددات الراديوية وأجهزة معايرة دقيقة.\n\nعزل الأعطال — تشخيص ممنهج لتحديد الوحدة أو المكوّن المعطل.\nالإصلاح على مستوى المكوّن — إصلاح اللوحات والمكوّنات بدلاً من استبدال الوحدة كاملة.\nاختبار الترددات والموجات الدقيقة — توليد الإشارات وقياس القدرة عبر نطاقات تردد الرادار.\nالتحقق الوظيفي — اختبار وظيفي كامل قبل اعتماد العودة للخدمة.\nالمعايرة — المحاذاة والمعايرة وفق مراجع قياسية معتمدة.\nالهندسة العكسية — إعادة تصنيع المكوّنات المتقادمة لإدامة الأنظمة.",
           "ko": "",
           "ja": ""
         },
-        "keywords": null,
+        "keywords": "electronics,diagnostic,repair,workshops",
         "type": "services",
         "publish_date": "2026-04-05 21:41:40",
         "cover_id": null,
@@ -1228,20 +2492,21 @@ module.exports = {
         "icon": null
       },
       {
-        "id": "a1795770-2909-4a1e-a6a0-7c87c5a3e27c",
+        "id": "b1795770-1004-4a00-9000-100000000004",
         "title": {
-          "en": "Supporting the Simulator System"
+          "en": "Ground Support Equipment (GSE) Sustainment",
+          "ar": "استدامة معدات الدعم الأرضي"
         },
-        "slug": "supporting-the-simulator-system",
-        "order": null,
+        "slug": "ground-support-equipment-sustainment",
+        "order": 5,
         "description": [],
         "body": {
-          "en": "Supporting the Simulator System by providing different supporting services.",
-          "ar": "",
+          "en": "Ground support assets, kept available\n\nMaintenance and availability support for aviation and land-based ground support equipment. We cover regular inspection, repair and rehabilitation across GSE fleets, with the spare parts needed to keep flight lines and land operations moving — applying strict safety and quality standards so equipment operates efficiently and reliably.\n\nPreventive maintenance — Regular inspection and servicing across all types of ground equipment.\nCorrective repair — Rapid response repair that minimizes downtime on the line.\nOverhaul and rehabilitation — Restoring ageing ground support assets to full operational condition.\nSpare parts supply — All necessary spare parts available and supplied when needed.\nAvailability reporting — Visibility of fleet status so readiness can be planned, not guessed.\nOn-site support — Technicians deployed to the operating location when it matters.",
+          "ar": "جاهزية مستمرة لمعدات الدعم الأرضي\n\nصيانة ودعم جاهزية معدات الدعم الأرضي في القطاعين الجوي والبري، وتشمل الفحص الدوري والإصلاح والتأهيل، مع توفير قطع الغيار اللازمة لضمان استمرارية العمليات.\n\nالصيانة الوقائية — فحص وصيانة دورية لجميع أنواع المعدات الأرضية.\nالإصلاح التصحيحي — استجابة سريعة تقلل فترات التوقف.\nالعمرة والتأهيل — إعادة المعدات إلى كامل جاهزيتها التشغيلية.\nتوريد قطع الغيار — توفير جميع قطع الغيار اللازمة عند الحاجة.\nتقارير الجاهزية — وضوح حالة الأسطول لتخطيط الجاهزية.\nالدعم الموقعي — فنيون في موقع التشغيل عند الحاجة.",
           "ko": "",
           "ja": ""
         },
-        "keywords": null,
+        "keywords": "ground,support,equipment,sustainment",
         "type": "services",
         "publish_date": "2026-04-05 21:41:40",
         "cover_id": null,
@@ -1249,20 +2514,21 @@ module.exports = {
         "icon": null
       },
       {
-        "id": "a1795770-2b4c-43bd-9ca5-85dbf8b10bcf",
+        "id": "b1795770-1005-4a00-9000-100000000005",
         "title": {
-          "en": "Hydraulic, Pneumatic Equipment and Components"
+          "en": "Aviation & Land Systems Spare Parts, Logistics, and Warehousing",
+          "ar": "قطع غيار الأنظمة الجوية والبرية والخدمات اللوجستية والتخزين"
         },
-        "slug": "hydraulic-pneumatic-equipment-and-components",
-        "order": null,
+        "slug": "spare-parts-logistics-and-warehousing",
+        "order": 6,
         "description": [],
         "body": {
-          "en": "Specialized services to maintain and repair hydraulic and pneumatic systems efficiently and reliably, and with the required components. We provide specialized services for the maintenance and repair of hydraulic and pneumatic systems to ensure their high efficiency and reliability. Our work includes careful inspection, diagnosis, and professional repair of all components to ensure stable and long-term performance of the equipment. We provide and supply all required components and spare parts when needed, adhering to the highest quality and safety standards to minimize failures and promote continuity of operations efficiently and effectively.",
-          "ar": "",
+          "en": "End-to-end supply, from RFQ to the flight line\n\n3Lines was registered as the first licensed Saudi company to provide spare parts, and supply remains one of its three core pillars. We source genuine parts for aviation and land systems from OEMs and authorised distributors across the United States and worldwide, then manage secure warehousing, inventory management and distribution to military and civilian platforms — with transparent pricing, verified authenticity and dependable lead times.\n\nStrategic sourcing — Qualifying the right suppliers for every part and program.\nVendor management — Long-term relationships with OEMs and authorised distributors.\nQuotations and negotiation — Competitive RFQs with clear pricing and delivery terms.\nLogistics and expediting — Export handling, shipping and priority AOG expediting.\nSecure warehousing — Controlled storage for military and civilian platform inventory.\nInventory planning — Forecasting and stock planning so critical parts are on hand.",
+          "ar": "إمداد متكامل من الطلب إلى التسليم\n\nسُجّلت 3Lines كأول شركة سعودية مرخّصة لتوريد قطع الغيار، ولا يزال الإمداد أحد ركائزها الثلاث. نورّد قطع الغيار الأصلية للأنظمة الجوية والبرية من المصنّعين الأصليين والموزّعين المعتمدين من الولايات المتحدة وحول العالم، مع تخزين آمن وإدارة للمخزون وتوزيع.\n\nالتوريد الاستراتيجي — تأهيل المورّدين المناسبين لكل قطعة وبرنامج.\nإدارة المورّدين — علاقات طويلة الأمد مع المصنّعين والموزّعين المعتمدين.\nعروض الأسعار والتفاوض — عروض تنافسية بأسعار ومهل تسليم واضحة.\nالخدمات اللوجستية — إجراءات التصدير والشحن والتسريع للحالات العاجلة.\nالتخزين الآمن — تخزين منضبط لمخزون المنصات العسكرية والمدنية.\nتخطيط المخزون — التنبؤ وتخطيط المخزون لتوفر القطع الحرجة.",
           "ko": "",
           "ja": ""
         },
-        "keywords": null,
+        "keywords": "aviation,land,systems,spare,parts,logistics,warehousing",
         "type": "services",
         "publish_date": "2026-04-05 21:41:40",
         "cover_id": null,
@@ -1270,20 +2536,21 @@ module.exports = {
         "icon": null
       },
       {
-        "id": "a1795770-2d96-41d3-8078-1665c3f04b78",
+        "id": "b1795770-1006-4a00-9000-100000000006",
         "title": {
-          "en": "Generators and UPS"
+          "en": "Simulation Systems (Full Motion & Static)",
+          "ar": "أنظمة المحاكاة (كاملة الحركة والثابتة)"
         },
-        "slug": "generators-and-ups",
-        "order": null,
+        "slug": "simulation-systems",
+        "order": 7,
         "description": [],
         "body": {
-          "en": "Maintain and repair generators and UPS systems to ensure power continuity and minimize downtime, and provide you with spare parts when needed. We provide specialized maintenance and repair services for generators and UPS systems to ensure power continuity and minimize downtime. Our work includes regular inspection, accurate diagnosis, and professional repair to ensure stable and reliable performance of all electrical systems. We also provide and supply all necessary spare parts when needed, adhering to the highest quality and safety standards to enhance operational efficiency and extend the life of generators and UPS systems.",
-          "ar": "",
+          "en": "Full-motion and static simulation, supported\n\nSupply, operations, maintenance and training support for advanced simulation and readiness platforms — full motion and static. We sustain flight and maintenance simulators so training throughput and operational readiness are never limited by equipment availability, backed by a partnership with Princess Nourah bint Abdulrahman University covering autonomous systems and simulation technologies.\n\nSimulator supply — Sourcing and delivery of simulation and readiness platforms.\nInstallation and integration — Commissioning and integration into the training environment.\nPreventive maintenance — Scheduled servicing to sustain simulator availability.\nFault resolution — Specialised diagnosis and repair of simulation subsystems.\nOperations support — Day-to-day operational support for training establishments.\nInstructor and user training — Enabling teams to get full value from the platform.",
+          "ar": "دعم أنظمة المحاكاة كاملة الحركة والثابتة\n\nالتوريد والتشغيل والصيانة ودعم التدريب لمنصات المحاكاة والجاهزية المتقدمة، كاملة الحركة والثابتة، بما يضمن ألا تتقيد الجاهزية التشغيلية بتوفر المعدات.\n\nتوريد أجهزة المحاكاة — توريد وتسليم منصات المحاكاة والجاهزية.\nالتركيب والتكامل — التشغيل والتكامل مع بيئة التدريب.\nالصيانة الوقائية — صيانة مجدولة لإدامة جاهزية المحاكيات.\nمعالجة الأعطال — تشخيص وإصلاح متخصص لأنظمة المحاكاة الفرعية.\nدعم التشغيل — دعم تشغيلي يومي لمنشآت التدريب.\nتدريب المدربين والمستخدمين — تمكين الفرق من الاستفادة الكاملة من المنصة.",
           "ko": "",
           "ja": ""
         },
-        "keywords": null,
+        "keywords": "simulation,systems,full,motion,static",
         "type": "services",
         "publish_date": "2026-04-05 21:41:40",
         "cover_id": null,
@@ -1291,20 +2558,21 @@ module.exports = {
         "icon": null
       },
       {
-        "id": "a1795770-30d7-4fb0-af7a-e1640abb2547",
+        "id": "b1795770-1007-4a00-9000-100000000007",
         "title": {
-          "en": "US Government Support Services"
+          "en": "Training, Simulation & Capability Enablement",
+          "ar": "التدريب والمحاكاة وتمكين القدرات"
         },
-        "slug": "us-government-support-services",
-        "order": null,
+        "slug": "training-and-capability-enablement",
+        "order": 8,
         "description": [],
         "body": {
-          "en": "We provide world-class US Government support services.",
-          "ar": "",
+          "en": "Building national capability, not just delivering training\n\nMilitary and civilian training delivery, knowledge transfer and operational capability development — including advanced English language training from highly experienced trainers. Through NARS, the National Academy for Radar and Space Communications, and partnerships with national universities, we qualify Saudi talent in radar and communications systems, fiber optics, data centres, navigation systems and electronic protection.\n\nTechnical training — Hands-on programs in radar, communications, fiber optics and data centres.\nEnglish language training — Advanced English instruction delivered by highly experienced trainers.\nSimulation-based training — Practical training built on simulation and hands-on application.\nKnowledge transfer — Skills transfer that leaves lasting capability inside the Kingdom.\nUniversity partnerships — Joint programs with King Saud, Princess Nourah, Prince Sattam and Qassim.\nNARS Academy — A non-profit academy bridging the skills gap in technical and defense sectors.",
+          "ar": "بناء القدرات الوطنية لا مجرد تقديم التدريب\n\nتقديم التدريب العسكري والمدني ونقل المعرفة وتطوير القدرات التشغيلية، ومن خلال الأكاديمية الوطنية للرادارات والاتصالات الفضائية (NARS) والشراكات مع الجامعات الوطنية نؤهل الكفاءات السعودية.\n\nالتدريب التقني — برامج تطبيقية في الرادار والاتصالات والألياف البصرية ومراكز البيانات.\nتدريب اللغة الإنجليزية — تدريب متقدم على يد مدربين ذوي خبرة عالية.\nالتدريب بالمحاكاة — تدريب عملي قائم على المحاكاة والتطبيق.\nنقل المعرفة — نقل مهارات يترك قدرة مستدامة داخل المملكة.\nالشراكات الجامعية — برامج مشتركة مع جامعات الملك سعود ونورة وسطام والقصيم.\nأكاديمية NARS — أكاديمية غير ربحية تسد فجوة المهارات في القطاعات التقنية والدفاعية.",
           "ko": "",
           "ja": ""
         },
-        "keywords": null,
+        "keywords": "training,simulation,capability,enablement",
         "type": "services",
         "publish_date": "2026-04-05 21:41:40",
         "cover_id": null,
@@ -1312,20 +2580,21 @@ module.exports = {
         "icon": null
       },
       {
-        "id": "a1795770-3357-4fcf-9b5a-83056b7c65e5",
+        "id": "b1795770-1008-4a00-9000-100000000008",
         "title": {
-          "en": "English Language Training"
+          "en": "Defense Systems Sustainment (MRO)",
+          "ar": "استدامة الأنظمة الدفاعية (الصيانة والإصلاح والعمرة)"
         },
-        "slug": "english-language-training",
-        "order": null,
+        "slug": "defense-systems-sustainment-mro",
+        "order": 9,
         "description": [],
         "body": {
-          "en": "We provide advanced English language training with highly experienced trainers.",
-          "ar": "",
+          "en": "Maintenance, repair and overhaul across defense systems\n\nComprehensive MRO supporting operational readiness across defense systems. An experienced, professional team of engineers and technicians delivers scheduled and corrective maintenance, repair and overhaul to the highest standards of quality and precision — minimizing breakdowns, extending operational life and keeping platforms available. Our capability extends to reverse engineering and manufacturing components for advanced systems, reducing reliance on external sources.\n\nScheduled maintenance — Planned servicing that keeps defense systems mission-capable.\nCorrective repair — Rapid fault resolution to return systems to service.\nOverhaul — Deep restoration of assemblies to extend operational life.\nStructural and mechanical repair — Repair of structures and mechanical assemblies to safety standards.\nHydraulic and pneumatic systems — Efficient, reliable maintenance of hydraulic and pneumatic components.\nComponent manufacturing — Reverse engineering and manufacture of parts for advanced systems.",
+          "ar": "الصيانة والإصلاح والعمرة للأنظمة الدفاعية\n\nخدمات شاملة للصيانة والإصلاح والعمرة تدعم الجاهزية التشغيلية عبر الأنظمة الدفاعية، يقدمها فريق محترف من المهندسين والفنيين وفق أعلى معايير الجودة والدقة، مع قدرة على الهندسة العكسية وتصنيع المكوّنات.\n\nالصيانة المجدولة — صيانة مخططة تحافظ على جاهزية الأنظمة الدفاعية.\nالإصلاح التصحيحي — معالجة سريعة للأعطال وإعادة الأنظمة للخدمة.\nالعمرة — تجديد عميق للوحدات لإطالة العمر التشغيلي.\nالإصلاح الهيكلي والميكانيكي — إصلاح الهياكل والمجموعات الميكانيكية وفق معايير السلامة.\nالأنظمة الهيدروليكية والهوائية — صيانة كفؤة وموثوقة للمكوّنات الهيدروليكية والهوائية.\nتصنيع المكوّنات — هندسة عكسية وتصنيع قطع للأنظمة المتقدمة.",
           "ko": "",
           "ja": ""
         },
-        "keywords": null,
+        "keywords": "defense,systems,sustainment",
         "type": "services",
         "publish_date": "2026-04-05 21:41:40",
         "cover_id": null,
@@ -1333,20 +2602,21 @@ module.exports = {
         "icon": null
       },
       {
-        "id": "a1795770-3590-4747-acc4-36e5263a3845",
+        "id": "b1795770-1009-4a00-9000-100000000009",
         "title": {
-          "en": "RADAR System"
+          "en": "Program Management & Localization Enablement",
+          "ar": "إدارة البرامج وتمكين التوطين"
         },
-        "slug": "radar-system",
-        "order": null,
+        "slug": "program-management-and-localization",
+        "order": 10,
         "description": [],
         "body": {
-          "en": "Military and Civilian RADAR Project development and management.",
-          "ar": "",
+          "en": "Programs delivered, capability localized\n\nEnd-to-end program execution, localization and national capability development aligned with Saudi Vision 2030. We run advanced defense programs from award through delivery, and structure them so capability, knowledge and manufacturing stay in the Kingdom — contributing to the localization of over 50% of military spending by 2030 through knowledge transfer and the development of national capabilities.\n\nProgram management — Execution from contract award through delivery and sustainment.\nLocalization planning — Structuring programs so capability remains inside the Kingdom.\nTechnology transfer — Moving know-how and manufacturing capability to national teams.\nSupply chain integration — Connecting local suppliers into international program supply chains.\nPartner and OEM coordination — Managing Tier One partners and original equipment manufacturers.\nReporting and governance — Transparent progress, risk and compliance reporting throughout.",
+          "ar": "تنفيذ البرامج وتوطين القدرات\n\nتنفيذ متكامل للبرامج والتوطين وتطوير القدرات الوطنية بما يتوافق مع رؤية السعودية 2030، والإسهام في توطين أكثر من 50% من الإنفاق العسكري بحلول عام 2030 عبر نقل المعرفة وبناء القدرات الوطنية.\n\nإدارة البرامج — التنفيذ من الترسية حتى التسليم والاستدامة.\nتخطيط التوطين — هيكلة البرامج لإبقاء القدرة داخل المملكة.\nنقل التقنية — نقل المعرفة والقدرة التصنيعية إلى الفرق الوطنية.\nتكامل سلسلة الإمداد — ربط المورّدين المحليين بسلاسل الإمداد الدولية.\nتنسيق الشركاء والمصنّعين — إدارة شركاء الفئة الأولى والمصنّعين الأصليين.\nالتقارير والحوكمة — تقارير شفافة للتقدم والمخاطر والامتثال.",
           "ko": "",
           "ja": ""
         },
-        "keywords": null,
+        "keywords": "program,management,localization,enablement",
         "type": "services",
         "publish_date": "2026-04-05 21:41:40",
         "cover_id": null,
