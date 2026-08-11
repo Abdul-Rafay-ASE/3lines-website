@@ -6,3 +6,5 @@ node_modules
 .env*.local
 content/subscribers.json
 content/contact-messages.json
+
+deliverables/3lines presenration.pdf
