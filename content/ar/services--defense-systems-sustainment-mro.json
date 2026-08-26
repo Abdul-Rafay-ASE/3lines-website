@@ -31,12 +31,12 @@
       "tone": "plain",
       "head": {
         "layout": "stacked",
-        "kicker": "نظرة عامة"
+        "kicker": "نظرة عامة",
+        "heading": "الصيانة والإصلاح والعمرة للأنظمة الدفاعية"
       },
       "bodies": [
         {
           "kind": "overviewSplit",
-          "heading": "الصيانة والإصلاح والعمرة للأنظمة الدفاعية",
           "lede": "خدمات شاملة للصيانة والإصلاح والعمرة تدعم الجاهزية التشغيلية عبر الأنظمة الدفاعية، يقدمها فريق محترف من المهندسين والفنيين وفق أعلى معايير الجودة والدقة، مع قدرة على الهندسة العكسية وتصنيع المكوّنات.",
           "glanceTitle": "لمحة سريعة",
           "glance": [
@@ -51,6 +51,10 @@
     {
       "type": "section",
       "tone": "mist",
+      "head": {
+        "layout": "stacked",
+        "heading": "كيف ننفّذها"
+      },
       "bodies": [
         {
           "kind": "feature",
@@ -58,7 +62,6 @@
             "imgVar": "url('/assets/photos/3l-mro-component.jpg')",
             "art": null
           },
-          "heading": "كيف ننفّذها",
           "checklist": [
             {
               "title": "الصيانة المجدولة",

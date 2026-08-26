@@ -31,12 +31,12 @@
       "tone": "plain",
       "head": {
         "layout": "stacked",
-        "kicker": "نظرة عامة"
+        "kicker": "نظرة عامة",
+        "heading": "طاقة لا تتوقف"
       },
       "bodies": [
         {
           "kind": "overviewSplit",
-          "heading": "طاقة لا تتوقف",
           "lede": "تركيب وصيانة ودعم دورة الحياة للمولدات وأنظمة الطاقة غير المنقطعة والطاقة الاحتياطية الحرجة، لضمان استمرارية التغذية الكهربائية خلف مواقع الرادار ومراكز العمليات والورش والبنى التحتية.",
           "glanceTitle": "لمحة سريعة",
           "glance": [
@@ -51,6 +51,10 @@
     {
       "type": "section",
       "tone": "mist",
+      "head": {
+        "layout": "stacked",
+        "heading": "كيف ننفّذها"
+      },
       "bodies": [
         {
           "kind": "feature",
@@ -58,7 +62,6 @@
             "imgVar": "url('/assets/photos/3l-mro-rf-test.jpg')",
             "art": null
           },
-          "heading": "كيف ننفّذها",
           "checklist": [
             {
               "title": "التركيب والتشغيل",

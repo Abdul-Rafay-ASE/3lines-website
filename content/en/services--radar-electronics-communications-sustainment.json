@@ -31,12 +31,12 @@
       "tone": "plain",
       "head": {
         "layout": "stacked",
-        "kicker": "Overview"
+        "kicker": "Overview",
+        "heading": "Radar and C4I sustainment, inside the Kingdom"
       },
       "bodies": [
         {
           "kind": "overviewSplit",
-          "heading": "Radar and C4I sustainment, inside the Kingdom",
           "lede": "3Lines maintains radar systems to 4th-line level inside Saudi Arabia, including the AN/TPS-78 for the Royal Saudi Air Force. We hold a Maintenance Level Agreement (MLA) with Northrop Grumman, the radar’s manufacturer, enabling in-country sustainment that raises operational readiness and localizes advanced technical capability. Our teams cover radar, surveillance, C4I and secure tactical communications end to end — diagnostics, repair, calibration and return to service.",
           "glanceTitle": "At a glance",
           "glance": [
@@ -51,6 +51,10 @@
     {
       "type": "section",
       "tone": "mist",
+      "head": {
+        "layout": "stacked",
+        "heading": "How we deliver it"
+      },
       "bodies": [
         {
           "kind": "feature",
@@ -58,7 +62,6 @@
             "imgVar": "url('/assets/photos/3l-radar-field.jpg')",
             "art": null
           },
-          "heading": "How we deliver it",
           "checklist": [
             {
               "title": "Radar sustainment",

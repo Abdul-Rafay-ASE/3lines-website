@@ -2,7 +2,7 @@ import Arrow from '../Arrow';
 import Svg from '../Svg';
 import NewsGrid from '../NewsGrid';
 import ContactForm from '../ContactForm';
-import { localePath, type Locale } from '@/lib/i18n';
+import { isExternal, localePath, type Locale } from '@/lib/i18n';
 import { assertNever } from '@/lib/blocks';
 import type {
   CardsBody,
@@ -94,7 +94,7 @@ function Tiles({ body, locale }: { body: TilesBody; locale: Locale }) {
 function Cards({ body, locale }: { body: CardsBody; locale: Locale }) {
   return (
     <>
-      <div className="cards3">
+      <div className="cards3" data-cols={body.columns === 4 ? 4 : undefined}>
         {body.items.map((c, i) => (
           <div className="pcard reveal" key={i} id={c.id}>
             <div className="pcard__media" style={imgStyle(c.imgVar)}>
@@ -103,9 +103,23 @@ function Cards({ body, locale }: { body: CardsBody; locale: Locale }) {
             <h3>{c.title}</h3>
             {c.text ? <p>{c.text}</p> : null}
             {c.link ? (
-              <a className="arrowlink" href={localePath(locale, c.link.href)}>
-                {c.link.label} <Arrow />
-              </a>
+              /* Card links may point off-site (the group companies do). Opening
+                 those in a new tab needs rel="noreferrer noopener" — without it
+                 the opened page can reach back via window.opener. */
+              isExternal(c.link.href) ? (
+                <a
+                  className="arrowlink"
+                  href={c.link.href}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  {c.link.label} <Arrow />
+                </a>
+              ) : (
+                <a className="arrowlink" href={localePath(locale, c.link.href)}>
+                  {c.link.label} <Arrow />
+                </a>
+              )
             ) : null}
           </div>
         ))}

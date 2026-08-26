@@ -10,7 +10,7 @@
     "non-cms.json"
   ],
   "title": "3Lines Advanced Technologies Company",
-  "description": "3Lines Advanced Technologies Group was established in 2019 in alignment with Saudi Vision 2030 to localize military and civilian services within the Kingdom. The Group delivers integrated supply chain and technical services — procurement, logistics, maintenance, repair and manufacturing — supporting operational readiness across the defense and advanced technology sectors, locally and internationally.",
+  "description": "3Lines Advanced Technologies Group was established in 2019 in alignment with Saudi Vision 2030 to localize military and civilian services within the Kingdom.…",
   "keywords": "threelines,three,lines,provision,aircraft,spare,parts,simulator,saudi,company,supplying,aircrafts,spare,parts,,ground,support,equipment,and,simulators,3lines,ثريلاينز آدفانسد تكنولجيز",
   "blocks": [
     {
@@ -90,6 +90,60 @@
             {
               "title": "Repair & Manufacturing",
               "text": "Localized diagnostic and repair workshops, plus reverse engineering and manufacturing of components for advanced systems."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "tone": "plain",
+      "id": "companies",
+      "head": {
+        "layout": "stacked",
+        "kicker": "The Group",
+        "heading": "Our companies"
+      },
+      "bodies": [
+        {
+          "kind": "cards",
+          "columns": 4,
+          "items": [
+            {
+              "title": "Advanced Technology",
+              "text": "Providing advanced technology solutions and services",
+              "imgVar": "url('/assets/photos/3l-command-center.jpg')",
+              "art": null,
+              "link": {
+                "label": "Learn more",
+                "href": "/services"
+              }
+            },
+            {
+              "title": "XR",
+              "text": "Extended Reality through AR/VR",
+              "imgVar": "url('/assets/photos/3l-xr-simulator.jpg')",
+              "art": null,
+              "link": {
+                "label": "Learn more",
+                "href": "https://xr.3lines.com.sa/"
+              }
+            },
+            {
+              "title": "Optokon Middle East",
+              "text": "Optical and IT Infrastructure Solutions",
+              "imgVar": "url('/assets/photos/3l-mro-rf-test.jpg')",
+              "art": null,
+              "link": {
+                "label": "Learn more",
+                "href": "https://optokon.com.sa/"
+              }
+            },
+            {
+              "title": "ATV",
+              "text": "Advanced telecommunication through VSAT/satellite",
+              "imgVar": "url('/assets/photos/3l-radar-field.jpg')",
+              "art": null
             }
           ]
         }

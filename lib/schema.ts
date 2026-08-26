@@ -13,7 +13,7 @@ import type { Locale } from './blocks';
 const SITE_ORIGIN = process.env.SITE_ORIGIN ?? 'https://www.3lines.com.sa';
 
 const readSource = <T,>(file: string): T =>
-  JSON.parse(fs.readFileSync(path.join(process.cwd(), 'source-content', file), 'utf8')) as T;
+  JSON.parse(fs.readFileSync(path.join(process.env.SOURCE_CONTENT_DIR ? path.resolve(process.env.SOURCE_CONTENT_DIR) : path.join(process.cwd(), 'source-content'), file), 'utf8')) as T;
 
 interface SiteInfo {
   address: string;

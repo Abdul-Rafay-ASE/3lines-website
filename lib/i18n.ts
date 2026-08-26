@@ -17,6 +17,16 @@ export const isLocale = (v: string): v is Locale => (LOCALES as string[]).includ
  *
  * External links, in-page anchors and already-prefixed paths pass through.
  */
+/**
+ * True for anything that leaves this site — an absolute URL, a protocol-relative
+ * one, or a `mailto:`/`tel:` scheme. Lives beside `localePath` because the two
+ * are the same decision: a link either gets a locale prefix or it leaves.
+ */
+export function isExternal(href: string | undefined): boolean {
+  if (!href) return false;
+  return /^[a-z][a-z0-9+.-]*:/i.test(href) || href.startsWith('//');
+}
+
 export function localePath(locale: Locale, href: string | undefined): string {
   if (!href) return '#';
   if (/^[a-z]+:/i.test(href) || href.startsWith('//')) return href;

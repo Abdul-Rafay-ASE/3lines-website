@@ -31,12 +31,12 @@
       "tone": "plain",
       "head": {
         "layout": "stacked",
-        "kicker": "Overview"
+        "kicker": "Overview",
+        "heading": "Full-motion and static simulation, supported"
       },
       "bodies": [
         {
           "kind": "overviewSplit",
-          "heading": "Full-motion and static simulation, supported",
           "lede": "Supply, operations, maintenance and training support for advanced simulation and readiness platforms — full motion and static. We sustain flight and maintenance simulators so training throughput and operational readiness are never limited by equipment availability, backed by a partnership with Princess Nourah bint Abdulrahman University covering autonomous systems and simulation technologies.",
           "glanceTitle": "At a glance",
           "glance": [
@@ -51,6 +51,10 @@
     {
       "type": "section",
       "tone": "mist",
+      "head": {
+        "layout": "stacked",
+        "heading": "How we deliver it"
+      },
       "bodies": [
         {
           "kind": "feature",
@@ -58,7 +62,6 @@
             "imgVar": "url('/assets/photos/3l-xr-simulator.jpg')",
             "art": null
           },
-          "heading": "How we deliver it",
           "checklist": [
             {
               "title": "Simulator supply",

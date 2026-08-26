@@ -31,12 +31,12 @@
       "tone": "plain",
       "head": {
         "layout": "stacked",
-        "kicker": "Overview"
+        "kicker": "Overview",
+        "heading": "Localized workshops for mission-critical electronics"
       },
       "bodies": [
         {
           "kind": "overviewSplit",
-          "heading": "Localized workshops for mission-critical electronics",
           "lede": "Our electronics workshops inside the Kingdom provide fault isolation, testing, repair and validation for mission-critical systems. Equipped for component-level work — RF test benches, signal generators, power meters and calibrated instrumentation — they return assemblies to service locally instead of shipping them abroad, cutting turnaround and reducing dependence on external sources.",
           "glanceTitle": "At a glance",
           "glance": [
@@ -51,6 +51,10 @@
     {
       "type": "section",
       "tone": "mist",
+      "head": {
+        "layout": "stacked",
+        "heading": "How we deliver it"
+      },
       "bodies": [
         {
           "kind": "feature",
@@ -58,7 +62,6 @@
             "imgVar": "url('/assets/photos/3l-mro-bench.jpg')",
             "art": null
           },
-          "heading": "How we deliver it",
           "checklist": [
             {
               "title": "Fault isolation",

@@ -54,9 +54,16 @@ html[lang="ar"] {
    The rules being overridden are themselves !important, so a
    normal-weight reset would lose. Scoped by :lang so an Arabic
    run inside an English page is handled too. */
-:lang(ar),
-:lang(ar) * {
+/* Specificity matters here, not just !important. `:lang(ar) *` is (0,1,0) and
+   loses to rules like `.ftr h4` (0,1,1) and `.kicker` — which is why Arabic
+   headings were still rendering at -0.6px and footer headings at +1.05px.
+   `html[lang="ar"] body *` is (0,1,2) and out-specifies them. */
+html[lang="ar"] body,
+html[lang="ar"] body *,
+html[lang="ar"] body *::before,
+html[lang="ar"] body *::after {
   letter-spacing: normal !important;
+  word-spacing: normal !important;
 }
 
 /* Tajawal ships no 600 weight (200/300/400/500/700/800/900) and the

@@ -159,6 +159,15 @@ run('asset cache-busting audit', 'node', ['scripts/audit-assets.mjs'], { AUDIT_B
 
 run('internal link + reachability audit', 'node', ['scripts/audit-links.mjs'], { AUDIT_BASE: BASE });
 
+// Arabic typography rules fail silently — nothing errors and the page still
+// measures fine, so only an explicit assertion catches them.
+run('RTL + Arabic typography audit', 'node', ['scripts/audit-rtl.mjs'], { AUDIT_BASE: BASE });
+
+run('accessibility audit', 'node', ['scripts/audit-a11y.mjs'], {
+  AUDIT_BASE: BASE,
+  AUDIT_RUN_DIR: path.join(RUN_DIR, 'a11y'),
+});
+
 /* ------------------------------------------------- harness negative control -- */
 
 run('visual harness self-test (negative control)', 'node', ['scripts/audit-visual.mjs'], {

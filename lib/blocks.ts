@@ -96,6 +96,12 @@ export interface TilesBody {
 
 export interface CardsBody {
   kind: 'cards';
+  /**
+   * Grid width. Defaults to the design's 3-up. A 4-up variant exists because
+   * the group-companies set is four — in a 3-up grid the fourth would orphan
+   * onto its own row, the same defect the stat row had.
+   */
+  columns?: 3 | 4;
   items: PCard[];
   /** Optional button rendered after the grid (e.g. the Cyber section). */
   cta?: Link;

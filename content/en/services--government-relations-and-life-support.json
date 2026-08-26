@@ -31,12 +31,12 @@
       "tone": "plain",
       "head": {
         "layout": "stacked",
-        "kicker": "Overview"
+        "kicker": "Overview",
+        "heading": "Regulatory coordination and life support, handled"
       },
       "bodies": [
         {
           "kind": "overviewSplit",
-          "heading": "Regulatory coordination and life support, handled",
           "lede": "We manage the government-facing side of complex programs — regulatory coordination, permits and approvals — alongside manpower consulting and integrated life support services. This lets Tier One primes and international partners operate in the Kingdom without carrying the administrative and logistical overhead themselves.",
           "glanceTitle": "At a glance",
           "glance": [
@@ -51,6 +51,10 @@
     {
       "type": "section",
       "tone": "mist",
+      "head": {
+        "layout": "stacked",
+        "heading": "How we deliver it"
+      },
       "bodies": [
         {
           "kind": "feature",
@@ -58,7 +62,6 @@
             "imgVar": "url('/assets/photos/3l-hq-building.jpg')",
             "art": null
           },
-          "heading": "How we deliver it",
           "checklist": [
             {
               "title": "Government relations",

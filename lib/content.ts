@@ -2,7 +2,10 @@ import fs from 'node:fs';
 import path from 'node:path';
 import type { Block, Locale, PageDoc, SvgNode } from './blocks';
 
-const DIR = path.join(process.cwd(), 'content');
+/** Overridable so a deployment can keep content on a persistent volume. */
+const DIR = process.env.CONTENT_DIR
+  ? path.resolve(process.env.CONTENT_DIR)
+  : path.join(process.cwd(), 'content');
 
 const read = <T,>(...seg: string[]): T =>
   JSON.parse(fs.readFileSync(path.join(DIR, ...seg), 'utf8')) as T;

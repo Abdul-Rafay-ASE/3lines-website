@@ -31,12 +31,12 @@
       "tone": "plain",
       "head": {
         "layout": "stacked",
-        "kicker": "نظرة عامة"
+        "kicker": "نظرة عامة",
+        "heading": "دعم أنظمة المحاكاة كاملة الحركة والثابتة"
       },
       "bodies": [
         {
           "kind": "overviewSplit",
-          "heading": "دعم أنظمة المحاكاة كاملة الحركة والثابتة",
           "lede": "التوريد والتشغيل والصيانة ودعم التدريب لمنصات المحاكاة والجاهزية المتقدمة، كاملة الحركة والثابتة، بما يضمن ألا تتقيد الجاهزية التشغيلية بتوفر المعدات.",
           "glanceTitle": "لمحة سريعة",
           "glance": [
@@ -51,6 +51,10 @@
     {
       "type": "section",
       "tone": "mist",
+      "head": {
+        "layout": "stacked",
+        "heading": "كيف ننفّذها"
+      },
       "bodies": [
         {
           "kind": "feature",
@@ -58,7 +62,6 @@
             "imgVar": "url('/assets/photos/3l-xr-simulator.jpg')",
             "art": null
           },
-          "heading": "كيف ننفّذها",
           "checklist": [
             {
               "title": "توريد أجهزة المحاكاة",

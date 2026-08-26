@@ -31,12 +31,12 @@
       "tone": "plain",
       "head": {
         "layout": "stacked",
-        "kicker": "نظرة عامة"
+        "kicker": "نظرة عامة",
+        "heading": "جاهزية مستمرة لمعدات الدعم الأرضي"
       },
       "bodies": [
         {
           "kind": "overviewSplit",
-          "heading": "جاهزية مستمرة لمعدات الدعم الأرضي",
           "lede": "صيانة ودعم جاهزية معدات الدعم الأرضي في القطاعين الجوي والبري، وتشمل الفحص الدوري والإصلاح والتأهيل، مع توفير قطع الغيار اللازمة لضمان استمرارية العمليات.",
           "glanceTitle": "لمحة سريعة",
           "glance": [
@@ -51,6 +51,10 @@
     {
       "type": "section",
       "tone": "mist",
+      "head": {
+        "layout": "stacked",
+        "heading": "كيف ننفّذها"
+      },
       "bodies": [
         {
           "kind": "feature",
@@ -58,7 +62,6 @@
             "imgVar": "url('/assets/photos/3l-mro-tech.jpg')",
             "art": null
           },
-          "heading": "كيف ننفّذها",
           "checklist": [
             {
               "title": "الصيانة الوقائية",

@@ -31,12 +31,12 @@
       "tone": "plain",
       "head": {
         "layout": "stacked",
-        "kicker": "نظرة عامة"
+        "kicker": "نظرة عامة",
+        "heading": "تنفيذ البرامج وتوطين القدرات"
       },
       "bodies": [
         {
           "kind": "overviewSplit",
-          "heading": "تنفيذ البرامج وتوطين القدرات",
           "lede": "تنفيذ متكامل للبرامج والتوطين وتطوير القدرات الوطنية بما يتوافق مع رؤية السعودية 2030، والإسهام في توطين أكثر من 50% من الإنفاق العسكري بحلول عام 2030 عبر نقل المعرفة وبناء القدرات الوطنية.",
           "glanceTitle": "لمحة سريعة",
           "glance": [
@@ -51,6 +51,10 @@
     {
       "type": "section",
       "tone": "mist",
+      "head": {
+        "layout": "stacked",
+        "heading": "كيف ننفّذها"
+      },
       "bodies": [
         {
           "kind": "feature",
@@ -58,7 +62,6 @@
             "imgVar": "url('/assets/photos/3l-command-center.jpg')",
             "art": null
           },
-          "heading": "كيف ننفّذها",
           "checklist": [
             {
               "title": "إدارة البرامج",

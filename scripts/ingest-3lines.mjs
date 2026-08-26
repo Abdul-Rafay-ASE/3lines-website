@@ -10,8 +10,15 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
-const SRC = path.join(ROOT, 'source-content');
-const OUT = path.join(ROOT, 'content');
+/**
+ * Content lives outside the release directory in a server deployment, so a
+ * rebuild can never destroy an editor's saved work and a restart can never lose
+ * it. Falls back to the in-repo paths for local development.
+ */
+const SRC = process.env.SOURCE_CONTENT_DIR
+  ? path.resolve(process.env.SOURCE_CONTENT_DIR)
+  : path.join(ROOT, 'source-content');
+const OUT = process.env.CONTENT_DIR ? path.resolve(process.env.CONTENT_DIR) : path.join(ROOT, 'content');
 const PUBLIC = path.join(ROOT, 'public');
 
 const LOCALES = ['en', 'ar'];
@@ -124,6 +131,21 @@ const servicesLabel = (locale) => L({ en: 'Services', ar: 'الخدمات' }, lo
  */
 const partnersLabel = (locale) => L({ en: 'Partners', ar: 'الشركاء' }, locale);
 
+/**
+ * Meta description for a page.
+ *
+ * Using the company description everywhere gave eight pages per locale the same
+ * 403-character string — duplicated metadata that also truncates in results.
+ * Takes the most specific text available and clamps it on a word boundary.
+ */
+function metaDescription(...candidates) {
+  const text = clean(candidates.find((c) => c && clean(c).length > 40) ?? candidates.find(Boolean) ?? '');
+  if (text.length <= 158) return text;
+  const cut = text.slice(0, 158);
+  const lastSpace = cut.lastIndexOf(' ');
+  return (lastSpace > 100 ? cut.slice(0, lastSpace) : cut).replace(/[,;:—-]$/, '') + '…';
+}
+
 /** ISO-3166 alpha-2 -> flag emoji, via regional indicator code points. */
 function flagOf(code) {
   if (!code || code.length !== 2) return undefined;
@@ -174,6 +196,62 @@ function serviceCards(locale, limit) {
   };
 }
 
+/**
+ * The four group companies, below About on the homepage.
+ *
+ * Names, descriptions and the CTA label are the company's own words in both
+ * languages, lifted from the reference bundle — nothing here is authored except
+ * the section heading. Imagery reuses photographs already in the repo: only
+ * Optokon has a logo, and mixing one logo with three photos would read as
+ * inconsistent, so every card gets a matched photograph exactly as the service
+ * cards do.
+ */
+function companiesSection(locale) {
+  const extracted = nonCms.companies;
+  const list = extracted?.items ?? [];
+  if (list.length !== 4) fail(`companies: expected 4 in non-cms.json, got ${list.length}`);
+
+  const ctaLabel = L(extracted?.cta, locale) || lbl('over', locale);
+
+  // Photo and destination per company, keyed by the reference's own English name.
+  const PRESENTATION = {
+    'Advanced Technology': { photo: '3l-command-center.jpg', href: '/services' },
+    XR: { photo: '3l-xr-simulator.jpg', href: 'https://xr.3lines.com.sa/' },
+    'Optokon Middle East': { photo: '3l-mro-rf-test.jpg', href: 'https://optokon.com.sa/' },
+    // ATV is marked "Soon" on the reference and is deliberately not a link.
+    ATV: { photo: '3l-radar-field.jpg', href: null },
+  };
+
+  return {
+    type: 'section',
+    tone: 'plain',
+    id: 'companies',
+    head: {
+      layout: 'stacked',
+      kicker: L({ en: 'The Group', ar: 'المجموعة' }, locale),
+      heading: L({ en: 'Our companies', ar: 'شركاتنا' }, locale),
+    },
+    bodies: [
+      {
+        kind: 'cards',
+        columns: 4,
+        items: list.map((c) => {
+          const name = L(c.name, locale);
+          const p = PRESENTATION[c.name.en];
+          if (!p) fail(`companies: no presentation mapping for "${c.name.en}"`);
+          return {
+            title: name,
+            text: L(c.description, locale),
+            imgVar: imgVar(media(`/assets/photos/${p?.photo}`, name, `company ${c.name.en}`)),
+            art: null,
+            ...(p?.href ? { link: { label: ctaLabel, href: p.href } } : {}),
+          };
+        }),
+      },
+    ],
+  };
+}
+
 function buildHome(locale) {
   const frame = nonCms.heroFrame?.copy?.[locale] ?? {};
   const rotate = nonCms.heroRotatingWords?.[locale] ?? [];
@@ -184,7 +262,7 @@ function buildHome(locale) {
     slug: 'index',
     source: ['constants.json', 'siteInfo.json', 'services.json', 'posts.json', 'non-cms.json'],
     title: L({ en: constants.name_en, ar: constants.name_ar }, locale),
-    description: L(siteInfo.companyDescription, locale, 'siteInfo.companyDescription'),
+    description: metaDescription(L(siteInfo.companyDescription, locale, 'siteInfo.companyDescription')),
     keywords: constants.keywords,
     blocks: [
       {
@@ -226,6 +304,11 @@ function buildHome(locale) {
           },
         ],
       },
+      // Group companies — the reference's four-card bento, rendered through the
+      // site's own card component so it inherits the design system rather than
+      // approximating it. Sits directly below About, on a plain band so it does
+      // not read as a second About block.
+      companiesSection(locale),
       {
         type: 'section',
         tone: 'navy',
@@ -289,7 +372,7 @@ function buildAbout(locale) {
     slug: 'about',
     source: ['pages.json#about', 'non-cms.json'],
     title: L(page.title, locale),
-    description: L(siteInfo.companyDescription, locale),
+    description: metaDescription(paragraphs(L(page.body, locale))[0], L(siteInfo.companyDescription, locale)),
     keywords: page.keywords,
     blocks: [
       {
@@ -368,7 +451,10 @@ function buildServicesIndex(locale) {
     slug: 'services',
     source: ['services.json'],
     title,
-    description: L(siteInfo.companyDescription, locale),
+    description: metaDescription(
+      services.map((s) => L(s.title, locale)).slice(0, 4).join(' · '),
+      L(siteInfo.companyDescription, locale)
+    ),
     blocks: [
       {
         type: 'pageTitle',
@@ -395,7 +481,7 @@ function buildServiceDetail(service, locale) {
     slug: `services--${service.slug}`,
     source: ['services.json', 'service-details.json'],
     title: L(service.title, locale),
-    description: L(service.description, locale),
+    description: metaDescription(L(service.description, locale), copy.op),
     blocks: [
       {
         type: 'pageTitle',
@@ -409,14 +495,17 @@ function buildServiceDetail(service, locale) {
       // Overview and "at a glance" are ONE band in the reference: a wide prose
       // column beside a narrow card. Stacking them full-width made the page
       // feel stretched and empty.
+      // The overview heading belongs to the SECTION, not the body: as a body-level
+      // h3 it followed the page h1 directly and skipped h2, which breaks
+      // heading-order navigation for screen readers. The section head already
+      // renders an h2, so promoting it fixes the hierarchy with no visual change.
       {
         type: 'section',
         tone: 'plain',
-        head: { layout: 'stacked', kicker: lbl('over', locale) },
+        head: { layout: 'stacked', kicker: lbl('over', locale), heading: copy.oh },
         bodies: [
           {
             kind: 'overviewSplit',
-            heading: copy.oh,
             lede: copy.op,
             glanceTitle: lbl('glance', locale),
             glance: copy.glance,
@@ -428,11 +517,11 @@ function buildServiceDetail(service, locale) {
       {
         type: 'section',
         tone: 'mist',
+        head: { layout: 'stacked', heading: L(nonCms.labelTables?.HEAD, locale) },
         bodies: [
           {
             kind: 'feature',
             media: { imgVar: imgVar(img), art: null },
-            heading: L(nonCms.labelTables?.HEAD, locale),
             checklist: copy.caps.slice(0, 4).map((c) => ({ title: c.t, text: c.d })),
           },
         ],
@@ -457,7 +546,10 @@ function buildNewsIndex(locale) {
     slug: 'news',
     source: ['posts.json'],
     title,
-    description: L(siteInfo.companyDescription, locale),
+    description: metaDescription(
+      posts.map((p) => L(p.title, locale)).slice(0, 3).join(' · '),
+      L(siteInfo.companyDescription, locale)
+    ),
     blocks: [
       { type: 'pageTitle', crumbs: [{ label: home(locale), href: '/' }, { label: title }], heading: title },
       { type: 'section', tone: 'plain', bodies: [{ kind: 'newsGrid' }] },
@@ -477,7 +569,7 @@ function buildPost(post, locale) {
     slug: `news--${post.slug}`,
     source: ['posts.json'],
     title: L(post.title, locale),
-    description: L(post.description, locale),
+    description: metaDescription(L(post.description, locale)),
     blocks: [
       {
         type: 'pageTitle',
@@ -547,7 +639,10 @@ function buildPartners(locale) {
     slug: 'partners',
     source: ['partners.json'],
     title,
-    description: L(siteInfo.companyDescription, locale),
+    description: metaDescription(
+      partners.slice(0, 8).map((p) => L(p.name, locale)).join(' · '),
+      L(siteInfo.companyDescription, locale)
+    ),
     blocks: [
       {
         type: 'pageTitle',
@@ -571,7 +666,7 @@ function buildContact(locale) {
     slug: 'contact',
     source: ['pages.json#contact', 'siteInfo.json', 'constants.json', 'non-cms.json'],
     title: L(page.title, locale),
-    description: L(siteInfo.companyDescription, locale),
+    description: metaDescription(`${siteInfo.address} — ${constants.email} — ${constants.phone}`),
     keywords: page.keywords,
     blocks: [
       {

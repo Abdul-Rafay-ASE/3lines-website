@@ -31,12 +31,12 @@
       "tone": "plain",
       "head": {
         "layout": "stacked",
-        "kicker": "Overview"
+        "kicker": "Overview",
+        "heading": "Maintenance, repair and overhaul across defense systems"
       },
       "bodies": [
         {
           "kind": "overviewSplit",
-          "heading": "Maintenance, repair and overhaul across defense systems",
           "lede": "Comprehensive MRO supporting operational readiness across defense systems. An experienced, professional team of engineers and technicians delivers scheduled and corrective maintenance, repair and overhaul to the highest standards of quality and precision — minimizing breakdowns, extending operational life and keeping platforms available. Our capability extends to reverse engineering and manufacturing components for advanced systems, reducing reliance on external sources.",
           "glanceTitle": "At a glance",
           "glance": [
@@ -51,6 +51,10 @@
     {
       "type": "section",
       "tone": "mist",
+      "head": {
+        "layout": "stacked",
+        "heading": "How we deliver it"
+      },
       "bodies": [
         {
           "kind": "feature",
@@ -58,7 +62,6 @@
             "imgVar": "url('/assets/photos/3l-mro-component.jpg')",
             "art": null
           },
-          "heading": "How we deliver it",
           "checklist": [
             {
               "title": "Scheduled maintenance",

@@ -31,12 +31,12 @@
       "tone": "plain",
       "head": {
         "layout": "stacked",
-        "kicker": "نظرة عامة"
+        "kicker": "نظرة عامة",
+        "heading": "استدامة الرادارات وأنظمة C4I داخل المملكة"
       },
       "bodies": [
         {
           "kind": "overviewSplit",
-          "heading": "استدامة الرادارات وأنظمة C4I داخل المملكة",
           "lede": "تقوم 3Lines بصيانة منظومات الرادارات حتى المستوى الرابع داخل المملكة العربية السعودية، بما في ذلك رادار AN/TPS-78 لصالح القوات الجوية الملكية السعودية. وقد حصلت الشركة على اتفاقية مستوى الصيانة (MLA) من شركة NORTHROP GRUMMAN المصنّعة للرادار، بما يعزز الجاهزية التشغيلية ويدعم توطين القدرات الفنية المتقدمة.",
           "glanceTitle": "لمحة سريعة",
           "glance": [
@@ -51,6 +51,10 @@
     {
       "type": "section",
       "tone": "mist",
+      "head": {
+        "layout": "stacked",
+        "heading": "كيف ننفّذها"
+      },
       "bodies": [
         {
           "kind": "feature",
@@ -58,7 +62,6 @@
             "imgVar": "url('/assets/photos/3l-radar-field.jpg')",
             "art": null
           },
-          "heading": "كيف ننفّذها",
           "checklist": [
             {
               "title": "استدامة الرادارات",

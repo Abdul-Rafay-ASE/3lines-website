@@ -31,12 +31,12 @@
       "tone": "plain",
       "head": {
         "layout": "stacked",
-        "kicker": "Overview"
+        "kicker": "Overview",
+        "heading": "Building national capability, not just delivering training"
       },
       "bodies": [
         {
           "kind": "overviewSplit",
-          "heading": "Building national capability, not just delivering training",
           "lede": "Military and civilian training delivery, knowledge transfer and operational capability development — including advanced English language training from highly experienced trainers. Through NARS, the National Academy for Radar and Space Communications, and partnerships with national universities, we qualify Saudi talent in radar and communications systems, fiber optics, data centres, navigation systems and electronic protection.",
           "glanceTitle": "At a glance",
           "glance": [
@@ -51,6 +51,10 @@
     {
       "type": "section",
       "tone": "mist",
+      "head": {
+        "layout": "stacked",
+        "heading": "How we deliver it"
+      },
       "bodies": [
         {
           "kind": "feature",
@@ -58,7 +62,6 @@
             "imgVar": "url('/assets/photos/3l-xr-lab.jpg')",
             "art": null
           },
-          "heading": "How we deliver it",
           "checklist": [
             {
               "title": "Technical training",

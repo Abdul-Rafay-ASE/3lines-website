@@ -31,12 +31,12 @@
       "tone": "plain",
       "head": {
         "layout": "stacked",
-        "kicker": "نظرة عامة"
+        "kicker": "نظرة عامة",
+        "heading": "التنسيق التنظيمي وخدمات الإعاشة المتكاملة"
       },
       "bodies": [
         {
           "kind": "overviewSplit",
-          "heading": "التنسيق التنظيمي وخدمات الإعاشة المتكاملة",
           "lede": "نتولّى الجانب الحكومي من البرامج المعقدة — من التنسيق التنظيمي والتصاريح والموافقات — إلى جانب استشارات القوى العاملة وخدمات الإعاشة المتكاملة، بما يمكّن الشركاء الدوليين من العمل داخل المملكة بكفاءة.",
           "glanceTitle": "لمحة سريعة",
           "glance": [
@@ -51,6 +51,10 @@
     {
       "type": "section",
       "tone": "mist",
+      "head": {
+        "layout": "stacked",
+        "heading": "كيف ننفّذها"
+      },
       "bodies": [
         {
           "kind": "feature",
@@ -58,7 +62,6 @@
             "imgVar": "url('/assets/photos/3l-hq-building.jpg')",
             "art": null
           },
-          "heading": "كيف ننفّذها",
           "checklist": [
             {
               "title": "العلاقات الحكومية",

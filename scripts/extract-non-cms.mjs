@@ -18,7 +18,9 @@ import path from 'node:path';
 import vm from 'node:vm';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
-const SRC = path.join(ROOT, 'source-content');
+const SRC = process.env.SOURCE_CONTENT_DIR
+  ? path.resolve(process.env.SOURCE_CONTENT_DIR)
+  : path.join(ROOT, 'source-content');
 const SIBLING = path.resolve(ROOT, '..', '3lines-website');
 
 const LOCALES = ['en', 'ar'];
@@ -285,6 +287,53 @@ function extractHeroFrame() {
 
 const heroFrame = extractHeroFrame();
 
+/**
+ * The four group companies shown as the homepage bento on the reference site.
+ *
+ * They live in the compiled hero bundle as localized string pairs, in a fixed
+ * order, immediately around the Optokon entry. Lifted rather than re-authored so
+ * the names and descriptions stay the company's own words in both languages.
+ */
+function extractCompanies() {
+  const dir = path.join(SIBLING, 'build', 'assets');
+  if (!fs.existsSync(dir)) return fail('build/assets not found — cannot extract companies'), null;
+  const file = fs.readdirSync(dir).find((f) => /^hero-.*\.js$/.test(f));
+  if (!file) return fail('no hero-*.js bundle found for companies'), null;
+
+  const src = fs.readFileSync(path.join(dir, file), 'utf8');
+  const anchor = src.indexOf('Optokon');
+  if (anchor === -1) return fail('companies: Optokon anchor not found'), null;
+
+  const region = src.slice(Math.max(0, anchor - 6000), anchor + 4000);
+  const pairs = [...region.matchAll(/\{en:"((?:[^"\\]|\\.)*)",ar:"((?:[^"\\]|\\.)*)"/g)].map((m) => ({
+    en: decode(JSON.parse(`"${m[1]}"`)),
+    ar: decode(JSON.parse(`"${m[2]}"`)),
+  }));
+
+  // The bundle emits name/description alternating, in bento order.
+  const NAMES = ['Advanced Technology', 'XR', 'Optokon Middle East', 'ATV'];
+  const out = [];
+  for (const name of NAMES) {
+    const i = pairs.findIndex((p) => p.en === name);
+    if (i === -1 || !pairs[i + 1]) {
+      fail(`companies: could not locate name/description pair for "${name}"`);
+      continue;
+    }
+    out.push({ name: pairs[i], description: pairs[i + 1] });
+  }
+
+  if (out.length !== 4) fail(`companies: expected 4, extracted ${out.length}`);
+
+  // The card CTA sits in the same table ("Learn more" / "اعرف المزيد"); take it
+  // rather than authoring another UI string.
+  const cta = pairs.find((p) => p.en === 'Learn more');
+  if (!cta) fail('companies: "Learn more" CTA label not found');
+
+  return { items: out, cta: cta ?? null };
+}
+
+const companies = extractCompanies();
+
 /* ------------------------------------------------------------- validation -- */
 
 if (heroWords.en?.length !== 4) fail(`expected 4 hero rotating words, got ${heroWords.en?.length}`);
@@ -312,6 +361,7 @@ const out = {
   certifications: certs,
   aboutStats: stats,
   heroFrame,
+  companies,
   labelTables,
 };
 

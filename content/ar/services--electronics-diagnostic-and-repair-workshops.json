@@ -31,12 +31,12 @@
       "tone": "plain",
       "head": {
         "layout": "stacked",
-        "kicker": "نظرة عامة"
+        "kicker": "نظرة عامة",
+        "heading": "ورش موطّنة للإلكترونيات الحرجة"
       },
       "bodies": [
         {
           "kind": "overviewSplit",
-          "heading": "ورش موطّنة للإلكترونيات الحرجة",
           "lede": "توفر ورشنا الإلكترونية داخل المملكة عزل الأعطال والاختبار والإصلاح والتحقق للأنظمة الحرجة، وهي مجهزة للعمل على مستوى المكوّنات بمنصات اختبار الترددات الراديوية وأجهزة معايرة دقيقة.",
           "glanceTitle": "لمحة سريعة",
           "glance": [
@@ -51,6 +51,10 @@
     {
       "type": "section",
       "tone": "mist",
+      "head": {
+        "layout": "stacked",
+        "heading": "كيف ننفّذها"
+      },
       "bodies": [
         {
           "kind": "feature",
@@ -58,7 +62,6 @@
             "imgVar": "url('/assets/photos/3l-mro-bench.jpg')",
             "art": null
           },
-          "heading": "كيف ننفّذها",
           "checklist": [
             {
               "title": "عزل الأعطال",

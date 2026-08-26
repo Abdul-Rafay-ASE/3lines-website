@@ -295,6 +295,54 @@
       }
     }
   },
+  "companies": {
+    "items": [
+      {
+        "name": {
+          "en": "Advanced Technology",
+          "ar": "التقنيات المتقدمة"
+        },
+        "description": {
+          "en": "Providing advanced technology solutions and services",
+          "ar": "توفير حلول وخدمات التقنيات المتقدمة"
+        }
+      },
+      {
+        "name": {
+          "en": "XR",
+          "ar": "XR"
+        },
+        "description": {
+          "en": "Extended Reality through AR/VR",
+          "ar": "الواقع الممتد عن طريق الواقع المعزز و الواقع الافتراضي"
+        }
+      },
+      {
+        "name": {
+          "en": "Optokon Middle East",
+          "ar": "Optokon Middle East"
+        },
+        "description": {
+          "en": "Optical and IT Infrastructure Solutions",
+          "ar": "حلول البنية التحتية للبصريات وتكنولوجيا المعلومات"
+        }
+      },
+      {
+        "name": {
+          "en": "ATV",
+          "ar": "ATV"
+        },
+        "description": {
+          "en": "Advanced telecommunication through VSAT/satellite",
+          "ar": "الاتصالات المتقدمة عبر VSAT/الأقمار الصناعية"
+        }
+      }
+    ],
+    "cta": {
+      "en": "Learn more",
+      "ar": "اعرف المزيد"
+    }
+  },
   "labelTables": {
     "EYE": {
       "en": "WHY 3LINES",

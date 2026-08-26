@@ -16,7 +16,9 @@
     "typecheck": "tsc --noEmit",
     "verify": "node scripts/pipeline.mjs",
     "baseline:update": "node scripts/visual-baseline.mjs",
-    "audit:assets": "node scripts/audit-assets.mjs"
+    "audit:assets": "node scripts/audit-assets.mjs",
+    "audit:rtl": "node scripts/audit-rtl.mjs",
+    "audit:a11y": "node scripts/audit-a11y.mjs"
   },
   "dependencies": {
     "next": "^15.5.7",

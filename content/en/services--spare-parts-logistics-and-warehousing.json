@@ -31,12 +31,12 @@
       "tone": "plain",
       "head": {
         "layout": "stacked",
-        "kicker": "Overview"
+        "kicker": "Overview",
+        "heading": "End-to-end supply, from RFQ to the flight line"
       },
       "bodies": [
         {
           "kind": "overviewSplit",
-          "heading": "End-to-end supply, from RFQ to the flight line",
           "lede": "3Lines was registered as the first licensed Saudi company to provide spare parts, and supply remains one of its three core pillars. We source genuine parts for aviation and land systems from OEMs and authorised distributors across the United States and worldwide, then manage secure warehousing, inventory management and distribution to military and civilian platforms — with transparent pricing, verified authenticity and dependable lead times.",
           "glanceTitle": "At a glance",
           "glance": [
@@ -51,6 +51,10 @@
     {
       "type": "section",
       "tone": "mist",
+      "head": {
+        "layout": "stacked",
+        "heading": "How we deliver it"
+      },
       "bodies": [
         {
           "kind": "feature",
@@ -58,7 +62,6 @@
             "imgVar": "url('/assets/photos/3l-mro-lab.jpg')",
             "art": null
           },
-          "heading": "How we deliver it",
           "checklist": [
             {
               "title": "Strategic sourcing",

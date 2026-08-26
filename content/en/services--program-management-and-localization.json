@@ -31,12 +31,12 @@
       "tone": "plain",
       "head": {
         "layout": "stacked",
-        "kicker": "Overview"
+        "kicker": "Overview",
+        "heading": "Programs delivered, capability localized"
       },
       "bodies": [
         {
           "kind": "overviewSplit",
-          "heading": "Programs delivered, capability localized",
           "lede": "End-to-end program execution, localization and national capability development aligned with Saudi Vision 2030. We run advanced defense programs from award through delivery, and structure them so capability, knowledge and manufacturing stay in the Kingdom — contributing to the localization of over 50% of military spending by 2030 through knowledge transfer and the development of national capabilities.",
           "glanceTitle": "At a glance",
           "glance": [
@@ -51,6 +51,10 @@
     {
       "type": "section",
       "tone": "mist",
+      "head": {
+        "layout": "stacked",
+        "heading": "How we deliver it"
+      },
       "bodies": [
         {
           "kind": "feature",
@@ -58,7 +62,6 @@
             "imgVar": "url('/assets/photos/3l-command-center.jpg')",
             "art": null
           },
-          "heading": "How we deliver it",
           "checklist": [
             {
               "title": "Program management",

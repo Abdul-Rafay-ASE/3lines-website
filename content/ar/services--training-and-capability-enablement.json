@@ -31,12 +31,12 @@
       "tone": "plain",
       "head": {
         "layout": "stacked",
-        "kicker": "نظرة عامة"
+        "kicker": "نظرة عامة",
+        "heading": "بناء القدرات الوطنية لا مجرد تقديم التدريب"
       },
       "bodies": [
         {
           "kind": "overviewSplit",
-          "heading": "بناء القدرات الوطنية لا مجرد تقديم التدريب",
           "lede": "تقديم التدريب العسكري والمدني ونقل المعرفة وتطوير القدرات التشغيلية، ومن خلال الأكاديمية الوطنية للرادارات والاتصالات الفضائية (NARS) والشراكات مع الجامعات الوطنية نؤهل الكفاءات السعودية.",
           "glanceTitle": "لمحة سريعة",
           "glance": [
@@ -51,6 +51,10 @@
     {
       "type": "section",
       "tone": "mist",
+      "head": {
+        "layout": "stacked",
+        "heading": "كيف ننفّذها"
+      },
       "bodies": [
         {
           "kind": "feature",
@@ -58,7 +62,6 @@
             "imgVar": "url('/assets/photos/3l-xr-lab.jpg')",
             "art": null
           },
-          "heading": "كيف ننفّذها",
           "checklist": [
             {
               "title": "التدريب التقني",

@@ -24,8 +24,16 @@ const PUBLIC = path.join(ROOT, 'public');
 
 const LOCALES = ['en', 'ar'];
 const errors = [];
+const warnings = [];
 const notes = [];
 const err = (m) => errors.push(m);
+/**
+ * WARN vs FAIL: a FAIL means content is wrong or lost and the build must stop.
+ * A WARN means the content is structurally valid but weaker than it should be —
+ * an SEO description that is too short, a title that will truncate in results.
+ * Collapsing the two would either block builds on cosmetics or hide real loss.
+ */
+const warn = (m) => warnings.push(m);
 
 const readContent = (...s) => JSON.parse(fs.readFileSync(path.join(CONTENT, ...s), 'utf8'));
 const readSource = (f) => JSON.parse(fs.readFileSync(path.join(SRC, f), 'utf8'));
@@ -160,7 +168,8 @@ const bodiesOf = (doc, kind) =>
   doc.blocks.flatMap((b) => (b.bodies ?? []).filter((x) => x.kind === kind));
 
 const EXPECT = {
-  '/': { slider: 4, cards: 10 },
+  // 10 service cards + the 4 group-company cards.
+  '/': { slider: 4, cards: 10 + 4 },
   '/about': { defs: 3 + 6 + 2, figures: 4, certs: 3 },
   '/services': { cards: 10 },
   '/partners': { logos: 39 },
@@ -240,6 +249,133 @@ for (const r of routes) {
   if (en && ar && en.title && en.title === ar.title) identical++;
 }
 
+/* -------------------------------------------------- 7b. group companies -- */
+
+/**
+ * The four group companies are lifted from a compiled bundle, so a change to
+ * that bundle could quietly drop one. Assert the set survives into both locales
+ * with its copy intact.
+ */
+const companies = nonCms.companies?.items ?? [];
+if (companies.length !== 4) err(`non-cms.json: expected 4 companies, found ${companies.length}`);
+
+for (const l of LOCALES) {
+  const home = docs[l].find((d) => d.route === '/');
+  if (!home) continue;
+
+  const section = home.blocks.find((b) => b.type === 'section' && b.id === 'companies');
+  if (!section) {
+    err(`${l}/: the group-companies section is missing from the homepage`);
+    continue;
+  }
+
+  const cards = (section.bodies ?? []).filter((b) => b.kind === 'cards');
+  const items = cards.flatMap((b) => b.items);
+  if (items.length !== 4) err(`${l}/: expected 4 company cards, got ${items.length}`);
+  if (!cards.every((b) => b.columns === 4))
+    err(`${l}/: company cards must use the 4-up grid or the fourth card orphans`);
+
+  for (const c of companies) {
+    const name = c.name[l] || c.name.en;
+    const card = items.find((i) => i.title === name);
+    if (!card) {
+      err(`${l}/: company "${name}" is not rendered on the homepage`);
+      continue;
+    }
+    if (!card.text) err(`${l}/: company "${name}" lost its description`);
+    if (!card.imgVar) err(`${l}/: company "${name}" has no imagery`);
+  }
+}
+
+/* ----------------------------------------- 8. structural content validation -- */
+
+/**
+ * Checks the earlier passes did not cover: duplicate identifiers, empty
+ * structures, malformed links, and metadata that is valid but too weak to be
+ * useful. Content is generated from JSON, so these are the failure modes that
+ * appear when the source data grows rather than when the code changes.
+ */
+const seenRoute = new Set();
+const seenSlug = new Set();
+for (const r of routes) {
+  if (seenRoute.has(r.route)) err(`duplicate route in manifest — ${r.route}`);
+  if (seenSlug.has(r.slug)) err(`duplicate slug in manifest — ${r.slug}`);
+  seenRoute.add(r.route);
+  seenSlug.add(r.slug);
+}
+
+const collectHrefs = (v, out = []) => {
+  if (Array.isArray(v)) v.forEach((x) => collectHrefs(x, out));
+  else if (v && typeof v === 'object') {
+    if (typeof v.href === 'string') out.push(v.href);
+    Object.values(v).forEach((x) => collectHrefs(x, out));
+  }
+  return out;
+};
+
+const VALID_HREF = /^(\/|#|https?:\/\/|mailto:|tel:)/;
+
+for (const l of LOCALES) {
+  const titles = new Map();
+
+  for (const d of docs[l]) {
+    const where = `${l}${d.route}`;
+
+    // --- metadata quality -------------------------------------------------
+    if (!d.title || !d.title.trim()) err(`${where}: missing title`);
+    else if (d.title.length > 60) warn(`${where}: title is ${d.title.length} chars — search results truncate near 60`);
+
+    if (!d.description || !d.description.trim()) err(`${where}: missing description`);
+    else if (d.description.length < 50)
+      warn(`${where}: description is only ${d.description.length} chars — too thin to be useful`);
+    else if (d.description.length > 160)
+      warn(`${where}: description is ${d.description.length} chars — truncates near 160`);
+
+    // Duplicate titles across routes read as duplicate pages to a crawler.
+    if (d.title) {
+      if (titles.has(d.title)) warn(`${where}: shares its title with ${titles.get(d.title)}`);
+      else titles.set(d.title, where);
+    }
+
+    // --- structure --------------------------------------------------------
+    const h1s = d.blocks.filter((b) => b.type === 'hero' || b.type === 'pageTitle').length;
+    if (h1s === 0) err(`${where}: no hero or pageTitle block, so the page has no <h1>`);
+    if (h1s > 1) err(`${where}: ${h1s} blocks render an <h1>; a page must have exactly one`);
+
+    for (const [i, b] of d.blocks.entries()) {
+      if (b.type !== 'section') continue;
+      const bodies = b.bodies ?? [];
+      const hasHead = b.head && (b.head.kicker || b.head.heading || b.head.lede);
+      if (!bodies.length && !hasHead) err(`${where}: block ${i} is an empty section`);
+
+      for (const body of bodies) {
+        const list = body.items ?? body.paragraphs ?? body.glance ?? body.fields;
+        if (Array.isArray(list) && list.length === 0)
+          err(`${where}: "${body.kind}" body has no items`);
+      }
+    }
+
+    // --- links ------------------------------------------------------------
+    for (const href of new Set(collectHrefs(d))) {
+      if (!href.trim()) err(`${where}: empty href`);
+      else if (!VALID_HREF.test(href)) err(`${where}: malformed href — "${href}"`);
+    }
+
+    // --- media ------------------------------------------------------------
+    // Alt text is the accessible name of the image; empty alt is only correct
+    // for decoration, and none of this content's imagery is decorative.
+    const walkMedia = (v) => {
+      if (Array.isArray(v)) return v.forEach(walkMedia);
+      if (!v || typeof v !== 'object') return;
+      if (typeof v.src === 'string' && v.src.startsWith('/assets/') && 'alt' in v) {
+        if (!v.alt || !v.alt.trim()) warn(`${where}: image has no alt text — ${v.src}`);
+      }
+      Object.values(v).forEach(walkMedia);
+    };
+    walkMedia(d.blocks);
+  }
+}
+
 /* ------------------------------------------------------------ placeholder -- */
 
 const placeholders = [];
@@ -262,10 +398,20 @@ if (placeholders.length) {
   console.log('    ' + placeholders.join('\n    '));
 }
 
+if (warnings.length) {
+  console.log(`\n  WARN — ${warnings.length} item(s) valid but weaker than they should be:`);
+  console.log([...new Set(warnings)].slice(0, 25).map((w) => '    ' + w).join('\n'));
+  if (warnings.length > 25) console.log(`    … and ${warnings.length - 25} more`);
+}
+
 if (errors.length) {
-  console.error(`\nCONTENT AUDIT FAILED — ${errors.length} problem(s):`);
+  console.error(`\nFAIL — CONTENT AUDIT, ${errors.length} problem(s):`);
   console.error(errors.slice(0, 60).map((e) => '  ' + e).join('\n'));
   if (errors.length > 60) console.error(`  … and ${errors.length - 60} more`);
   process.exit(1);
 }
-console.log('\nCONTENT AUDIT OK — data, schema, renderers and both locales agree.');
+
+console.log(
+  `\nPASS — CONTENT AUDIT: data, schema, renderers and both locales agree` +
+    (warnings.length ? ` (${warnings.length} warning(s) above)` : '')
+);

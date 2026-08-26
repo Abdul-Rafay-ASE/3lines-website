@@ -10,7 +10,7 @@
     "non-cms.json"
   ],
   "title": "ثريلاينز آدفانسد تكنولجيز",
-  "description": "تأسست مجموعة 3LINES ADVANCED TECHNOLOGIES في عام 2019 تماشيًا مع رؤية السعودية 2030 بهدف توطين الخدمات العسكرية والمدنية داخل المملكة. تقدم المجموعة خدمات متكاملة في سلاسل الإمداد والخدمات الفنية — المشتريات والخدمات اللوجستية والصيانة والإصلاح والتصنيع — دعمًا للجاهزية التشغيلية في قطاعي الدفاع والتقنيات المتقدمة محليًا ودوليًا.",
+  "description": "تأسست مجموعة 3LINES ADVANCED TECHNOLOGIES في عام 2019 تماشيًا مع رؤية السعودية 2030 بهدف توطين الخدمات العسكرية والمدنية داخل المملكة. تقدم المجموعة خدمات…",
   "keywords": "threelines,three,lines,provision,aircraft,spare,parts,simulator,saudi,company,supplying,aircrafts,spare,parts,,ground,support,equipment,and,simulators,3lines,ثريلاينز آدفانسد تكنولجيز",
   "blocks": [
     {
@@ -90,6 +90,60 @@
             {
               "title": "الإصلاح والتصنيع",
               "text": "ورش تشخيص وإصلاح موطّنة، إضافة إلى الهندسة العكسية وتصنيع المكوّنات للأنظمة المتقدمة."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "tone": "plain",
+      "id": "companies",
+      "head": {
+        "layout": "stacked",
+        "kicker": "المجموعة",
+        "heading": "شركاتنا"
+      },
+      "bodies": [
+        {
+          "kind": "cards",
+          "columns": 4,
+          "items": [
+            {
+              "title": "التقنيات المتقدمة",
+              "text": "توفير حلول وخدمات التقنيات المتقدمة",
+              "imgVar": "url('/assets/photos/3l-command-center.jpg')",
+              "art": null,
+              "link": {
+                "label": "اعرف المزيد",
+                "href": "/services"
+              }
+            },
+            {
+              "title": "XR",
+              "text": "الواقع الممتد عن طريق الواقع المعزز و الواقع الافتراضي",
+              "imgVar": "url('/assets/photos/3l-xr-simulator.jpg')",
+              "art": null,
+              "link": {
+                "label": "اعرف المزيد",
+                "href": "https://xr.3lines.com.sa/"
+              }
+            },
+            {
+              "title": "Optokon Middle East",
+              "text": "حلول البنية التحتية للبصريات وتكنولوجيا المعلومات",
+              "imgVar": "url('/assets/photos/3l-mro-rf-test.jpg')",
+              "art": null,
+              "link": {
+                "label": "اعرف المزيد",
+                "href": "https://optokon.com.sa/"
+              }
+            },
+            {
+              "title": "ATV",
+              "text": "الاتصالات المتقدمة عبر VSAT/الأقمار الصناعية",
+              "imgVar": "url('/assets/photos/3l-radar-field.jpg')",
+              "art": null
             }
           ]
         }
