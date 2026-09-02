@@ -139,7 +139,15 @@ ul{margin:0;padding:0;list-style:none}
    replaces drew the rule on the wrong side of the cluster under RTL. */
 .utility__lang{display:flex;gap:8px;align-items:center;padding-inline-start:22px;border-inline-start:1px solid var(--lilac)}
 .utility__lang a[aria-current="true"]{color:var(--blue);font-weight:700}
-@media (max-width:900px){.utility{display:none}}
+/* `.hdr .utility`, not `.utility`. The narrow-screen rule has always been here,
+   but folding the utility row into the header introduced `.hdr .utility{display:flex}`
+   for vertical centring — and a media query adds no specificity, so (0,2,0) beat
+   the (0,1,0) hide and the nav kept rendering on phones. At 390px it had nowhere
+   to go: the links overflowed leftwards across the logo and drew on top of the
+   burger, with "Home" and "About" pushed off-screen entirely. Matching the
+   specificity is the whole fix; below 900px the burger and mega menu carry
+   navigation, exactly as they did before. */
+@media (max-width:900px){.hdr .utility{display:none}}
 
 /* ============================================================
    Header — burger | logo | utility nav
